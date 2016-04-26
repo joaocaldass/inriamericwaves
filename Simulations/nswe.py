@@ -62,3 +62,8 @@ def fluxes(h0,hu0,nx):
         hs,us = roe(h0[i],hu0[i],h0[i+1],hu0[i+1])
         f[:,i] = flux(hs,us)
     return f
+def flux(h,u):
+    """
+        h,u escalares, returna F(U)
+    """
+    return np.array([h*u, 0.5*g*h**2 + h*u**2])
