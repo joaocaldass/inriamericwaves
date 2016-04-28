@@ -57,3 +57,36 @@ def plotAnimationTwoSolutions(x,u1,u2,t1,t2,xmin,xmax,ymin,ymax,lb1,lb2,ylabel) 
                         frames=u1.shape[-1], interval=300)
     
     return anim
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import animation
+from JSAnimation import IPython_display
+
+def plotAnimationNSolutions(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel) :
+    
+    print("*** Plotting animation ...")
+    
+    fig = plt.figure()
+    ax = plt.axes(xlim=(xmin, xmax), ylim=(ymin, ymax))
+    line = np.array([])
+    for i in range(N):
+        line = np.append(line,ax.plot([], [], lw=2, label=lb[i])) 
+    ax.set_ylabel(ylabel)
+    title = ax.set_title(r'$t=0.0 s$')
+    plt.legend()
+
+    def init():
+        for i in range(N):
+            line[i].set_data([], [])
+        return line
+
+    def animate(i):
+        for j in range(N):
+            line[j].set_data(x, u[j,:,i])
+        title.set_text('t=%.3f'%(t[i]))
+        return line
+
+    anim = animation.FuncAnimation(fig, animate, init_func=init,
+                        frames=u.shape[-1], interval=300)
+    
+    return anim
