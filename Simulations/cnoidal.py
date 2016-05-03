@@ -27,4 +27,18 @@ def analyticalSolution(x,t,k,a0,a1):
     u = c*(1-h0/h)
     
     return h,u
+
+def analyticalSolutionSolitary(x,t,a0,a1):
+    """
+        Returns the cnoidal solution with parameters k,a0,a1
+        at (x,t) (possibly arrays)        
+    """
+    k = 0
+    g = 9.81
+    kappa = np.sqrt(3*a1)/(2*np.sqrt(a0*(a0+a1)))
+    h0 = a0+ a1*special.ellipe(k)/special.ellipk(k) 
+    c = np.sqrt(g*a0*(a0+a1))
+    h = a0+ a1*np.power(np.cosh(kappa*(x-c*t)),-2)
+    u = c*(1-a0/h)
     
+    return h,u
