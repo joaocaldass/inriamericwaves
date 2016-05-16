@@ -62,7 +62,7 @@ import numpy as np
 from matplotlib import animation
 from JSAnimation import IPython_display
 
-def plotAnimationNSolutions(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel) :
+def plotAnimationNSolutions(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel,location=(.5,.5)) :
     
     print("*** Plotting animation ...")
     
@@ -73,7 +73,7 @@ def plotAnimationNSolutions(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel) :
         line = np.append(line,ax.plot([], [], lw=2, label=lb[i])) 
     ax.set_ylabel(ylabel)
     title = ax.set_title(r'$t=0.0 s$')
-    plt.legend()
+    plt.legend(loc=location)
 
     def init():
         for i in range(N):
