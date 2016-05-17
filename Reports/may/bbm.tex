@@ -1,0 +1,50 @@
+\section{BBM equation}
+\label{sec:BBM}
+
+\subsection{The model}
+
+\indent The second model for wave propagation that we consider in this project is the BBM equation, which models a long-wave propagation accounting for nonlinear and dispersive effects (in an alternative formulation for the KdV equation, with better stability and numerical properties). This equation is derived by \ref{BBM1971} and reads
+
+\begin{equation}
+    u_t + u_x + (u^2)_x - u_{xxt} = 0 \ , \ \ x \in [x_{min},x_{max}], \ \ t \in [0, t_{max}] \\
+\end{equation}
+
+\subsection{Discretization}
+
+\indent The BBM model will be treated here in the same way we did for the KdV equation : we will use an split method, leading to the resolution of the following problem in each time step: 
+
+\begin{equation}
+\begin{cases}
+    v_t + v_x + (v^2)_x = 0 \ \ ,\ t \in [t_n,t_{n+1}], \  v(t_n) = u(t_n) \\
+    w_t - cw_{xxt} = 0 \ \ , \ t \in [t_n,t_{n+1}], \  w(t_n) = v(t_{n+1}) \\
+    u(t_{n+1}) = v(t_{n+1})
+\end{cases}
+\end{equation}
+
+\noindent given an initial solution and appropriate boundary conditions.
+
+\indent The first equation (which is exactly the same as in the KdV equation) will be solved with a Finite Volume method, with a 4th order Runge-Kutta discretization for the time derivative, as described in the section \ref{sec:KdVSplitted1}.  The second equation will be solved with a Fourier spectral method in the periodic case, and a finite difference method in the nonperiodic one, as described below :
+
+\paragraph{Periodic case}
+
+\indent The second equation of the BBM splitted model can be written as
+
+$$(w - cw_{xx})_t=0$$
+
+\noindent showing that $w - w_{xx}$ does not depend on time. Therefore, for each time step $[t_n,t_{n+1}] : $
+
+$$w - cw_{xx} = (w - cw_{xx})\rvert_{t=t_n} = (v - cv_{xx})\rvert_{t=t_{n+1}} = g(x)$$
+
+\indent This equation will be solved using the Fourier method. Let $\hat{w}(k,t_n)$ and $\hat{g}(k)$ be the Fourier coefficients of $w(x,t_n)$ and $g(x)$ respectively.  The Fourier transform of the above equation gives
+
+$$(\hat{w})(k,t) = \frac{\hat{g}(k)}{1+ck^2}$$
+
+\indent The right-hand side of the last equation does not depend on time. Therefore, the inverse Fourier transform using the coefficients $\hat{w}(k,t)$ gives $w(x,t_{n+1})$
+
+\paragraph{Nonperiodic case}
+
+...
+
+\subsection{Simulations}
+
+...

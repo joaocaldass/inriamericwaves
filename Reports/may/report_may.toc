@@ -1,0 +1,39 @@
+\contentsline {section}{\numberline {1}Introduction}{3}
+\contentsline {section}{\numberline {2}KdV equation}{3}
+\contentsline {subsection}{\numberline {2.1}The model}{3}
+\contentsline {subsection}{\numberline {2.2}Discretization}{3}
+\contentsline {subsubsection}{\numberline {2.2.1}First step}{4}
+\contentsline {subsubsection}{\numberline {2.2.2}Second step}{5}
+\contentsline {paragraph}{Periodic case}{5}
+\contentsline {paragraph}{Nonperiodic case}{6}
+\contentsline {subsubsection}{\numberline {2.2.3}Choice of the time step}{6}
+\contentsline {subsection}{\numberline {2.3}Scale analysis}{7}
+\contentsline {subsubsection}{\numberline {2.3.1}Characterization of the nonlinearity}{7}
+\contentsline {subsubsection}{\numberline {2.3.2}Characterization of the dispersion}{7}
+\contentsline {subsection}{\numberline {2.4}The criteria}{9}
+\contentsline {subsubsection}{\numberline {2.4.1}Choice of the wavelength}{9}
+\contentsline {subsubsection}{\numberline {2.4.2}Choice of the wave amplitude}{9}
+\contentsline {subsubsection}{\numberline {2.4.3}Resume}{9}
+\contentsline {subsubsection}{\numberline {2.4.4}Examples}{10}
+\contentsline {paragraph}{Conclusions :}{11}
+\contentsline {section}{\numberline {3}BBM equation}{11}
+\contentsline {subsection}{\numberline {3.1}The model}{11}
+\contentsline {subsection}{\numberline {3.2}Discretization}{12}
+\contentsline {paragraph}{Periodic case}{12}
+\contentsline {paragraph}{Nonperiodic case}{12}
+\contentsline {subsection}{\numberline {3.3}Simulations}{13}
+\contentsline {section}{\numberline {4}Serre equation}{13}
+\contentsline {subsection}{\numberline {4.1}The model}{13}
+\contentsline {subsection}{\numberline {4.2}Discretization}{13}
+\contentsline {subsubsection}{\numberline {4.2.1}First system of equations (advection step)}{14}
+\contentsline {subsubsection}{\numberline {4.2.2}Second system of equations (dispersive step)}{15}
+\contentsline {paragraph}{Alternative resolution of the second system (for the variables $(h,hu)$)}{15}
+\contentsline {subsection}{\numberline {4.3}Simulations}{17}
+\contentsline {subsubsection}{\numberline {4.3.1}Description of the initial solution}{17}
+\contentsline {subsubsection}{\numberline {4.3.2}Results}{18}
+\contentsline {section}{\numberline {5}Study of transparent boundary conditions}{19}
+\contentsline {subsection}{\numberline {5.1}Introduction and motivational examples}{19}
+\contentsline {subsection}{\numberline {5.2}Robin boundary conditions to simulate TBCs}{21}
+\contentsline {subsubsection}{\numberline {5.2.1}Robin boundary conditions up to the first derivative}{21}
+\contentsline {subsubsection}{\numberline {5.2.2}Robin boundary conditions up to the second derivative}{24}
+\contentsline {section}{\numberline {6}Conclusions and next steps}{25}

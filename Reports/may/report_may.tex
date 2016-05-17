@@ -1,0 +1,46 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx} % for figure
+\usepackage{subcaption}  % for subfigure
+\usepackage{float}
+\usepackage{indentfirst} % indent first line after section title
+\usepackage{placeins} %FloatBarrier
+\usepackage{afterpage}
+
+\author{Joao Guilherme Caldas Steinstraesser \\ José Galaz}
+\title{Inriamericwaves \\ Report of activities - March-May/16}
+
+\bibliographystyle{abbrv}
+
+\captionsetup[subfigure]{labelformat=parens,labelsep=space}
+
+%% Commands
+\newcommand{\der}[1]{\partial_{#1}}
+
+\renewcommand{\th}{\tilde{h}}
+\newcommand{\tu}{\tilde{u}}
+
+\newcommand{\lh}{\overline{h}}
+\newcommand{\lu}{\overline{u}}
+
+\newcommand{\Atwo}[2]{\left( \begin{array}{c} #1 \\ #2  \end{array} \right)}
+
+\begin{document}
+\maketitle
+
+\newpage
+\tableofcontents
+
+\newpage
+\input{introduction}
+\input{kdv}
+\input{bbm}
+\input{serre}
+\input{BCstudy}
+\input{conclusion}
+\FloatBarrier
+\bibliography{biblio}
+\end{document}

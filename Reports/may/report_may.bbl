@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+
+\bibitem{BBM1971}
+T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony.
+\newblock Model equations for long waves in nonlinear dispersive systems.
+\newblock {\em Philosophical Transactions of the Royal Society of London.
+  Series A, Mathematical and Physical Sciences}, 272(1220):47--78, 1972.
+
+\bibitem{Bonneton2011}
+P.~Bonneton, F.~Chazel, D.~Lannes, F.~Marche, and M.~Tissier.
+\newblock {A Splitting approach for the fully nonlinear and weakly dispersive
+  Green-Naghdi model}.
+\newblock {\em J. Comput. Phys.}, 230:1479--1498, 2011.
+
+\bibitem{CarterCienfuegos2011}
+J.~D. Carter and R.~Cienfuegos.
+\newblock {The kinematics and stability of solitary and cnoidal wave solutions
+  of the Serre equations}.
+\newblock {\em {European Journal of Mechanics B/Fluids}}, 2011.
+
+\bibitem{Khorsand2014}
+Z.~Khorsand and H.~Kalisch.
+\newblock On the shoaling of solitary waves in the kdv equation.
+\newblock {\em Coastal Engineering Proceedings}, 1(34):44, 2014.
+
+\bibitem{conservationLaws2002}
+{University of Stanford}.
+\newblock Partial differential equations of applied mathematics - lecture 3 :
+  Conservation laws.
+\newblock http://web.stanford.edu/class/math220a/handouts/conservation.pdf,
+  2002.
+
+\end{thebibliography}
