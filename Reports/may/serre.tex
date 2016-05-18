@@ -47,7 +47,7 @@ u_t + uu_x + gh_x - \frac{1}{3h}\left(h^3 \left( u_{xt} + uu_{xx} - (u_x)^2  \ri
 (h,u)(x,t_{n+1}) = T_d^{\Delta t} \left( T_a^{\Delta t} \left((h,u)(x,t_n) \right) \right)
 \end{equation}
 
-\indent Some variations of the splitting scheme were also implemented. For example, inverting the order of the operators; or the method known as "strang splitting", in which three problems are solved in each time-step :
+\indent Some variations of the splitting scheme were also implemented. For example, inverting the order of the operators; or the method known as "Strang splitting", in which three problems are solved in each time-step :
 
 \begin{equation}
 (h,u)(x,t_{n+1}) = T_a^{\frac{\Delta t}{2}} \left( T_d^{\Delta t} \left( T_a^{\frac{\Delta t}{2}} (h,u)(x,t_n) \right) \right)
@@ -57,31 +57,94 @@ u_t + uu_x + gh_x - \frac{1}{3h}\left(h^3 \left( u_{xt} + uu_{xx} - (u_x)^2  \ri
 
 \subsubsection{First system of equations (advection step)}
 
-\noindent In order to solve the advection system (\ref{eq:SerreSplit1}) with the Roe solver (an approximation of the Riemman solver), one must write it in the classical form $U_t +  F(U)_x = 0$, where $U$ is the vector of unknowns and $F$ is a flux function.
+\noindent The first part of the Serre equation corresponds to the Non linear Shallow Water equation, that after noticing that 
 
-\noindent We have that
-
-\begin{equation}
-\begin{split}
-(hu)_t = uh_t + hu_t = -u(hu)_x - h\left(uu_x + gh_x\right) = -u\left (h_xu + 2hu_x \right) - ghh_x = \\ 
--\left(hu^2\right)_x - \frac{1}{2}g\left(h^2\right)_x = - \left(hu^2 +  \frac{1}{2}gh^2 \right)_x
-\end{split}
-\end{equation}
-
-\noindent Therefore, the system can be rewritten as
+\begin{align*}
+(hu)_t &= uh_t + hu_t = -u(hu)_x - h\left(uu_x + gh_x\right) \\
+	&= -u\left (h_xu + 2hu_x \right) - ghh_x  \\
+	&= -\left(hu^2\right)_x - \frac{1}{2}g\left(h^2\right)_x = - \left(hu^2 +  \frac{1}{2}gh^2 \right)_x
+\end{align*}
+\noindent it can be written as a conervation law of the form
 
 \begin{equation}
-\begin{cases}
-h_t + \left(hu \right)_x = 0 \\
-\left(hu \right)_t + \left(hu^2 +  \frac{1}{2}gh^2 \right)_x = 0
-\end{cases}
+	U_t + F(U)_x = 0
+	\label{serre:conservative_swe}
 \end{equation}
 
-\noindent and we will solve it for the unknowns $U = \Atwo{h}{hu}$, with the flux function $F \Atwo{h}{hu} = \Atwo{hu}{hu^2 +  \frac{1}{2}gh^2} $. The time step is discretized using a 4th order Runge-Kutta scheme. The Riemman problem in each cell interface will be solved with the Roe solver (an approximated Riemman solver) associated with the MUSCL scheme for the reconstruction of the solution in the interfaces, giving a second order in space. 
+\noindent where $U=(h,hu)^T$, $F(U) = (hu, hu^2 + \frac{1}{2}gh^2)$. Weak solutions are approximated using a Finite Volume scheme, that is, after integrating the system \eqref{serre:conservative_swe} in a cell $\Omega_i = [x_i-\Delta x/2, x_i+\Delta x/2]$, and defining $ \overline U = \frac{1}{\Delta x} \int_{\Omega_i} U(x)dx$, then the semidiscrete approximation to \eqref{serre:conservative_swe} is 
 
-\subsubsection{Second system of equations (dispersive step)}
+\begin{equation}
+	\overline U _t + \frac{1}{\Delta x}\left( F(U_{i+1/2}) - F(U_{i-1/2}) \right) = 0
+\end{equation}
 
-\indent In the second system (\ref{eq:SerreSplit2}) of the splitted Serre equations , the water depth $h$ is constant in time, and therefore only the velocity $u$ must be updated. Separating the terms containing time derivatives, the second equation of thi suystem can be rewritten as 
+\noindent where $U_{i\pm1/2}$ corresponds to the values of the conserved variables at the interface of each cell. 
+
+The values at each interface $U^* = U_{i+1/2}$ are obtained from the solution to the Riemann problem of the non-conservative form of \eqref{serre:conservative_swe} between two states $U_L = U_i$ and $U_R = U_{i+1}$
+
+\begin{equation}
+	\begin{split}
+	  U_t + A(U) U_x = 0 \\
+	  U(t=0,x) = \begin{cases}
+		 U_l &, \text{ if } x\leq 0. \\
+		 U_r &, \text{ if } x > 0 
+		\end{cases}
+	\end{split}
+	\label{serre:nonconservative_swe_1}
+\end{equation}
+
+\noindent where $A$ is the jacobian matrix of $F(U)$. The solution to this Riemann problem is found using the approximate Riemann solver of Roe that is described in reference [PAPER DE MARCHE 2006]. It consists first of a change of variables that allows to write \eqref{serre:nonconservative_swe_1} as
+
+\begin{equation}
+	\begin{split}
+	  V_t + C(V)V_x = 0 \\
+	  V(t=0,x) = \begin{cases}
+		V_l &, \text{ if } x\leq 0. \\
+	 V_r &, \text{ if } x > 0 
+		\end{cases}
+	\end{split}
+	\label{serre:nonconservative_swe_2}
+\end{equation}
+
+\noindent with $V = (2c,u)^T$ and 
+$C(V) = \left( 
+\begin{array}{cc} 
+u & c \\ 
+c & u \end{array}\right)$. Second, instead of using the exact formulation, a linearized problem is solved using $C(\hat V)$ in place of $C(V)$, with $\hat V = (V_L +V_R)/2$. The matrix $C(\hat V)$ is diagonalizable and thus, a decoupled system can be obtained in the form
+
+\begin{equation}
+	\begin{split}
+		(w_1)_t + \hat \lambda_1 (w_1)_x = 0\\
+		(w_2)_t + \hat \lambda_2 (w_2)_x = 0 \\	
+	(w_1,w_2)^T(t=0,x) = \begin{cases}
+		((w_1)_L,(w_2)_L)^T &, \text{ if } x\leq 0. \\
+		((w_1)_L,(w_2)_L)^T &, \text{ if } x > 0 
+		\end{cases}
+	\end{split}
+\end{equation}
+
+\noindent where $\hat \lambda_1 = \hat u - \hat c$, $\hat \lambda_2 = \hat u + \hat c$, $w_1 = u-2c$, $w_2 = u+2c$ and $ (w_1)_L = u_L - 2c_L, (w_2)_L = u_L - 2c_L$, $ (w_1)_R = u_R - 2c_R, (w_2)_R = u_R - 2c_R$. Writing $W=(w_1,w_2)$ and using index $*,L,R,$ for the values at the interface, left and right states, and noticing that $\hat \lambda_1 \leq \hat \lambda_2$, the solution can be found for separate cases:
+
+\begin{itemize}
+	\item If $\lambda_1 > 0$, then $W^* = W_L$
+	\item If $\lambda_1 \leq 0 $ and $\lambda_2>0$, $W^* = ((w_R)_1, (w_L)_2)^T$
+	\item If $\lambda_2\leq 0 $, $W^* = W_R$
+\end{itemize}
+
+\noindent the values at the interface can then be recovered setting the inverse transformation 
+
+\begin{equation}
+	u^* = \frac{1}{2}(w^*_1+w^*_2) \\
+	h^* = \frac{1}{16g}(w^*_2-w^*_1)^2
+	\label{serre:riemman_solution}
+\end{equation}
+
+A third step is necessary, which consists on an entropy fix to select only weak solutions that are physically consistent. This is simply obtained by setting $W^* = \hat W$ whenever $(\lambda_1)_L < 0$ and $(\lambda_1)_r >0$, or $(\lambda_2)_L < 0 $ and $(\lambda_2)_R>0$.
+
+\paragraph Second order Finite Volume Scheme
+
+ \textbf{TO COME}
+
+\indent In the second system (\ref{eq:SerreSplit2}) of the splitted Serre equations , the water depth $h$ is constant in time, and therefore only the velocity $u$ must be updated. Separating the terms containing time derivatives, the second equation of thi system can be rewritten as
 
 \begin{equation}
 \label{eq:dispersive}
