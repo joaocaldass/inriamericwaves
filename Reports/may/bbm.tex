@@ -3,7 +3,7 @@
 
 \subsection{The model}
 
-\indent The second model for wave propagation that we consider in this project is the BBM equation, which models a long-wave propagation accounting for nonlinear and dispersive effects (in an alternative formulation for the KdV equation, with better stability and numerical properties). This equation is derived by \ref{BBM1971} and reads
+\indent The second model for wave propagation that we consider in this project is the BBM equation, which models a long-wave propagation accounting for nonlinear and dispersive effects (in an alternative formulation for the KdV equation, with better stability and numerical properties). This equation is derived by \cite{BBM1971} and reads
 
 \begin{equation}
     u_t + u_x + (u^2)_x - u_{xxt} = 0 \ , \ \ x \in [x_{min},x_{max}], \ \ t \in [0, t_{max}] \\
@@ -33,7 +33,7 @@ $$(w - cw_{xx})_t=0$$
 
 \noindent showing that $w - w_{xx}$ does not depend on time. Therefore, for each time step $[t_n,t_{n+1}] : $
 
-$$w - cw_{xx} = (w - cw_{xx})\rvert_{t=t_n} = (v - cv_{xx})\rvert_{t=t_{n+1}} = g(x)$$
+$$ \label{eq:dtzero}w - cw_{xx} = (w - cw_{xx})\rvert_{t=t_n} = (v - cv_{xx})\rvert_{t=t_{n+1}} = g(x)$$
 
 \indent This equation will be solved using the Fourier method. Let $\hat{w}(k,t_n)$ and $\hat{g}(k)$ be the Fourier coefficients of $w(x,t_n)$ and $g(x)$ respectively.  The Fourier transform of the above equation gives
 
@@ -41,10 +41,16 @@ $$(\hat{w})(k,t) = \frac{\hat{g}(k)}{1+ck^2}$$
 
 \indent The right-hand side of the last equation does not depend on time. Therefore, the inverse Fourier transform using the coefficients $\hat{w}(k,t)$ gives $w(x,t_{n+1})$
 
+\indent Though the simplicity of this implementation, we did not obtained stable numerical solutions. As we moved to the study of the Serre equation, following the objectives in this project, the numerical resolution of the BBM equation remained as an open question.
+
 \paragraph{Nonperiodic case}
 
-...
+\indent We propose for the nonperiodic case a Finite Difference discretization of the equation \eqref{eq:dtzero}, which is a second-order ODE, leading to the resolution of the linear system
 
-\subsection{Simulations}
+$$Aw^{n+1} = g$$
 
-...
+\indent Nevertheless, there is an evident problem with this approach. The matrix $A$ is constructed with a Finite Difference approximation for the operator $1 + \partial_{xx}$, and, to construct the right hand side of the linear system, we must approximate  $ g = (v - cv_{xx})\rvert_{t=t_{n+1}} $, which is the same operator applied to $v\rvert_{t=t_{n+1}}$. In other words, we will have a system of the form
+
+$$ \label{eq:systemBBM} Aw^{n+1} = Av^{n+1}$$,
+
+\noindent and, as A is nonsingular, we conclude that $w^{n+1} = v^{n}$, which means that the dispersive part of the BBM equation does not modify the solution. Evidently, this is not necessarily true if we modify the matrix in the left side of \ref{eq:systemBBM} to take in account the boundary conditions, but if we consider an example in which the domain is much larger than the support of the initial solution (as we have done for the nonperiodic test cases for the KdV equation), this problem is observed.

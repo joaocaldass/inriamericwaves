@@ -3,9 +3,70 @@
 
 \subsection{Introduction and motivational examples}
 
-\indent The work presented in this section is an introduction to the objectives that we are looking for in this project, concerning the study of Transparent Boundary Conditions. It was developed on the KdV equation, because, among the models studied and implement until here (Kdv, BBM and Serre equations), it was the one for which we have obtained the best computational implementation.
+\indent The work presented in this section is an introduction to the objectives that we are looking for in this project, concerning the study of Transparent Boundary Conditions (TBCs). It was developed on the KdV equation, because, among the models studied and implement until here (Kdv, BBM and Serre equations), it was the one for which we have obtained the best computational implementation.
 
-\indent In the first simulations with the splitting method adopted to the resolution of the KdV equation, we did not make a rigorous application of appropriate boundary conditions. In fact, our initial objective was to validate the method; therefore, imposing periodic or homogeneous Dirichlet and Neumann conditions, we analyzed the evolution of the solution only before the arrival of the wave to the boundaries.
+\indent The TBCs are constructed such that the solution computed in the finite computational domain $\Omega$ coincides with the solution of the whole-space problem, restricted to $\Omega$ . In general, these boundary conditions are nonlocal in time,  so they must be approximated for an efficient numerical implementation \cite{Xavieretal2008}. Before moving to the models of wave propagation, in order to see in practice this definition we will implement a simple example, with analytical solution and TBCs, derived following \cite{Japhet2003}.  We will consider the 1D problem 
+
+\begin{equation}
+\begin{cases}
+-u''(x) = 1 \ \ in \ \ \Omega = [0,2]\\
+u(0) = 0 \\
+u(2) = 0
+\end{cases}
+\end{equation}
+
+\noindent whose solution is
+
+$$u(x) = -\frac{x^2}{2} + x$$
+
+\noindent and, considering the partition of $\Omega$ in $\Omega_1 = [0,1]$ and $\Omega_2 = [1,2]$, we will solve the problem
+
+\begin{equation}
+\begin{cases}
+-u_1''(x) = 1 \ \ in \ \ \Omega_1\\
+u_1(0) = 0 \\
+B(u_1) = 0 \ \ at \ \ \Gamma=\{1\}
+\end{cases}
+\end{equation}
+
+\noindent where the transparent boundary condition $B(u)$ is such that $u|_{\Omega_1} = u_1$.
+
+\indent The TBC is written in the form $B(u) = \frac{\partial}{\partial x}u + D2N(u)$, where the D2N (Dirichlet to Neumann) operator is defined by
+
+$$\left. D2N : \alpha(x) \mapsto \frac{\partial}{\partial x}v \right\rvert_\Gamma$$
+
+\noindent where $\alpha$ is defined in the boundary $\Gamma$. In the case treated here, $\Gamma$ is a point, and therefore $\alpha$ is a scalar.
+
+\indent The function $v$ is solution of
+
+\begin{equation}
+\begin{cases}
+-v''(x) = 1 \ \ in \ \ \Omega_2\\
+v(2) = 0 \\
+v(1) = \alpha \ \ at \ \ \Gamma=\{1\}
+\end{cases}
+\end{equation}
+
+\noindent so
+
+$$v(x) = -\frac{x^2}{2} + \left(\frac{3}{2} - \alpha \right) + 2\alpha -1$$
+
+\noindent and 
+
+$$\left. \frac{\partial}{\partial x}v \right\rvert_{x=1} = \frac{1}{2} - \alpha$$
+
+\indent Finally, the TBC reads
+
+$$B(u_1) = \frac{\partial}{\partial x}u_1 + D2N(u_1) = \frac{\partial}{\partial x}u_1+ \frac{1}{2} - u_1$$
+
+\indent The problem was solved with a finite difference method, with centered second-order approximation for the spatial derivative, for two different grids. The figure \ref{fig:TBClaplace} shows that the constructed TBC effectively provides a convergent solution.
+
+\begin{center}
+	\includegraphics[scale=.5]{figures/TBClaplace.png}
+	\captionof{figure}{Solutions for the Laplace equation with TBC \label{fig:TBClaplace}}
+\end{center}
+
+\indent Coming back to the wave models, we recall that, in the first simulations with the splitting method adopted to the resolution of the KdV equation, we did not make a rigorous application of appropriate boundary conditions. In fact, our initial objective was to validate the method; therefore, imposing periodic or homogeneous Dirichlet and Neumann conditions, we analyzed the evolution of the solution only before the arrival of the wave to the boundaries.
 
 \indent The following example shows very clearly the influence of non appropriate boundary conditions on the solution. We solved two times the same problem, with the same initial solution, boundary conditions, and spatial and time discretizations: 
 
@@ -37,9 +98,7 @@
 	\caption{First motivational example : comparison between the solutions in a small and a big domain}
 \end{figure}
 
-\indent Therefore, we look for boundaries conditions that can efficiently simulate the called Transparent Boundary Conditions (TBCs), i.e., in a such a way that the solution calculated in the computational domain $\Omega$ coincides with solution of the whole-space restricted to $\Omega$.
-
-\indent In a more practical point of view, we want the boundaries not to have an influence on the solution, so, when the wave reaches the boundary, it will simply "exit" the domain. The following example shows a motivation for this work.
+\indent Therefore, we look for boundaries conditions that can efficiently simulate the called Transparent Boundary Conditions (TBCs), i.e., in a such a way that the solution calculated in the computational domain $\Omega$ coincides with solution of the whole-space restricted to $\Omega$. As a consequence, we want the boundaries not to have an influence on the solution, so, when the wave reaches the boundary, it will simply "exit" the domain. The following example shows a motivation for this work.
 
 \indent We want to solve the following problem :
 
@@ -79,11 +138,11 @@
 	\caption{Second motivational example : solution with an "exact" Dirichlet condition at the right boundary \label{fig:motivation2}}
 \end{figure}
 
-\subsection{Robin boundary conditions to simulate TBCs}
+\subsection{Optimization of Robin boundary conditions to simulate TBCs}
 
 \subsubsection{Robin boundary conditions up to the first derivative}
 
-\indent Although the motivating result presented in the above example, we cannot apply this procedure in "real-life" computations. In fact, computing the solution in a larger domain and using it as exact solution is only a trick, which has no practical interest. Therefore, we want to determinate approximations for a TBC without having a referential solution. 
+\indent Although the motivating result presented in the above example, we cannot apply this procedure in practice. In fact, computing the solution in a larger domain and using it as exact solution is only a trick, which has no practical interest. Therefore, we want to determinate approximations for a TBC without having a referential solution. 
 
 \indent The KdV will be solved in the domain $[-L,L]$ with the following boundary conditions (imposed in the resolution of the second equation of the split method):
 
