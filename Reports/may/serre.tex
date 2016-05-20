@@ -92,7 +92,7 @@ The values at each interface $U^* = U_{i+1/2}$ are obtained from the solution to
 	\label{serre:nonconservative_swe_1}
 \end{equation}
 
-\noindent where $A$ is the jacobian matrix of $F(U)$. The solution to this Riemann problem is found using the approximate Riemann solver of Roe that is described in reference [PAPER DE MARCHE 2006]. It consists first of a change of variables that allows to write \eqref{serre:nonconservative_swe_1} as
+\noindent where $A$ is the jacobian matrix of $F(U)$. The solution to this Riemann problem is found using the approximate Riemann solver of Roe that is described in reference \cite{marche2006}. It consists first of a change of variables that allows to write \eqref{serre:nonconservative_swe_1} as
 
 \begin{equation}
 	\begin{split}
@@ -140,9 +140,21 @@ c & u \end{array}\right)$. Second, instead of using the exact formulation, a lin
 
 A third step is necessary, which consists on an entropy fix to select only weak solutions that are physically consistent. This is simply obtained by setting $W^* = \hat W$ whenever $(\lambda_1)_L < 0$ and $(\lambda_1)_r >0$, or $(\lambda_2)_L < 0 $ and $(\lambda_2)_R>0$.
 
-\paragraph Second order Finite Volume Scheme
+\paragraph{Second order Finite Volume Scheme}
 
- \textbf{TO COME}
+To obtain second order convergence for smooth solutions a MUSCL (Monotonic Upstream-Centered Scheme) is used. This means that instead of solving a Riemann problem between $U_L=U_{i}$ and $U_R=U_{i+1}$ one must solve for $U_L = U_{i+1/2^-}$ and $U_{i+1/2^+}$, where $U_{i+1/2^+} = U_i + \frac{\Delta x}{2} s$,  $s = minmod(s_L,s_R)$, 
+$s_L = \frac{U_{i}-U_{i-1}}{\Delta x}$, 
+$s_R = \frac{U_{i+1}-U_{i}}{\Delta x}$ and
+
+\begin{equation}
+	minmod(s_1,s_2) = \begin{cases}
+		min(s_1,s_2) & \text{ if } s_1>0 \textit{ and } s_2>0 \\
+		max(s_1,s_2) & \text{ if } s_1<0 \textit{ and } s_2<0 \\
+		0 & elsewhere
+	\end{cases}
+\end{equation}
+
+\subsubsection{First system of equations (advection step)}
 
 \indent In the second system (\ref{eq:SerreSplit2}) of the splitted Serre equations , the water depth $h$ is constant in time, and therefore only the velocity $u$ must be updated. Separating the terms containing time derivatives, the second equation of thi system can be rewritten as
 
