@@ -3,7 +3,7 @@
 
 \subsection{Introduction and motivational examples}
 
-\indent The work presented in this section is an introduction to the objectives that we are looking for in this project, concerning the study of Transparent Boundary Conditions (TBCs). It was developed on the KdV equation, because, among the models studied and implement until here (Kdv, BBM and Serre equations), it was the one for which we have obtained the best computational implementation.
+\indent The work presented in this section is an introduction to the objectives that we are looking for in this project, concerning the study of Transparent Boundary Conditions (TBCs). It was developed on the KdV equation, because, among the models studied and implement until here (KdV, BBM and Serre equations), it was the one for which we have obtained the best computational implementation.
 
 \indent The TBCs are constructed such that the solution computed in the finite computational domain $\Omega$ coincides with the solution of the whole-space problem, restricted to $\Omega$ . In general, these boundary conditions are nonlocal in time,  so they must be approximated for an efficient numerical implementation \cite{Xavieretal2008}. Before moving to the models of wave propagation, in order to see in practice this definition we will implement a simple example, with analytical solution and TBCs, derived following \cite{Japhet2003}.  We will consider the 1D problem 
 
@@ -68,7 +68,7 @@ $$B(u_1) = \frac{\partial}{\partial x}u_1 + D2N(u_1) = \frac{\partial}{\partial 
 
 \indent Coming back to the wave models, we recall that, in the first simulations with the splitting method adopted to the resolution of the KdV equation, we did not make a rigorous application of appropriate boundary conditions. In fact, our initial objective was to validate the method; therefore, imposing periodic or homogeneous Dirichlet and Neumann conditions, we analyzed the evolution of the solution only before the arrival of the wave to the boundaries.
 
-\indent The following example shows very clearly the influence of non appropriate boundary conditions on the solution. We solved two times the same problem, with the same initial solution, boundary conditions, and spatial and time discretizations: 
+\indent The following example shows very clearly the influence of inappropriate boundary conditions on the solution. We solved two times the same problem, with the same initial solution, boundary conditions, and spatial and time discretizations: 
 
 \begin{equation}
     \begin{cases}
@@ -80,7 +80,7 @@ $$B(u_1) = \frac{\partial}{\partial x}u_1 + D2N(u_1) = \frac{\partial}{\partial 
     \end{cases}
 \end{equation}
 
-\indent The only difference is the size of the domain of each problem : they were chosen such that the wave reaches the boundaries (in the maximal time of simulation) in the first problem, but not in the second. The difference between the solution increases with the time, beginning in the boundary and propagating to the whole domain :
+\indent The only difference is the size of the domain of each problem : they were chosen such that the wave reaches the boundaries (within the maximal time of simulation) in the first problem, but not in the second. The difference between the solution increases with the time, beginning in the boundary and propagating to the whole domain :
 
 \begin{figure}[h]
 	\begin{subfigure}{.3\linewidth}
@@ -98,7 +98,7 @@ $$B(u_1) = \frac{\partial}{\partial x}u_1 + D2N(u_1) = \frac{\partial}{\partial 
 	\caption{First motivational example : comparison between the solutions in a small and a big domain}
 \end{figure}
 
-\indent Therefore, we look for boundaries conditions that can efficiently simulate the called Transparent Boundary Conditions (TBCs), i.e., in a such a way that the solution calculated in the computational domain $\Omega$ coincides with solution of the whole-space restricted to $\Omega$. As a consequence, we want the boundaries not to have an influence on the solution, so, when the wave reaches the boundary, it will simply "exit" the domain. The following example shows a motivation for this work.
+\indent Therefore, we look for boundaries conditions that can efficiently simulate the called Transparent Boundary Conditions (TBCs), i.e., in a such a way that the solution calculated in the computational domain $\Omega$ coincides with solution of the whole-space restricted to $\Omega$. As a consequence, we want the boundaries not to have an influence on the solution, so, when the wave reaches the boundary, it will simply "exit" the domain. The following example shows another motivation for this work.
 
 \indent We want to solve the following problem :
 
@@ -126,7 +126,7 @@ $$B(u_1) = \frac{\partial}{\partial x}u_1 + D2N(u_1) = \frac{\partial}{\partial 
 
 \noindent and we impose $g(t) = u_2(t)$, where $u_2$ is the solution of $(P_2)$. To obtain more precise results, the two computations are made with the same mesh size and time step.
 
-\noindent Suppose that there is a unique solution $u_1$ to $(P_1)$. We can easily see that $u_2|_{\Omega_1}$ is also a solution of $(P_1)$. Therefore, $u_1 = u_2|_{\Omega_1}$. It justifies why our procedure works as a TBC, as shown in the figure \ref{fig:motivation2} (close-up in the region close to the right boundary) :
+\indent Suppose that there is a unique solution $u_1$ to $(P_1)$. We can easily see that $u_2|_{\Omega_1}$ is also a solution of $(P_1)$. Therefore, $u_1 = u_2|_{\Omega_1}$. It justifies why our procedure works as a TBC, as shown in the figure \ref{fig:motivation2} (close-up in the region close to the right boundary) :
 
 \begin{figure}[h]
 	\begin{subfigure}{.5\linewidth}
@@ -218,12 +218,12 @@ e_2^n =  u^n_N - (u_{ref})^n_N
 \end{minipage}
 
 \begin{center}
-		\includegraphics[scale=.5]{figures/robinErrors1.png}
-	     \captionof{figure}{Error $e_2$ between the computed and the referential solution for many values of $\beta/\alpha$ \label{fig:robinErrorsAll}}
+		\includegraphics[scale=.6]{figures/robinErrors1.png}
+	     \captionof{figure}{Error $||e_1| = \sum_{n=0}^{n_{max}}(e^n_1)^2$ between the computed and the referential solution for many values of $\beta/\alpha$ \label{fig:robinErrorsAll}}
 \end{center}
 
 
-\indent The results presented in the figures \ref{fig:robin1} to \ref{fig:robinErrorsAll} show that boundary conditions with stronger Neumann character produce better approximations to the TBC, compared to more Dirichlet-type conditions. The results for pure Neumann conditions and for Neumann with a small but non-zero Dirichlet were very close.In fact, setting the solution to zero in the boundary is a too much strong condition, and the Neumann condition captures in a more satisfactory way the smoothness of the propagating wave.
+\indent The results presented in the figures \ref{fig:robin1} to \ref{fig:robinErrorsAll} show that boundary conditions with stronger Neumann character produce better approximations to the TBC, compared to more Dirichlet-type conditions. The results for pure Neumann conditions and for Neumann with a small but non-zero Dirichlet were very close. In fact, setting the solution to zero in the boundary is a too much strong condition, and the Neumann condition captures in a more satisfactory way the smoothness of the propagating wave.
 
 \subsubsection{Robin boundary conditions up to the second derivative}
 
@@ -232,6 +232,6 @@ e_2^n =  u^n_N - (u_{ref})^n_N
 \indent The values of $\alpha$ and $\beta$ will be fixed and equal to the ones that gave the minimal error in the previous simulations ($(\alpha,\beta) = (1,1000)$). We will show directly the graph containing the errors for many values of $\gamma/\beta$ (figure \ref{fig:robinErrorsAll2}, which should be compared with the figure \ref{fig:robinErrorsAll}. Similarly to the previous conclusions, we observe a better approximation of the TBCs for stronger values of $\gamma/\beta$.
 
 \begin{center}
-		\includegraphics[scale=.5]{figures/robinErrors2.png}
-	     \captionof{figure}{Error $e_2$ between the computed and the referential solution for many values of $\gamma/\beta$, with Robin conditions up to the second derivative \label{fig:robinErrorsAll2}}
+		\includegraphics[scale=.6]{figures/robinErrors2.png}
+	     \captionof{figure}{Error $||e_1| = \sum_{n=0}^{n_{max}}(e^n_1)^2$between the computed and the referential solution for many values of $\gamma/\beta$, with Robin conditions up to the second derivative \label{fig:robinErrorsAll2}}
 \end{center}

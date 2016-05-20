@@ -27,20 +27,20 @@
 
 \indent The numerical resolution will be made with a splitting scheme, separating the advective and the dispersive terms. Therefore, defining the operators
 
-\begin{equation}
-  \begin{split}
+
+\begin{gather}
 	T_a{u} = u_t + u_x + (u^2)_x \\
 	T_d{u} = u_t + u_{xxx}
-	\end{split}
-\end{equation}
+\end{gather}
+
  
- we will solve, in each time step $[t_n,t_{n+1}]$ :
+\noindent we will solve, in each time step $[t_n,t_{n+1}]$ :
 
 \begin{equation}
 \begin{cases}
-   T_a(v) = 0 \ \ ,\ t \in [t_n,t_{n+1}], \  v(t_n) = u(t_n) \\
-   T_d(w) = 0 \ \ , \ t \in [t_n,t_{n+1}], \  w(t_n) = v(t_{n+1}) \\
-    u(t_{n+1}) = w(t_{n+1})
+   T_a(v) = 0 \ \ ,\ t \in [t_n,t_{n+1}], \  v^n = u^n \\
+   T_d(w) = 0 \ \ , \ t \in [t_n,t_{n+1}], \  w^n = v^{n+1} \\
+    u^{n+1} = w^{n+1}
 \end{cases}
 \end{equation}
 
@@ -56,7 +56,7 @@
 	v_t + f(v)_x = 0, \ \ f(v) = v + v^2
 \end{equation}
 
-\indent It will be solved using a Finite Volume method, with the cells $[x_{i-1/2}, x_{i+1/2}]$ centered in the discrete spatial points $x_i$ and with the cell-averaged value of the solution equal to the solution in these points ($u_i^n$). The spatial derivative in \eqref{eq:conservationLaw} will be discretized with a 4th order Runge-Kutta method,
+\indent It will be solved using a Finite Volume method, with the cells $[x_{i-1/2}, x_{i+1/2}]$ centered in the discrete spatial points $x_i$ and with the cell-averaged value of the solution equal to the solution $u_i^n$ in these points. The spatial derivative in \eqref{eq:conservationLaw} will be discretized with a 4th order Runge-Kutta method,
 
 \begin{equation}
 \begin{cases}
@@ -123,12 +123,12 @@ v^+ \ ,\ \ f'(v^+) < 0
 
 \paragraph{Periodic case}
 
-\indent The spatial derivatives and the linearity the second step \eqref{eq:dispersion} motivates us to implement a Fourier spectral method, which is possible with the periodic boundary conditions. In fact, the method is quite simple :
+\indent The spatial derivatives and the linearity in the second step \eqref{eq:dispersion} motivates us to implement a Fourier spectral method, which is possible with the periodic boundary conditions. In fact, the method is quite simple :
 
 \indent Let $\hat{w}(k,t_n)$ be the Fourier coefficients of $w(x,t_n)$.  The Fourier transform of the equation \eqref{eq:dispersion} gives
 
 \begin{equation}
-	\hat{w})_t(k,t) - ik^3\hat{w}(k,t) = 0
+	\hat{w}_t(k,t) - ik^3\hat{w}(k,t) = 0
 \end{equation}
 
 \indent It is an ODE in $t$,  which solution is
@@ -143,14 +143,12 @@ v^+ \ ,\ \ f'(v^+) < 0
 
 \indent For this case, the second equation \eqref{eq:dispersion} was solved using an implicit Finite Difference scheme, with fourth order centered discretization of the third spatial derivative, except in the points near the boundaries, for which a simple first order uncentered scheme was used:
 
-\begin{equation}
+\begin{gather}
 	\label{eq:IFDSolverKdV}
-	\begin{split}
 	\frac{u_i^{n+1} - u_i^n}{\Delta t} + \frac{\frac{1}{8}u_{i-3}^{n+1} - u_{i-2}^{n+1}  + \frac{13}{8}u_{i-1}^{n+1} - \frac{13}{8}u_{i+1}^{n+1} + u_{i+2}^{n+1} - \frac{1}{8}u_{i+3}^{n+1}}{\Delta x^3} = 0, \ \ i = 3,...,N-3 \\
 	\frac{u_i^{n+1} - u_i^n}{\Delta t}  + \frac{-u_{i}^{n+1} + 3u_{i+1}^{n+1}  -3 u_{i+2}^{n+1} + u_{i+3}^{n+1} }{\Delta x^3} = 0, \ \ i = 0,1,2 \\
 	\frac{u_i^{n+1} - u_i^n}{\Delta t}  + \frac{u_{i}^{n+1} - 3u_{i-1}^{n+1}  + 3 u_{i-2}^{n+1} - u_{i-3}^{n+1} }{\Delta x^3} = 0, \ \ i = N-2,N-1,N \\
-	\end{split}
-\end{equation} 
+\end{gather} 
 
 \noindent which leads to the resolution of a linear system, with the appropriate modifications to take in account the boundary conditions.
 
@@ -178,11 +176,14 @@ v_t +  (1+2v)v_x = 0
 
 \subsection{Scale analysis}
 
-\indent With the objectif of correctly simulating the physical phenomena involved in the KdV equation, the initial solution must satisfy the assumptions made in the derivation of the model. Following this purpose, we performed a scale analysis following the arguments presented in \cite{BBM1971}, which at the same time will be linked to the physical case of water surface waves of small amplitude. This analysis will allow us to derive a criteria for selecting the initial conditions of some example simulations. 
+\indent With the objectif of correctly simulating the physical phenomena involved in the KdV equation, the initial solution must satisfy the assumptions made in the derivation of the model. Following this purpose, we perform in the next paragraphs a scale analysis following the arguments presented in \cite{BBM1971}, which at the same time will be linked to the physical case of water surface waves of small amplitude. This analysis will allow us to derive a criteria for selecting the initial conditions of some example simulations. 
 
 \indent We will seek to write the KdV equation in the following dimensionless and scaled form, as described in \cite{BBM1971}
 
-$$U_T + U_X + \frac{\epsilon}{2} (U^2)_X + \epsilon\alpha^2U_{XXX} = 0$$
+\begin{equation}
+\label{eq:scaledKdV}
+U_T + U_X + \frac{\epsilon}{2} (U^2)_X + \epsilon\alpha^2U_{XXX} = 0
+\end{equation}
 
 \noindent and link it to the parameters involved in the model for surface water waves  in dimensional form \cite{Khorsand2014}
 
@@ -210,7 +211,7 @@ $$ \frac{1}{c_0} \frac{dx}{dt} = 1 + \frac{3}{2h_0}u$$
 
 $$ u^*_{t^*} + uu_x+(\mathcal{L} u^*)_{x^*} = 0$$
 
-\indent with $\mathcal{L}$ such that $$ \hat{\mathcal{L}u^*} = \frac{c(k)}{c_0} \hat{u^*}(k,t)$$ with $\hat \cdot$ the Fourier transform and $c(k)$ the phase celerity, which is equivalent to 
+\noindent with $\mathcal{L}$ such that $$ \widehat{\mathcal{L}u^*} = \frac{c(k)}{c_0} \widehat{u^*}(k,t)$$ with $\hat \cdot$ the Fourier transform and $c(k)$ the phase celerity, which is equivalent to 
 
 $$ \mathcal{L} u = \mathcal{F}^{-1}\left(\frac{c(k)}{c_0}\right) * u$$ 
 
@@ -220,7 +221,7 @@ $$ U_T + \epsilon U U_x+(\mathcal{L}_{\epsilon} U)_{X} = 0$$
 
 \noindent with $\mathcal{L}_\epsilon$ such that 
 
-$$ \hat{\mathcal{L}_\epsilon U} = \frac{c(\epsilon^{1/2} K)}{c_0} \hat{U}(K,T)$$ 
+$$ \widehat{\mathcal{L}_\epsilon U} = \frac{c(\epsilon^{1/2} K)}{c_0} \hat{U}(K,T)$$ 
 
 \noindent with $K=\sqrt{\epsilon} k$, which after replacing the full series expansion of $c(k)$ leads to
 
@@ -241,13 +242,13 @@ $$ \hat{\mathcal{L}_\epsilon U} = \frac{c(\epsilon^{1/2} K)}{c_0} \hat{U}(K,T)$$
 $$U_T + U_X + \frac{\epsilon}{2} (U^2)_X + \epsilon\alpha^2U_{XXX} = 0$$
 
 \indent Applying the same scaling $x=\sqrt{\epsilon} X$, $t =c_0 \sqrt{\epsilon} T$, and $u = \frac{\epsilon}{ b} U$ to the physical equation leads to $$U_T + U_X + \frac{3\epsilon}{4b} (U^2)_X + \frac{h_0^2\epsilon}{6}U_{XXX} = 0$$
-from where one concludes that $ \alpha^2 = \frac{h_0^2}{6} $
+from where, comparing to \eqref{eq:scaledKdV}, one concludes that $ \alpha^2 = \frac{h_0^2}{6} $
 
 \subsection{The criteria}
 
 \subsubsection{Choice of the wavelength}
 
-\indent A sufficient condition for the terms of order greater than 1 in the power series expansion of $\mathcal{L}_\epsilon$  (equation \eqref{eq:expansionLe}) to be neglectable is that those terms are also neglectable for $c(k)$, given that that all the derivatives of $U$ have an order of magnitude 1
+\indent A sufficient condition for the terms of order greater than 1 in the power series expansion of $\mathcal{L}_\epsilon$  (equation \eqref{eq:expansionLe}) to be neglectable is that those terms are also neglectable for $c(k)$, given that that all the derivatives of $U$ have an order of magnitude 1.
 
 \indent A key point in the derivation of the KdV equation is to assure that the terms for the higher derivatives (for $n > 1$) are small enough to be neglected. Firstly, \cite{BBM1971} assumes that all this derivatives have have an order of magnitude 1. Secondly, a sufficient condition for this is that those terms are also neglectable in the series expansion of $c(k)$. Thirdly, also accordingly to \cite{BBM1971}, the following form is applicable to surface waves : 
 
