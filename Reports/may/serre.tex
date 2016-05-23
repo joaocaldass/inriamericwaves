@@ -292,7 +292,7 @@ h\frac{z}{h} - h^2h_x \left( \frac{z}{h} \right)_x - \frac{1}{3}h^3\left( \frac{
 	\begin{subfigure}{.3\linewidth}
 		\includegraphics[scale=.3]{figures/Serre/cnoidal3h.png}	
 	\end{subfigure}
-	\caption{Evolution of $h$ for the cnoidal solution in the Serre equation \label{fig:cnoidalh}}
+	\caption{Evolution of $h$ for the cnoidal solution in the Serre equation. Comparison between the analytical solution (in red) and the solutions (practically overlapped) computed with the Serre (in blue) and the NSWE (in green)  models \label{fig:cnoidalh}}
 \end{figure}
 
 \begin{figure}[h!]
@@ -305,7 +305,7 @@ h\frac{z}{h} - h^2h_x \left( \frac{z}{h} \right)_x - \frac{1}{3}h^3\left( \frac{
 	\begin{subfigure}{.3\linewidth}
 		\includegraphics[scale=.3]{figures/Serre/cnoidal3u.png}	
 	\end{subfigure}
-	\caption{Evolution of $u$ for the cnoidal solution in the Serre equation \label{fig:cnoidalu}}
+	\caption{Evolution of $u$ for the cnoidal solution. Comparison between the analytical solution (in red) and the solutions (practically overlapped) computed with the Serre (in blue) and the NSWE (in green)  models \label{fig:cnoidalu}}
 \end{figure}
 
 \begin{figure}[h!]
@@ -318,7 +318,7 @@ h\frac{z}{h} - h^2h_x \left( \frac{z}{h} \right)_x - \frac{1}{3}h^3\left( \frac{
 	\begin{subfigure}{.3\linewidth}
 		\includegraphics[scale=.3]{figures/Serre/solitary3h.png}	
 	\end{subfigure}
-	\caption{Evolution of $h$ for the solitary solution in the Serre equation \label{fig:solitaryh}}
+	\caption{Evolution of $h$ for the solitary solution. Comparison between the analytical solution (in light blue) and the solutions computed with the Serre model with first order resolution for the finite volume scheme (in red), the Serre model with second order resolution for the finite volume scheme (in dark blue)  and the second order NSWE model (in green). The last two solutions are practically overlapped\label{fig:solitaryh}}
 \end{figure}
 
 \begin{figure}[h!]
@@ -331,7 +331,7 @@ h\frac{z}{h} - h^2h_x \left( \frac{z}{h} \right)_x - \frac{1}{3}h^3\left( \frac{
 	\begin{subfigure}{.3\linewidth}
 		\includegraphics[scale=.3]{figures/Serre/solitary3u.png}	
 	\end{subfigure}
-	\caption{Evolution of $u$ for the solitary solution in the Serre equation \label{fig:solitaryu}}
+	\caption{Evolution of $u$ for the solitary solution. Comparison between the analytical solution (in light blue) and the solutions computed with the Serre model with first order resolution for the finite volume scheme (in red), the Serre model with second order resolution for the finite volume scheme (in dark blue)  and the second order NSWE model (in green). The last two solutions are practically overlapped \label{fig:solitaryu}}
 \end{figure}
 
 \indent The results show the existence of modeling or programming errors. In both cases tested, the analytical solution is not preserved : we observe a strong dissipation of the solution, and, in the solitary wave case, a inversion of the velocity that causes the formation of secondary waves. The utilization of a higher-order solver for the Finite Volume scheme did not corrected this last problem, but showed a lower dissipation.
