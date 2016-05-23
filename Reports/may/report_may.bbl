@@ -1,5 +1,11 @@
 \begin{thebibliography}{1}
 
+\bibitem{Xavieretal2008}
+X.~Antoine, A.~Arnold, C.~Besse, M.~Ehrhardt, and C.~Schädle.
+\newblock {A review of Transparent Boundary Conditions or linear and nonlinear
+  Schrödinger equations}.
+\newblock {\em {Communications in Compuational Physics}}.
+
 \bibitem{BBM1971}
 T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony.
 \newblock Model equations for long waves in nonlinear dispersive systems.
@@ -17,6 +23,12 @@ J.~D. Carter and R.~Cienfuegos.
 \newblock {The kinematics and stability of solitary and cnoidal wave solutions
   of the Serre equations}.
 \newblock {\em {European Journal of Mechanics B/Fluids}}, 2011.
+
+\bibitem{Japhet2003}
+C.~Japhet and F.~Nataf.
+\newblock {The best interface conditions for Domain Decompostion methods :
+  Absorbing Boundary Conditions}.
+\newblock http://www.ann.jussieu.fr/~nataf/chapitre.pdf.
 
 \bibitem{Khorsand2014}
 Z.~Khorsand and H.~Kalisch.

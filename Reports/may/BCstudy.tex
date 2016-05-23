@@ -168,7 +168,7 @@ e_2^n =  u^n_N - (u_{ref})^n_N
 
 \indent $e_2^n$ is computed in order to show that most part of the error $e_1^n$ of the entire domain occurs in the boundary.
 
-\indent The figures \ref{fig:robin1} to \ref{fig:robinErrorsExample} show some snapshots and the evolution of $e_1$ and $e_2$ for some values of $\beta/\alpha$ . The figure \ref{fig:robinErrorsAll} compares $e_2$ for many other values, including the pure Dirichlet (with $\alpha = 1, \beta = 0$, so $log(\beta/\alpha) = -\infty$) and pure Neumann (with $\alpha = 0, \beta = 1$, with $\beta/\alpha$ computationally represented by  $10^{10}$)  conditions.
+\indent The figures \ref{fig:robin1} to \ref{fig:robinErrorsExample} show some snapshots and the evolution of $e_1$ and $e_2$ for some values of $\beta/\alpha$ . The figure \ref{fig:robinErrorsAll} compares $e_2$ for many other values, including the pure Dirichlet (with $\alpha = 1, \beta = 0$, so $log(\beta/\alpha) = -\infty$) and pure Neumann (with $\alpha = 0, \beta = 1$)  conditions.
 
 
 \begin{figure}[h]
@@ -223,13 +223,28 @@ e_2^n =  u^n_N - (u_{ref})^n_N
 \end{center}
 
 
-\indent The results presented in the figures \ref{fig:robin1} to \ref{fig:robinErrorsAll} show that boundary conditions with stronger Neumann character produce better approximations to the TBC, compared to more Dirichlet-type conditions. The results for pure Neumann conditions and for Neumann with a small but non-zero Dirichlet were very close. In fact, setting the solution to zero in the boundary is a too much strong condition, and the Neumann condition captures in a more satisfactory way the smoothness of the propagating wave.
+\indent The results presented in the figures \ref{fig:robin1} to \ref{fig:robinErrorsAll} show that boundary conditions with stronger Neumann character produce better approximations to the TBC, compared to more Dirichlet-type conditions. The results for pure Neumann conditions and for Neumann with a small but non-zero Dirichlet were very close, as presented in the table \ref{tab:robinErrorsZoom} for a more refined study around the best values of $\beta/\alpha$. In fact, setting the solution to zero in the boundary is a too much strong condition, and the Neumann condition captures in a more satisfactory way the smoothness of the propagating wave.
+
+\begin{center}
+		\begin{tabular}{c|c}
+			$log(\beta/\alpha)$ & Error ($\times 10^{-6}$) \\
+			\hline
+			2.5 & 8.93\\
+			3.0 & 8.87\\
+			3.5 & 8.95\\
+			4.0 & 8.98\\
+			4.5 & 8.99\\
+			5.0 & 8.99\\
+			$\infty$ & 8.99	
+		\end{tabular}
+		\captionof{table}{Error $||e_1| = \sum_{n=0}^{n_{max}}(e^n_1)^2$ for some values of $\beta/alpha$ around the best ones \label{tab:robinErrorsZoom}}
+\end{center}
 
 \subsubsection{Robin boundary conditions up to the second derivative}
 
 \indent We repeated the tests described above, but replacing the boundary condition in the right boundary by $\alpha u(L) + \beta u_x(L) + \gamma u_{xx}(L) = 0,  \ \ \alpha,\beta, \gamma > 0$.
 
-\indent The values of $\alpha$ and $\beta$ will be fixed and equal to the ones that gave the minimal error in the previous simulations ($(\alpha,\beta) = (1,1000)$). We will show directly the graph containing the errors for many values of $\gamma/\beta$ (figure \ref{fig:robinErrorsAll2}, which should be compared with the figure \ref{fig:robinErrorsAll}. Similarly to the previous conclusions, we observe a better approximation of the TBCs for stronger values of $\gamma/\beta$.
+\indent The values of $\alpha$ and $\beta$ will be fixed and equal to the ones that gave the minimal error in the previous simulations ($(\alpha,\beta) = (1,1000)$). We will show directly the graph containing the errors for many values of $\gamma/\beta$ (figure \ref{fig:robinErrorsAll2}, which should be compared with the figure \ref{fig:robinErrorsAll}. Similarly to the previous conclusions, we observe a better approximation of the TBCs for stronger values of $\gamma/\beta$. In fact, even the worst error in the figure \ref{fig:robinErrorsAll2} ($||e_1|(\gamma/\beta = 0.01) = 8.78 \times 10^{-6}$) is smaller than the best one of the table \ref{tab:robinErrorsZoom}.
 
 \begin{center}
 		\includegraphics[scale=.6]{figures/robinErrors2.png}

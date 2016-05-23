@@ -8,35 +8,37 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Discretization}{3}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}First step}{4}}
 \newlabel{sec:KdVSplitted1}{{2.2.1}{4}}
-\newlabel{eq:conservationLaw}{{5}{4}}
+\newlabel{eq:conservationLaw}{{6}{4}}
 \citation{conservationLaws2002}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Second step}{5}}
-\newlabel{eq:dispersion}{{11}{5}}
+\newlabel{eq:dispersion}{{12}{5}}
 \@writefile{toc}{\contentsline {paragraph}{Periodic case}{5}}
 \citation{BBM1971}
 \@writefile{toc}{\contentsline {paragraph}{Nonperiodic case}{6}}
-\newlabel{eq:IFDSolverKdV}{{14}{6}}
+\newlabel{eq:IFDSolverKdV}{{15}{6}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Choice of the time step}{6}}
 \citation{BBM1971}
 \citation{Khorsand2014}
 \citation{BBM1971}
 \citation{BBM1971}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Scale analysis}{7}}
+\newlabel{eq:scaledKdV}{{22}{7}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Characterization of the nonlinearity}{7}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Characterization of the dispersion}{7}}
-\newlabel{eq:expansionLe}{{19}{8}}
+\newlabel{eq:expansionLe}{{24}{8}}
 \citation{BBM1971}
 \citation{BBM1971}
 \citation{BBM1971}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}The criteria}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}The criteria for choosing an appropriate initial solution}{9}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}Choice of the wavelength}{9}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2}Choice of the wave amplitude}{9}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3}Resume}{9}}
 \citation{BBM1971}
 \citation{conservationLaws2002}
-\newlabel{eq:hvalid}{{20}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3}Resume}{10}}
+\newlabel{eq:hvalid}{{25}{10}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.4}Examples}{10}}
 \citation{conservationLaws2002}
+\citation{BBM1971}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:KdVcriteriaShort}{{1a}{11}}
 \newlabel{sub@fig:KdVcriteriaShort}{{a}{11}}
@@ -45,68 +47,79 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Simulations with the KdV equation \relax }}{11}}
 \newlabel{fig:KdVcriteria}{{1}{11}}
 \@writefile{toc}{\contentsline {paragraph}{Conclusions :}{11}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}BBM equation}{11}}
-\newlabel{sec:BBM}{{3}{11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}The model}{11}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}BBM equation}{12}}
+\newlabel{sec:BBM}{{3}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}The model}{12}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Discretization}{12}}
 \@writefile{toc}{\contentsline {paragraph}{Periodic case}{12}}
-\@writefile{toc}{\contentsline {paragraph}{Nonperiodic case}{12}}
+\newlabel{eq:dtzero}{{3.2}{12}}
 \citation{CarterCienfuegos2011}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Simulations}{13}}
+\@writefile{toc}{\contentsline {paragraph}{Nonperiodic case}{13}}
+\newlabel{eq:systemBBM}{{3.2}{13}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Serre equation}{13}}
 \newlabel{sec:Serre}{{4}{13}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}The model}{13}}
-\newlabel{eq:SerreFull}{{23}{13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Discretization}{13}}
-\newlabel{eq:SerreSplit1}{{24}{13}}
-\newlabel{eq:SerreSplit2}{{25}{13}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}First system of equations (advection step)}{14}}
+\newlabel{eq:SerreFull}{{28}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Discretization}{14}}
+\newlabel{eq:SerreSplit1}{{29}{14}}
+\newlabel{eq:SerreSplit2}{{30}{14}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}First system of equations (advection step)}{15}}
+\newlabel{serre:conservative_swe}{{34}{15}}
+\newlabel{serre:nonconservative_swe_1}{{36}{15}}
+\newlabel{serre:nonconservative_swe_2}{{37}{15}}
+\newlabel{serre:riemman_solution}{{39}{16}}
+\@writefile{toc}{\contentsline {paragraph}{S}{16}}
 \citation{Bonneton2011}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Second system of equations (dispersive step)}{15}}
-\newlabel{eq:dispersive}{{31}{15}}
-\@writefile{toc}{\contentsline {paragraph}{Alternative resolution of the second system (for the variables $(h,hu)$)}{15}}
+\newlabel{eq:dispersive}{{40}{17}}
+\@writefile{toc}{\contentsline {paragraph}{Alternative resolution of the second system (for the variables $(h,hu)$)}{17}}
+\newlabel{eq:dispersive2}{{41}{17}}
 \citation{CarterCienfuegos2011}
-\newlabel{eq:dispersive2}{{32}{16}}
-\newlabel{eq:dispersive3}{{33}{16}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Simulations}{17}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Description of the initial solution}{17}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Results}{18}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Evolution of $h$ for the cnoidal solution in the Serre equation \relax }}{18}}
-\newlabel{fig:cnoidalh}{{2}{18}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Evolution of $u$ for the cnoidal solution in the Serre equation \relax }}{18}}
-\newlabel{fig:cnoidalu}{{3}{18}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Evolution of $h$ for the solitary solution in the Serre equation \relax }}{19}}
-\newlabel{fig:solitaryh}{{4}{19}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Evolution of $u$ for the solitary solution in the Serre equation \relax }}{19}}
-\newlabel{fig:solitaryu}{{5}{19}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Study of transparent boundary conditions}{19}}
-\newlabel{sec:TBC}{{5}{19}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Introduction and motivational examples}{19}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces First motivational example : comparison between the solutions in a small and a big domain\relax }}{20}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Second motivational example : solution with an "exact" Dirichlet condition at the right boundary \relax }}{21}}
-\newlabel{fig:motivation2}{{7}{21}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Robin boundary conditions to simulate TBCs}{21}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Robin boundary conditions up to the first derivative}{21}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Computed and the referential solution for $\beta /\alpha = 10$ \relax }}{22}}
-\newlabel{fig:robin10}{{9}{22}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Computed and the referential solution for $\beta /\alpha = 1$ \relax }}{23}}
-\newlabel{fig:robin1}{{8}{23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Computed and the referential solution for $\beta /\alpha = 100$ \relax }}{23}}
-\newlabel{fig:robin100}{{10}{23}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline {a}{\ignorespaces $\beta /\alpha = 1$\relax }}{23}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline {b}{\ignorespaces $\beta /\alpha = 10$\relax }}{23}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline {c}{\ignorespaces $\beta /\alpha = 100$\relax }}{23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Errors between the computed and the referential solution \relax }}{23}}
-\newlabel{fig:robinErrorsExample}{{11}{23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Error $e_2$ between the computed and the referential solution for many values of $\beta /\alpha $ \relax }}{24}}
-\newlabel{fig:robinErrorsAll}{{12}{24}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Robin boundary conditions up to the second derivative}{24}}
+\newlabel{eq:dispersive3}{{42}{18}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Simulations}{18}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Description of the initial solution}{18}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Results}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Evolution of $h$ for the cnoidal solution in the Serre equation \relax }}{20}}
+\newlabel{fig:cnoidalh}{{2}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Evolution of $u$ for the cnoidal solution in the Serre equation \relax }}{20}}
+\newlabel{fig:cnoidalu}{{3}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Evolution of $h$ for the solitary solution in the Serre equation \relax }}{20}}
+\newlabel{fig:solitaryh}{{4}{20}}
+\citation{Xavieretal2008}
+\citation{Japhet2003}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Evolution of $u$ for the solitary solution in the Serre equation \relax }}{21}}
+\newlabel{fig:solitaryu}{{5}{21}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Study of transparent boundary conditions}{21}}
+\newlabel{sec:TBC}{{5}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Introduction and motivational examples}{21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Solutions for the Laplace equation with TBC \relax }}{23}}
+\newlabel{fig:TBClaplace}{{6}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces First motivational example : comparison between the solutions in a small and a big domain\relax }}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Second motivational example : solution with an "exact" Dirichlet condition at the right boundary \relax }}{25}}
+\newlabel{fig:motivation2}{{8}{25}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Optimization of Robin boundary conditions to simulate TBCs}{25}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Robin boundary conditions up to the first derivative}{25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Computed and the referential solution for $\beta /\alpha = 1$ \relax }}{26}}
+\newlabel{fig:robin1}{{9}{26}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Computed and the referential solution for $\beta /\alpha = 10$ \relax }}{26}}
+\newlabel{fig:robin10}{{10}{26}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Computed and the referential solution for $\beta /\alpha = 100$ \relax }}{27}}
+\newlabel{fig:robin100}{{11}{27}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline {a}{\ignorespaces $\beta /\alpha = 1$\relax }}{27}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline {b}{\ignorespaces $\beta /\alpha = 10$\relax }}{27}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline {c}{\ignorespaces $\beta /\alpha = 100$\relax }}{27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Errors between the computed and the referential solution \relax }}{27}}
+\newlabel{fig:robinErrorsExample}{{12}{27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Error $||e_1| = \DOTSB \sum@ \slimits@ _{n=0}^{n_{max}}(e^n_1)^2$ between the computed and the referential solution for many values of $\beta /\alpha $ \relax }}{27}}
+\newlabel{fig:robinErrorsAll}{{13}{27}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Robin boundary conditions up to the second derivative}{28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Error $||e_1| = \DOTSB \sum@ \slimits@ _{n=0}^{n_{max}}(e^n_1)^2$between the computed and the referential solution for many values of $\gamma /\beta $, with Robin conditions up to the second derivative \relax }}{28}}
+\newlabel{fig:robinErrorsAll2}{{14}{28}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions and next steps}{28}}
 \bibdata{biblio}
-\bibcite{BBM1971}{1}
-\bibcite{Bonneton2011}{2}
-\bibcite{CarterCienfuegos2011}{3}
-\bibcite{Khorsand2014}{4}
-\bibcite{conservationLaws2002}{5}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Error $e_2$ between the computed and the referential solution for many values of $\gamma /\beta $, with Robin conditions up to the second derivative \relax }}{25}}
-\newlabel{fig:robinErrorsAll2}{{13}{25}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions and next steps}{25}}
+\bibcite{Xavieretal2008}{1}
+\bibcite{BBM1971}{2}
+\bibcite{Bonneton2011}{3}
+\bibcite{CarterCienfuegos2011}{4}
+\bibcite{Japhet2003}{5}
+\bibcite{Khorsand2014}{6}
+\bibcite{conservationLaws2002}{7}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  17 MAY 2016 17:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  23 MAY 2016 09:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -590,437 +590,451 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 92.
  [5]
-Overfull \hbox (38.76022pt too wide) in paragraph at lines 153--153
+Overfull \hbox (38.76022pt too wide) in paragraph at lines 151--151
 [] 
  []
 
 [6] [7]
-Overfull \hbox (24.11954pt too wide) in paragraph at lines 217--218
+Overfull \hbox (24.11954pt too wide) in paragraph at lines 218--219
 \OT1/cmr/m/n/12 on the fact that for $\OML/cmm/m/it/12 ^^T$ \OT1/cmr/m/n/12 suf
--fi-icently small, the wave speed $\OML/cmm/m/it/12 c\OT1/cmr/m/n/12 (\OML/cmm/
+-fi-ciently small, the wave speed $\OML/cmm/m/it/12 c\OT1/cmr/m/n/12 (\OML/cmm/
 m/it/12 ^^T\OT1/cmr/m/n/12 ) = \OML/cmm/m/it/12 c[] \OT1/cmr/m/n/12 + \OML/cmm/
 m/it/12 c[] [][] A[]^^O[]^^T[]$
  []
 
-[8] [9] <figures/criteria6.png, id=43, 433.62pt x 289.08pt>
+[8] [9] [10] <figures/criteria6.png, id=46, 433.62pt x 289.08pt>
 File: figures/criteria6.png Graphic file (type png)
 
 <use figures/criteria6.png>
-Package pdftex.def Info: figures/criteria6.png used on input line 307.
+Package pdftex.def Info: figures/criteria6.png used on input line 308.
 (pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-<figures/criteria5.png, id=45, 433.62pt x 289.08pt>
+<figures/criteria5.png, id=48, 433.62pt x 289.08pt>
 File: figures/criteria5.png Graphic file (type png)
 
 <use figures/criteria5.png>
-Package pdftex.def Info: figures/criteria5.png used on input line 311.
+Package pdftex.def Info: figures/criteria5.png used on input line 312.
 (pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 306--314
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 307--315
+[]$[]$ $[]$ 
+ []
+
+) (./bbm.tex [11 <./figures/criteria6.png> <./figures/criteria5.png>] [12]
+Overfull \hbox (8.19742pt too wide) in paragraph at lines 42--43
+\OT1/cmr/m/n/12 fore, the in-verse Fourier trans-form us-ing the co-ef-fi-cient
+s $[](\OML/cmm/m/it/12 k; t\OT1/cmr/m/n/12 )$ gives $\OML/cmm/m/it/12 w\OT1/cmr
+/m/n/12 (\OML/cmm/m/it/12 x; t[]\OT1/cmr/m/n/12 )$. 
+ []
+
+) (./serre.tex [13]
+Overfull \hbox (58.50072pt too wide) detected at line 36
+[]
+ []
+
+[14] [15] [16]
+Overfull \hbox (23.54544pt too wide) detected at line 172
+[] \OML/cmm/m/it/12 u[] \OT1/cmr/m/n/12 + [] \OML/cmm/m/it/12 u[] \OT1/cmr/m/n/
+12 + [] \OML/cmm/m/it/12 u[] \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 G[]
+ []
+
+
+Overfull \hbox (3.45801pt too wide) in paragraph at lines 179--180
+ \OT1/cmr/bx/n/12 Al-ter-na-tive res-o-lu-tion of the sec-ond sys-tem (for the 
+vari-ables $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 h; hu\OT1/cmr/m/n/12 )$\OT1/cmr/b
+x/n/12 )[]
+ []
+
+[17] [18] [19] <figures/Serre/cnoidal1h.png, id=81, 433.62pt x 289.08pt>
+File: figures/Serre/cnoidal1h.png Graphic file (type png)
+
+<use figures/Serre/cnoidal1h.png>
+Package pdftex.def Info: figures/Serre/cnoidal1h.png used on input line 273.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 273--274
+[][] 
+ []
+
+<figures/Serre/cnoidal2h.png, id=82, 433.62pt x 289.08pt>
+File: figures/Serre/cnoidal2h.png Graphic file (type png)
+
+<use figures/Serre/cnoidal2h.png>
+Package pdftex.def Info: figures/Serre/cnoidal2h.png used on input line 276.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 276--277
+[][] 
+ []
+
+<figures/Serre/cnoidal3h.png, id=83, 433.62pt x 289.08pt>
+File: figures/Serre/cnoidal3h.png Graphic file (type png)
+
+<use figures/Serre/cnoidal3h.png>
+Package pdftex.def Info: figures/Serre/cnoidal3h.png used on input line 279.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 279--280
+[][] 
+ []
+
+<figures/Serre/cnoidal1u.png, id=84, 433.62pt x 289.08pt>
+File: figures/Serre/cnoidal1u.png Graphic file (type png)
+
+<use figures/Serre/cnoidal1u.png>
+Package pdftex.def Info: figures/Serre/cnoidal1u.png used on input line 286.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 286--287
+[][] 
+ []
+
+<figures/Serre/cnoidal2u.png, id=85, 433.62pt x 289.08pt>
+File: figures/Serre/cnoidal2u.png Graphic file (type png)
+
+<use figures/Serre/cnoidal2u.png>
+Package pdftex.def Info: figures/Serre/cnoidal2u.png used on input line 289.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 289--290
+[][] 
+ []
+
+<figures/Serre/cnoidal3u.png, id=86, 433.62pt x 289.08pt>
+File: figures/Serre/cnoidal3u.png Graphic file (type png)
+
+<use figures/Serre/cnoidal3u.png>
+Package pdftex.def Info: figures/Serre/cnoidal3u.png used on input line 292.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 292--293
+[][] 
+ []
+
+<figures/Serre/solitary1h.png, id=87, 433.62pt x 289.08pt>
+File: figures/Serre/solitary1h.png Graphic file (type png)
+
+<use figures/Serre/solitary1h.png>
+Package pdftex.def Info: figures/Serre/solitary1h.png used on input line 299.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 299--300
+[][] 
+ []
+
+<figures/Serre/solitary2h.png, id=88, 433.62pt x 289.08pt>
+File: figures/Serre/solitary2h.png Graphic file (type png)
+
+<use figures/Serre/solitary2h.png>
+Package pdftex.def Info: figures/Serre/solitary2h.png used on input line 302.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 302--303
+[][] 
+ []
+
+<figures/Serre/solitary3h.png, id=89, 433.62pt x 289.08pt>
+File: figures/Serre/solitary3h.png Graphic file (type png)
+
+<use figures/Serre/solitary3h.png>
+Package pdftex.def Info: figures/Serre/solitary3h.png used on input line 305.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 305--306
+[][] 
+ []
+
+<figures/Serre/solitary1u.png, id=90, 433.62pt x 289.08pt>
+File: figures/Serre/solitary1u.png Graphic file (type png)
+
+<use figures/Serre/solitary1u.png>
+Package pdftex.def Info: figures/Serre/solitary1u.png used on input line 312.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 312--313
+[][] 
+ []
+
+<figures/Serre/solitary2u.png, id=91, 433.62pt x 289.08pt>
+File: figures/Serre/solitary2u.png Graphic file (type png)
+
+<use figures/Serre/solitary2u.png>
+Package pdftex.def Info: figures/Serre/solitary2u.png used on input line 315.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 315--316
+[][] 
+ []
+
+<figures/Serre/solitary3u.png, id=92, 433.62pt x 289.08pt>
+File: figures/Serre/solitary3u.png Graphic file (type png)
+
+<use figures/Serre/solitary3u.png>
+Package pdftex.def Info: figures/Serre/solitary3u.png used on input line 318.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 318--319
+[][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (./BCstudy.tex [20 <./figures/Serre/cnoidal1h.png> <./figures/Serre/cnoidal2h
+.png> <./figures/Serre/cnoidal3h.png> <./figures/Serre/cnoidal1u.png> <./figure
+s/Serre/cnoidal2u.png> <./figures/Serre/cnoidal3u.png> <./figures/Serre/solitar
+y1h.png> <./figures/Serre/solitary2h.png> <./figures/Serre/solitary3h.png>]
+[21 <./figures/Serre/solitary1u.png> <./figures/Serre/solitary2u.png> <./figure
+s/Serre/solitary3u.png>] <figures/TBClaplace.png, id=111, 433.62pt x 289.08pt>
+File: figures/TBClaplace.png Graphic file (type png)
+
+<use figures/TBClaplace.png>
+Package pdftex.def Info: figures/TBClaplace.png used on input line 65.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+ [22]
+<figures/motivational1A.png, id=115, 433.62pt x 289.08pt>
+File: figures/motivational1A.png Graphic file (type png)
+
+<use figures/motivational1A.png>
+Package pdftex.def Info: figures/motivational1A.png used on input line 88.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 88--89
+ [] 
+ []
+
+<figures/motivational1B.png, id=116, 433.62pt x 289.08pt>
+File: figures/motivational1B.png Graphic file (type png)
+
+<use figures/motivational1B.png>
+Package pdftex.def Info: figures/motivational1B.png used on input line 92.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 92--93
+ [] 
+ []
+
+<figures/motivational1C.png, id=117, 433.62pt x 289.08pt>
+File: figures/motivational1C.png Graphic file (type png)
+
+<use figures/motivational1C.png>
+Package pdftex.def Info: figures/motivational1C.png used on input line 96.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 96--97
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[23 <./figures/TBClaplace.png>]
+<figures/motivational2A.png, id=122, 433.62pt x 289.08pt>
+File: figures/motivational2A.png Graphic file (type png)
+
+<use figures/motivational2A.png>
+Package pdftex.def Info: figures/motivational2A.png used on input line 133.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 133--134
+[][] 
+ []
+
+<figures/motivational2B.png, id=123, 433.62pt x 289.08pt>
+File: figures/motivational2B.png Graphic file (type png)
+
+<use figures/motivational2B.png>
+Package pdftex.def Info: figures/motivational2B.png used on input line 136.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 136--137
+[][] 
+ []
+
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 132--138
 []$[]$ $[]$ 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[10]) (./bbm.tex
 
-LaTeX Warning: Reference `BBM1971' on page 11 undefined on input line 6.
-
-[11 <./figures/criteria6.png> <./figures/criteria5.png>]
-Overfull \hbox (4.93356pt too wide) in paragraph at lines 42--43
-\OT1/cmr/m/n/12 fore, the in-verse Fourier trans-form us-ing the co-ef-fi-cient
-s $[](\OML/cmm/m/it/12 k; t\OT1/cmr/m/n/12 )$ gives $\OML/cmm/m/it/12 w\OT1/cmr
-/m/n/12 (\OML/cmm/m/it/12 x; t[]\OT1/cmr/m/n/12 )$ 
+Overfull \hbox (1.04619pt too wide) in paragraph at lines 141--141
+[]\OT1/cmr/bx/n/14.4 Optimization of Robin bound-ary con-di-tions to sim-
  []
 
-) (./serre.tex [12]
-Overfull \hbox (58.50072pt too wide) detected at line 36
-[]
+[24 <./figures/motivational1A.png> <./figures/motivational1B.png> <./figures/mo
+tivational1C.png>] [25 <./figures/motivational2A.png> <./figures/motivational2B
+.png>] <figures/robin1A.png, id=136, 433.62pt x 289.08pt>
+File: figures/robin1A.png Graphic file (type png)
+
+<use figures/robin1A.png>
+Package pdftex.def Info: figures/robin1A.png used on input line 176.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 176--177
+[][] 
  []
 
-[13] [14]
-Overfull \hbox (23.54544pt too wide) detected at line 109
-[] \OML/cmm/m/it/12 u[] \OT1/cmr/m/n/12 + [] \OML/cmm/m/it/12 u[] \OT1/cmr/m/n/
-12 + [] \OML/cmm/m/it/12 u[] \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 G[]
+<figures/robin1B.png, id=137, 433.62pt x 289.08pt>
+File: figures/robin1B.png Graphic file (type png)
+ <use figures/robin1B.png>
+Package pdftex.def Info: figures/robin1B.png used on input line 179.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 179--180
+[][] 
  []
 
 
-Overfull \hbox (3.45801pt too wide) in paragraph at lines 116--117
- \OT1/cmr/bx/n/12 Al-ter-na-tive res-o-lu-tion of the sec-ond sys-tem (for the 
-vari-ables $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 h; hu\OT1/cmr/m/n/12 )$\OT1/cmr/b
-x/n/12 )[]
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 175--181
+[]$[]$ $[]$ 
  []
 
-[15] [16] [17] <figures/Serre/cnoidal1h.png, id=74, 433.62pt x 289.08pt>
-File: figures/Serre/cnoidal1h.png Graphic file (type png)
+<figures/robin10A.png, id=138, 433.62pt x 289.08pt>
+File: figures/robin10A.png Graphic file (type png)
+ <use figures/robin10A.png>
+Package pdftex.def Info: figures/robin10A.png used on input line 186.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-<use figures/Serre/cnoidal1h.png>
-Package pdftex.def Info: figures/Serre/cnoidal1h.png used on input line 210.
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 186--187
+[][] 
+ []
+
+<figures/robin10B.png, id=139, 433.62pt x 289.08pt>
+File: figures/robin10B.png Graphic file (type png)
+ <use figures/robin10B.png>
+Package pdftex.def Info: figures/robin10B.png used on input line 189.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 189--190
+[][] 
+ []
+
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 185--191
+[]$[]$ $[]$ 
+ []
+
+<figures/robin100A.png, id=140, 433.62pt x 289.08pt>
+File: figures/robin100A.png Graphic file (type png)
+
+<use figures/robin100A.png>
+Package pdftex.def Info: figures/robin100A.png used on input line 196.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 196--197
+[][] 
+ []
+
+<figures/robin100B.png, id=141, 433.62pt x 289.08pt>
+File: figures/robin100B.png Graphic file (type png)
+
+<use figures/robin100B.png>
+Package pdftex.def Info: figures/robin100B.png used on input line 199.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 199--200
+[][] 
+ []
+
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 195--201
+[]$[]$ $[]$ 
+ []
+
+[26 <./figures/robin1A.png> <./figures/robin1B.png> <./figures/robin10A.png> <.
+/figures/robin10B.png>] <figures/robin1Error.png, id=149, 433.62pt x 289.08pt>
+File: figures/robin1Error.png Graphic file (type png)
+
+<use figures/robin1Error.png>
+Package pdftex.def Info: figures/robin1Error.png used on input line 206.
+(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
+
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 206--207
+[][] 
+ []
+
+<figures/robin10Error.png, id=150, 433.62pt x 289.08pt>
+File: figures/robin10Error.png Graphic file (type png)
+
+<use figures/robin10Error.png>
+Package pdftex.def Info: figures/robin10Error.png used on input line 210.
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
 Overfull \hbox (13.08582pt too wide) in paragraph at lines 210--211
 [][] 
  []
 
-<figures/Serre/cnoidal2h.png, id=75, 433.62pt x 289.08pt>
-File: figures/Serre/cnoidal2h.png Graphic file (type png)
-
-<use figures/Serre/cnoidal2h.png>
-Package pdftex.def Info: figures/Serre/cnoidal2h.png used on input line 213.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 213--214
-[][] 
- []
-
-<figures/Serre/cnoidal3h.png, id=76, 433.62pt x 289.08pt>
-File: figures/Serre/cnoidal3h.png Graphic file (type png)
-
-<use figures/Serre/cnoidal3h.png>
-Package pdftex.def Info: figures/Serre/cnoidal3h.png used on input line 216.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 216--217
-[][] 
- []
-
-<figures/Serre/cnoidal1u.png, id=77, 433.62pt x 289.08pt>
-File: figures/Serre/cnoidal1u.png Graphic file (type png)
-
-<use figures/Serre/cnoidal1u.png>
-Package pdftex.def Info: figures/Serre/cnoidal1u.png used on input line 223.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 223--224
-[][] 
- []
-
-<figures/Serre/cnoidal2u.png, id=78, 433.62pt x 289.08pt>
-File: figures/Serre/cnoidal2u.png Graphic file (type png)
-
-<use figures/Serre/cnoidal2u.png>
-Package pdftex.def Info: figures/Serre/cnoidal2u.png used on input line 226.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 226--227
-[][] 
- []
-
-<figures/Serre/cnoidal3u.png, id=79, 433.62pt x 289.08pt>
-File: figures/Serre/cnoidal3u.png Graphic file (type png)
-
-<use figures/Serre/cnoidal3u.png>
-Package pdftex.def Info: figures/Serre/cnoidal3u.png used on input line 229.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 229--230
-[][] 
- []
-
-<figures/Serre/solitary1h.png, id=80, 433.62pt x 289.08pt>
-File: figures/Serre/solitary1h.png Graphic file (type png)
-
-<use figures/Serre/solitary1h.png>
-Package pdftex.def Info: figures/Serre/solitary1h.png used on input line 236.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 236--237
-[][] 
- []
-
-<figures/Serre/solitary2h.png, id=81, 433.62pt x 289.08pt>
-File: figures/Serre/solitary2h.png Graphic file (type png)
-
-<use figures/Serre/solitary2h.png>
-Package pdftex.def Info: figures/Serre/solitary2h.png used on input line 239.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 239--240
-[][] 
- []
-
-<figures/Serre/solitary3h.png, id=82, 433.62pt x 289.08pt>
-File: figures/Serre/solitary3h.png Graphic file (type png)
-
-<use figures/Serre/solitary3h.png>
-Package pdftex.def Info: figures/Serre/solitary3h.png used on input line 242.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 242--243
-[][] 
- []
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<figures/Serre/solitary1u.png, id=83, 433.62pt x 289.08pt>
-File: figures/Serre/solitary1u.png Graphic file (type png)
-
-<use figures/Serre/solitary1u.png>
-Package pdftex.def Info: figures/Serre/solitary1u.png used on input line 249.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 249--250
-[][] 
- []
-
-<figures/Serre/solitary2u.png, id=84, 433.62pt x 289.08pt>
-File: figures/Serre/solitary2u.png Graphic file (type png)
-
-<use figures/Serre/solitary2u.png>
-Package pdftex.def Info: figures/Serre/solitary2u.png used on input line 252.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 252--253
-[][] 
- []
-
-<figures/Serre/solitary3u.png, id=85, 433.62pt x 289.08pt>
-File: figures/Serre/solitary3u.png Graphic file (type png)
-
-<use figures/Serre/solitary3u.png>
-Package pdftex.def Info: figures/Serre/solitary3u.png used on input line 255.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 255--256
-[][] 
- []
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) (./BCstudy.tex [18 <./figures/Serre/cnoidal1h.png> <./figures/Serre/cnoidal2h
-.png> <./figures/Serre/cnoidal3h.png> <./figures/Serre/cnoidal1u.png> <./figure
-s/Serre/cnoidal2u.png> <./figures/Serre/cnoidal3u.png>] [19 <./figures/Serre/so
-litary1h.png> <./figures/Serre/solitary2h.png> <./figures/Serre/solitary3h.png>
- <./figures/Serre/solitary1u.png> <./figures/Serre/solitary2u.png> <./figures/S
-erre/solitary3u.png>]
-<figures/motivational1A.png, id=105, 433.62pt x 289.08pt>
-File: figures/motivational1A.png Graphic file (type png)
-
-<use figures/motivational1A.png>
-Package pdftex.def Info: figures/motivational1A.png used on input line 27.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 27--28
- [] 
- []
-
-<figures/motivational1B.png, id=106, 433.62pt x 289.08pt>
-File: figures/motivational1B.png Graphic file (type png)
-
-<use figures/motivational1B.png>
-Package pdftex.def Info: figures/motivational1B.png used on input line 31.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 31--32
- [] 
- []
-
-<figures/motivational1C.png, id=107, 433.62pt x 289.08pt>
-File: figures/motivational1C.png Graphic file (type png)
-
-<use figures/motivational1C.png>
-Package pdftex.def Info: figures/motivational1C.png used on input line 35.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 35--36
- [] 
- []
-
-[20 <./figures/motivational1A.png> <./figures/motivational1B.png> <./figures/mo
-tivational1C.png>] <figures/motivational2A.png, id=114, 433.62pt x 289.08pt>
-File: figures/motivational2A.png Graphic file (type png)
-
-<use figures/motivational2A.png>
-Package pdftex.def Info: figures/motivational2A.png used on input line 74.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 74--75
-[][] 
- []
-
-<figures/motivational2B.png, id=115, 433.62pt x 289.08pt>
-File: figures/motivational2B.png Graphic file (type png)
-
-<use figures/motivational2B.png>
-Package pdftex.def Info: figures/motivational2B.png used on input line 77.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 77--78
-[][] 
- []
-
-
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 73--79
-[]$[]$ $[]$ 
- []
-
-[21 <./figures/motivational2A.png> <./figures/motivational2B.png>]
-<figures/robin1A.png, id=121, 433.62pt x 289.08pt>
-File: figures/robin1A.png Graphic file (type png)
- <use figures/robin1A.png>
-Package pdftex.def Info: figures/robin1A.png used on input line 117.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 117--118
-[][] 
- []
-
-<figures/robin1B.png, id=122, 433.62pt x 289.08pt>
-File: figures/robin1B.png Graphic file (type png)
- <use figures/robin1B.png>
-Package pdftex.def Info: figures/robin1B.png used on input line 120.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 120--121
-[][] 
- []
-
-
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 116--122
-[]$[]$ $[]$ 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figures/robin10A.png, id=123, 433.62pt x 289.08pt>
-File: figures/robin10A.png Graphic file (type png)
- <use figures/robin10A.png>
-Package pdftex.def Info: figures/robin10A.png used on input line 127.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 127--128
-[][] 
- []
-
-<figures/robin10B.png, id=124, 433.62pt x 289.08pt>
-File: figures/robin10B.png Graphic file (type png)
- <use figures/robin10B.png>
-Package pdftex.def Info: figures/robin10B.png used on input line 130.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 130--131
-[][] 
- []
-
-
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 126--132
-[]$[]$ $[]$ 
- []
-
-<figures/robin100A.png, id=125, 433.62pt x 289.08pt>
-File: figures/robin100A.png Graphic file (type png)
-
-<use figures/robin100A.png>
-Package pdftex.def Info: figures/robin100A.png used on input line 137.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 137--138
-[][] 
- []
-
-<figures/robin100B.png, id=126, 433.62pt x 289.08pt>
-File: figures/robin100B.png Graphic file (type png)
-
-<use figures/robin100B.png>
-Package pdftex.def Info: figures/robin100B.png used on input line 140.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 140--141
-[][] 
- []
-
-
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 136--142
-[]$[]$ $[]$ 
- []
-
-[22 <./figures/robin10A.png> <./figures/robin10B.png>]
-<figures/robin1Error.png, id=132, 433.62pt x 289.08pt>
-File: figures/robin1Error.png Graphic file (type png)
-
-<use figures/robin1Error.png>
-Package pdftex.def Info: figures/robin1Error.png used on input line 147.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 147--148
-[][] 
- []
-
-<figures/robin10Error.png, id=133, 433.62pt x 289.08pt>
-File: figures/robin10Error.png Graphic file (type png)
-
-<use figures/robin10Error.png>
-Package pdftex.def Info: figures/robin10Error.png used on input line 151.
-(pdftex.def)             Requested size: 130.087pt x 86.72466pt.
-
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 151--152
-[][] 
- []
-
-<figures/robin100Error.png, id=134, 433.62pt x 289.08pt>
+<figures/robin100Error.png, id=151, 433.62pt x 289.08pt>
 File: figures/robin100Error.png Graphic file (type png)
 
 <use figures/robin100Error.png>
-Package pdftex.def Info: figures/robin100Error.png used on input line 155.
+Package pdftex.def Info: figures/robin100Error.png used on input line 214.
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 155--156
+Overfull \hbox (13.08582pt too wide) in paragraph at lines 214--215
 [][] 
  []
 
-<figures/robinErrors1.png, id=135, 433.62pt x 289.08pt>
+<figures/robinErrors1.png, id=152, 433.62pt x 289.08pt>
 File: figures/robinErrors1.png Graphic file (type png)
 
 <use figures/robinErrors1.png>
-Package pdftex.def Info: figures/robinErrors1.png used on input line 162.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
- [23 <./figures/robin1A.png> <./figures/robin1B.png> <./figures/robin100A.png> 
-<./figures/robin100B.png> <./figures/robin1Error.png> <./figures/robin10Error.p
-ng> <./figures/robin100Error.png>]
-<figures/robinErrors2.png, id=146, 433.62pt x 289.08pt>
+Package pdftex.def Info: figures/robinErrors1.png used on input line 221.
+(pdftex.def)             Requested size: 260.17401pt x 173.44933pt.
+ [27 <./figures/robin100A.png> <./figures/robin100B.png> <./figures/robin1Error
+.png> <./figures/robin10Error.png> <./figures/robin100Error.png> <./figures/rob
+inErrors1.png>]
+<figures/robinErrors2.png, id=162, 433.62pt x 289.08pt>
 File: figures/robinErrors2.png Graphic file (type png)
 
 <use figures/robinErrors2.png>
-Package pdftex.def Info: figures/robinErrors2.png used on input line 176.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
- [24 <./figures/robinErrors1.png>])
-(./conclusion.tex) (./report_may.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 27--32
+Package pdftex.def Info: figures/robinErrors2.png used on input line 235.
+(pdftex.def)             Requested size: 260.17401pt x 173.44933pt.
+) (./conclusion.tex [28 <./figures/robinErrors2.png>]) (./report_may.bbl
+Underfull \hbox (badness 1122) in paragraph at lines 28--32
+[]\OT1/cmr/m/n/12 C. Japhet and F. Nataf.  The best in-ter-face con-di-tions fo
+r Do-
+ []
+
+
+Underfull \hbox (badness 2512) in paragraph at lines 28--32
+\OT1/cmr/m/n/12 main De-com-pos-tion meth-ods : Ab-sorb-ing Bound-ary Con-di-ti
+ons.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--44
 []\OT1/cmr/m/n/12 University of Stan-ford.  Par-tial dif-fer-en-tial equa-tions
  of
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 27--32
+Underfull \hbox (badness 10000) in paragraph at lines 39--44
 \OT1/cmr/m/n/12 ap-plied math-e-mat-ics - lec-ture 3 : Con-ser-va-tion laws.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 27--32
+Underfull \hbox (badness 10000) in paragraph at lines 39--44
 \OT1/cmr/m/n/12 http://web.stanford.edu/class/math220a/handouts/conservation.pd
 f,
  []
 
-) [25 <./figures/robinErrors2.png>] (./report_may.aux)
-
-LaTeX Warning: There were undefined references.
-
+) [29] (./report_may.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 4136 strings out of 493027
- 61086 string characters out of 6134069
- 122526 words of memory out of 5000000
- 7555 multiletter control sequences out of 15000+600000
+ 4152 strings out of 493027
+ 61403 string characters out of 6134069
+ 122613 words of memory out of 5000000
+ 7570 multiletter control sequences out of 15000+600000
  13050 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,16n,40p,750b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,23n,40p,750b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
@@ -1035,10 +1049,10 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
 e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
 2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
 15/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on report_may.pdf (25 pages, 655204 bytes).
+Output written on report_may.pdf (29 pages, 696761 bytes).
 PDF statistics:
- 202 PDF objects out of 1000 (max. 8388607)
- 100 compressed objects within 1 object stream
+ 217 PDF objects out of 1000 (max. 8388607)
+ 108 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 151 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 156 words of extra memory for PDF output out of 10000 (max. 10000000)
 
