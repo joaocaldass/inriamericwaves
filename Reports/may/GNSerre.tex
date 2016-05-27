@@ -1,0 +1,190 @@
+\section{Appendix : Equivalence between Green-Naghdi and Serre equations (in original and modified versions)}
+
+\indent In this section, we seek to show the Green-Naghdi equations (2D) and the Serre equations (1D), written both in the variables $(h,u)$ or $(h,hu)$ ($(h,V) or (h,hV)$ in the case of the Green-Naghdi equations).
+
+\indent  We have initially the following equations : 
+
+\begin{itemize}
+	\item Serre equations in the variables $(h,hu)$ : 
+	\begin{equation}
+		\label{eq:Serrehu}
+		\begin{cases}
+			h_t + (hu)_x = 0 \\
+			u_t + uu_x + h_x - \frac{1}{3h}\left(h^3 \left( u_{xt} + uu_{xx} - (u_x)^2  \right) \right)_x = 0
+		\end{cases}
+	\end{equation}
+	\item Green-Naghdi equations in the variables $(h,V)$ : 
+	\begin{equation}
+		\label{eq:GNhu}
+		\begin{cases}
+			h_t + \nabla\cdot(hV) = 0 \\
+			(\opIT) V_t  + (\opIT)(V\cdot\nabla)V + g\nabla h + \opQ_1(V) = 0
+		\end{cases}
+	\end{equation}
+	\item Green-Naghdi equations in the variables $(h,hV)$ : 
+	\begin{equation}
+		\label{eq:GNhhu}
+		\begin{cases}
+			h_t + \nabla\cdot(hV) = 0 \\
+			(\opIhT) (hV)_t + (\opIhT)\nabla\cdot(hV \otimes V) + gh\nabla  h + h\opQ_1(V) = 0
+		\end{cases}
+	\end{equation}
+\end{itemize}
+
+\indent The equation \eqref{eq:Serrehu} is the one presented in \cite{CarterCienfuegos2011} and used in this project; the equation \eqref{eq:GNhu} is presented in \cite{Bonneton2011}, in which the equation \eqref{eq:GNhhu} is derived. Finally, the equations presented in these references were rewritten in the dimensional version and considering a flat bottom.
+
+\indent Also considering these simplifications, the operators $\opT$ and $\opQ_1$ are defined by \cite{Bonneton2011} :
+
+\begin{gather}
+	\label{eq:opT}
+	\opT(w) = -\frac{1}{3h}\nabla(h^3\nabla\cdot w) \\
+	\label{eq:opQ}
+	\opQ_1(w) = \frac{2}{3h}\nabla(h^3(\nabla\cdot w)^2   )
+\end{gather}
+
+\indent In one dimension, also as presented by \cite{Bonneton2011}, \eqref{eq:opT} and \eqref{eq:opQ} are written as
+
+\begin{gather}
+	\label{eq:opT1D}
+	\opT(w) = -\frac{1}{3h}(h^3w_x)_x = -\frac{h^2}{3}w_{xx} - hh_xw_x \\
+	\label{eq:opQ1D}
+	\opQ(w) = \frac{2}{3h}(h^3(w_x)^2  )_x = \frac{4h^2}{3}(w_xw_{xx}) + 2hh_x(w_x)^2
+\end{gather}
+
+\indent Firstly, we will obtain \eqref{eq:Serrehu} from \eqref{eq:GNhu} considering the 1D case. Secondly, we will rewrite \eqref{eq:GNhhu} also in the 1D case. Thirdly, we will rewrite \eqref{eq:Serrehu} in the variables $(h,hu)$ following the steps of the derivation of \eqref{eq:GNhhu} from \eqref{eq:GNhu}, as presented in \cite{Bonneton2011}. These transformations are evident in the case of the first equation of these systems, so will only work on the second equations.
+
+\subsubsection{Derivation of the equation \eqref{eq:Serrehu} from \eqref{eq:GNhu}}
+
+\indent Writing \eqref{eq:GNhu} in one dimension, we have
+
+\begin{equation}
+	\begin{split}
+		(1+\opT)u_t + (1+\opT)uu_x + h_x + Q_1(u) &= 0  \\
+		\implies u_t - \frac{1}{3h}(h^3(u_t)_x)_x + uu_x -  \frac{1}{3h}(h^3(uu_x)_x)_x + gh_x  + \frac{2}{3h}(h^3((u_t)_x)^2  )_x &= 0 \\
+		\implies u_t - \frac{1}{3h}(h^3u_{xt})_x + uu_x - \frac{1}{3h}(h^3((u_x)^2 + uu_{xx}))_x + gh_x + \frac{1}{3h}(2h^3(u_x)^2)_x &= 0 \\
+		\implies u_t + uu_x + gh_x - \frac{1}{3h}\left(h^3 \left( u_{xt} + uu_{xx} - (u_x)^2  \right) \right)_x &= 0
+	\end{split}
+\end{equation}
+
+\noindent so we have obtained the 1D serre equations in the variables $(h,u)$ (equation \eqref{eq:Serrehu})
+
+\subsubsection{Derivation of the 1D version of \eqref{eq:GNhhu}}
+
+\indent In a similar way :
+
+\begin{equation}
+	\label{eq:GNhhu1D}
+	\begin{split}	
+		(\opIhT) (hu)_t + (\opIhT)(hu^2)_x + ghh_x + h\opQ_1(u) &= 0 \\
+		\implies (hu)_t - \frac{1}{3} \left[h^3 \left(\frac{1}{h} (hu)_t \right)_x \right]_x + (hu^2)_x - \frac{1}{3} \left[h^3 \left(\frac{1}{h} (hu^2)_x  \right)_x \right]_x + \\ ghh_x + \frac{2}{3}(h^3(u_x)^2)_x &= 0 \\
+		\implies (hu)_t + (hu^2)_x + ghh_x - \frac{1}{3} \left[  h^3 \left( \left(\frac{1}{h} (hu)_t \right)_x + \left(\frac{1}{h} (hu^2)_x  \right)_x - 2(u_x)^2 \right) \right]_x &= 0
+	\end{split}
+\end{equation}
+
+\indent For the numerical resolution of this equation, \cite{Bonneton2011} presents it in terms of the inverse operator $(\opIhT)^{-1}$. Moreover, in order to improve the dispersive properties of the equation, a coefficient $\alpha$ is used, introducing in the equation \eqref{eq:GNhhu1D} the terms $\frac{\alpha-1}{\alpha}(\opIhT)hh_x + \frac{1}{\alpha}hh_x$. Considering these remarks, the final implemented system of equations is
+
+\begin{equation}
+	\label{eq:finalGN}
+	\begin{cases}
+		h_t + (hu)_x = 0 \\
+		(hu)_t + (hu^2)_x + \frac{\alpha-1}{\alpha}ghh_x + (\opIhT)^{-1}\left[ \frac{1}{\alpha}gh_hx + h\opQ_1(u) \right] = 0
+	\end{cases}
+\end{equation}
+
+\indent We remark that $\alpha=1$ recovers the original Green-Naghdi model (which correspond to the case treated in this project).
+
+\indent Finally, \cite{Bonneton2011} solves \ref{eq:finalGN} with a splitting scheme, defining an operator with the advective terms (which corresponds to the NSWE) and another with the dispersive terms :
+
+\begin{equation}
+	\label{eq:splitGN1}
+	T_a := \begin{cases}
+		h_t + (hu)_x = 0 \\
+		(hu)_t + (hu^2)_x + ghh_x = 0 
+	\end{cases}	
+\end{equation}
+
+\begin{equation}
+	\label{eq:splitGN2}
+	T_d := \begin{cases}
+		h_t = 0 \\
+		(hu)_t  -\frac{1}{\alpha}ghh_x + (\opIhT)^{-1}\left[ \frac{1}{\alpha}ghh_x + h\opQ_1(u) \right] = 0
+	\end{cases}	
+\end{equation}
+
+\subsection{Reformulation of the Serre equations \ref{eq:Serrehu} in the variables $(h,hu)$}
+
+\indent We will follow the procedure used in \cite{Bonneton2011} for obtaining \eqref{eq:GNhhu} from \eqref{eq:GNhu}. We will use the the identities
+
+\begin{equation}
+	\label{eq:id1}
+	(hu^2)_x = (huu)_x = (hu)_xu + huu_x
+\end{equation}
+
+\noindent and
+
+\begin{equation}
+	\label{eq:id2}
+	hu_t = (hu)_t - h_tu = (hu)_t +  (hu)_xu
+\end{equation}
+
+\noindent which derives from the first equation of the Serre model \eqref{eq:Serrehu}.
+
+\indent Multiplying \eqref{eq:Serrehu} by $h$, we get
+
+\begin{equation}
+	\label{eq:serreTimesh}
+	\begin{split}
+		hu_t + huu_x + ghh_x - \frac{1}{3}\left(h^3 \left( u_{xt} + uu_{xx} - (u_x)^2  \right) \right)_x &= 0 \\
+		\implies (hu)_t +  (hu)_xu + (hu^2)_x - (hu)_xu + ghh_x - \frac{1}{3}\left(h^3 \left( u_{xt} + uu_{xx} - (u_x)^2  \right) \right)_x &= 0 \\
+		\implies (hu)_t +  (hu^2)_x  + ghh_x - \frac{1}{3}\left(h^3 \left( u_{xt} + (uu_x)_x - (u_x)^2  \right) \right)_x &= 0
+	\end{split}
+\end{equation}
+
+\indent We notice that
+
+\begin{equation}
+	\begin{split}
+	u_{xt} = \left(\frac{1}{h} (hu) \right)_{xt} = \left( -\frac{h_t}{h^2}(hu) + \frac{1}{h}(hu)_t  \right)_x = \left( -\frac{h_tu}{h} + \frac{1}{h}(hu)_t  \right)_x &= \\ \left( \frac{1}{h} (hu)_xu) \right)_x  + \left( \frac{1}{h}(hu)_t  \right)_x &=0
+	\end{split}
+\end{equation}
+
+and
+
+\begin{equation}
+	\begin{split}
+	(uu_x)_x = \left(  \frac{1}{h} (huu_x) \right)_x = \left(  \frac{1}{h} ((hu^2)_x - (hu)_xu) \right)_x = \left( \frac{1}{h} (hu^2)_x \right)_x - \left( \frac{1}{h} (hu)_xu \right)_x
+	\end{split}
+\end{equation}
+
+\noindent so, in \eqref{eq:serreTimesh}, we obtain
+
+\begin{equation}
+	\label{eq:serrehu}
+	(hu)_t  + (hu^2)_x + ghh_x - \frac{1}{3}\left[h^3 \left( \left( \frac{1}{h}(hu)_t  \right)_x  + \left( \frac{1}{h} (hu^2)_x \right)_x  - 2(u_x)^2  \right) \right]_x = 0
+\end{equation}
+
+\indent which is the same equation that we obtained in \eqref{eq:GNhhu1D}. Therefore, we can write \eqref{eq:serrehu} as
+
+\begin{equation}
+	(\opIhT) (hu)_t + (\opIhT)(hu^2)_x + ghh_x + h\opQ_1(u) + ghh_x - ghh_x= 0
+\end{equation}
+
+\noindent where the term $ghh_x$ was added and subtracted in order to obtain an equation in the same form of \eqref{eq:finalGN} (in which the coefficient $\alpha$ not necessarily equal to 1 causes the existence of these additional terms).
+
+\indent Finally, using a splitting method, we recover the systems implemented by \cite{Bonneton2011} :
+
+\begin{equation}
+	\label{eq:splitSerre1}
+	T_a := \begin{cases}
+		h_t + (hu)_x = 0 \\
+		(hu)_t + (hu^2)_x + ghh_x = 0 
+	\end{cases}	
+\end{equation}
+
+\begin{equation}
+	\label{eq:splitSerre2}
+	T_d := \begin{cases}
+		h_t = 0 \\
+		(hu)_t  -ghh_x + (\opIhT)^{-1}\left[ ghh_x + h\opQ_1(u) \right] = 0
+	\end{cases}	
+\end{equation}

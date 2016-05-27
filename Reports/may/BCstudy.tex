@@ -244,9 +244,28 @@ e_2^n =  u^n_N - (u_{ref})^n_N
 
 \indent We repeated the tests described above, but replacing the boundary condition in the right boundary by $\alpha u(L) + \beta u_x(L) + \gamma u_{xx}(L) = 0,  \ \ \alpha,\beta, \gamma > 0$.
 
-\indent The values of $\alpha$ and $\beta$ will be fixed and equal to the ones that gave the minimal error in the previous simulations ($(\alpha,\beta) = (1,1000)$). We will show directly the graph containing the errors for many values of $\gamma/\beta$ (figure \ref{fig:robinErrorsAll2}, which should be compared with the figure \ref{fig:robinErrorsAll}. Similarly to the previous conclusions, we observe a better approximation of the TBCs for stronger values of $\gamma/\beta$. In fact, even the worst error in the figure \ref{fig:robinErrorsAll2} ($||e_1|(\gamma/\beta = 0.01) = 8.78 \times 10^{-6}$) is smaller than the best one of the table \ref{tab:robinErrorsZoom}.
+\indent The values of $\alpha$ and $\beta$ will be fixed and equal to the ones that gave the minimal error in the previous simulations ($(\alpha,\beta) = (1,1000)$). We will show directly the graph containing the errors for many values of $\gamma/\beta$ (figure \ref{fig:robinErrorsAll2}, which should be compared with the figure \ref{fig:robinErrorsAll}. Similarly to the previous conclusions, we observe a better approximation of the TBCs for stronger values of $\gamma/\beta$ (being the error almost constant above a certain value, as show in the table \ref{tab:robinErrors2Zoom}). In fact, even the worst error in the figure \ref{fig:robinErrorsAll2} ($||e_1|(\gamma/\beta = 0.01) = 8.78 \times 10^{-6}$) is smaller than the best one of the table \ref{tab:robinErrorsZoom}.
 
 \begin{center}
 		\includegraphics[scale=.6]{figures/robinErrors2.png}
 	     \captionof{figure}{Error $||e_1| = \sum_{n=0}^{n_{max}}(e^n_1)^2$between the computed and the referential solution for many values of $\gamma/\beta$, with Robin conditions up to the second derivative \label{fig:robinErrorsAll2}}
 \end{center}
+
+\begin{center}
+		\begin{tabular}{c|c}
+			$log(\gamma/\beta)$ & Error ($\times 10^{-6}$) \\
+			\hline
+			2.0 & 1.157665\\
+			2.5 & 1.157382\\
+			3.0 & 1.157280\\
+			3.5 & 1.157247\\
+			4.0 & 1.157236\\
+			4.5 & 1.157233\\
+			$\infty$ & 1.157231	
+		\end{tabular}
+		\captionof{table}{Error $||e_1| = \sum_{n=0}^{n_{max}}(e^n_1)^2$ for some values of $\gamma/beta$ around the best ones \label{tab:robinErrors2Zoom}}
+\end{center}
+
+\subsubsection{Partial conclusion} 
+
+\indent Resuming this first study of the Transparent Boundary Conditions, we looked for approximating them by Robin boundary conditions, written in a generic way, with modifiable coefficients for each term (the functions and its derivatives). The idea was to test many combinations of coefficients in order to optimize them (comparing the computed solution in $[-L,L]$ with a referential solution computed in $[-2L,2L]$). As described above, Robin conditions taking in account the continuity of the tested function (i.e., with higher coefficients for the derivative terms) produced better results. Therefore, a TBC based on the first derivative was better than one based only on the solution; and a TBC based on the second derivative was even better. Finally, we observed that, in general, the improvement of the solution is neglectable above a certain relation between the coefficients. 

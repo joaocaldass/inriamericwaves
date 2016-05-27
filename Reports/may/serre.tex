@@ -5,11 +5,12 @@
 
 \indent The Serre equations are a model to describe highly nonlinear waves propagating in shallow waters. Considering a horizontal bottom, these equations are written as
 
-\begin{equation}
-\label{eq:SerreFull}
+\begin{gather}
+\label{eq:SerreFull1}
 h_t + (hu)_x = 0 \\
+\label{eq:SerreFull2}
 u_t + uu_x + gh_x - \frac{1}{3h}\left(h^3 \left( u_{xt} + uu_{xx} - (u_x)^2  \right) \right)_x = 0
-\end{equation}
+\end{gather}
 
 \noindent where $u = u(x,t)$, $h = h(x,t)$ and $g$ are, respectively, the depth-averaged horizontal velocity of the fluid, the water depth and the gravity acceleration. This formulation is based on \cite{CarterCienfuegos2011}.
 
@@ -188,58 +189,63 @@ $$\left( \frac{h_i^n(h_x)_i^n}{2\Delta x} - \frac{(h_i^n)^2}{3\Delta x^2} \right
 \noindent with the appropriate modifications to take in account the boundary conditions.
  
  
-\paragraph{Alternative resolution of the second system (for the variables $(h,hu)$)}
+\paragraph{Alternative formulation of the second system (for the variables $(h,hu)$)}
  
 \indent Inspired by the discretization described in \cite{Bonneton2011}, we will rewrite the second system of equations obtained in the splitting of the Serre equations, in order to solve it in the variables $(h,hu)$ and thus keep the formulation of the first system.
  
-\indent For this purpose, we will multiply the equation (\ref{eq:dispersive}) and write the variable $u$ inside the time derivative as $\frac{1}{h} hu$ :
+\indent The detailed derivation of this alternative formulation is described in the appendix of this rapport. Applying a splitting scheme for the obtained system, the first step remains the same (the NSWE), and the second one turns in
  
- \begin{equation}
-\label{eq:dispersive2}
-\left( hu - h^2h_x \left( \frac{1}{h} hu \right)_x - \frac{1}{3}h^3\left( \frac{1}{h} hu \right)_{xx} \right)_t  - \frac{1}{3}\left(g_1 \right)_x = 0
+\begin{equation}
+	T_d := \begin{cases}
+		h_t = 0 \\
+		(hu)_t  -ghh_x + (\opIhT)^{-1}\left[ ghh_x + h\opQ_1(u) \right] = 0
+	\end{cases}	
 \end{equation}
 
-\indent Developing the spatial derivatives in (\ref{eq:dispersive2}), we get
+\indent where the operators $\opT$ and $\opQ_1$ are defined as
+
+\begin{gather*}
+	\opT(w) = -\frac{1}{3h}(h^3w_x)_x = -\frac{h^2}{3}w_{xx} - hh_xw_x \\
+	\opQ(w) = \frac{2}{3h}(h^3(w_x)^2  )_x = \frac{4h^2}{3}(w_xw_{xx}) + 2hh_x(w_x)^2
+\end{gather*}
+
+\indent Defining the operator
 
 \begin{equation}
-\label{eq:dispersive3}
-       \left( 1-h^2 - \frac{h^3}{h_{xx}} \right)(hu) + \left( -hh_x - \frac{2h^3}{3h_{x}} \right)(hu)_x + \left( - \frac{h^2}{3} \right)(hu)_{xx} - \frac{1}{3}\left(g_1 \right)_x = 0
+    \tilde{\opT} w = \opIhT
 \end{equation}
 
-\noindent which can be written as
+\noindent we will in each time step  solve the linear system
 
 \begin{equation}
-    \tilde{T} (hu)_t = \frac{1}{3}\left(g_1 \right)_x \rightarrow (hu)_t = \tilde{T}^{-1}\left(\frac{1}{3}\left(g_1 \right)_x\right)
+	\label{eq:systemhu}
+	\left( \tilde{\opT} \right)^{-1}\left[ hh_x + h\opQ_1(u) \right]  = z \implies \tilde{\opT}z = hh_x + h\opQ_1(u)
 \end{equation}
 
-\noindent where $\tilde{T} = 1 + hT\frac{1}{h} $
-
-\noindent and $T$ is an operator defined by Bonneton et al and given by (in the 1D case)
+\indent The left side of \eqref{eq:systemhu} is
 
 \begin{equation}
-   Tw = -\frac{h^2}{3}w_{xx} - hh_xw_x
+\label{eq:ttildez}
+\begin{split}
+	\tilde{\opT}z &=  (\opIhT)z = \\
+	                     & z - \frac{h^3}{3}\left( \frac{1}{h} z\right)_{xx} - h^2h_x\left( \frac{1}{h} z\right)_x  = \\
+						   & z - \frac{h^3}{3}\left[ \left( 2\frac{(h_x)^2}{h^3} - \frac{h_{xx}}{h^2} \right)z - 2\frac{h_x}{h^2}z_x + \frac{z_{xx}}{h}	\right] - h^2h_x\left[ -\frac{h_x}{h^2}z + \frac{z_x}{h}\right] = \\
+						   & \left( 1 + \frac{1}{3}(h_x)^2 + \frac{1}{3}hh_{xx}\right)z - \left(\frac{1}{3}hh_x\right)z_x - \left(\frac{1}{3}h^2\right)z_{xx}
+\end{split}
+\end{equation}
+
+\indent Using second-order finite difference discretizations in space, we solve, for each $i = 1,...,N-1$ in the time step $t_n$ :
+
+\begin{equation}
+	\begin{split}
+	\left( 1 + \frac{1}{3}((h_x)_i^n)^2 + \frac{1}{3}h_i^n (h_{xx})_i^n + \frac{1}{\Delta x^2}\frac{2}{3}(h_i^n)^2\right)z_i^n + & \frac{1}{3}\left( -\frac{h_i^n(h_x)_i^n}{2\Delta x} - \frac{(h_i^n)^2}{\Delta x^2} \right)z_{i+1}^n + \\ & \frac{1}{3}\left( \frac{h_i^n(h_x)_i^n}{2\Delta x} - \frac{(h_i^n)^2}{\Delta x^2} \right)z_{i-1}^n = \\ & h_i^n(h_x)_{i}^n  + h_i^n(\opQ_1(u))_i^n
+	\end{split}
 \end{equation}
 
 \indent Therefore, for each $i=1,...N-1$, the actualization of the solution in time is given by
 
 \begin{equation}
-(hu)_i^{n+1} = (hu)_i^n + \Delta t z_i^n
-\end{equation}
-
-\noindent where $Z = (z_1,z_2,...,z_{n+1})^T$ is solution of $\tilde{T}Z = \frac{1}{3}\left(g_1 \right)_x$. The left side of this system has the form
-
-\begin{equation}
-h\frac{z}{h} - h^2h_x \left( \frac{z}{h} \right)_x - \frac{1}{3}h^3\left( \frac{z}{h}\right)_{xx}
-\end{equation}
-
-\noindent which is solved in the variable $z/h$ (in order to avoid divisions by spatial derivatives of $h$, that can be equal to zero), leading to the 2nd order discretization
-
-\begin{equation}
-\begin{split}
-\left( \frac{h_i^n(h_x)_i^n}{2\Delta x} - \frac{(h_i^n)^2}{3\Delta x^2} \right)  \left( \frac{z}{h} \right)_{i-1}^{n+1} + 
- \left( 1 + \frac{2(h_i^n)^2}{3\Delta x^2} \right)\left( \frac{z}{h} \right)_{i}^{n+1} + \\
-  \left( -\frac{h_i^n(h_x)_i^n}{2\Delta x} - \frac{(h_i^n)^2}{3\Delta x^2} \right)\left( \frac{z}{h} \right)_{i+1}^{n+1} = \frac{1}{3} \left(\left( g_1 \right)_x\right)_i^n
-  \end{split}
+(hu)_i^{n+1} = (hu)_i^n + \Delta t \left(gh_i^n(h_x)_i^n - z_i^n \right)
 \end{equation}
 
 \subsection{Simulations}
@@ -334,4 +340,4 @@ h\frac{z}{h} - h^2h_x \left( \frac{z}{h} \right)_x - \frac{1}{3}h^3\left( \frac{
 	\caption{Evolution of $u$ for the solitary solution. Comparison between the analytical solution (in light blue) and the solutions computed with the Serre model with first order resolution for the finite volume scheme (in red), the Serre model with second order resolution for the finite volume scheme (in dark blue)  and the second order NSWE model (in green). The last two solutions are practically overlapped \label{fig:solitaryu}}
 \end{figure}
 
-\indent The results show the existence of modeling or programming errors. In both cases tested, the analytical solution is not preserved : we observe a strong dissipation of the solution, and, in the solitary wave case, a inversion of the velocity that causes the formation of secondary waves. The utilization of a higher-order solver for the Finite Volume scheme did not corrected this last problem, but showed a lower dissipation.
+\indent The results show the existence of modeling or programming errors. In both cases tested, the analytical solution is not preserved : we observe a strong dissipation of the solution, and, in the solitary wave case, an inversion of the velocity that causes the formation of secondary waves. The utilization of a higher-order solver for the Finite Volume scheme did not correct this last problem, but showed a lower dissipation.

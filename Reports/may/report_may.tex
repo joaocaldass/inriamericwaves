@@ -20,12 +20,18 @@
 
 %% Commands
 \newcommand{\der}[1]{\partial_{#1}}
+\renewcommand{\epsilon}{\varepsilon}
 
 \renewcommand{\th}{\tilde{h}}
 \newcommand{\tu}{\tilde{u}}
 
 \newcommand{\lh}{\overline{h}}
 \newcommand{\lu}{\overline{u}}
+
+\newcommand{\opT}{\mathcal{T}}
+\newcommand{\opQ}{\mathcal{Q}}
+\newcommand{\opIT}{I + \opT}
+\newcommand{\opIhT}{I + h\opT\frac{1}{h}}
 
 \newcommand{\Atwo}[2]{\left( \begin{array}{c} #1 \\ #2  \end{array} \right)}
 
@@ -42,6 +48,8 @@
 \input{serre}
 \input{BCstudy}
 \input{conclusion}
+\input{GNSerre}
 \FloatBarrier
 \bibliography{biblio}
+
 \end{document}

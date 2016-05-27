@@ -209,13 +209,13 @@ $$ \frac{1}{c_0} \frac{dx}{dt} = 1 + \frac{3}{2h_0}u$$
 
 \noindent The characterization of the dispersion comes from the derivation of the KdV equation. According to \cite{BBM1971} if the propagation of the wave follows a law of the form
 
-$$ u^*_{t^*} + uu_x+(\mathcal{L} u^*)_{x^*} = 0$$
+$$ u^*_{t^*} + u^*u^*_{x^*}+(\mathcal{L} u^*)_{x^*} = 0$$
 
 \noindent with $\mathcal{L}$ such that $$ \widehat{\mathcal{L}u^*} = \frac{c(k)}{c_0} \widehat{u^*}(k,t)$$ with $\hat \cdot$ the Fourier transform and $c(k)$ the phase celerity, which is equivalent to 
 
 $$ \mathcal{L} u = \mathcal{F}^{-1}\left(\frac{c(k)}{c_0}\right) * u$$ 
 
-\noindent where $\mathcal{F}^{-1}$ is the inverse Fourier transform operator, then new scaling based on the fact that for $\kappa$ sufficiently small, the wave speed $c(\kappa) = c_0 + c_0 \sum_{n=1}^{\infty}A_n\epsilon^n\kappa^{2n}$ can be approximated by $c(\kappa) = c_0(1-\kappa^2)$, which motivates replacing $x=\sqrt{\epsilon} X$, $t =c_0 \sqrt{\epsilon} T$, and $u = \frac{\epsilon}{ b} U$ to obtain the equivalent equation 
+\noindent where $\mathcal{F}^{-1}$ is the inverse Fourier transform operator, then new scaling based on the fact that for $\kappa$ sufficiently small, the wave speed $c(\kappa) = c_0 + c_0 \sum_{n=1}^{\infty}A_n\epsilon^n\kappa^{2n}$ can be approximated by $c(\kappa) = c_0(1-\kappa^2)$, which motivates replacing $ X=\sqrt{\epsilon}x^*$, $T =c_0 \sqrt{\epsilon} t^*$, and $u^* = \frac{\epsilon}{ b} U$ to obtain the equivalent equation 
 
 $$ U_T + \epsilon U U_x+(\mathcal{L}_{\epsilon} U)_{X} = 0$$
 
@@ -241,7 +241,7 @@ $$ \widehat{\mathcal{L}_\epsilon U} = \frac{c(\epsilon^{1/2} K)}{c_0} \hat{U}(K,
 
 $$U_T + U_X + \frac{\epsilon}{2} (U^2)_X + \epsilon\alpha^2U_{XXX} = 0$$
 
-\indent Applying the same scaling $x=\sqrt{\epsilon} X$, $t =c_0 \sqrt{\epsilon} T$, and $u = \frac{\epsilon}{ b} U$ to the physical equation leads to $$U_T + U_X + \frac{3\epsilon}{4h_0b} (U^2)_X + \frac{h_0^2\epsilon}{6}U_{XXX} = 0$$
+\indent Applying the same scaling $ X=\sqrt{\epsilon}x^*$, $T =c_0 \sqrt{\epsilon} t^*$, and $u^* = \frac{\epsilon}{ b} U$ to the physical equation leads to $$U_T + U_X + \frac{3\epsilon}{4h_0b} (U^2)_X + \frac{h_0^2\epsilon}{6}U_{XXX} = 0$$
 from where, comparing to \eqref{eq:scaledKdV}, one concludes that $ \alpha^2 = \frac{h_0^2}{6} $
 
 \subsection{The criteria for choosing an appropriate initial solution}
