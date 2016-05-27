@@ -28,7 +28,7 @@ def computeError(u,uexact,dt) :
     ErrL2 = np.sqrt(dt)*np.linalg.norm(e)
     
     return e,ErrTm,ErrL2
-def imposeTBC(M,rhs,um,umm,U2,dx,order,coef) :
+def imposeTBC(M,rhs,um,umm,U2,dx,order,coef,BCs) :
     
     if order == 0:
         
@@ -51,9 +51,9 @@ def imposeTBC(M,rhs,um,umm,U2,dx,order,coef) :
         M[-2,-2] = -1./(dx) - 2.*cR/(dx*dx)
         M[-2,-3] =   cR/(dx*dx)
     
-        rhs[0] = 0.
-        rhs[-2] = 0.
-        rhs[-1] = 0. 
+        rhs[0] = BCs[0]
+        rhs[-2] = BCs[2]
+        rhs[-1] = BCs[1] 
     elif order == 1 or order == .5:
         
         ## order = 0.5 : P_1^2 truncated in degree 1
@@ -116,7 +116,7 @@ def imposeTBC(M,rhs,um,umm,U2,dx,order,coef) :
     
     return M,rhs
 # Our scheme for the dispersion equation + Besse's TBCs
-def IFDBesse(u,um,umm,t,dt,dx,U2,order,coef):
+def IFDBesse(u,um,umm,t,dt,dx,U2,order,coef,BCs=np.zeros(3)):
     k = dt/(dx*dx*dx)
 
     nx = u.size - 1
@@ -147,7 +147,7 @@ def IFDBesse(u,um,umm,t,dt,dx,U2,order,coef):
     
     rhs = np.copy(u)
     
-    M,rhs = imposeTBC(M,rhs,um,umm,U2,dx,order,coef)
+    M,rhs = imposeTBC(M,rhs,um,umm,U2,dx,order,coef,BCs)
     
     np.set_printoptions(threshold=np.nan)
     np.set_printoptions(suppress=True)
@@ -249,6 +249,7 @@ def optimizeParamO0(x,u,uallexact,t0,tmax,U2,cLs,cRs, N, dt, prevTests, verbose 
 
                     if cntTests > 0:
                         coef = np.amax(uallexact[:,1])/np.amax(uall[:,1])
+                        coef = 1.
                         uallexact[:,1:] = uallexact[:,1:]/coef
                         
                     en,ErrTm,ErrL2 = computeError(uall,uallexact,dt)
@@ -300,17 +301,18 @@ def fundamentalSolution(x,t) :
 ## Exact solution
 def exactSolution(x,t,initCond) :
     dx = x[1] - x[0]
-    left = np.arange(x[0]-10.,x[0],dx)
+    left = np.arange(x[0]-1000.,x[0],dx)
     sizeL = np.size(left)
-    right = np.arange(x[-1] + dx,x[-1] + 10., dx)
+    right = np.arange(x[-1] + dx,x[-1] + 1000., dx)
     sizeR = np.size(right)
     x2 = np.concatenate((left,x,right))
 
     uf = fundamentalSolution(x2,t)
     u0 = initCond(x2)
     
-    b = np.convolve(uf,u0,'same')/np.sum(np.absolute(u0))
+    b = np.convolve(uf/np.sum(uf),u0,'same')
     c = b[sizeL:sizeL+x.size]
+    
     return c
 ## Initial condition
 def initGauss(x) :
@@ -321,9 +323,9 @@ def initCosinus(x) :
 ## Exact solution
 def exactSolution2(x,t) :
     dx = x[1] - x[0]
-    left = np.arange(x[0]-10.,x[0],dx)
+    left = np.arange(x[0]-1000.,x[0],dx)
     sizeL = np.size(left)
-    right = np.arange(x[-1] + dx,x[-1] + 10., dx)
+    right = np.arange(x[-1] + dx,x[-1] + 1000., dx)
     sizeR = np.size(right)
     x2 = np.concatenate((left,x,right))
     a = np.power(3.*t,-1./3.)
@@ -331,6 +333,7 @@ def exactSolution2(x,t) :
     e = np.exp(-x2*x2)
     b = np.convolve(a*Ai,e,'same')/np.sum(np.absolute(e))
     c = b[sizeL:sizeL+x.size]
+    print(t)
     return c
 ## Load previous results from file and put in the library (or create a new one)
 def loadTests(filename) :
@@ -429,3 +432,68 @@ def plotBestSolution(x,u,uallexact,U2,t0,tmax,dt,tall,tsnaps,tests,criteria="L2"
         plt.plot(x,uallexact[:,it],marker='+',markevery=10,linestyle='None', label='Exact sol')
         plt.title(r't = %f'%tall[it])
         plt.legend()
+def plotCoefError(testsLight,fixedValues,fixedCoef = "right",minCoef=None,maxCoef=None):
+
+    plt.figure()
+    
+    if fixedCoef == "right" :
+        fixedIndex = 1
+        leg = r"$c_R = $"
+        title = "$c_R fixed$"
+        xlbl = "$c_L$"
+    elif fixedCoef == "left" :
+        fixedIndex = 0
+        leg = r"$c_L = $"
+        title = "$c_L fixed$"
+        xlbl = "$c_R$"
+        
+    ## string -> (cL,cR)
+    testsList = np.array([(key,float(testsLight[key][0]), float(testsLight[key][1]))for key in testsLight.keys()])
+    testsCoefsList = np.zeros((testsList.shape[0],4))
+    
+    for i in range(testsCoefsList.shape[0]) :
+        tup = eval(testsList[i,0])
+        testsCoefsList[i,0] = tup[0]
+        testsCoefsList[i,1] = tup[1]
+    testsCoefsList[:,2:4] = testsList[:,1:3] ## cL,cR,Tm,L2
+
+
+    errormin = 100000000
+    errormax = -100000000
+    for fixed in fixedValues :
+        filtredList = np.zeros((1,3))
+        line = np.zeros((1,3))
+        for i in range(testsCoefsList.shape[0]):
+            if np.absolute(testsCoefsList[i,fixedIndex] - fixed) < 1e-6 :
+                line[0,0] = testsCoefsList[i,1-fixedIndex] ## cL,Tm,L2
+                line[0,1:3] = testsCoefsList[i,2:4]
+                filtredList = np.concatenate((filtredList,line))
+        filtredList = np.delete(filtredList,0,0)
+        filtredList = filtredList[np.argsort(filtredList[:,0])]
+        plt.plot(filtredList[:,0],filtredList[:,1],label=leg + r"%.3f"%fixed + " - Tm")
+        plt.plot(filtredList[:,0],filtredList[:,2],label=leg + r"%.3f"%fixed + " - L2")
+    
+        print(minCoef,maxCoef,filtredList[0,0],filtredList[-1,0])
+        if minCoef == None:
+            minCoef = 100000000
+            if (filtredList[0,0] < minCoef):
+                minCoef = filtredList[0,0]
+        if maxCoef == None :
+            maxCoef = -100000000
+            if (filtredList[-1,0] > maxCoef):
+                maxCoef = filtredList[-1,0]
+
+        print(minCoef,maxCoef,errormin,errormax)
+        idxmin = np.argmin(np.absolute(filtredList[:,0]-minCoef))
+        idxmax = np.argmin(np.absolute(filtredList[:,0]-maxCoef))
+        if np.amin([filtredList[idxmin:idxmax+1,1:]]) < errormin:
+            errormin = np.amin([filtredList[idxmin:idxmax+1,1:]])
+        if np.amax([filtredList[idxmin:idxmax+1,1:]]) > errormax:
+            errormax = np.amax([filtredList[idxmin:idxmax+1,1:]])
+
+    plt.xlim((minCoef,maxCoef))
+    plt.ylim((errormin,errormax))
+    plt.xlabel(xlbl)
+    plt.ylabel("Error")
+    plt.title(title)
+    plt.legend()
