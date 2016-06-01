@@ -62,7 +62,7 @@ import numpy as np
 from matplotlib import animation
 from JSAnimation import IPython_display
 
-def plotAnimationNSolutions(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel,location=(.5,.5)) :
+def plotAnimationNSolutions(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel,location=0) :
     
     print("*** Plotting animation ...")
     
@@ -91,18 +91,18 @@ def plotAnimationNSolutions(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel,location=(.5,.
     
     return anim
 # save plot of one solution in instants t_n, n in ns, to an image file
-def saveSnapshots(ns,x,u,t,xlbl,ylbl,title,path,ext="png") :
+def saveSnapshots(ns,x,u,t,xlbl,ylbl,title,path,ext="png",legloc=0) :
     plt.figure()
     for n in ns :
         plt.plot(x,u[:,n],label=r't = %.3f'%t[n])
     plt.xlim((x[0],x[-1]))
     plt.xlabel(xlbl)
     plt.ylabel(ylbl)
-    plt.legend()
+    plt.legend(loc=legloc)
     plt.title(title)
     plt.savefig(path+"."+ext)
 # save plot of N solutions in the instant t_n to an image file
-def saveSnapshotNsolutions(N,n,x,u,t,lbl,xlbl,ylbl,path,ext="png",xmin=None,xmax=None,ymin=None,ymax=None,legloc=(0.8,0.8)) :
+def saveSnapshotNsolutions(N,n,x,u,t,lbl,xlbl,ylbl,path,ext="png",xmin=None,xmax=None,ymin=None,ymax=None,legloc=0) :
     plt.figure()
     if xmin == None:
         xmin = x[0]
@@ -122,145 +122,7 @@ def saveSnapshotNsolutions(N,n,x,u,t,lbl,xlbl,ylbl,path,ext="png",xmin=None,xmax
     plt.title(r't = %.3f'%t[n])
     plt.savefig(path+"."+ext)
 # save N arbitrary plots to an image file
-def saveNgraphs(N,x,y,lbl,xlbl,ylbl,title,path,ext="png",xmin=None,xmax=None,legloc=(0.8,0.8)) :
-    plt.figure()
-    for i in range(N) :
-        plt.plot(x[i,:],y[i,:],label=lbl[i])
-    if xmin == None:
-        xmin = x[0]
-    if xmax == None:
-        xmax = x[-1]
-    plt.xlim((xmin,xmax))
-    plt.xlabel(xlbl)
-    plt.ylabel(ylbl)
-    plt.legend(loc=legloc)
-    plt.title(title)
-    plt.savefig(path+"."+ext)
-# save plot of one solution in instants t_n, n in ns, to an image file
-def saveSnapshots(ns,x,u,t,xlbl,ylbl,title,path,ext="png") :
-    plt.figure()
-    for n in ns :
-        plt.plot(x,u[:,n],label=r't = %.3f'%t[n])
-    plt.xlim((x[0],x[-1]))
-    plt.xlabel(xlbl)
-    plt.ylabel(ylbl)
-    plt.legend()
-    plt.title(title)
-    plt.savefig(path+"."+ext)
-# save plot of N solutions in the instant t_n to an image file
-def saveSnapshotNsolutions(N,n,x,u,t,lbl,xlbl,ylbl,path,ext="png",xmin=None,xmax=None,ymin=None,ymax=None,legloc=(0.8,0.8)) :
-    plt.figure()
-    if xmin == None:
-        xmin = x[0]
-    if xmax == None:
-        xmax = x[-1]
-    if ymin == None :
-        ymin = np.amin(u)
-    if ymax == None : 
-        ymax = np.amax(u)
-    plt.xlim((xmin,xmax))
-    plt.ylim((ymin,ymax))
-    for i in range(N) :
-        plt.plot(x,u[i,:,n],label=lbl[i])
-    plt.xlabel(xlbl)
-    plt.ylabel(ylbl)
-    plt.legend(loc=legloc)
-    plt.title(r't = %.3f'%t[n])
-    plt.savefig(path+"."+ext)
-# save N arbitrary plots to an image file
-def saveNgraphs(N,x,y,lbl,xlbl,ylbl,title,path,ext="png",xmin=None,xmax=None,legloc=(0.8,0.8)) :
-    plt.figure()
-    for i in range(N) :
-        plt.plot(x[i,:],y[i,:],label=lbl[i])
-    if xmin == None:
-        xmin = x[0]
-    if xmax == None:
-        xmax = x[-1]
-    plt.xlim((xmin,xmax))
-    plt.xlabel(xlbl)
-    plt.ylabel(ylbl)
-    plt.legend(loc=legloc)
-    plt.title(title)
-    plt.savefig(path+"."+ext)
-# save plot of one solution in instants t_n, n in ns, to an image file
-def saveSnapshots(ns,x,u,t,xlbl,ylbl,title,path,ext="png") :
-    plt.figure()
-    for n in ns :
-        plt.plot(x,u[:,n],label=r't = %.3f'%t[n])
-    plt.xlim((x[0],x[-1]))
-    plt.xlabel(xlbl)
-    plt.ylabel(ylbl)
-    plt.legend()
-    plt.title(title)
-    plt.savefig(path+"."+ext)
-# save plot of N solutions in the instant t_n to an image file
-def saveSnapshotNsolutions(N,n,x,u,t,lbl,xlbl,ylbl,path,ext="png",xmin=None,xmax=None,ymin=None,ymax=None,legloc=(0.8,0.8)) :
-    plt.figure()
-    if xmin == None:
-        xmin = x[0]
-    if xmax == None:
-        xmax = x[-1]
-    if ymin == None :
-        ymin = np.amin(u)
-    if ymax == None : 
-        ymax = np.amax(u)
-    plt.xlim((xmin,xmax))
-    plt.ylim((ymin,ymax))
-    for i in range(N) :
-        plt.plot(x,u[i,:,n],label=lbl[i])
-    plt.xlabel(xlbl)
-    plt.ylabel(ylbl)
-    plt.legend(loc=legloc)
-    plt.title(r't = %.3f'%t[n])
-    plt.savefig(path+"."+ext)
-# save N arbitrary plots to an image file
-def saveNgraphs(N,x,y,lbl,xlbl,ylbl,title,path,ext="png",xmin=None,xmax=None,legloc=(0.8,0.8)) :
-    plt.figure()
-    for i in range(N) :
-        plt.plot(x[i,:],y[i,:],label=lbl[i])
-    if xmin == None:
-        xmin = x[0]
-    if xmax == None:
-        xmax = x[-1]
-    plt.xlim((xmin,xmax))
-    plt.xlabel(xlbl)
-    plt.ylabel(ylbl)
-    plt.legend(loc=legloc)
-    plt.title(title)
-    plt.savefig(path+"."+ext)
-# save plot of one solution in instants t_n, n in ns, to an image file
-def saveSnapshots(ns,x,u,t,xlbl,ylbl,title,path,ext="png") :
-    plt.figure()
-    for n in ns :
-        plt.plot(x,u[:,n],label=r't = %.3f'%t[n])
-    plt.xlim((x[0],x[-1]))
-    plt.xlabel(xlbl)
-    plt.ylabel(ylbl)
-    plt.legend()
-    plt.title(title)
-    plt.savefig(path+"."+ext)
-# save plot of N solutions in the instant t_n to an image file
-def saveSnapshotNsolutions(N,n,x,u,t,lbl,xlbl,ylbl,path,ext="png",xmin=None,xmax=None,ymin=None,ymax=None,legloc=(0.8,0.8)) :
-    plt.figure()
-    if xmin == None:
-        xmin = x[0]
-    if xmax == None:
-        xmax = x[-1]
-    if ymin == None :
-        ymin = np.amin(u)
-    if ymax == None : 
-        ymax = np.amax(u)
-    plt.xlim((xmin,xmax))
-    plt.ylim((ymin,ymax))
-    for i in range(N) :
-        plt.plot(x,u[i,:,n],label=lbl[i])
-    plt.xlabel(xlbl)
-    plt.ylabel(ylbl)
-    plt.legend(loc=legloc)
-    plt.title(r't = %.3f'%t[n])
-    plt.savefig(path+"."+ext)
-# save N arbitrary plots to an image file
-def saveNgraphs(N,x,y,lbl,xlbl,ylbl,title,path,ext="png",xmin=None,xmax=None,legloc=(0.8,0.8)) :
+def saveNgraphs(N,x,y,lbl,xlbl,ylbl,title,path,ext="png",xmin=None,xmax=None,legloc=0) :
     plt.figure()
     for i in range(N) :
         plt.plot(x[i,:],y[i,:],label=lbl[i])

@@ -28,7 +28,7 @@ def computeError(u,uexact,dt) :
     ErrL2 = np.sqrt(dt)*np.linalg.norm(e)
     
     return e,ErrTm,ErrL2
-def imposeTBC(M,rhs,um,umm,U2,dx,order,coef,BCs) :
+def imposeTBC(M,rhs,um,umm,U2,dx,dt,order,coef,BCs,correctTBC) :
     
     if order == 0:
         
@@ -39,17 +39,18 @@ def imposeTBC(M,rhs,um,umm,U2,dx,order,coef,BCs) :
         M[-1,:] = 0
         M[-2,:] = 0
     
-        M[0,0] = 1. + cL*U2/dx + cL*cL*U2/(dx*dx)
-        M[0,1] = -cL*U2/dx - 2.*cL*cL*U2/(dx*dx)
+        M[0,0] = 1. + cL*U2/dx + cL*cL*U2/(dx*dx) + correctTBC*(-cL/dx + dx/dt*cL*cL)
+        M[0,1] = -cL*U2/dx - 2.*cL*cL*U2/(dx*dx) + correctTBC*cL/dx
         M[0,2] = cL*cL*U2/(dx*dx)
     
-        M[-1,-1] = 1. - cR*cR/(dx*dx)
+        M[-1,-1] = 1. - cR*cR/(dx*dx) + correctTBC*dx/dt*cR*cR
         M[-1,-2] =   2.*cR*cR/(dx*dx)
         M[-1,-3] = - cR*cR/(dx*dx)
     
-        M[-2,-1] = 1./(dx) + cR/(dx*dx)
-        M[-2,-2] = -1./(dx) - 2.*cR/(dx*dx)
-        M[-2,-3] =   cR/(dx*dx)
+        M[-2,-1] = 1./(dx) + cR/(dx*dx) + correctTBC*(-2.*dx/dt*cR)
+        M[-2,-2] = -1./(dx) - 2.*cR/(dx*dx) + correctTBC*(-2.*dx*dx/dt + 1./dx)
+        M[-2,-3] =   cR/(dx*dx) + correctTBC*(-2./dx)
+        M[-2,-4] = correctTBC*1./dx
     
         rhs[0] = BCs[0]
         rhs[-2] = BCs[2]
@@ -116,7 +117,7 @@ def imposeTBC(M,rhs,um,umm,U2,dx,order,coef,BCs) :
     
     return M,rhs
 # Our scheme for the dispersion equation + Besse's TBCs
-def IFDBesse(u,um,umm,t,dt,dx,U2,order,coef,BCs=np.zeros(3)):
+def IFDBesse2(u,um,umm,t,dt,dx,U2,order,coef,BCs=np.zeros(3)):
     k = dt/(dx*dx*dx)
 
     nx = u.size - 1
@@ -155,6 +156,48 @@ def IFDBesse(u,um,umm,t,dt,dx,U2,order,coef,BCs=np.zeros(3)):
     u2 = np.linalg.solve(M,rhs)
     
     return u2
+
+
+def IFDBesse(u,um,umm,t,dt,dx,U2,order,coef,correctTBC,BCs=np.zeros(3)):
+    k = dt/(dx*dx*dx)
+
+    nx = u.size - 1
+
+    d0  = 1.*np.ones(nx+1)
+    d1 = -k*np.ones(nx)
+    d2 = k*1./2.*np.ones(nx-1)
+    #d3 = -k*1./8.*np.ones(nx-2)
+    
+    M =  np.diag(d0) + np.diag(d1,1) + np.diag(d2,2)  - np.diag(d1,-1) - np.diag(d2,-2)
+       
+    vvv = np.zeros(nx+1)
+    vvv[0] = 1. - 1.*k
+    vvv[1] = 3.*k
+    vvv[2] = -3.*k
+    vvv[3] = 1.*k   
+    
+    zzz = -np.flipud(vvv)
+    zzz[-1] = 1. + 1.*k
+
+    M[0,:] = vvv
+    M[1,:] = np.roll(vvv,1)
+    #M[2,:] = np.roll(vvv,2)
+    
+    M[nx,:] = zzz
+    M[nx-1,:] = np.roll(zzz,-1)
+    #M[nx-2,:] = np.roll(zzz,-2)
+    
+    rhs = np.copy(u)
+    
+    M,rhs = imposeTBC(M,rhs,um,umm,U2,dx,dt,order,coef,BCs,correctTBC)
+    
+    np.set_printoptions(threshold=np.nan)
+    np.set_printoptions(suppress=True)
+    
+    u2 = np.linalg.solve(M,rhs)
+    
+    return u2
+
 ## Only dispersive part of KdV
 def runDispKdV(x,u,t0,tmax,U2,coef, periodic=1, vardt = True, dt = 0.01, verbose = True, order = 0):
     
@@ -198,7 +241,7 @@ def runDispKdV(x,u,t0,tmax,U2,coef, periodic=1, vardt = True, dt = 0.01, verbose
         if periodic :
             u = kdv.FourierSolver(u,t,dt,dx)
         else :
-            u = IFDBesse(u,um,umm,t,dt,dx,U2,order,coef)
+            u = IFDBesse(u,um,umm,t,dt,dx,U2,order,coef,0)
 
         uall = np.column_stack((uall,u))
         tall = np.hstack((tall,t*np.ones(1)))
