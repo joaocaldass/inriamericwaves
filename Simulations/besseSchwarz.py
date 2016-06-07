@@ -13,7 +13,6 @@ def showRankingSpeed(tests,nb,criteria="speed") :
     else:
         print("Wrong criteria")
   
-    dt = np.dtype('str,int,float')
     testsList = np.array([(eval(key),int(tests[key][0]), float(tests[key][1]))for key in tests.keys()])
 
     idxdlt = np.zeros(1)
@@ -23,12 +22,110 @@ def showRankingSpeed(tests,nb,criteria="speed") :
     idxdlt = np.delete(idxdlt,0)
     
     testsList = np.delete(testsList,idxdlt,axis=0)
-        
-    print("Best results")
+     
+    if nb > 0:
+        print("Best results")
     idxbest = np.argsort(testsList[:,idxcrt])
     for i in range(nb):
         coefs = testsList[idxbest[i],0]
         print(r"(%.3f,%.3f)" %(coefs[0],coefs[1]),testsList[idxbest[i],1],testsList[idxbest[i],2])
+        
+    return testsList[idxbest,:]
+def optimizeSpeed(x,x1,x2,u,cLs,cRs,prevTests,t0,tmax,dx,dt,maxiter = 100, equalCoef = False) :
+  
+    testsSpeed = prevTests
+
+    keys = []
+    for i in range(len(testsSpeed.keys())):
+        keys.append(eval(testsSpeed.keys()[i]))
+        
+    for cL in cLs:
+        for cR in cRs:
+            
+            if equalCoef :
+                cR = cL
+            
+            iskey = False
+            eps = 1e-9
+            for key in testsSpeed.keys():
+                coefs = eval(key)
+                if np.absolute(coefs[0]-cL) < eps and np.absolute(coefs[1]-cR) < eps :
+                    iskey = True
+                    break
+            if not iskey :
+            #if (cL,cR) not in keys:       
+            #if (str((cL,cR)) not in testsSpeed.keys()) :
+
+                coefTBC = np.zeros((1,2))
+                coefTBC[0,0] = cL
+                coefTBC[0,1] = cR
+
+                
+                uallref,tallref = besseTBC.runDispKdV(x,u,t0,tmax,1., coefTBC , periodic = 0, vardt = False, dt = dt,
+                                                          order = 0, modifyDiscret = 1)
+                             
+                nx = x1.size
+                u1 = uallref[:nx,0]
+                u2 = uallref[nx-1:,0]
+                
+    
+                uall1Speed,uall2Speed,tall,niterallSpeed,diff1allSpeed,\
+                diff2allSpeed,diffitallSpeed,errallSpeed,errIntLSpeed,errIntRSpeed = runSimulation(x1,
+                                                                                    x2,u1,u2,t0,tmax,dx,dt,cL,cR,
+                                                                                   uref=uallref,maxiter = maxiter,eps = 1e-7,
+                                                                                    printstep=100, debug=0,corrTBC=1, verbose=0,
+                                                                                    fourConditions = 0, pointR = 0)
+                print(cL,cR,niterallSpeed[1],errallSpeed[-1,1])
+                #if errallSpeed[-1,1] != 'nan' and  errallSpeed[-1,1] != 'inf' and errallSpeed[-1,1]  < 1e6:
+                testsSpeed[str((cL,cR))] = (niterallSpeed[1],errallSpeed[-1,1])
+                
+            if equalCoef :
+                break
+
+    return testsSpeed
+def getTestResult(tests,cL,cR) :
+    
+    eps = 1e-6
+    
+    for key in tests.keys() :
+        coefs = eval(key)
+        if np.absolute(coefs[0] - cL) < eps and np.absolute(coefs[1] - cR) < eps:
+            return tests[key]
+    
+    print("Coefs not found!!")
+    
+    return None
+def getTestResultVariableT0(tests,t0) :
+    
+    return tests[str(t0)]
+def getTestResumeVariableT0(tests) :
+    
+    resumeT0 = {}
+    resumeCoef = {}
+    for t0 in tests.keys():
+        testT0 = getTestResultVariableT0(tests,t0)
+
+        resultsRanking =  showRankingSpeed(testT0,0,criteria="speed")
+        for i in range(resultsRanking.shape[0]) :
+            resultsRanking[i,0] = resultsRanking[i,0][0]  ### only cL 
+        
+        orderedIndex = np.argsort(resultsRanking[:,0])  ### growing cL
+        resultsOrdered = resultsRanking[orderedIndex,:]
+        
+        itmin = np.argmin(resultsOrdered[:,1])
+        itmax = np.argmax(resultsOrdered[:,1])
+        errmin = np.argmin(resultsOrdered[:,2])
+        errmax = np.argmax(resultsOrdered[:,2])       
+        
+        resumeT0[t0] = [resultsOrdered,resultsRanking,
+                        np.array([resultsOrdered[itmin,0],resultsOrdered[itmin,1]]),
+                        np.array([resultsOrdered[itmax,0],resultsOrdered[itmax,1]]),
+                        np.array([resultsOrdered[errmin,0],resultsOrdered[errmin,2]]),
+                        np.array([resultsOrdered[errmax,0],resultsOrdered[errmax,2]])]
+        
+        
+    return resumeT0
+        
 ## Returns TBC computed in \Omega_j for the resolution in \Omega_i
 
 def computeExteriorTBC(u,dx,cL,cR,cond,order=2) :
