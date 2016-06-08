@@ -149,7 +149,7 @@ def flux(h,u):
         Returns array F(u) of size 2
     """
     return np.array([h*u, 0.5*g*h**2 + h*u**2])
-def fluxes(h,hu,n):
+def fluxes(h,hu,n,riemann_solver=roe):
     """
         Calcula loos flujos en cada interfaz,
         retorna la matriz de 2xninterfaces
@@ -158,7 +158,7 @@ def fluxes(h,hu,n):
     hl, hr, hul, hur   = getMusclReconstr(h[n,:],hu[n,:])
     fs = np.zeros((2,nx+1))
     for i in range(nx+1):
-        hs,us = roe(hr[i],hur[i],hl[i+1],hul[i+1])
+        hs,us = riemann_solver(hr[i],hur[i],hl[i+1],hul[i+1])
         fs[:,i] = flux(hs,us)
     return fs
 
@@ -198,7 +198,7 @@ def bcs_closed(h,hu,n):
     hub[n,-1] = -hu[n,-3]   
     hub[n,-2] = -hu[n,-3]    
     return hb,hub
-def simulate(h,hu,bcs,dx,cfl,t0,nt):
+def simulate(h,hu,bcs,dx,cfl,t0,nt,riemann_solver=roe):
     """
         Rutina principal que corre la simulacion
     """
@@ -211,45 +211,7 @@ def simulate(h,hu,bcs,dx,cfl,t0,nt):
 
         h,hu = bcs(h,hu,n)    
         
-        f = fluxes(h,hu,n)
-
-        h[n+1,2:-2] = h[n,2:-2] -dt/dx*(f[0,1:] - f[0,:-1])
-        hu[n+1,2:-2] = hu[n,2:-2] -dt/dx*(f[1,1:] - f[1,:-1])
-        
-    return t,h,hu
-def simulate(h,hu,bcs,dx,cfl,t0,nt):
-    """
-        Rutina principal que corre la simulacion
-    """
-    t = np.zeros((nt,))
-    for n in range(nt-1):     
-        
-        dt = setdt(h,hu,n,dx,cfl)
-        
-        t[n+1] = t[n] + dt
-
-        h,hu = bcs(h,hu,n)    
-        
-        f = fluxes(h,hu,n)
-
-        h[n+1,2:-2] = h[n,2:-2] -dt/dx*(f[0,1:] - f[0,:-1])
-        hu[n+1,2:-2] = hu[n,2:-2] -dt/dx*(f[1,1:] - f[1,:-1])
-        
-    return t,h,hu
-def simulate(h,hu,bcs,dx,cfl,t0,nt):
-    """
-        Rutina principal que corre la simulacion
-    """
-    t = np.zeros((nt,))
-    for n in range(nt-1):     
-        
-        dt = setdt(h,hu,n,dx,cfl)
-        
-        t[n+1] = t[n] + dt
-
-        h,hu = bcs(h,hu,n)    
-        
-        f = fluxes(h,hu,n)
+        f = fluxes(h,hu,n,riemann_solver=roe)
 
         h[n+1,2:-2] = h[n,2:-2] -dt/dx*(f[0,1:] - f[0,:-1])
         hu[n+1,2:-2] = hu[n,2:-2] -dt/dx*(f[1,1:] - f[1,:-1])
