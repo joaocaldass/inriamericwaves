@@ -1,0 +1,136 @@
+\section{Application of the approximate TBCs to a Domain Decomposition Method}
+
+\indent The constant polynomial approximation of the Transparent Boundary Conditions, expressed by \ref{eq:TBC3}, will be applied to the implementation of a Domain Decomposition Method (DDM). Firstly, we will briefly describe the DDM that we will consider here, and after we will describe and test the incorporation of the proposed TBCs.
+
+\subsection{The Schwarz Methods}
+
+\indent The following description is based on \cite{Japhet2003}. Domain Decomposition Methods allow to decompose a domain $\Omega$ in multiple subdomains $\Omega_i$ (that can possibly overlap) and solve the problem in each one of them. Therefore, one must find functions that satisfies the PDE in each subdomain and that match on the interfaces. 
+
+\indent The first DDM developed was the Schwarz method, which consists on an iterative method : in the case of a evolution problem, the solution  $u_i^{n,\infty}$, in each time step $t_n$ and each subdomain $\Omega_i$, is computed as the convergence of the solution obtained in each iteration, $u_i^{n,k}, \ \ k\geq 0$. There are two types of Schwarz methods, depending on the way that the boundary conditions on the interfaces are constructed for computing $u_i^{n,k}$
+
+\indent In the additive Schwarz method (ASM), the boundary conditions are always constructed using the solution $u_j^{n,k-1}, \ \ j \neq i$ of the previous iteration in the other partitions of the domain. Therefore, in each interface between the domains $\Omega_i$ and $\Omega_j$, the boundary condition for the problem in $\Omega_i$ is
+
+$$\mathcal{B}(u_i^{n,k+1}) = \mathcal{B}(u_j^{n,k})$$
+
+where $\mathcal{B}$ denotes the operator of the TBC.
+
+\indent In the order hand, the multiplicative Schwarz method (MSM) uses always the most recent information for computing the interface boundary conditions. Therefore, if we consider a DDM with two subomains, $\Omega_1$ and $\Omega_2$,  they TBCs would be written (for example) as 
+
+$$\mathcal{B}(u_1^{n,k+1}) = \mathcal{B}(u_2^{n,k}) \\ \mathcal{B}(u_2^{n,k+1}) = \mathcal{B}(u_1^{n,k+1})$$
+
+\noindent for solving the problem in $\Omega_1$ and $\Omega_2$, respectively.
+
+\indent We will consider here only the ASM.In the following description, without lost of generality, we will consider a domain decomposed in two non-overlapping subdomains.
+
+\indent Evidently, the biggest challenge of the Schwarz methods is to define appropriate operators such that :
+
+\begin{itemize}
+\item The method shows a fast convergence
+\item The solution $u_i$ in each subdomain $\Omega_i$ converges to $u|_{\Omega_1}$, i.e, the solution $u$ of the monodomain $\Omega$ restricted to $\Omega_1$
+\end{itemize} 
+
+\indent In fact, accordingly to \cite{Japhet2013}, the optimal additive Schwarz method is the one which uses the TBCs \ref{REFTBCMAY} as interface boundary conditions: with them, the method converges in two iterations, and no ASM can converge in less than two iterations.
+
+\indent Nevertheless, as discussed previously in this report, the numerical implementation of the exact TBCs \ref{REFTBCMAY} are generally impractical, because they are non local in time. Therefore, one should use approximate TBCs, what will be done here in the sequence using the approximations proposed n the previous section.
+
+\subsection{ASM with the approximate TBCs for the dispersive equation}
+
+\indent The resolution of the dispersive equation with the Additive Schwarz method, using the constant polynomial approximation for the TBCs, is written as
+
+\begin{equation}
+    \label{eq:problemDDM1}
+    \begin{cases}
+        (u_1^{n,k+1})_t + (u_1^{n,k+1})_{xxx} = 0 , \ \ x \in \Omega_1, \ \ t \leq 0\\
+        u_1^{n,0} = u_1^{n-1,\infty} , \ \ x \in \Omega_1 \\
+        \Upsilon_1^{c_L^*}(u_1^{n+1,k+1},-L) = 0, \\ 
+        \Theta_2^{c_R^*}(u_1^{n+1,k+1},0) = \Theta_2^{c_R^*}(u_2^{n,k},0) , \\
+        \Theta_3^{c_R^*}(u_1^{n+1,k+1},0) = \Theta_3^{c_R^*}(u_2^{n,k},0)
+     \end{cases}
+\end{equation}
+
+\begin{equation}
+    \label{eq:problemDDM2}
+    \begin{cases}
+        (u_2^{n,k+1})_t + (u_2^{n,k+1})_{xxx} = 0 , \ \ x \in \Omega_2, \ \ t \leq 0\\
+        u_2^{n,0} = u_2^{n-1,\infty} , \ \ x \in \Omega_2 \\
+        \Theta_1^{c_L^*}(u_2^{n+1,k+1},0) = \Theta_1^{c_L^*}(u_1^{n,k},0) \\
+        \Upsilon_2^{c_R^*}(u_2^{n+1,k+1},L) = 0 \\
+        \Upsilon_3^{c_R^*}(u_2^{n+1,k+1},L) = 0
+     \end{cases}
+\end{equation}
+
+\indent where $ \Upsilon_i, \ \ i=1,2,3$, are the boundary conditions on the external boundaries (i.e, in the intersection of the monodomain boundaries and the subdomain boundaries). These external BCs are independent of the interface BCs. Here, we will consider $\Upsilon_1 = \Theta_1^{1.0}$, $\Upsilon_2 = \Theta_2^{0.0}$ and $\Upsilon_3 = \Theta_3^{0.0}$, which gives
+
+\begin{gather}
+	\Upsilon_1(u,x) = u - u_x + u_{xx} \\
+	\Upsilon_2(u,x) = 0 \\
+	\Upsilon_3(u,x) = 0 \\
+\end{gather}
+
+\indent This choice was made based on the easy implementation and the good results provided by the coefficients $c_L = 1.0$ and $c_R = 0.0$ in approximating the analytical solution in $\Omega$ (as shown in the table \ref{tab:firstTestsP0}). Nevertheless,it does not have much importance in the study that we will done in the following paragraphs. In fact, our purpose is to study exclusively the behavior of the DDM implemented here; therefore, all the results must be compared to a referential solution $u_{ref}$, that can be simply the numerical solution of the monodomain problem. The only restriction for an appropriate study is that the external BCs for computing $u_{ref}$ must be same as $\Upsilon_i, \ \ i=1,2,3$.
+
+
+\subsection{Error in the converged solution}
+
+\indent When using approximate TBCs in the ASM, when should guarantee that the converged solutions $u_1,u_2$ satisfies the same equation as the solution $u_{ref}$ of the monodomain problem. Firstly, we will show a very simple example in which this property is not verified, and after we will prove and verify numerically that the the method \eqref{eq:problemDDM1} - \eqref{eq:problemDDM2} proposed here has the same problem. Based on that, we will be able to propose corrections for it.
+
+\subsubsection{Motivational example : }
+
+\indent Consider the 1D problem
+
+\begin{equation}
+\begin{cases}
+	-\Delta u + \lambda u = f, \ \ x \in \Omega = [-L,L], \ \ t \geq 0
+	u(-L) = u(L) = 0
+\end{cases}
+\end{equation}
+
+\indent solved with the ASM, using a Neumann boundary condition on the interface :
+
+\begin{equation}
+	\label{eq:ASMexample1}
+    \begin{cases}
+        -\Delta(u_1^{k+1}) + \lambda(u_1^{k+1}) = f , \ \ x \in \Omega_1 = [-L,0], \ \ t \geq 0\\
+        (u_1^{k+1})_x(0) = (u_2^{k})_x(0)
+     \end{cases}
+\end{equation}
+
+\begin{equation}
+	\label{eq:ASMexample2}
+    \begin{cases}
+        -\Delta(u_2^{k+1}) + \lambda(u_2^{k+1}) = f , \ \ x \in \Omega_2 = [0,L], \ \ t \geq 0\\
+        (u_2^{k+1})_x(0) = (u_1^{k})_x(0)
+     \end{cases}
+\end{equation}
+
+\indent The problem can be solved with the following Finite Difference Discretization
+
+\begin{equation}
+\label{eq:discretExample}
+- \frac{u_{i,j-1} - 2_{i,j} + u_{i,j+1} }{\Delta x^2} + \lambda u_{i,j} = f_j \ \ i=1,2
+\end{equation}
+
+\noindent which is valid for $j = 1,...,N-1$ in the case $i = 1$; for $j = N+1, ..., 2N-1$ in the case $i = 2$; and $j = 1,...,2N-1$ in the case $i = ref$.
+
+\indent Suppose the method \ref{eq:ASMexample1} - \ref{eq:ASMexample2} converges to $u^*$, i.e. :
+
+\begin{equation}
+\begin{cases}
+u^*_j = u_{1,j}^\infty, \ \ i = 0,..,N-1 \\
+u^*_j = u_{2,j}^\infty, \ \ i = N+1,..,2N \\
+u^*_{N} =  u_{1,N}^\infty = u_{2,j}^\infty
+\end{cases}
+\end{equation}
+
+\indent Therefor, in the convergence, the boundary condition on the interface $j = N$ reads (using a first order finite difference approximation, for example)
+
+\begin{equation}
+	\frac{u^*_N - u^*_{N-1}}{\Delta x} = \frac{u^*_{N+1} - u^*_{N}}{\Delta x} \implies - \frac{u^*_{N-1} - 2u^*_N  + u^*_{N-1}}{\Delta x}
+\end{equation}
+
+\noindent while the same point, in the modomain problem satisfies the discrete equation \eqref{eq:discretExample} : 
+
+\begin{equation}
+\label{eq:discretExample}
+- \frac{u_{N-1}^* - 2u_{N}^* + u_{N+1}^* }{\Delta x^2} + \lambda u_{N}^* = f_N \ \ i=1,2
+\end{equation}
