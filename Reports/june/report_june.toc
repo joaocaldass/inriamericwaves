@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}Study of Transparent Boundary Conditions in splitting methods}{3}
+\contentsline {subsection}{\numberline {1.1}Linear advection-diffusion equation}{3}
+\contentsline {paragraph}{Splitting method}{3}
+\contentsline {paragraph}{Full equation}{4}
+\contentsline {subsection}{\numberline {1.2}Numerical experiment realized in \cite {halpern1986}}{6}
+\contentsline {section}{\numberline {2}Derivation and approximation of Transparent Boundary Conditions for the linearized KdV equation}{9}
+\contentsline {subsection}{\numberline {2.1}Description of the TBCs}{9}
+\contentsline {subsection}{\numberline {2.2}Approximation of the TBCs}{10}
+\contentsline {subsubsection}{\numberline {2.2.1}Approximation using a constant polynomial}{10}
+\contentsline {subsubsection}{\numberline {2.2.2}Approximation using a linear polynomial}{10}
+\contentsline {subsection}{\numberline {2.3}Numerical tests}{12}
+\contentsline {subsection}{\numberline {2.4}Introduction tests}{14}
+\contentsline {section}{\numberline {3}Application of the approximate TBCs to a Domain Decomposition Method}{16}
+\contentsline {subsection}{\numberline {3.1}The Schwarz Methods}{16}
+\contentsline {subsection}{\numberline {3.2}ASM with the approximate TBCs for the dispersive equation}{17}
+\contentsline {subsection}{\numberline {3.3}Error in the converged solution}{18}
+\contentsline {subsubsection}{\numberline {3.3.1}Motivational example : }{18}

@@ -1,0 +1,56 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx} % for figure
+\usepackage[font=footnotesize]{caption}
+\usepackage{subcaption}  % for subfigure
+\usepackage{float}
+\usepackage{indentfirst} % indent first line after section title
+\usepackage{placeins} %FloatBarrier
+\usepackage{afterpage}
+\usepackage{numprint} % round numbers
+\usepackage{siunitx} % round numbers
+\usepackage{booktabs}  % nice looking tables
+
+\author{Joao Guilherme Caldas Steinstraesser \\ José Galaz}
+\title{Inriamericwaves \\ Report of activities - March-May/16}
+
+\bibliographystyle{abbrv}
+
+\captionsetup[subfigure]{labelformat=parens,labelsep=space}
+
+%% Commands
+\newcommand{\der}[1]{\partial_{#1}}
+\renewcommand{\epsilon}{\varepsilon}
+
+\renewcommand{\th}{\tilde{h}}
+\newcommand{\tu}{\tilde{u}}
+
+\newcommand{\lh}{\overline{h}}
+\newcommand{\lu}{\overline{u}}
+
+\newcommand{\opT}{\mathcal{T}}
+\newcommand{\opQ}{\mathcal{Q}}
+\newcommand{\opIT}{I + \opT}
+\newcommand{\opIhT}{I + h\opT\frac{1}{h}}
+
+\newcommand{\Atwo}[2]{\left( \begin{array}{c} #1 \\ #2  \end{array} \right)}
+
+\newcommand{\laplinv}{\mathcal{L}^{-1}}
+
+\begin{document}
+\maketitle
+
+\newpage
+\tableofcontents
+
+\newpage
+\input{TBCsplit}
+\input{TBCbesse}
+\input{DDM}
+\FloatBarrier
+\bibliography{../may/biblio}
+
+\end{document}

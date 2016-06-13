@@ -31,58 +31,6 @@ def showRankingSpeed(tests,nb,criteria="speed") :
         print(r"(%.3f,%.3f)" %(coefs[0],coefs[1]),testsList[idxbest[i],1],testsList[idxbest[i],2])
         
     return testsList[idxbest,:]
-def optimizeSpeed(x,x1,x2,u,cLs,cRs,prevTests,t0,tmax,dx,dt,maxiter = 100, equalCoef = False) :
-  
-    testsSpeed = prevTests
-
-    keys = []
-    for i in range(len(testsSpeed.keys())):
-        keys.append(eval(testsSpeed.keys()[i]))
-        
-    for cL in cLs:
-        for cR in cRs:
-            
-            if equalCoef :
-                cR = cL
-            
-            iskey = False
-            eps = 1e-9
-            for key in testsSpeed.keys():
-                coefs = eval(key)
-                if np.absolute(coefs[0]-cL) < eps and np.absolute(coefs[1]-cR) < eps :
-                    iskey = True
-                    break
-            if not iskey :
-            #if (cL,cR) not in keys:       
-            #if (str((cL,cR)) not in testsSpeed.keys()) :
-
-                coefTBC = np.zeros((1,2))
-                coefTBC[0,0] = cL
-                coefTBC[0,1] = cR
-
-                
-                uallref,tallref = besseTBC.runDispKdV(x,u,t0,tmax,1., coefTBC , periodic = 0, vardt = False, dt = dt,
-                                                          order = 0, modifyDiscret = 1)
-                             
-                nx = x1.size
-                u1 = uallref[:nx,0]
-                u2 = uallref[nx-1:,0]
-                
-    
-                uall1Speed,uall2Speed,tall,niterallSpeed,diff1allSpeed,\
-                diff2allSpeed,diffitallSpeed,errallSpeed,errIntLSpeed,errIntRSpeed = runSimulation(x1,
-                                                                                    x2,u1,u2,t0,tmax,dx,dt,cL,cR,
-                                                                                   uref=uallref,maxiter = maxiter,eps = 1e-7,
-                                                                                    printstep=100, debug=0,corrTBC=1, verbose=0,
-                                                                                    fourConditions = 0, pointR = 0)
-                print(cL,cR,niterallSpeed[1],errallSpeed[-1,1])
-                #if errallSpeed[-1,1] != 'nan' and  errallSpeed[-1,1] != 'inf' and errallSpeed[-1,1]  < 1e6:
-                testsSpeed[str((cL,cR))] = (niterallSpeed[1],errallSpeed[-1,1])
-                
-            if equalCoef :
-                break
-
-    return testsSpeed
 def getTestResult(tests,cL,cR) :
     
     eps = 1e-6
@@ -126,6 +74,90 @@ def getTestResumeVariableT0(tests) :
         
     return resumeT0
         
+def plotErrorEvolution(tests,nb,legloc=0,savePath = None, ext = "png",titleCompl = "") : 
+
+    
+    listNiter = np.zeros((1,2))
+    line = np.zeros((1,2))
+    for coefs in tests.keys():
+        c = eval(coefs)[0]
+        niter = tests[coefs][0]
+        line[0,0] = c
+        line[0,1] = niter
+        listNiter = np.vstack((listNiter,line))
+    listNiter = np.delete(listNiter,0,0)
+    
+    idxFaster = np.argsort(listNiter[:,1])
+    orderedList = listNiter[idxFaster]    
+
+    fig = plt.figure()
+    ax = fig.add_axes([0.1, 0.1, 0.6, 0.75])
+    for i in range(nb):
+        c = orderedList[i,0]
+        error = getTestResult(tests,c,c)[2]
+
+        ax.plot(np.log10(error),label="$c_L = %.3f$"%c)
+        plt.xlabel("Iteration")
+        plt.ylabel("log(Error)")
+        plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)        
+        if titleCompl == "":
+            plt.title("Error evolution - %d faster cases (for the complete domain)"%nb)
+        else :
+            plt.title("Error evolution - %d faster cases (for the complete domain) - "%nb + titleCompl)
+
+    if savePath != None:
+        plt.savefig(savePath + "." + ext)            
+            
+    fig = plt.figure()
+    ax = fig.add_axes([0.1, 0.1, 0.6, 0.75])
+    for i in range(nb):
+        c = orderedList[i,0]
+        error1 = getTestResult(tests,c,c)[4]
+        error2 = getTestResult(tests,c,c)[6]
+             
+        plt.plot(np.log10(error1),label="$c_L = %.3f$; L"%c)
+        plt.plot(np.log10(error2),label="$c_L = %.3f$; R"%c)
+        plt.xlabel("Iteration")
+        plt.ylabel("log(Error)")
+        plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)       
+        if titleCompl == "":
+            plt.title("Error evolution - %d faster cases (for each domain)"%nb)
+        else :
+            plt.title("Error evolution - %d faster cases (for each domain) - "%nb + titleCompl)
+        
+    if savePath != None:
+        plt.savefig(savePath + "LR." + ext)
+def plotIterationsxCoef(tests,legLabel,titleCompl = "", legloc=0,savePath = None, ext = "png") : 
+
+    fig = plt.figure()
+    
+    a = getTestResumeVariableT0(tests)
+
+    ax = fig.add_axes([0.1, 0.1, 0.6, 0.75])
+    for t0 in a.keys():   
+        niterOrdered = a[t0][0]
+        ax.plot(niterOrdered[:,0],niterOrdered[:,1],label=r'%s = %.4f'%(legLabel,float(t0)))
+        niterMin = a[t0][2][1]
+        cLiterMin = a[t0][2][0]
+
+        ## find smaller niter
+        for i in range(len(niterOrdered[:,0])) :
+            cL = niterOrdered[i,0]
+            if np.absolute(cL - cLiterMin) < 1e-9:
+                errIterMin = niterOrdered[i,2]
+                break
+
+        print("t0 = %f --> min it = %d for cL = cR = %f and error = %e" % (float(t0),niterMin,cLiterMin,errIterMin))
+
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+    plt.xlabel("$c_L = c_R$")
+    plt.ylabel("Number of iterations")
+    plt.title("Nb. of iter. until the convergence - " + titleCompl)
+        
+    
+    
+    if savePath != None:
+        plt.savefig(savePath + "." + ext)
 ## Returns TBC computed in \Omega_j for the resolution in \Omega_i
 
 def computeExteriorTBC(u,dx,cL,cR,cond,order=2) :
@@ -158,20 +190,19 @@ def computeCorrectionsTBC(u1,u2,uprev1,uprev2,dx,dt,cL,cR,pointR) :
     
     return corr
     
-def verifyConvergence(u1,u1prev,u2,u2prev,uref,it,dx,eps):
+def verifyConvergence(u1,u1prev,u2,u2prev,uref,it,dx,eps, error, criteria = "diffIteration"):
     conv = False
-    diff1 = np.linalg.norm(u1-u1prev)
-    diff2 = np.linalg.norm(u2-u2prev)
-    diff = np.sqrt(dx)*np.amax(np.array([diff1,diff2]))
-
     
-    #### Alternative
-    #nx = u1.size
-    #diff1 = np.linalg.norm(u1-uref[:nx,it])
-    #diff2 = np.linalg.norm(u2-uref[nx-1:,it])
-    #diff = np.sqrt(dx)*np.amax(np.array([diff1,diff2]))
-    
-    #diff = np.absolute(u1[-1] - u2[0])
+    if criteria == "diffIteration":
+        diff1 = np.linalg.norm(u1-u1prev)
+        diff2 = np.linalg.norm(u2-u2prev)
+        diff = np.sqrt(dx)*np.amax(np.array([diff1,diff2]))
+    elif criteria == "diffInterface":
+        diff = np.absolute(u1[-1] - u2[0])
+    elif criteria == "error" :
+        diff = error
+    else :
+        print("Wrong stopping criteria!!!!")
     
     if (diff<eps):
         conv = True
@@ -186,7 +217,8 @@ def verifyConvergence(u1,u1prev,u2,u2prev,uref,it,dx,eps):
 ## debug = 2 : exact prev. sol. and TBC    u_i^{n+1,0} = u_ref^n;       TBC(u_i) = TBC(u_ref)
 ## debug = 3 : exact. prev. sol and Dirichlet in interface
 
-def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbose,fourConditions,pointR,modifyDiscret):
+def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbose,
+        fourConditions,pointR,modifyDiscret,middlePoint, criteria):
     
     converg = False
     niter = 0
@@ -204,6 +236,8 @@ def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
         u2prev = np.copy(uref[nx-1:,it-1])       
     diff = np.zeros(1)
     err = np.zeros(1)
+    err1 = np.zeros(1)
+    err2 = np.zeros(1)
     errInterfaceL = np.zeros(1)
     errInterfaceR = np.zeros(1)
     
@@ -263,10 +297,18 @@ def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
             print("Norm(u^n - u_ref^n)")
             print(np.linalg.norm(u1-uref[0:nx,it-1]),np.linalg.norm(u2-uref[nx-1:,it-1]))
         
-        u1 = besseTBC.IFDBesse(u1prev,None,None,t,dt,dx,1.,0,coef,0,corrTBC,BC1,
-                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret)
-        u2 = besseTBC.IFDBesse(u2prev,None,None,t,dt,dx,1.,0,coef,corrTBC,0,BC2,
-                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret)
+        useTBCL = False
+        useTBCR = True
+        u1 = besseTBC.IFDBesse(u1prev,None,None,t,dt,dx,1.,0,coef,0,corrTBC,useTBCL,useTBCR,BC1,
+                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
+                               middlePoint = middlePoint)
+        useTBCL = True
+        useTBCR = False
+
+    
+        u2 = besseTBC.IFDBesse(u2prev,None,None,t,dt,dx,1.,0,coef,corrTBC,0,useTBCL,useTBCR,BC2,
+                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
+                               middlePoint = middlePoint)
         
         if verbose :
             print(" ")
@@ -323,18 +365,322 @@ def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
             print("Res TBC referential solution : ",resTBC1Ref,resTBC2Ref,resTBC3Ref)
             print("Res Eq referential solution : ",resEq1Ref,resEq2Ref,resEq3Ref)
             print(" ")
-        
-        converg, diffit = verifyConvergence(u1,u1m,u2,u2m,uref,it,dx,eps)
-
-        diff = np.hstack((diff,diffit*np.ones(1))) 
+       
         if uref != None:
             nx = u1.size
             errit = np.sqrt(dx)*np.linalg.norm(np.concatenate((u1,u2))-np.concatenate((uref[0:nx,it],uref[nx-1:,it])))
+            errit1 = np.sqrt(dx)*np.linalg.norm(u1 - uref[0:nx,it])
+            errit2 = np.sqrt(dx)*np.linalg.norm(u2 - uref[nx-1:,it])
             err = np.hstack((err,errit*np.ones(1)))
+            err1 = np.hstack((err1,errit1*np.ones(1)))
+            err2 = np.hstack((err2,errit2*np.ones(1)))
             errInterfaceL = np.hstack((errInterfaceL,np.absolute(u1[-1] - uref[nx-1,it])*np.ones(1)))
             errInterfaceR = np.hstack((errInterfaceR,np.absolute(u2[0] - uref[nx-1,it])*np.ones(1)))
+            
+        converg, diffit = verifyConvergence(u1,u1m,u2,u2m,uref,it,dx,eps,errit,criteria=criteria)
+        diff = np.hstack((diff,diffit*np.ones(1)))
+        
+    return u1,u2,niter, np.sqrt(dx)*np.linalg.norm(u1-u1m), np.sqrt(dx)*np.linalg.norm(u2-u2m),\
+           diff,err,err1,err2,errInterfaceL,errInterfaceR
+## Additive Schwarz method (for solving one time step)
+
+
+#### Debugging levels
+## debug = 0 : no debug ->                 u_i^{n+1,0} = u^{n,infty};   TBC(u_i) = TBC(u_j)
+## debug = 1 : exact previous solution     u_i^{n+1,0} = u_ref^n;       TBC(u_i) = TBC(u_j)
+## debug = 2 : exact prev. sol. and TBC    u_i^{n+1,0} = u_ref^n;       TBC(u_i) = TBC(u_ref)
+## debug = 3 : exact. prev. sol and Dirichlet in interface
+
+def MSM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbose,
+        fourConditions,pointR,modifyDiscret,middlePoint, criteria):
+    
+    converg = False
+    niter = 0
+    nx = u1.size
+    
+    if debug == 3: ### impose Dirichlet on the interface
+        cL = 0.
+        cR = 0.
+    
+    if not debug :
+        u1prev = np.copy(u1)
+        u2prev = np.copy(u2)
+    else:
+        u1prev = np.copy(uref[0:nx,it-1])
+        u2prev = np.copy(uref[nx-1:,it-1])       
+    diff = np.zeros(1)
+    err = np.zeros(1)
+    err1 = np.zeros(1)
+    err2 = np.zeros(1)
+    errInterfaceL = np.zeros(1)
+    errInterfaceR = np.zeros(1)
+    
+    while converg == False and niter <= maxiter :
+        niter = niter + 1
+ 
+        if verbose :
+            print("++++++++++++++++++++++++++++++++++++++++")
+            print(" ")
+            print(r"niter = %d"%niter)
+        if debug <=1:
+            uleft = np.copy(u1)
+            uright = np.copy(u2)
+        else :
+            uleft = np.copy(uref[0:nx,it])
+            uright = np.copy(uref[nx-1:,it])  
+            
+        corr = computeCorrectionsTBC(uleft,uright,u1prev,u2prev,dx,dt,cL,cR,pointR)
                     
-    return u1,u2,niter, np.sqrt(dx)*np.linalg.norm(u1-u1m), np.sqrt(dx)*np.linalg.norm(u2-u2m),diff,err,errInterfaceL,errInterfaceR
+        ## BC for Omega_1
+        BC1 = np.zeros(3) ############
+        if debug <=2 :
+            BC1[1] = computeExteriorTBC(uright,dx,cL,cR,2) + corrTBC*corr[1]
+            BC1[2] = computeExteriorTBC(uright,dx,cL,cR,3) + corrTBC*corr[2]
+        else : ### impose Dirichlet on the interface
+            BC1[1] = uref[nx-1,it]
+            BC1[2] = uref[nx-1,it]/dx - uref[nx-2,it]/dx 
+                   
+        ## BC for Omega_2
+        BC2 = np.zeros(4)
+        if debug <=2 :
+            BC2[0] = computeExteriorTBC(uleft,dx,cL,cR,1) +  corrTBC*corr[0]
+        else : ### impose Dirichlet on the interface
+            BC2[0] = uref[nx-1,it]
+
+        #### Store solutions of the previous iteration
+        u1m = np.copy(u1)
+        u2m = np.copy(u2)
+
+        coef = np.zeros((1,2))
+
+        coef[0,0] = cL
+        coef[0,1] = cR
+        
+        if verbose :
+            print(" ")
+            print(" Before computation :")
+            print("Norm(u^n - u_ref^n)")
+            print(np.linalg.norm(u1-uref[0:nx,it-1]),np.linalg.norm(u2-uref[nx-1:,it-1]))
+        
+        useTBCL = False
+        useTBCR = True
+        u1 = besseTBC.IFDBesse(u1prev,None,None,t,dt,dx,1.,0,coef,0,corrTBC,useTBCL,useTBCR,BC1,
+                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
+                               middlePoint = middlePoint)
+        
+        corr = computeCorrectionsTBC(u1,uright,u1prev,u2prev,dx,dt,cL,cR,pointR)
+        ## BC for Omega_2
+        BC2 = np.zeros(4)
+        if debug <=2 :
+            BC2[0] = computeExteriorTBC(uleft,dx,cL,cR,1) +  corrTBC*corr[0]
+        else : ### impose Dirichlet on the interface
+            BC2[0] = uref[nx-1,it]
+        
+        useTBCL = True
+        useTBCR = False
+   
+        u2 = besseTBC.IFDBesse(u2prev,None,None,t,dt,dx,1.,0,coef,corrTBC,0,useTBCL,useTBCR,BC2,
+                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
+                               middlePoint = middlePoint)
+       
+        if uref != None:
+            nx = u1.size
+            errit = np.sqrt(dx)*np.linalg.norm(np.concatenate((u1,u2))-np.concatenate((uref[0:nx,it],uref[nx-1:,it])))
+            errit1 = np.sqrt(dx)*np.linalg.norm(u1 - uref[0:nx,it])
+            errit2 = np.sqrt(dx)*np.linalg.norm(u2 - uref[nx-1:,it])
+            err = np.hstack((err,errit*np.ones(1)))
+            err1 = np.hstack((err1,errit1*np.ones(1)))
+            err2 = np.hstack((err2,errit2*np.ones(1)))
+            errInterfaceL = np.hstack((errInterfaceL,np.absolute(u1[-1] - uref[nx-1,it])*np.ones(1)))
+            errInterfaceR = np.hstack((errInterfaceR,np.absolute(u2[0] - uref[nx-1,it])*np.ones(1)))
+            
+        converg, diffit = verifyConvergence(u1,u1m,u2,u2m,uref,it,dx,eps,errit,criteria=criteria)
+        diff = np.hstack((diff,diffit*np.ones(1)))
+        
+    return u1,u2,niter, np.sqrt(dx)*np.linalg.norm(u1-u1m), np.sqrt(dx)*np.linalg.norm(u2-u2m),\
+           diff,err,err1,err2,errInterfaceL,errInterfaceR
+## Additive Schwarz method (for solving one time step)
+
+
+#### Debugging levels
+## debug = 0 : no debug ->                 u_i^{n+1,0} = u^{n,infty};   TBC(u_i) = TBC(u_j)
+## debug = 1 : exact previous solution     u_i^{n+1,0} = u_ref^n;       TBC(u_i) = TBC(u_j)
+## debug = 2 : exact prev. sol. and TBC    u_i^{n+1,0} = u_ref^n;       TBC(u_i) = TBC(u_ref)
+## debug = 3 : exact. prev. sol and Dirichlet in interface
+
+def MSMi(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbose,
+        fourConditions,pointR,modifyDiscret,middlePoint, criteria):
+    
+    converg = False
+    niter = 0
+    nx = u1.size
+    
+    if debug == 3: ### impose Dirichlet on the interface
+        cL = 0.
+        cR = 0.
+    
+    if not debug :
+        u1prev = np.copy(u1)
+        u2prev = np.copy(u2)
+    else:
+        u1prev = np.copy(uref[0:nx,it-1])
+        u2prev = np.copy(uref[nx-1:,it-1])       
+    diff = np.zeros(1)
+    err = np.zeros(1)
+    err1 = np.zeros(1)
+    err2 = np.zeros(1)
+    errInterfaceL = np.zeros(1)
+    errInterfaceR = np.zeros(1)
+    
+    while converg == False and niter <= maxiter :
+        niter = niter + 1
+ 
+        if verbose :
+            print("++++++++++++++++++++++++++++++++++++++++")
+            print(" ")
+            print(r"niter = %d"%niter)
+        if debug <=1:
+            uleft = np.copy(u1)
+            uright = np.copy(u2)
+        else :
+            uleft = np.copy(uref[0:nx,it])
+            uright = np.copy(uref[nx-1:,it])  
+            
+        corr = computeCorrectionsTBC(uleft,uright,u1prev,u2prev,dx,dt,cL,cR,pointR)
+                    
+        ## BC for Omega_1
+        BC1 = np.zeros(3) ############
+        if debug <=2 :
+            BC1[1] = computeExteriorTBC(uright,dx,cL,cR,2) + corrTBC*corr[1]
+            BC1[2] = computeExteriorTBC(uright,dx,cL,cR,3) + corrTBC*corr[2]
+        else : ### impose Dirichlet on the interface
+            BC1[1] = uref[nx-1,it]
+            BC1[2] = uref[nx-1,it]/dx - uref[nx-2,it]/dx 
+                   
+        ## BC for Omega_2
+        BC2 = np.zeros(4)
+        if debug <=2 :
+            BC2[0] = computeExteriorTBC(uleft,dx,cL,cR,1) +  corrTBC*corr[0]
+        else : ### impose Dirichlet on the interface
+            BC2[0] = uref[nx-1,it]
+
+        #### Store solutions of the previous iteration
+        u1m = np.copy(u1)
+        u2m = np.copy(u2)
+
+        coef = np.zeros((1,2))
+
+        coef[0,0] = cL
+        coef[0,1] = cR
+        
+        if verbose :
+            print(" ")
+            print(" Before computation :")
+            print("Norm(u^n - u_ref^n)")
+            print(np.linalg.norm(u1-uref[0:nx,it-1]),np.linalg.norm(u2-uref[nx-1:,it-1]))
+        
+        useTBCL = True
+        useTBCR = False
+   
+        u2 = besseTBC.IFDBesse(u2prev,None,None,t,dt,dx,1.,0,coef,corrTBC,0,useTBCL,useTBCR,BC2,
+                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
+                               middlePoint = middlePoint)
+        
+        corr = computeCorrectionsTBC(uleft,u2,u1prev,u2prev,dx,dt,cL,cR,pointR)
+        ## BC for Omega_1
+        BC1 = np.zeros(3) ############
+        if debug <=2 :
+            BC1[1] = computeExteriorTBC(uright,dx,cL,cR,2) + corrTBC*corr[1]
+            BC1[2] = computeExteriorTBC(uright,dx,cL,cR,3) + corrTBC*corr[2]
+        else : ### impose Dirichlet on the interface
+            BC1[1] = uref[nx-1,it]
+            BC1[2] = uref[nx-1,it]/dx - uref[nx-2,it]/dx 
+        
+
+        useTBCL = False
+        useTBCR = True
+        u1 = besseTBC.IFDBesse(u1prev,None,None,t,dt,dx,1.,0,coef,0,corrTBC,useTBCL,useTBCR,BC1,
+                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
+                               middlePoint = middlePoint)
+        
+        if uref != None:
+            nx = u1.size
+            errit = np.sqrt(dx)*np.linalg.norm(np.concatenate((u1,u2))-np.concatenate((uref[0:nx,it],uref[nx-1:,it])))
+            errit1 = np.sqrt(dx)*np.linalg.norm(u1 - uref[0:nx,it])
+            errit2 = np.sqrt(dx)*np.linalg.norm(u2 - uref[nx-1:,it])
+            err = np.hstack((err,errit*np.ones(1)))
+            err1 = np.hstack((err1,errit1*np.ones(1)))
+            err2 = np.hstack((err2,errit2*np.ones(1)))
+            errInterfaceL = np.hstack((errInterfaceL,np.absolute(u1[-1] - uref[nx-1,it])*np.ones(1)))
+            errInterfaceR = np.hstack((errInterfaceR,np.absolute(u2[0] - uref[nx-1,it])*np.ones(1)))
+            
+        converg, diffit = verifyConvergence(u1,u1m,u2,u2m,uref,it,dx,eps,errit,criteria=criteria)
+        diff = np.hstack((diff,diffit*np.ones(1)))
+        
+    return u1,u2,niter, np.sqrt(dx)*np.linalg.norm(u1-u1m), np.sqrt(dx)*np.linalg.norm(u2-u2m),\
+           diff,err,err1,err2,errInterfaceL,errInterfaceR
+def optimizeSpeed(x,x1,x2,u,uallref,cLs,cRs,prevTests,t0,tmax,dx,dt,maxiter = 100, equalCoef = False,
+                  middlePoint = 0, criteria = "diffIteration", epsCV = 1e-7, DDMmethod = ASM) :
+  
+    testsSpeed = prevTests
+
+    keys = []
+    for i in range(len(testsSpeed.keys())):
+        keys.append(eval(testsSpeed.keys()[i]))
+        
+    for cL in cLs:
+        for cR in cRs:
+            
+            if equalCoef :
+                cR = cL
+            
+            iskey = False
+            eps = 1e-9
+            for key in testsSpeed.keys():
+                coefs = eval(key)
+                if np.absolute(coefs[0]-cL) < eps and np.absolute(coefs[1]-cR) < eps :
+                    iskey = True
+                    break
+            if not iskey :
+            #if (cL,cR) not in keys:       
+            #if (str((cL,cR)) not in testsSpeed.keys()) :
+
+                coefTBC = np.zeros((1,2))
+                coefTBC[0,0] = cL
+                coefTBC[0,1] = cR
+
+                
+                #uallref,tallref = besseTBC.runDispKdV(x,u,t0,tmax,1., coefTBC , periodic = 0, vardt = False, dt = dt,
+                #                                          order = 0, modifyDiscret = 1, middlePoint = middlePoint,
+                #                                         useTBCL = False, useTBCR = False)
+                             
+                nx = x1.size
+                u1 = uallref[:nx,0]
+                u2 = uallref[nx-1:,0]
+                
+    
+                uall1Speed,uall2Speed,tall,niterallSpeed,diff1allSpeed,\
+                diff2allSpeed,diffitallSpeed,errallSpeed,errall1Speed,errall2Speed,\
+                errIntLSpeed,errIntRSpeed = runSimulation(x1,x2,u1,u2,t0,tmax,dx,dt,cL,cR,
+                                                          uref=uallref,maxiter = maxiter,eps = epsCV,
+                                                          printstep=100, debug=0,corrTBC=1, verbose=0,
+                                                          fourConditions = 0, pointR = 0,
+                                                          middlePoint = middlePoint,
+                                                          criteria = criteria,
+                                                          DDMmethod = DDMmethod)
+                print(cL,cR,niterallSpeed[1],errallSpeed[-1,1])
+                #if errallSpeed[-1,1] != 'nan' and  errallSpeed[-1,1] != 'inf' and errallSpeed[-1,1]  < 1e6:
+                testsSpeed[str((cL,cR))] = (niterallSpeed[1],errallSpeed[-1,1],
+                                            np.ndarray.tolist(errallSpeed[:niterallSpeed[1]+1,1]),
+                                            errall1Speed[-1,1],
+                                            np.ndarray.tolist(errall1Speed[:niterallSpeed[1]+1,1]),
+                                            errall2Speed[-1,1],
+                                            np.ndarray.tolist(errall2Speed[:niterallSpeed[1]+1,1]),)
+                
+            if equalCoef :
+                break
+
+    return testsSpeed
 ## number of iterations for each time step
 def plotIter(niter,tall,title="Number of iterations") :
     plt.figure()
@@ -422,11 +768,12 @@ def computeErrorDDM(us,dt) :
     return  e,ErrTm,ErrL2
 def runSimulation(x1,x2,u1,u2,t0,tmax,dx,dt,cL,cR,
                   uref = None, maxiter = 10,eps = 1e-6,printstep=10,debug=0,corrTBC=0,verbose=0,
-                  fourConditions = 0, pointR = 0, modifyDiscret = 0) :
+                  fourConditions = 0, pointR = 0, modifyDiscret = 0, middlePoint = 0,
+                  criteria = "diffIteration", DDMmethod = ASM) :
 
     print("")
     print("*** Computing solution ...")
-    
+    print("MP = ",middlePoint)
     t = t0
     uall1 = np.copy(u1)
     uall2 = np.copy(u2)
@@ -436,6 +783,8 @@ def runSimulation(x1,x2,u1,u2,t0,tmax,dx,dt,cL,cR,
     diff2all = np.zeros(1)
     diffitall = np.zeros((maxiter,int((tmax-t0)/dt)+2))
     erritall = np.zeros((maxiter,int((tmax-t0)/dt)+2))
+    erritall1 = np.zeros((maxiter,int((tmax-t0)/dt)+2))
+    erritall2 = np.zeros((maxiter,int((tmax-t0)/dt)+2))    
     errIntLitall = np.zeros((maxiter,int((tmax-t0)/dt)+2))
     errIntRitall = np.zeros((maxiter,int((tmax-t0)/dt)+2))
     
@@ -447,9 +796,10 @@ def runSimulation(x1,x2,u1,u2,t0,tmax,dx,dt,cL,cR,
         t = t+dt
         
 
-        u1,u2,niter,diff1,diff2,diff,err,errIntL,errIntR = ASM(x1,x2,u1,u2,t,dx,dt,0,cL,cR,
+        u1,u2,niter,diff1,diff2,diff,err,err1,err2,errIntL,errIntR = DDMmethod(x1,x2,u1,u2,t,dx,dt,0,cL,cR,
                                                            maxiter,eps,uref,nsteps,debug,corrTBC,
-                                                           verbose,fourConditions,pointR,modifyDiscret)
+                                                           verbose,fourConditions,pointR,modifyDiscret,
+                                                           middlePoint, criteria)
         if niter > maxiter-1:
             niter = maxiter-1
         
@@ -462,6 +812,10 @@ def runSimulation(x1,x2,u1,u2,t0,tmax,dx,dt,cL,cR,
         diffitall[0:niter+1,nsteps] = diff[0:niter+1]
         erritall[0:niter+1,nsteps] = err[0:niter+1]
         erritall[-1,nsteps] = erritall[niter,nsteps]
+        erritall1[0:niter+1,nsteps] = err1[0:niter+1]
+        erritall1[-1,nsteps] = erritall1[niter,nsteps]
+        erritall2[0:niter+1,nsteps] = err2[0:niter+1]
+        erritall2[-1,nsteps] = erritall2[niter,nsteps]
         errIntLitall[0:niter+1,nsteps] = errIntL[0:niter+1]
         errIntLitall[-1,nsteps] = errIntLitall[niter,nsteps]
         errIntRitall[0:niter+1,nsteps] = errIntR[0:niter+1]
@@ -471,4 +825,4 @@ def runSimulation(x1,x2,u1,u2,t0,tmax,dx,dt,cL,cR,
             print(nsteps,t,niter)
             
     print("*** End of computation ***")        
-    return uall1,uall2,tall,niterall,diff1all,diff2all,diffitall,erritall,errIntLitall,errIntRitall
+    return uall1,uall2,tall,niterall,diff1all,diff2all,diffitall,erritall,erritall1,erritall2,errIntLitall,errIntRitall
