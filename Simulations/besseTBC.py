@@ -221,7 +221,7 @@ def IFDBesse2(u,um,umm,t,dt,dx,U2,order,coef,correctTBCL,correctTBCR,BCs=np.zero
     return u2
 # Our scheme for the dispersion equation + Besse's TBCs
 def IFDBesse(u,um,umm,t,dt,dx,U2,order,coef,correctTBCL,correctTBCR,useTBCL, useTBCR, BCs=np.zeros(3),
-             fourConditions=0,pointR = 0,modifyDiscret=0, middlePoint = 0):
+             fourConditions=0,pointR = 0,modifyDiscret=0, middlePoint = 0, uNeig = None):
     k = dt/(dx*dx*dx)
 
     nx = u.size - 1
@@ -234,11 +234,6 @@ def IFDBesse(u,um,umm,t,dt,dx,U2,order,coef,correctTBCL,correctTBCR,useTBCL, use
      
     ### Increase order of uncentered !!!!!    
     vvv = np.zeros(nx+1)
-    ### order 1
-    #vvv[0] = 1. - 1.*k
-    #vvv[1] = 3.*k
-    #vvv[2] = -3.*k
-    #vvv[3] = 1.*k
     ### order 2
     vvv[0] = 1. - 5./2.*k
     vvv[1] = 9.*k
@@ -247,37 +242,40 @@ def IFDBesse(u,um,umm,t,dt,dx,U2,order,coef,correctTBCL,correctTBCR,useTBCL, use
     vvv[4] = -3./2.*k
     
     zzz = -np.flipud(vvv)
-    #zzz[-1] = 1. + 1.*k
     zzz[-1] = 1. + 5./2.*k
     
     M[0,:] = vvv
     M[1,:] = np.roll(vvv,1)
-    #M[2,:] = np.roll(vvv,2)
     
     M[nx,:] = zzz
     M[nx-1,:] = np.roll(zzz,-1)
-    #M[nx-2,:] = np.roll(zzz,-2)
     
-    if modifyDiscret: ### uncentered discretization for the point near the interface
+    if modifyDiscret == 1: ### uncentered discretization for the point near the interface
             if middlePoint == 0:
                 mp = nx/2 + 1
             else:
                 mp = middlePoint
             M[mp,:] = 0.
-            #M[mp,mp] = 1. - 1.*k
-            #M[mp,mp+1] = 3.*k
-            #M[mp,mp+2] = -3.*k
-            #M[mp,mp+3] = 1.*k 
             M[mp,mp] = 1. - 5./2.*k
             M[mp,mp+1] = 9.*k
             M[mp,mp+2] = -12.*k
             M[mp,mp+3] = 7.*k
             M[mp,mp+4] = -3./2.*k
             
+    if modifyDiscret == 2 :  #### centered discret. for point N+1 in Omega2
+        M[1,:] = 0
+        M[1,0] = k
+        M[1,1] = 1.
+        M[1,2] = -k
+        M[1,3] = 1./2.*k
+                    
     rhs = np.copy(u)
     
     M,rhs = imposeTBC(M,rhs,um,umm,U2,dx,dt,order,coef,BCs,correctTBCL,correctTBCR,fourConditions,pointR,
                       useTBCL, useTBCR)
+    
+    if modifyDiscret == 2 :  #### centered discret. for point N+1 in Omega2
+        rhs[1] = rhs[1] + uNeig*k/2.
     
     np.set_printoptions(threshold=np.nan)
     np.set_printoptions(suppress=True)

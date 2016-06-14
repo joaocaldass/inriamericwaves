@@ -1,4 +1,6 @@
 
+# -*- coding: utf-8 -*-
+
 import numpy as np
 import kdv
 import besseTBC
@@ -258,7 +260,7 @@ def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
         corr = computeCorrectionsTBC(uleft,uright,u1prev,u2prev,dx,dt,cL,cR,pointR)
                     
         ## BC for Omega_1
-        BC1 = np.zeros(3) ############
+        BC1 = np.zeros(3)
         if debug <=2 :
             BC1[1] = computeExteriorTBC(uright,dx,cL,cR,2) + corrTBC*corr[1]
             BC1[2] = computeExteriorTBC(uright,dx,cL,cR,3) + corrTBC*corr[2]
@@ -267,7 +269,7 @@ def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
             BC1[2] = uref[nx-1,it]/dx - uref[nx-2,it]/dx 
                    
         ## BC for Omega_2
-        BC2 = np.zeros(4)
+        BC2 = np.zeros(4) ### possible computation of "4th TBC"
         if debug <=2 :
             BC2[0] = computeExteriorTBC(uleft,dx,cL,cR,1) +  corrTBC*corr[0]
         else : ### impose Dirichlet on the interface
@@ -278,18 +280,16 @@ def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
         u2m = np.copy(u2)
 
         coef = np.zeros((1,2))
-
         coef[0,0] = cL
         coef[0,1] = cR
  
         ### modify uncentered -> centered ("4th TBC")
-        ###### in N
-        if pointR == 1:
-            BC2[3] = u1prev[-1] - dt/(dx*dx*dx)*(-1./2.*uleft[-3] + uleft[-2]) ####################
-        ###### in N+1
-        else :
-            BC2[3] = u2prev[1] - dt/(dx*dx*dx)*(-1./2.*uleft[-2]) ####################
-        #BC2[3] = uleft[-1]
+        ###### on N
+        if pointR == 1: ### because the 3rd TBC is imposed on N+1
+            BC2[3] = u1prev[-1] - dt/(dx*dx*dx)*(-1./2.*uleft[-3] + uleft[-2])
+        ###### on N+1
+        else : ### because the 3rd TBC is imposed on N
+            BC2[3] = u2prev[1] - dt/(dx*dx*dx)*(-1./2.*uleft[-2])
         
         if verbose :
             print(" ")
@@ -300,15 +300,13 @@ def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
         useTBCL = False
         useTBCR = True
         u1 = besseTBC.IFDBesse(u1prev,None,None,t,dt,dx,1.,0,coef,0,corrTBC,useTBCL,useTBCR,BC1,
-                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
+                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = 0,
                                middlePoint = middlePoint)
         useTBCL = True
-        useTBCR = False
-
-    
+        useTBCR = False    
         u2 = besseTBC.IFDBesse(u2prev,None,None,t,dt,dx,1.,0,coef,corrTBC,0,useTBCL,useTBCR,BC2,
                                fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
-                               middlePoint = middlePoint)
+                               middlePoint = middlePoint, uNeig = u1[-2])
         
         if verbose :
             print(" ")
@@ -322,9 +320,8 @@ def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
             print("*** Referential solution : u^{n+1} = u_ref^{n+1} ")
         
         ### residuals TBCleft - TBCright
-        resTBC1 = -cL*(u2[1] - u2[0])/dx + cL*cL*(-2.*u2[1] + u2[2])/(dx*dx) + \
-                    cL*(u2[1]-2.*u2[2]+u2[3])/dx + 2.*cL*dx/dt*(cL*(u2[0] - u2prev[0]) + dx*(u2[1]-u2prev[1])) \
-                    + cL*(u1[-1] - u1[-2])/dx - cL*cL*(u1[-3] - 2.*u1[-2])/(dx*dx)
+        resTBC1 =   cL*cL*(-2.*u2[1] + u2[2])/(dx*dx) + cL*cL*dx/dt*(u2[0] - u2prev[0]) \
+                    - cL*cL*(u1[-3] - 2.*u1[-2])/(dx*dx) + cL*cL*dx/dt*(u1[-1] - u1prev[-1])
         resTBC2 = -cR*cR/(dx*dx)*(u1[-3] -2.*u1[-2]) + dx/dt*cR*cR*(u1[-1] - u1prev[-1]) + \
                     cR*cR/(dx*dx)*(u2[2] -2.*u2[1]) + dx/dt*cR*cR*(u2[0] - u2prev[0])
         resTBC3 = (u1[-1] - u1[-2])/dx + cR/(dx*dx)*(u1[-3] - 2.*u1[-2]) \
@@ -334,7 +331,8 @@ def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
         ### residuals ut + uxxx
         resEq1 = (u1[-2] - u1prev[-2])/dt + 1./(2.*dx*dx*dx)*(-u1[-4] + 2.*u1[-3] - 2.*u1[-1] + u2[1] ) 
         resEq2 = (u1[-1] - u1prev[-1])/dt + 1./(2.*dx*dx*dx)*(-u1[-3] + 2.*u1[-2] - 2.*u2[1] + u2[2] ) 
-        resEq3 = (u2[1] - u2prev[1])/dt + 1./(2.*dx*dx*dx)*(-u1[-2] + 2.*u2[0] - 2.*u2[2] + u2[3] ) 
+        resEq3 = (u2[0] - u2prev[0])/dt + 1./(2.*dx*dx*dx)*(-u1[-3] + 2.*u1[-2] - 2.*u2[1] + u2[2] ) 
+        resEq4 = (u2[1] - u2prev[1])/dt + 1./(2.*dx*dx*dx)*(-u1[-2] + 2.*u2[0] - 2.*u2[2] + u2[3] ) 
         
         uaux1 = np.copy(u1)
         uaux2 = np.copy(u2)
@@ -342,9 +340,8 @@ def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
         u2 = np.copy(uref[nx-1:,it]) 
 
         ### same residuals computed for the referential solution (must be zero)
-        resTBC1Ref = -cL*(u2[1] - u2[0])/dx + cL*cL*(-2.*u2[1] + u2[2])/(dx*dx) + \
-                    cL*(u2[1]-2.*u2[2]+u2[3])/dx + 2.*cL*dx/dt*(cL*(u2[0] - u2prev[0]) + dx*(u2[1]-u2prev[1])) \
-                    + cL*(u1[-1] - u1[-2])/dx - cL*cL*(u1[-3] - 2.*u1[-2])/(dx*dx)
+        resTBC1Ref =   cL*cL*(-2.*u2[1] + u2[2])/(dx*dx) + cL*cL*dx/dt*(u2[0] - u2prev[0]) \
+                    - cL*cL*(u1[-3] - 2.*u1[-2])/(dx*dx) + cL*cL*dx/dt*(u1[-1] - u1prev[-1])
         resTBC2Ref = -cR*cR/(dx*dx)*(u1[-3] -2.*u1[-2]) + dx/dt*cR*cR*(u1[-1] - u1prev[-1]) + \
                     cR*cR/(dx*dx)*(u2[2] -2.*u2[1]) + dx/dt*cR*cR*(u2[0] - u2prev[0])
         resTBC3Ref = (u1[-1] - u1[-2])/dx + cR/(dx*dx)*(u1[-3] - 2.*u1[-2]) \
@@ -354,16 +351,17 @@ def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
         ### same residuals computed for the referential solution (must be zero)
         resEq1Ref = (u1[-2] - u1prev[-2])/dt + 1./(2.*dx*dx*dx)*(-u1[-4] + 2.*u1[-3] - 2.*u1[-1] + u2[1] ) 
         resEq2Ref = (u1[-1] - u1prev[-1])/dt + 1./(2.*dx*dx*dx)*(-u1[-3] + 2.*u1[-2] - 2.*u2[1] + u2[2] ) 
-        resEq3Ref = (u2[1] - u2prev[1])/dt + 1./(2.*dx*dx*dx)*(-u1[-2] + 2.*u2[0] - 2.*u2[2] + u2[3] ) 
+        resEq3Ref = (u2[0] - u2prev[0])/dt + 1./(2.*dx*dx*dx)*(-u1[-3] + 2.*u1[-2] - 2.*u2[1] + u2[2] ) 
+        resEq4Ref = (u2[1] - u2prev[1])/dt + 1./(2.*dx*dx*dx)*(-u1[-2] + 2.*u2[0] - 2.*u2[2] + u2[3] ) 
         
         u1 = np.copy(uaux1)
         u2 = np.copy(uaux2)
         
         if verbose :
             print("Res TBC computed solution    : ",resTBC1,resTBC2,resTBC3)
-            print("Res Eq computed solution    : ",resEq1,resEq2,resEq3)
+            print("Res Eq computed solution    : ",resEq1,resEq2,resEq3,resEq4)
             print("Res TBC referential solution : ",resTBC1Ref,resTBC2Ref,resTBC3Ref)
-            print("Res Eq referential solution : ",resEq1Ref,resEq2Ref,resEq3Ref)
+            print("Res Eq referential solution : ",resEq1Ref,resEq2Ref,resEq3Ref,resEq4Ref)
             print(" ")
        
         if uref != None:
@@ -465,7 +463,7 @@ def MSM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
         useTBCL = False
         useTBCR = True
         u1 = besseTBC.IFDBesse(u1prev,None,None,t,dt,dx,1.,0,coef,0,corrTBC,useTBCL,useTBCR,BC1,
-                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
+                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = 0,
                                middlePoint = middlePoint)
         
         corr = computeCorrectionsTBC(u1,uright,u1prev,u2prev,dx,dt,cL,cR,pointR)
@@ -481,7 +479,7 @@ def MSM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
    
         u2 = besseTBC.IFDBesse(u2prev,None,None,t,dt,dx,1.,0,coef,corrTBC,0,useTBCL,useTBCR,BC2,
                                fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
-                               middlePoint = middlePoint)
+                               middlePoint = middlePoint, uNeig = u1[-2])
        
         if uref != None:
             nx = u1.size
@@ -584,7 +582,7 @@ def MSMi(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbo
    
         u2 = besseTBC.IFDBesse(u2prev,None,None,t,dt,dx,1.,0,coef,corrTBC,0,useTBCL,useTBCR,BC2,
                                fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
-                               middlePoint = middlePoint)
+                               middlePoint = middlePoint, uNeig = u1[-2])
         
         corr = computeCorrectionsTBC(uleft,u2,u1prev,u2prev,dx,dt,cL,cR,pointR)
         ## BC for Omega_1
@@ -600,7 +598,7 @@ def MSMi(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbo
         useTBCL = False
         useTBCR = True
         u1 = besseTBC.IFDBesse(u1prev,None,None,t,dt,dx,1.,0,coef,0,corrTBC,useTBCL,useTBCR,BC1,
-                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
+                               fourConditions = fourConditions,pointR = pointR, modifyDiscret = 0,
                                middlePoint = middlePoint)
         
         if uref != None:
@@ -773,7 +771,6 @@ def runSimulation(x1,x2,u1,u2,t0,tmax,dx,dt,cL,cR,
 
     print("")
     print("*** Computing solution ...")
-    print("MP = ",middlePoint)
     t = t0
     uall1 = np.copy(u1)
     uall2 = np.copy(u2)
@@ -826,3 +823,50 @@ def runSimulation(x1,x2,u1,u2,t0,tmax,dx,dt,cL,cR,
             
     print("*** End of computation ***")        
     return uall1,uall2,tall,niterall,diff1all,diff2all,diffitall,erritall,erritall1,erritall2,errIntLitall,errIntRitall
+def compareDDMs(errallASM,errall1ASM,errall2ASM,niterallASM,
+                errallMSM,errall1MSM,errall2MSM,niterallMSM,
+                errallMSMi,errall1MSMi,errall2MSMi,niterallMSMi,
+                dt) :
+
+    errASM = np.sqrt(dt)*np.linalg.norm(errallASM[-1,:])
+    err1ASM = np.sqrt(dt)*np.linalg.norm(errall1ASM[-1,:])
+    err2ASM = np.sqrt(dt)*np.linalg.norm(errall2ASM[-1,:])
+    maxIterASM = np.amax(niterallASM)
+    errMSM = np.sqrt(dt)*np.linalg.norm(errallMSM[-1,:])
+    err1MSM = np.sqrt(dt)*np.linalg.norm(errall1MSM[-1,:])
+    err2MSM = np.sqrt(dt)*np.linalg.norm(errall2MSM[-1,:])
+    maxIterMSM = np.amax(niterallMSM)
+    errMSMi = np.sqrt(dt)*np.linalg.norm(errallMSMi[-1,:])
+    err1MSMi = np.sqrt(dt)*np.linalg.norm(errall1MSMi[-1,:])
+    err2MSMi = np.sqrt(dt)*np.linalg.norm(errall2MSMi[-1,:])
+    maxIterMSMi = np.amax(niterallMSMi)
+
+    print("ASM")
+    print(r"Entire Simulation --> Error in Omega   : %.3e" %errASM)
+    print(r"Entire Simulation --> Error in Omega_1 : %.3e" %err1ASM)
+    print(r"Entire Simulation --> Error in Omega_2 : %.3e" %err2ASM)
+    print(r"First time step   --> Error in Omega   : %.3e" %errallASM[-1,1])
+    print(r"First time step   --> Error in Omega_1 : %.3e" %errall1ASM[-1,1])
+    print(r"First time step   --> Error in Omega_2 : %.3e" %errall2ASM[-1,1])
+    print(r"Max nb of iter : %d" %maxIterASM)
+    print("")
+
+    print("MSM")
+    print(r"Entire Simulation --> Error in Omega   : %.3e" %errMSM)
+    print(r"Entire Simulation --> Error in Omega_1 : %.3e" %err1MSM)
+    print(r"Entire Simulation --> Error in Omega_2 : %.3e" %err2MSM)
+    print(r"First time step   --> Error in Omega   : %.3e" %errallMSM[-1,1])
+    print(r"First time step   --> Error in Omega_1 : %.3e" %errall1MSM[-1,1])
+    print(r"First time step   --> Error in Omega_2 : %.3e" %errall2MSM[-1,1])
+    print(r"Max nb of iter : %d" %maxIterMSM)
+    print("")
+
+    print("MSMi")
+    print(r"Entire Simulation --> Error in Omega   : %.3e" %errMSMi)
+    print(r"Entire Simulation --> Error in Omega_1 : %.3e" %err1MSMi)
+    print(r"Entire Simulation --> Error in Omega_2 : %.3e" %err2MSMi)
+    print(r"First time step   --> Error in Omega   : %.3e" %errallMSMi[-1,1])
+    print(r"First time step   --> Error in Omega_1 : %.3e" %errall1MSMi[-1,1])
+    print(r"First time step   --> Error in Omega_2 : %.3e" %errall2MSMi[-1,1])
+    print(r"Max nb of iter : %d" %maxIterMSMi)
+    print("")
