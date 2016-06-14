@@ -122,15 +122,258 @@ u^*_{N} =  u_{1,N}^\infty = u_{2,j}^\infty
 \end{cases}
 \end{equation}
 
-\indent Therefor, in the convergence, the boundary condition on the interface $j = N$ reads (using a first order finite difference approximation, for example)
+\indent Therefore, in the convergence, the boundary condition on the interface $j = N$ reads (using a first order finite difference approximation, for example)
 
 \begin{equation}
+	\label{eq:discretExampleInterfaceCorrect}
 	\frac{u^*_N - u^*_{N-1}}{\Delta x} = \frac{u^*_{N+1} - u^*_{N}}{\Delta x} \implies - \frac{u^*_{N-1} - 2u^*_N  + u^*_{N-1}}{\Delta x}
 \end{equation}
 
 \noindent while the same point, in the modomain problem satisfies the discrete equation \eqref{eq:discretExample} : 
 
 \begin{equation}
-\label{eq:discretExample}
-- \frac{u_{N-1}^* - 2u_{N}^* + u_{N+1}^* }{\Delta x^2} + \lambda u_{N}^* = f_N \ \ i=1,2
+\label{eq:discretExampleInterface}
+- \frac{u_{N-1}^* - 2u_{N}^* + u_{N+1}^* }{\Delta x} + \lambda u_{N}^* = f_N \ \ i=1,2
 \end{equation}
+
+\noindent which can be seen as if the equation satisfied by the interface point was $u_{xx} = 0$.
+
+\indent We can easily that a small modification in the interface Boundary Conditions (of order $O(\Delta x)$) can avoid this problem. The new BC will be written as
+
+\begin{equation}
+	(u_1^{k+1})_x(0) + \theta  = (u_2^{k})_x(0) + \theta'
+\end{equation}
+
+\noindent with
+
+\begin{gather}
+    \theta = -\frac{\Delta x \lambda}{2}u_N^1 + \frac{\Delta x}{2}f_N = O(\Delta x)\\
+    \theta' = \frac{\Delta x \lambda}{2}u_N^2 - \frac{\Delta x}{2}f_N = O(\Delta x)
+\end{gather}
+
+\noindent so, in the convergence,
+
+\begin{equation}
+\begin{aligned}
+&& 				&(u_1^{k+1})_x + \theta = (u_2^{k})_x + \theta' \implies \\ 
+&& \implies  &\frac{u_N^* - u_{N-1}^*}{\Delta x} -\frac{\Delta x \lambda}{2}u_N^* + \frac{\Delta x}{2}f_N  =  \frac{u_{N+1}^* - u_{N}^*}{\Delta x} + \frac{\Delta x \lambda}{2}u_N^* - \frac{\Delta x}{2}f_N \implies \\
+&& \implies  &  - \frac{u_{N-1}^{*} - 2_N^{*} + u_{N+1}^{*} }{\Delta x^2} + \lambda u_N^{*} = f_{N}
+\end{aligned}
+\end{equation}
+
+\subsubsection{Study of the error in the DDM method for the dispersion equation}
+
+\indent Now we will apply a similar idea to study the error of the Domain Decomposition Method that we proposed for the dispersive equation. As mentioned above, we will focus exclusively on the error produced by DDM, independently of the other possible components of the error compared to the exact solution for the example (external boundary conditions, error accumulation over the time steps). Therefore, all the following study will be made considering the execution of the method over only one time step, allowing us to use a clearer notation for the solution : $u_j^i$, where $i$ indicates the subdomain $\Omega_i$ and $j$ indicates the spatial discrete position. In the cases where the iterative process is take in account, we will add the superscript $k$ to indicate the iteration.
+
+\indent For the interior points of each one of the domains, we will consider a second order spatial discretization of the equation (\ref{eq:linearizedKdV}).
+
+\begin{equation}
+    \label{eq:FDdiscretization}
+    \frac{u_j^i - \alpha_j^i}{\Delta t} + \frac{-\frac{1}{2}u_{j-2}^i + u_{j-1}^i - u_{j+1}^i + \frac{1}{2}u_{j+2}^i }{\Delta x ^3} = 0
+\end{equation}
+
+\indent for $j=2,...,N-2$ in the case $i=1$; for $j=N+2,...,2N-2$ in the case $i=2$; and for $j=2,...,2N-2$ in the case $i=ref$. In the above expression, $\alpha_j^i$ is a given data (for example, the converged solution in the previous time step).
+
+\indent For the points near the boundaries, we use second order uncentered discretizations or the appropriate TBCs. We will focus here on the interface point $x_N$. Thus, in the resolution of the problem in $\Omega_1$, two interface boundary conditions are imposed (corresponding to $\Theta_2$ and $\Theta_3$), so the solutions $u_{N-1}^1$ and $u_N^1$ are computed using the equations
+
+\begin{equation}
+	\begin{aligned}
+    \label{eq:TBCsIterOmega1A}
+    && 				&\Theta_2^{c_R}(u_N^1) = \Theta_2^{c_R}(u_N^2) \implies \\ 
+    && \implies & u_N^1 - c_R^2 \frac{u_N^1 - 2u_{N-1}^1 + u_{N-2}^1}{\Delta x^2} = u_N^2 - c_R^2 \frac{u_N^2 - 2u_{N+1}^2 + u_{N+2}^2}{\Delta x^2} 
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+	\begin{aligned}
+    \label{eq:TBCsIterOmega1B}
+    && 			   & \Theta_3^{c_R}(u_N^1) = \Theta_3^{c_R}(u_N^2) \implies \\
+    && \implies & \frac{u_N^1 - u_{N-1}^1}{\Delta x} + c_R \frac{u_N^1 - 2u_{N-1}^1 + u_{N-2}^1}{\Delta x^2} = \frac{u_{N+1}^2 - u_{N}^2}{\Delta x} + c_R \frac{u_N^2 - 2u_{N+1}^2 + u_{N+2}^2}{\Delta x^2}
+    \end{aligned}
+\end{equation}
+
+\indent In the resolution of the problem in $\Omega_2$, only one interface boundary condition is used (corresponding to $\Theta_1$) :
+
+\begin{equation}
+	\begin{aligned}
+    \label{eq:TBCsIterOmega2}
+    && 				&\Theta_3^{c_L}(u_N^2) = \Theta_3^{c_L}(u_N^1) \implies \\ 
+    && \implies & u_N^2 - c_L \frac{u_{N+1}^2 - u_{N}^2}{\Delta x} + c_L^2 \frac{u_N^2 - 2u_{N+1}^2 + u_{N+2}^2}{\Delta x^2}  =\\
+    && 				& u_N^1 - c_L \frac{u_{N}^1 - u_{N-1}^1}{\Delta x} + c_L^2 \frac{u_N^1 - 2u_{N-1}^1 + u_{N-2}^1}{\Delta x^2}
+    \end{aligned}
+\end{equation}
+
+\indent In the convergence, \eqref{eq:TBCsIterOmega1A} to\eqref{eq:TBCsIterOmega2} gives respectively
+
+\begin{equation}
+    \label{eq:TBCsCVOmega1A}
+\begin{aligned}
+    && 			    &u_N^* - c_R^2 \frac{u_N^* - 2u_{N-1}^* + u_{N-2}^*}{\Delta x^2} = u_N^* - c_R^2 \frac{u_N^* - 2u_{N+1}^* + u_{N+2}^*}{\Delta x^2} \implies  \\
+    && \implies & 2c_R^2 \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x^2} = 0
+    \end{aligned}
+    \end{equation}
+    
+\begin{equation}
+    \label{eq:TBCsCVOmega1B}
+\begin{aligned}
+    &&             &\frac{u_N^* - u_{N-1}^*}{\Delta x} + c_R \frac{u_N^* - 2u_{N-1}^* + u_{N-2}^*}{\Delta x^2} = \\
+    && 			   &\frac{u_{N+1}^* - u_{N}^*}{\Delta x} + c_R \frac{u_N^* - 2u_{N+1}^* + u_{N+2}^*}{\Delta x^2} \implies \\
+    && \implies & -\frac{u_{N-1}^* - 2 u_{N}^* + u_{N+1}^*}{\Delta x} - 2c_R\frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x^2} = 0 
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+    \label{eq:TBCsCVOmega2}
+\begin{aligned}
+   && 					&	 u_N^* -  c_L\frac{u_{N+1}^* - u_{N}^*}{\Delta x} + c_L^2 \frac{u_{N}^* - 2u_{N+1}^* + u_{N+2}^*}{\Delta x^2} = \\ 
+   && 					& u_N^* -  c_L\frac{u_{N}^* - u_{N-1}^*}{\Delta x} + c_L^2 \frac{u_{N}^* - 2u_{N-1}^* + u_{N-2}^*}{\Delta x^2} \implies \\
+	&&  \implies	    & -c_L\frac{u_{N-1}^* - 2 u_{N}^* + u_{N+1}^*}{\Delta x} + 2c_L^2\frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x^2} = 0 
+\end{aligned}
+\end{equation}
+
+\indent Therefore, we can see that, the converged solution of the DDM method satisfies the same equation as the reference solution in all the points $x_j \in \Omega_1$, except in $x_{N-1}$ and $x_N$ (for the problem solved in $\Omega_1$) and in $x_N$ (for the problem solved in $\Omega_2$) . For example, it's easy to verify that \eqref{eq:TBCsCVOmega1A} differ from \eqref{eq:FDdiscretization} by a $O(\Delta x)$ term :
+
+\begin{equation}
+    \label{eq:diffEquations}
+    \begin{aligned}
+    2\Delta x c_R^2\left( \frac{u_N^* - \alpha_N^*}{\Delta t} + \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x ^3} \right) - \\
+    \left( 2c_R^2 \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x^2} \right) =  2\Delta x c_R^2 \frac{u_N^* - \alpha_N^*}{\Delta t}
+    \end{aligned}
+\end{equation}
+
+\indent Then, we will formulate modified TBCs for the ASM method in order to cancel these errors :
+
+\begin{equation}
+    \begin{cases}
+        \Theta_1^{c_L^*}(u_2^{n+1,k+1},0) + \theta_1 = \Theta_1^{c_L^*}(u_1^{n,k},0) + \theta_1' \\
+        \Theta_2^{c_R^*}(u_1^{n+1,k+1},0) + \theta_2 = \Theta_2^{c_R^*}(u_2^{n,k},0) + \theta_2' \\
+        \Theta_3^{c_R^*}(u_1^{n+1,k+1},0) + \theta_3 = \Theta_3^{c_R^*}(u_2^{n,k},0) + \theta_3'
+    \end{cases}
+\end{equation}
+
+\noindent with $\theta_i, \theta_i'$ derived below, after a numerical verification of the error produced by the DDM.
+
+\paragraph{Numerical verification of the error}
+
+\indent The problem \eqref{eq:problemDDM1} - \eqref{eq:problemDDM2} was solved until the convergence with 5 different uniform spatial discretizations, over one time step (in the interval $[0,\Delta t]$). In each case, the adopted referential solution $u^{ref}$ was the monodomain problem, solved with the same mesh size. Two errors were computed : 
+
+\begin{equation}
+	e^{N,\Omega_1\bigcap \Omega_2} = |u^{ref}_N - u^{1}_N|
+\end{equation}
+
+\begin{equation}
+	e^{N,\Omega} = ||u^{ref}_N - u^{1,2}_N||_2 = \sqrt{dx}\sqrt{\sum_{j=0}^N{(u^{ref}_j - u^{1}_j)^2 } + \sum_{j=N}^{2N}{(u^{ref}_j - u^{2}_j)^2 } }
+\end{equation}
+
+\noindent corresponding respectively to the error on the interface and the error on the whole domain. In the notation $e^{N,\bullet}$, $N$ refers to the number of space steps in $\Omega$.
+
+\indent We are interested in the behavior of these error as the mesh size changes. As shown in the table \ref{tab:orderVerification}, we verify that the DDM proposed here produces a first order error :
+
+\begin{center}
+	\begin{tabular}{c|S[round-precision=4]|S[round-precision=4]}
+	\multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{$\Omega_1\bigcap \Omega_2$} & \multicolumn{1}{c}{$\Omega$} \\
+	\hline
+	$e^{125}/e^{250}$ & 2.85579232 & 2.58072011\\
+	$e^{250}/e^{500}$ & 2.30413455 & 2.22892 \\
+	$e^{500}/e^{1000}$ &  2.13697696 & 2.11557312 \\
+	$e^{1000}/e^{2000}$ & 2.06417829 & 2.05805538\\
+	$e^{2000}/e^{4000}$ & 2.03095261 & 2.02909704 \\
+	$e^{4000}/e^{8000}$ & 2.01518696 & 2.01456961 \\
+	\end{tabular}
+	\captionof{table}{Numerical verification of the order of convergence of the error due to the Domain Decomposition Method\label{tab:orderVerification}}
+\end{center}
+
+
+\paragraph{Determination of $\theta_1, \theta_1'$}
+
+\indent Our objective is to write (\ref{eq:FDdiscretization}) in the point $x_{N}$ :
+
+\begin{equation}
+    \label{eq:FDdiscretizationN}
+    \frac{u_{N}^* - \alpha_{N}^*}{\Delta t} + \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x ^3} = 0
+\end{equation}
+
+\indent Defining 
+
+\begin{gather}
+    \theta_1 = c_L \frac{u_{N+1}^2 - u_{N}^2}{\Delta x} + c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^2 - \alpha_{N}^2 \right)\\
+    \theta_1' = c_L \frac{u_{N}^1 - u_{N-1}^1}{\Delta x} - c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^1 - \alpha_{N}^1 \right)
+\end{gather}
+
+\indent we have, in the convergence, that
+
+\begin{equation}
+\label{eq:modifiedTBC1}
+\begin{aligned}
+&& &    \Theta_1^{c_L}(u_N^*) + \theta_1 = \Theta_1^{c_L}(u_N^*) + \theta_1'\implies \\
+&& \implies &    u_N^* - c_L \frac{u_{N+1}^* - u_N^*}{\Delta x} + c_L^2\frac{u_N^* - 2u_{N+1}^* + u_{N+2}^*}{\Delta x^2} + c_L \frac{u_{N+1}^* - u_{N}^*}{\Delta x} + c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^* - \alpha_{N}^* \right) = \\
+&& & u_N^* - c_L \frac{u_{N}^* - u_{N-1}^*}{\Delta x} + c_L^2\frac{u_N^* - 2u_{N-1}^* + u_{N-2}^*}{\Delta x^2} + c_L \frac{u_{N}^* - u_{N-1}^*}{\Delta x} - c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^* - \alpha_{N}^* \right) \implies \\
+ && \implies &    2c_L^2 \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x ^2}  +             2c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^* - \alpha_{N}^* \right) = 0 \implies \\
+&& \implies &    \frac{u_{N}^* - \alpha_{N}^*}{\Delta t} + \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x ^3} = 0
+\end{aligned}
+\end{equation}
+
+\noindent which corresponds to the discretization \eqref{eq:FDdiscretization} satisfied in $x_N$. 
+
+\paragraph{Determination of $\theta_2, \theta_2'$}
+
+\indent Based on \eqref{eq:diffEquations}, we define
+
+\begin{equation}
+\begin{gathered}
+    \theta_2 = \frac{\Delta x}{\Delta t} c_R^2 (u_N^1 - \alpha_N^1) \\
+    \theta_2' = -\frac{\Delta x}{\Delta t} c_R^2 (u_N^2 - \alpha_N^2)
+\end{gathered}
+\end{equation}
+
+\indent Indeed, we then have, in the convergence
+
+\begin{equation}
+\label{eq:modifiedTBC2}
+\begin{aligned}
+&& &\Theta_2^{c_R}(u_N^*) + \theta_2 = \Theta_2^{c_R}(u_N^*) + \theta_2'\implies \\
+&& \implies & u_N^* - c_R^2 \frac{u_N^* - 2u_{N-1}^* + u_{N-2}^*}{\Delta x^2} + \frac{\Delta x}{\Delta t} c_R^2 (u_N^* - \alpha_N^*)  = \\ && & u_N^* - c_R^2 \frac{u_N^* - 2u_{N+1}^* + u_{N+2}^*}{\Delta x^2} -\frac{\Delta x}{\Delta t} c_R^2 (u_N^* - \alpha_N^*) \implies \\
+&& \implies & 2\frac{\Delta x}{\Delta t} c_R^2 (u_N^* - \alpha_N^*) + 2c_R^2 \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x^2} = 0  \implies \\
+&& \implies &\frac{u_N^* - \alpha_N^*}{\Delta t} + \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x^3} = 0
+\end{aligned}
+\end{equation}
+
+\noindent which corresponds to the discretization \eqref{eq:FDdiscretization} satisfied in $x_N$.
+
+
+\paragraph{Determination of $\theta_3, \theta_3'$}
+
+\indent Using \eqref{eq:modifiedTBC2} in \eqref{eq:TBCsIterOmega1B}, we get
+
+\begin{equation}
+-\frac{u_{N-1}^* - 2 u_{N}^* + u_{N+1}^*}{\Delta x} + 2c_R\Delta x\frac{u_N^* - \alpha_N^*}{\Delta t} = 0 
+\end{equation}
+
+\indent Now, our objective is to write \eqref{eq:FDdiscretization} in the point $x_{N-1}$ :
+
+\begin{equation}
+    \label{eq:FDdiscretizationNm1}
+    \frac{u_{N-1}^* - \alpha_{N-1}^*}{\Delta t} + \frac{-\frac{1}{2}u_{N-3}^* + u_{N-2}^* - u_{N}^* + \frac{1}{2}u_{N+1}^* }{\Delta x ^3} = 0
+\end{equation}
+
+\noindent what can be achieved by defining
+
+\begin{equation}
+\begin{gathered}
+    \theta_3 = 2\frac{\Delta x}{\Delta t} \left[-\Delta x(u_{N-1}^1 - \alpha_{N-1}^1) - c_R (u_N^1 - \alpha_N^1) \right] + \frac{u_{N-3}^1 - 2u_{N-2}^1 + u_{N-1}^1}{\Delta x} \\
+    \theta_3' = 0
+\end{gathered}
+\end{equation}
+
+\indent In fact, in the convergence,
+
+\begin{align*}
+\label{eq:modifiedTBC3}
+&&  &\Theta_3^{c_R}(u_N^*) + \theta_3 = \Theta_3^{c_R}(u_N^*) + \theta_3'     \implies \\
+&& \implies & \frac{u_N^* - u_{N-1}^*}{\Delta x} + c_R \frac{u_N^* - 2u_{N-1}^* + u_{N-2}^*}{\Delta x^2} + 2\frac{\Delta x}{\Delta t}  \left[-\Delta x(u_{N-1}^* - \alpha_{N-1}^*) - c_R (u_N^* - \alpha_N^*) \right] + \\
+&&   & 			\frac{u_{N-3}^* - 2u_{N-2}^* + u_{N-1}^*}{\Delta x}  =  \frac{u_{N+1}^* - u_{N}^*}{\Delta x} + c_R \frac{u_N^* - 2u_{N+1}^* + u_{N+2}^*}{\Delta x^2} \implies \\
+&&  \implies &  -\frac{u_{N-1}^* - 2 u_{N}^* + u_{N+1}^*}{\Delta x} + 2c_R\Delta_x\frac{u_N^* - \alpha_N^*}{\Delta t} + \\
+&&   & 2\frac{\Delta x}{\Delta t} \left[-\Delta x(u_{N-1}^* - \alpha_{N-1}^*) - c_R(u_N^* - \alpha_N^*) \right] + \frac{u_{N-3}^* - 2u_{N-2}^* + u_{N-1}^*}{\Delta x} = 0 \implies \\
+&& \implies  & -2\frac{-\frac{1}{2}u_{N-3}^* + u_{N-2}^* - u_{N}^* + \frac{1}{2}u_{N+1}^* }{\Delta x} - 2\frac{\Delta x^2}{\Delta t}(u_{N-1}^* - 					\alpha_{N-1}^*) = 0 \implies \\
+&& \implies &  \frac{u_{N-1}^* - \alpha_{N-1}^*}{\Delta t} + \frac{-\frac{1}{2}u_{N-3}^* + u_{N-2}^* - u_{N}^* + \frac{1}{2}u_{N+1}^* }{\Delta x ^3} = 0
+\end{align*}
