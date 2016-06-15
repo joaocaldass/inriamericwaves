@@ -9,9 +9,14 @@
 \contentsline {subsubsection}{\numberline {2.2.1}Approximation using a constant polynomial}{10}
 \contentsline {subsubsection}{\numberline {2.2.2}Approximation using a linear polynomial}{10}
 \contentsline {subsection}{\numberline {2.3}Numerical tests}{12}
-\contentsline {subsection}{\numberline {2.4}Introduction tests}{14}
+\contentsline {subsection}{\numberline {2.4}Introduction tests}{13}
 \contentsline {section}{\numberline {3}Application of the approximate TBCs to a Domain Decomposition Method}{16}
 \contentsline {subsection}{\numberline {3.1}The Schwarz Methods}{16}
 \contentsline {subsection}{\numberline {3.2}ASM with the approximate TBCs for the dispersive equation}{17}
 \contentsline {subsection}{\numberline {3.3}Error in the converged solution}{18}
 \contentsline {subsubsection}{\numberline {3.3.1}Motivational example : }{18}
+\contentsline {subsubsection}{\numberline {3.3.2}Study of the error in the DDM method for the dispersion equation}{20}
+\contentsline {paragraph}{Numerical verification of the error}{22}
+\contentsline {paragraph}{Determination of $\theta _1, \theta _1'$}{23}
+\contentsline {paragraph}{Determination of $\theta _2, \theta _2'$}{23}
+\contentsline {paragraph}{Determination of $\theta _3, \theta _3'$}{24}
