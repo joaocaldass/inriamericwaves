@@ -1,5 +1,17 @@
 \begin{thebibliography}{1}
 
+\bibitem{Bonneton2011}
+P.~Bonneton, F.~Chazel, D.~Lannes, F.~Marche, and M.~Tissier.
+\newblock {A Splitting approach for the fully nonlinear and weakly dispersive
+  Green-Naghdi model}.
+\newblock {\em J. Comput. Phys.}, 230:1479--1498, 2011.
+
+\bibitem{guerra2014}
+M.~Guerra, R.~Cienfuegos, C.~Escauriaza, F.~Marche, and J.~Galaz.
+\newblock Modelling rapid flood propagation over natural terrains using a
+  well-balanced scheme.
+\newblock {\em Journal of Hydraulic Engineering}, page 140, 2014.
+
 \bibitem{marche2006}
 F.~Marche, P.~Bonneton, P.~Fabric, and N.~Seguin.
 \newblock Evaluation of well-balanced bore-capturing schemes for 2d wetting and

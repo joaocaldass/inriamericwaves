@@ -1,123 +1,39 @@
-\documentclass{article}
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx} % for figure
+\usepackage[font=footnotesize]{caption}
+\usepackage{subcaption}  % for subfigure
+\usepackage{float}
+\usepackage{indentfirst} % indent first line after section title
+\usepackage{placeins} %FloatBarrier
+\usepackage{afterpage}
+\usepackage{numprint} % round numbers
+\usepackage{siunitx} % round numbers
+\usepackage{booktabs}  % nice looking tables
 
+
+\author{José Galaz \\ Joao Guilherme Caldas Steinstraesser}
+\title{Inriamericwaves \\ Report of activities - March-May/16 \\ Implementation of a 1D Shallow Water Model}
 \bibliographystyle{abbrv}
-\usepackage{amsmath,amsfonts,amssymb}
-\usepackage{placeins} %
+\usepackage{breqn}
+\usepackage{parskip}
+
+
+% \usepackage{lineno}
+
+% \linenumbers
 
 \begin{document}
-\section{Numerical solution of The Non linear Shallow Water Equations}
-\noindent The one dimensional Non Linear Shallow Water Equations with flat bottom read in conservation form
+\maketitle
 
-\begin{equation}
-	\begin{split}
-		h_t + ( hu)_x = 0\\
-		(hu)_t + \left( hu^2 + \frac{1}{2}gh^2 \right)_x = 0 
-	\end{split}
-	\label{serre:snswe}
-\end{equation}
+\newpage
+\tableofcontents
 
-\noindent where subscripts denote partial derivatives respect to time and space variables $t$ and $x$; $h$ denotes the water column height; $u$ the horizontal velocity; $g=9.81$ the gravity acceleration. As a conservation law, the system \eqref{serre:nswe} can be written as
-
-\begin{equation}
-	U_t + F(U)_x = 0
-	\label{serre:conservative_swe}
-\end{equation}
-
-\noindent where $U=(h,hu)^T$, $F(U) = (hu, hu^2 + \frac{1}{2}gh^2)$. Weak solutions are approximated using a Finite Volume scheme. After averaging the system \eqref{serre:conservative_swe} in a cell $\Omega_i = [x_i-\Delta x/2, x_i+\Delta x/2]$, and defining $ \overline U = \frac{1}{\Delta x} \int_{\Omega_i} U(x)dx$, then a semidiscrete approximation to \eqref{serre:conservative_swe} is 
-
-\begin{equation}
-	\overline U _t + \frac{1}{\Delta x}\left( F(U_{i+1/2}) - F(U_{i-1/2}) \right) = 0
-	\label{serre:semidiscrete_swe}
-\end{equation}
-
-\noindent where $U_{i\pm1/2}$ corresponds to the values of the conserved variables at the interface of each cell. The system \eqref{serre:semidiscrete_swe} is integrated in time using an Euler scheme with CFL condition
-
-\begin{equation}
-	\Delta t = CFL \frac{\Delta x}{\max_i(|u_i|+c_i)}
-\end{equation}
-
-with $CFL=0.45$.
-
-\subsection{Riemann problem}
-At each time-step the the values at each interface $U^* = U_{i+1/2}$ of system \eqref{serre:semidicrete_swe} are obtained from the solution to the Riemann problem of the non-conservative form of \eqref{serre:conservative_swe} between the two neighbor states $U_L = U_i$ and $U_R = U_{i+1}$
-
-\begin{equation}
-	\begin{split}
-	  U_t + A(U) U_x = 0 \\
-	  U(t=0,x) = \begin{cases}
-		 U_l &, \text{ if } x\leq 0. \\
-		 U_r &, \text{ if } x > 0 
-		\end{cases}
-	\end{split}
-	\label{serre:nonconservative_swe_1}
-\end{equation}
-
-\noindent where $A$ is the jacobian matrix of $F(U)$. The solution to this Riemann problem is found using the approximate Riemann solver of Roe that is described in reference \cite{marche2006}. It consists first of a change of variables that allows to write \eqref{serre:nonconservative_swe_1} for $h>0$ as
-
-\begin{equation}
-	\begin{split}
-	  V_t + C(V)V_x = 0 \\
-	  V(t=0,x) = \begin{cases}
-		V_l &, \text{ if } x\leq 0. \\
-	 V_r &, \text{ if } x > 0 
-		\end{cases}
-	\end{split}
-	\label{serre:nonconservative_swe_2}
-\end{equation}
-
-\noindent with $V = (2c,u)^T$ and 
-$C(V) = \left( 
-\begin{array}{cc} 
-u & c \\ 
-c & u \end{array}\right)$. Second, instead of using the exact formulation, a linearized problem is solved using $C(\hat V)$ in place of $C(V)$, with $\hat V = (V_L +V_R)/2$. The matrix $C(\hat V)$ is diagonalizable and thus, a decoupled system can be obtained in the form
-
-\begin{equation}
-	\begin{split}
-		(w_1)_t + \hat \lambda_1 (w_1)_x = 0\\
-		(w_2)_t + \hat \lambda_2 (w_2)_x = 0 \\	
-	(w_1,w_2)^T(t=0,x) = \begin{cases}
-		((w_1)_L,(w_2)_L)^T &, \text{ if } x\leq 0. \\
-		((w_1)_L,(w_2)_L)^T &, \text{ if } x > 0 
-		\end{cases}
-	\end{split}
-\end{equation}
-
-\noindent where $\hat \lambda_1 = \hat u - \hat c$, $\hat \lambda_2 = \hat u + \hat c$, $w_1 = u-2c$, $w_2 = u+2c$ and $ (w_1)_L = u_L - 2c_L, (w_2)_L = u_L - 2c_L$, $ (w_1)_R = u_R - 2c_R, (w_2)_R = u_R - 2c_R$. Writing $W=(w_1,w_2)$ and noticing that $\hat \lambda_1 \leq \hat \lambda_2$, the solution can be found for three separate cases:
-
-\begin{itemize}
-	\item If $\lambda_1 > 0$, then $W^* = W_L$
-	\item If $\lambda_1 \leq 0 $ and $\lambda_2>0$, $W^* = ((w_R)_1, (w_L)_2)^T$
-	\item If $\lambda_2\leq 0 $, $W^* = W_R$
-\end{itemize}
-
-\noindent and values at the interface can then be recovered setting the inverse transformation 
-
-\begin{equation}
-	\begin{split}
-	u^* = \frac{1}{2}(w^*_1+w^*_2) \\
-	h^* = \frac{1}{16g}(w^*_2-w^*_1)^2
-	\end{split}	
-	\label{serre:riemman_solution}
-\end{equation}
-
-A third step is necessary, which consists on an entropy fix to select only weak solutions that are physically consistent. This is simply obtained by setting $W^* = \hat W$ whenever $(\lambda_1)_L < 0$ and $(\lambda_1)_r >0$, or $(\lambda_2)_L < 0 $ and $(\lambda_2)_R>0$.
-
-\subsection{Second order Finite Volume Scheme}
-
-To obtain second order convergence for smooth solutions a MUSCL (Monotonic Upstream-Centered) scheme is used. This means that instead of solving a Riemann problem between $U_L=U_{i}$ and $U_R=U_{i+1}$ one must solve for 
-$U_L = U_{i,r}$ and $U_R=U_{i+1,l}$, 
-where $U_{i,r} = U_i + \frac{\Delta x}{2} s$, 
-$U_{i,l} = U_i - \frac{\Delta x}{2} s$  $s = minmod(s_L,s_R)$, 
-$s_L = \frac{U_{i}-U_{i-1}}{\Delta x}$, 
-$s_R = \frac{U_{i+1}-U_{i}}{\Delta x}$ and
-
-\begin{equation}
-	minmod(s_1,s_2) = \begin{cases}
-		min(s_1,s_2) & \text{ if } s_1>0 \textit{ and } s_2>0 \\
-		max(s_1,s_2) & \text{ if } s_1<0 \textit{ and } s_2<0 \\
-		0 & elsewhere
-	\end{cases}
-\end{equation}
+\newpage
+	\input{nswe.tex}
 
 \bibliography{biblio}
 \end{document}
