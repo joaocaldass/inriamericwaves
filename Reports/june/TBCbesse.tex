@@ -60,10 +60,12 @@ $$ \label{eq:lambda} \lambda(s) = -\sqrt[3]{s} $$
 \indent In a first moment, we will approximate $\frac{\lambda^2}{s}$ by a constant polynomial $P_0(s) = c$. Therefore, from (\ref{eq:lambda2}) we get
 
 \begin{equation}
+	\begin{gathered}
     \frac{\lambda^2}{s} = c \\
     \frac{\lambda}{s} = -c^2 \\
     \frac{1}{\lambda_1(s)^2} = c^2 \\
     \frac{1}{\lambda_1(s)} = -c
+    \end{gathered}
 \end{equation}
 
 \noindent and replacing in (\ref{eq:TBC2}) and considering the linearity of the Laplace transform : 
@@ -96,10 +98,12 @@ $$ \label{eq:lambda} \lambda(s) = -\sqrt[3]{s} $$
 \indent Similarly to the case presented above, we will approximate $\frac{\lambda^2}{s}$ by a linear polynomial $P_1(s) = ds + c$. Therefore,
 
 \begin{equation}
+	\begin{gathered}
     \frac{\lambda^2}{s} = ds + c \\
     \frac{\lambda}{s} = -(ds + c )^2 \\
     \frac{1}{\lambda_1(s)^2} = (ds + c )^2 \\
     \frac{1}{\lambda_1(s)} = -(ds + c )  
+    \end{gathered}
 \end{equation}
 
 \indent Thus, the inverse Laplace transforms in (\ref{eq:TBC2}) reads :
@@ -116,21 +120,23 @@ $$ \label{eq:lambda} \lambda(s) = -\sqrt[3]{s} $$
 
 \indent Using finite differences and different coefficients $c_L,c_R$ and $d_L,d_R$ for the left and the right boundaries, these expressions can be approximated by
 
+\small
+
 \begin{equation}
     \label{eq:FDorder2A}
     \begin{aligned}
-    \mathcal{L}^{-1} \left( \frac{\lambda^2}{s} \hat{u}_x(t,s) \right) = & d_L \frac{ (u_x)_0^{n+1} - (u_x)_0^n}{\Delta t} + c_L (u_x)_0^{n+1} = \\
-    			& \left( \frac{d_L}{\Delta t} + c_L \right) \left( \frac{u_1^{n+1} - u_0^{n+1}}{\Delta x}\right) - \frac{d_L}{\Delta t} \left( \frac{u_1^{n} - u_0^{n}}{\Delta x}\right)
+    \mathcal{L}^{-1} \left( \frac{\lambda^2}{s} \hat{u}_x(t,s) \right) & =  d_L \frac{ (u_x)_0^{n+1} - (u_x)_0^n}{\Delta t} + c_L (u_x)_0^{n+1} = \\
+    			& =  \left( \frac{d_L}{\Delta t} + c_L \right) \left( \frac{u_1^{n+1} - u_0^{n+1}}{\Delta x}\right) - \frac{d_L}{\Delta t} \left( \frac{u_1^{n} - u_0^{n}}{\Delta x}\right)
     \end{aligned}
  \end{equation}
  
  \begin{equation}
      \label{eq:FDorder2B}
     \begin{aligned}
-    \mathcal{L}^{-1} \left( \frac{\lambda}{s} \hat{u}_{xx}(t,s) \right) = & -d_L^2 \left( \frac{(u_{xx})_0^{n+1} - 2(u_{xx})_0^{n} + (u_{xx})_0^{n-1}}{\Delta t^2} \right) + \\
-    			&  - 2d_Lc_L \left( \frac{(u_{xx})_0^{n+1} - (u_{xx})_0^{n}}{\Delta t} \right) - c_L^2 (u_{xx})_0^{n+1} = \\
-    			& -\left( \frac{d_L^2}{\Delta t^2} + \frac{2d_Lc_L}{\Delta t} + c_L^2  \right) \left(  \frac{u_0^{n+1} - 2u_1^{n+1} + u_2^{n+1}}{\Delta x^2} \right) + \\
-    			& \left( 2\frac{d_L^2}{\Delta t^2} + \frac{2d_Lc_L}{\Delta t}\right) \left(  \frac{u_0^{n} - 2u_1^n + u_2^{n}}{\Delta x^2} \right) - \frac{d_L^2}{\Delta t^2} \left(  \frac{u_0^{n-1} - 2u_1^{n-1} + u_2^{n-1}}{\Delta x^2} \right)
+    \mathcal{L}^{-1} \left( \frac{\lambda}{s} \hat{u}_{xx}(t,s) \right) && = &  -d_L^2 \left( \frac{(u_{xx})_0^{n+1} - 2(u_{xx})_0^{n} + (u_{xx})_0^{n-1}}{\Delta t^2} \right) + \\
+    			&&  &  - 2d_Lc_L \left( \frac{(u_{xx})_0^{n+1} - (u_{xx})_0^{n}}{\Delta t} \right) - c_L^2 (u_{xx})_0^{n+1} = \\
+    			&&  = & -\left( \frac{d_L^2}{\Delta t^2} + \frac{2d_Lc_L}{\Delta t} + c_L^2  \right) \left(  \frac{u_0^{n+1} - 2u_1^{n+1} + u_2^{n+1}}{\Delta x^2} \right) + \\
+    			&& &  \left( 2\frac{d_L^2}{\Delta t^2} + \frac{2d_Lc_L}{\Delta t}\right) \left(  \frac{u_0^{n} - 2u_1^n + u_2^{n}}{\Delta x^2} \right) - \frac{d_L^2}{\Delta t^2} \left(  \frac{u_0^{n-1} - 2u_1^{n-1} + u_2^{n-1}}{\Delta x^2} \right)
     \end{aligned}
  \end{equation}
      			
@@ -151,31 +157,33 @@ $$ \label{eq:lambda} \lambda(s) = -\sqrt[3]{s} $$
     \end{aligned}
 \end{equation}
 
+\normalsize
+
 \indent Then we use \eqref{eq:FDorder2A} - \eqref{eq:FDorder2D} in \eqref{eq:TBC2} to obtain the discrete TBCs :
+
+\small
 
 \begin{equation}
 	\begin{aligned}
-    u_0^{n+1} - \left( \frac{d_L}{\Delta t} + c_L \right) \left( \frac{u_1^{n+1} - u_0^{n+1}}{\Delta x}\right) + \\
-     \left( \frac{d_L^2}{\Delta t^2} + \frac{2d_Lc_L}{\Delta t} + c_L^2  \right) \left(  \frac{u_0^{n+1} - 2u_1^{n+1} + u_2^{n+1}}{\Delta x^2} \right) = \\
-     -\frac{d_L}{\Delta t}\left( \frac{u_1^{n} - u_0^{n}}{\Delta x}\right) +  \left( 2\frac{d_L^2}{\Delta t^2} + \frac{2d_Lc_L}{\Delta t}\right) \left(  \frac{u_0^{n} - 2u_1^n + u_2^{n}}{\Delta x^2} \right) + \\
-     -  \frac{d_L^2}{\Delta t^2} \left(  \frac{u_0^{n-1} - 2u_1^{n-1} + u_2^{n-1}}{\Delta x^2} \right)
+    u_0^{n+1} - \left( \frac{d_L}{\Delta t} + c_L \right) \left( \frac{u_1^{n+1} - u_0^{n+1}}{\Delta x}\right) +   \left( \frac{d_L^2}{\Delta t^2} + \frac{2d_Lc_L}{\Delta t} + c_L^2  \right) \left(  \frac{u_0^{n+1} - 2u_1^{n+1} + u_2^{n+1}}{\Delta x^2} \right)  = \\
+        -\frac{d_L}{\Delta t}\left( \frac{u_1^{n} - u_0^{n}}{\Delta x}\right) +  \left( 2\frac{d_L^2}{\Delta t^2} + \frac{2d_Lc_L}{\Delta t}\right) \left(  \frac{u_0^{n} - 2u_1^n + u_2^{n}}{\Delta x^2} \right) +   -  \frac{d_L^2}{\Delta t^2} \left(  \frac{u_0^{n-1} - 2u_1^{n-1} + u_2^{n-1}}{\Delta x^2} \right)
    \end{aligned}
 \end{equation} 
 
 \begin{equation}
 	\begin{aligned}
-    u_N^{n+1} - \left( \frac{d_R^2}{\Delta t^2} + \frac{2d_Rc_R}{\Delta t} + c_R^2  \right) \left(  \frac{u_{N}^{n+1} - 2u_{N-1}^{n+1} + u_{N-2}^{n+1}}{\Delta x^2} \right) =\\
+    u_N^{n+1} - \left( \frac{d_R^2}{\Delta t^2} + \frac{2d_Rc_R}{\Delta t} + c_R^2  \right) \left(  \frac{u_{N}^{n+1} - 2u_{N-1}^{n+1} + u_{N-2}^{n+1}}{\Delta x^2} \right) = \\
      -\left( 2\frac{d_R^2}{\Delta t^2} + \frac{2d_Rc_R}{\Delta t}\right) \left(  \frac{u_N^{n} - 2u_{N-1}^n + u_{N-2}^{n}}{\Delta x^2} \right) + \frac{d_R^2}{\Delta t^2} \left(  \frac{u_N^{n-1} - 2u_{N-1}^{n-1} + u_{N-2}^{n-1}}{\Delta x^2} \right)
     \end{aligned}
 \end{equation} 
    
 \begin{equation}
 	\begin{aligned}	
-    \frac{u_N^{n+1} - u_{N-1}^{n+1}}{\Delta x} + \left( \frac{d_R}{\Delta t} + c_R \right) \left( \frac{u_N^{n+1} -2 u_{N-1}^{n+1} + u_{N-2}^{n+1}}{\Delta x^2}\right) = \\
-      \frac{d_R}{\Delta t}\left( \frac{u_{N}^{n} - 2u_{N-1}^{n} + u_{N-2}^n}{\Delta x^2}\right)
+    \frac{u_N^{n+1} - u_{N-1}^{n+1}}{\Delta x} + \left( \frac{d_R}{\Delta t} + c_R \right) \left( \frac{u_N^{n+1} -2 u_{N-1}^{n+1} + u_{N-2}^{n+1}}{\Delta x^2}\right) =      \frac{d_R}{\Delta t}\left( \frac{u_{N}^{n} - 2u_{N-1}^{n} + u_{N-2}^n}{\Delta x^2}\right)
     \end{aligned}
 \end{equation}
 
+\normalsize
 
 \subsection{Numerical tests}
 

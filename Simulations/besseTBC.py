@@ -261,7 +261,7 @@ def IFDBesse(u,um,umm,t,dt,dx,U2,order,coef,correctTBCL,correctTBCR,useTBCL, use
             M[mp,mp+2] = -12.*k
             M[mp,mp+3] = 7.*k
             M[mp,mp+4] = -3./2.*k
-            
+    
     if modifyDiscret == 2 :  #### centered discret. for point N+1 in Omega2
         M[1,:] = 0
         M[1,0] = k
@@ -565,28 +565,39 @@ def plotBestWorstSolution(x,u,uallexact,U2,t0,tmax,dt,tall,tsnaps,tests,criteria
         plt.figure()
         it = np.argmin(np.absolute(tallBest-t))
         plt.plot(x,uallBest[:,it],label="best sol (%.3f,%.3f) " %(coefsBest[0],coefsBest[1]))
-        plt.plot(x,uallWorst[:,it],label="worst sol (%.3f,%.3f)" %(coefsWorst[0],coefsWorst[1]))
+        plt.plot(x,uallWorst[:,it],label="worst sol (%.3f,%.3f)" %(coefsWorst[0],coefsWorst[1]),linestyle="--")
         plt.plot(x,uallexact[:,it],marker='+',markevery=10,linestyle='None', label='Exact sol')
         plt.title(r't = %f'%tallBest[it])
         plt.legend(loc=legloc)
-        plt.xlabel("$x$")
-        plt.ylabel("$u$")
+        plt.xlabel("$x$",fontsize="x-large")
+        plt.ylabel("$u$",fontsize="x-large")
         if savePath != None :
             plt.savefig(savePath+"Snap" + str(cnt) + "."+ext)
         cnt = cnt+1
-def plotCoefError(testsLight,fixedValues,fixedCoef = "right",minCoef=None,maxCoef=None):
+from itertools import cycle
 
+def plotCoefError(testsLight,fixedValues,fixedCoef = "right",minCoef=None,maxCoef=None,
+                  savePath=None,ext="png",plotErrors="both",legloc=0):
+
+    lines = ["--","-.",":","-"]
+    linecycler = cycle(lines)
+    markers = ["None","+","o"]
+    markers = np.tile(markers,(2,1)).transpose().flatten()
+    markers = np.ndarray.tolist(markers)
+    markercycler = cycle(markers)
+
+    
     plt.figure()
     
     if fixedCoef == "right" :
         fixedIndex = 1
         leg = r"$c_R = $"
-        title = "$c_R fixed$"
+        title = "$c_R$ fixed"
         xlbl = "$c_L$"
     elif fixedCoef == "left" :
         fixedIndex = 0
         leg = r"$c_L = $"
-        title = "$c_L fixed$"
+        title = "$c_L$ fixed"
         xlbl = "$c_R$"
         
     ## string -> (cL,cR)
@@ -612,9 +623,20 @@ def plotCoefError(testsLight,fixedValues,fixedCoef = "right",minCoef=None,maxCoe
                 filtredList = np.concatenate((filtredList,line))
         filtredList = np.delete(filtredList,0,0)
         filtredList = filtredList[np.argsort(filtredList[:,0])]
-        plt.plot(filtredList[:,0],filtredList[:,1],label=leg + r"%.3f"%fixed + " - Tm")
-        plt.plot(filtredList[:,0],filtredList[:,2],label=leg + r"%.3f"%fixed + " - L2")
-    
+        if plotErrors == "both" : 
+            plt.plot(filtredList[:,0],filtredList[:,1],label=leg + r"%.3f"%fixed + " - Tm",
+                     linestyle = next(linecycler), marker = next(markercycler) )
+            plt.plot(filtredList[:,0],filtredList[:,2],label=leg + r"%.3f"%fixed + " - L2",
+                     linestyle = next(linecycler), marker = next(markercycler) )
+        elif plotErrors == "L2" :
+            plt.plot(filtredList[:,0],filtredList[:,2],label=leg + r"%.3f"%fixed,
+                     linestyle = next(linecycler), marker = next(markercycler))
+        elif plotErrors == "Tm" :
+            plt.plot(filtredList[:,0],filtredList[:,1],label=leg + r"%.3f"%fixed,
+                     linestyle = next(linecycler), marker = next(markercycler))
+
+
+        
         print(minCoef,maxCoef,filtredList[0,0],filtredList[-1,0])
         if minCoef == None:
             minCoef = 100000000
@@ -635,7 +657,16 @@ def plotCoefError(testsLight,fixedValues,fixedCoef = "right",minCoef=None,maxCoe
 
     plt.xlim((minCoef,maxCoef))
     plt.ylim((errormin,errormax))
-    plt.xlabel(xlbl)
-    plt.ylabel("Error")
-    plt.title(title)
-    plt.legend()
+    plt.xlabel(xlbl,fontsize="x-large")
+    
+    if plotErrors == "both" :
+        plt.ylabel("Error",fontsize="x-large")
+    elif plotErrors == "L2":
+        plt.ylabel(r"$e_{L2}$",fontsize="x-large")
+    elif plotErrors == "Tm":
+        plt.ylabel(r"$e_{Tm}$",fontsize="x-large")
+    #plt.title(title)
+    plt.legend(loc = legloc)
+    
+    if savePath != None:
+        plt.savefig(savePath+"."+ext)

@@ -76,8 +76,19 @@ def getTestResumeVariableT0(tests) :
         
     return resumeT0
         
-def plotErrorEvolution(tests,nb,legloc=0,savePath = None, ext = "png",titleCompl = "") : 
+from itertools import cycle
 
+def plotErrorEvolution(tests,nb,legloc=0,savePath = None, ext = "png",titleCompl = "", errorLR = False) : 
+
+    lines = ["-","--","-.",":"]
+    linecycler = cycle(lines)
+    
+    markers = ["None","+","o"]
+    markers = np.tile(markers,(3,1)).transpose().flatten()
+    markers = np.ndarray.tolist(markers)
+    markercycler = cycle(markers)
+    
+    print(markers)
     
     listNiter = np.zeros((1,2))
     line = np.zeros((1,2))
@@ -98,47 +109,79 @@ def plotErrorEvolution(tests,nb,legloc=0,savePath = None, ext = "png",titleCompl
         c = orderedList[i,0]
         error = getTestResult(tests,c,c)[2]
 
-        ax.plot(np.log10(error),label="$c_L = %.3f$"%c)
+        ax.plot(np.log10(error),label="$c_L = %.3f$"%c,linestyle=next(linecycler), marker = next(markercycler))
         plt.xlabel("Iteration")
         plt.ylabel("log(Error)")
-        plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)        
+        #plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.) 
+        legend = plt.legend(loc=legloc)
+        # Set the fontsize
+        for label in legend.get_texts():
+            label.set_fontsize('small')
+            
         if titleCompl == "":
             plt.title("Error evolution - %d faster cases (for the complete domain)"%nb)
         else :
-            plt.title("Error evolution - %d faster cases (for the complete domain) - "%nb + titleCompl)
-
+            #plt.title("Error evolution - %d faster cases (for the complete domain) - "%nb + titleCompl)
+            plt.title(titleCompl)
+            
     if savePath != None:
         plt.savefig(savePath + "." + ext)            
-            
-    fig = plt.figure()
-    ax = fig.add_axes([0.1, 0.1, 0.6, 0.75])
-    for i in range(nb):
-        c = orderedList[i,0]
-        error1 = getTestResult(tests,c,c)[4]
-        error2 = getTestResult(tests,c,c)[6]
-             
-        plt.plot(np.log10(error1),label="$c_L = %.3f$; L"%c)
-        plt.plot(np.log10(error2),label="$c_L = %.3f$; R"%c)
-        plt.xlabel("Iteration")
-        plt.ylabel("log(Error)")
-        plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)       
-        if titleCompl == "":
-            plt.title("Error evolution - %d faster cases (for each domain)"%nb)
-        else :
-            plt.title("Error evolution - %d faster cases (for each domain) - "%nb + titleCompl)
-        
-    if savePath != None:
-        plt.savefig(savePath + "LR." + ext)
-def plotIterationsxCoef(tests,legLabel,titleCompl = "", legloc=0,savePath = None, ext = "png") : 
 
+    if errorLR :
+        fig = plt.figure()
+        ax = fig.add_axes([0.1, 0.1, 0.6, 0.75])
+        for i in range(nb):
+            c = orderedList[i,0]
+            error1 = getTestResult(tests,c,c)[4]
+            error2 = getTestResult(tests,c,c)[6]
+
+            plt.plot(np.log10(error1),label="$c_L = %.3f$; L"%c,linestyle=next(linecycler), marker = next(markercycler))
+            plt.plot(np.log10(error2),label="$c_L = %.3f$; R"%c,linestyle=next(linecycler), marker = next(markercycler))
+            plt.xlabel("Iteration")
+            plt.ylabel("log(Error)")
+            plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)       
+            if titleCompl == "":
+                plt.title("Error evolution - %d faster cases (for each domain)"%nb)
+            else :
+                plt.title("Error evolution - %d faster cases (for each domain) - "%nb + titleCompl)
+
+        if savePath != None:
+            plt.savefig(savePath + "LR." + ext)
+from itertools import cycle
+
+def plotIterationsxCoef(tests,legLabel,titleCompl = "", legloc=0,savePath = None, ext = "png", txtFmt="%.4f",
+                        xmin = None, xmax = None, differentLines = False, markevery = 10) : 
+
+    if differentLines :
+        lines = ["-","--","-.",":"]
+        linecycler = cycle(lines)
+
+        markers = ["None","+","o"]
+        markers = np.tile(markers,(3,1)).transpose().flatten()
+        markers = np.ndarray.tolist(markers)
+        markercycler = cycle(markers)
+    
     fig = plt.figure()
     
     a = getTestResumeVariableT0(tests)
 
     ax = fig.add_axes([0.1, 0.1, 0.6, 0.75])
-    for t0 in a.keys():   
+    
+    t0s = np.array(a.keys())
+    print(t0s)
+    for i in range(t0s.size):
+        t0s[i] = eval(t0s[i])
+    orderedt0s = np.sort(t0s)
+     
+    for t0float in orderedt0s :
+    #for t0 in a.keys():   
+        t0 = str(t0float)
         niterOrdered = a[t0][0]
-        ax.plot(niterOrdered[:,0],niterOrdered[:,1],label=r'%s = %.4f'%(legLabel,float(t0)))
+        if differentLines :
+            ax.plot(niterOrdered[:,0],niterOrdered[:,1],label=r'%s = ' %legLabel +txtFmt %(float(t0)),
+                    linestyle = next(linecycler), marker = next(markercycler), markevery = markevery)
+        else :
+            ax.plot(niterOrdered[:,0],niterOrdered[:,1],label=r'%s = ' %legLabel +txtFmt %(float(t0)))
         niterMin = a[t0][2][1]
         cLiterMin = a[t0][2][0]
 
@@ -151,10 +194,15 @@ def plotIterationsxCoef(tests,legLabel,titleCompl = "", legloc=0,savePath = None
 
         print("t0 = %f --> min it = %d for cL = cR = %f and error = %e" % (float(t0),niterMin,cLiterMin,errIterMin))
 
-    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-    plt.xlabel("$c_L = c_R$")
-    plt.ylabel("Number of iterations")
-    plt.title("Nb. of iter. until the convergence - " + titleCompl)
+    if xmin == None:
+        xmin = niterOrdered[0,0]
+    if xmax == None :
+        xmax = niterOrdered[-1,0]
+    plt.xlim((xmin,xmax))
+    plt.legend(bbox_to_anchor=(1.02, 1), loc=2, borderaxespad=0.)
+    plt.xlabel("$c$",fontsize="x-large")
+    plt.ylabel("Number of iterations",fontsize="large")
+    #plt.title("Nb. of iter. until the convergence - " + titleCompl)
         
     
     
@@ -243,7 +291,7 @@ def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
     errInterfaceL = np.zeros(1)
     errInterfaceR = np.zeros(1)
     
-    while converg == False and niter <= maxiter :
+    while converg == False and niter < maxiter :
         niter = niter + 1
  
         if verbose :
