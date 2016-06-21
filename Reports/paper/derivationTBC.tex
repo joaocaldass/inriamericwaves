@@ -1,15 +1,15 @@
-\section{Derivation of Transparent Boundary Conditions for the linearized KdV equation}
+\section{Derivation of Transparent Boundary Conditions for the linearized KdV equation and the dispersion equation}
 
 \indent In \cite{besse2015}, Transparent Boundary Conditions (TBCs) are derived for the one-dimensional continuous linearized KdV equation (or Airy equation) :
 
 \begin{equation}
  	\label{eq:LKdV}
- 	u_t + U_1u_x + U2u_{xxx} = h(t,x), \ \ t \in \mathbb{R}^+, \ \ x \in \mathbb{R}
+ 	u_t + U_1u_x + U_2u_{xxx} = h(t,x), \ \ t \in \mathbb{R}^+, \ \ x \in \mathbb{R}
 \end{equation}
 
 \noindent where $U_1 \in \mathbb{R}$, $U_2 \in \mathbb{R}^+_*$ and $h$ is a source term.
 
-\indent For an homogeneous initial boundary value problem 
+\indent For the homogeneous initial boundary value problem 
 
 \begin{gather}
 	u_t + U_1u_x + U2u_{xxx} = h(t,x), \ \ t \in \mathbb{R}^+, \ \ x \in [a,b] \\
@@ -19,25 +19,25 @@
 
 \noindent the TBCs are given by 
 
-\begin{gather}
-        \label{eq:continuousTBC1}
-        u(t,a) - U_2 \laplinv \left( \frac{\lambda_1(s)^2}{s} \right) * u_x(t,a) - U_2 \laplinv \left( \frac{\lambda_1(s)}{s} \right) * u_{xx}(t,a) = 0 \\
-		\label{eq:continuousTBC2}        
+\begin{equation}
+\label{eq:continuousTBC}
+\begin{cases}
+        u(t,a) - U_2 \laplinv \left( \frac{\lambda_1(s)^2}{s} \right) * u_x(t,a) - U_2 \laplinv \left( \frac{\lambda_1(s)}{s} \right) * u_{xx}(t,a) = 0 \\ 
         u(t,b) - \laplinv \left( \frac{1}{\lambda_1(s)^2} \right) * u_{xx}(t,b) = 0 \\
-        \label{eq:continuousTBC3}   
         u_x(t,b) - \laplinv \left( \frac{1}{\lambda_1(s)} \right) * u_{xx}(t,b) = 0 
-\end{gather}
+\end{cases}
+\end{equation}
 
-\noindent where $\laplinv$ denotes the inverse Laplace transform, $s \in \mathbb{C}$ is the Laplace frequency and $\lambda_1$ is, among the three roots of the cubic characteristic equation obtained when solving \eqref{eq:kdv} in the Laplace space, the only one with positive real part.
+\noindent where $\laplinv$ denotes the inverse Laplace transform, $s \in \mathbb{C}$ is the Laplace frequency and $\lambda_1$ is, among the three roots of the cubic characteristic equation obtained when solving \eqref{eq:LKdV} in the Laplace space, the only one with negative real part.
 
-\indent In this paper, we will focus on the special case $U_1 = 0, U_2 = 1$, which results in the KdV with only the dispersive part. We will call it as dispersive KdV equation (DKdV) : 
+\indent In this paper, we will focus on the special case $U_1 = 0, U_2 = 1$, which results in the KdV with only the dispersive part : 
 
 \begin{equation}
 	\label{eq:DKdV}
 	u_t + u_{xxx} = 0
 \end{equation}
 
-\indent Also accordingly to \cite{besse2015}, in this case the only root with positive real part is 
+\indent In this case, also accordingly to \cite{besse2015}, the only root with negative real part is 
 
 \begin{equation}
 	\label{eq:lambda}

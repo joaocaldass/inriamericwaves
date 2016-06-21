@@ -1,106 +1,114 @@
 \relax 
-\@writefile{toc}{\contentsline {section}{\numberline {1}Images and tables}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Approximations for the TBCs - Constant and linear polynomial}{1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Best and worst solution compared with analytical solution, for the constant polynomial approximation\relax }}{1}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Best results (smallest $e_{L2}$) for the constant polynomial approximation \relax }}{1}}
-\newlabel{tab:firstTestsP0}{{1}{1}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Best results (smallest $e_{L2}$) for the linear polynomial approximation \relax }}{2}}
-\newlabel{tab:firstTestsP1}{{2}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Optimization of the coefficients for the TBC (minimization of the error compared to the analytical solution)}{3}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline {a}{\ignorespaces General view of all the tested coefficients\relax }}{3}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline {b}{\ignorespaces Detail for $c_L \in [0.8,2.0]$\relax }}{3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Error of the numerical solution compared to the analytical solution as function of the constant polynomial approximation for the TBC\relax }}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Numerical verification of the error in the DDM}{4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Numerical verification of the order of convergence of the error due to the Domain Decomposition Method\relax }}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Optimization of the TBCs for the DDM (speed of convergence)}{4}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline {a}{\ignorespaces General view for positive and negative coefficients \relax }}{4}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline {b}{\ignorespaces Detail for $c \geq 0.$ \relax }}{4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed interface and different values of $t_0$) \relax }}{4}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline {a}{\ignorespaces General view for positive and negative coefficients \relax }}{5}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline {b}{\ignorespaces Detail for $c \geq 0$ \relax }}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $t_0$ and different positions of the interface \relax }}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Error evolution with the iterations for the fastest results\relax }}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $N = 499$ and different values of $dt$)\relax }}{5}}
-\citation{besse2015}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $dt = 0.02$ and different values of $dx$)\relax }}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Optimal coefficients as function of the time step and the space step\relax }}{6}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Derivation of Transparent Boundary Conditions for the linearized KdV equation}{6}}
-\newlabel{eq:LKdV}{{1}{6}}
+\bibstyle{abbrv}
 \citation{besse2015}
 \citation{besse2015}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Comments on the errors}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Derivation of Transparent Boundary Conditions for the linearized KdV equation and the dispersion equation}{2}}
+\newlabel{eq:LKdV}{{1}{2}}
+\newlabel{eq:continuousTBC}{{4}{2}}
 \citation{besse2015}
-\newlabel{eq:continuousTBC1}{{4}{7}}
-\newlabel{eq:continuousTBC2}{{5}{7}}
-\newlabel{eq:continuousTBC3}{{6}{7}}
-\newlabel{eq:DKdV}{{7}{7}}
-\newlabel{eq:lambda}{{8}{7}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Approximations for the Transparent Boundary Conditions}{7}}
-\newlabel{eq:TBC2}{{9}{8}}
-\newlabel{eq:linearityLaplace}{{10}{8}}
-\newlabel{eq:derivativeLaplace}{{11}{8}}
-\newlabel{eq:convolutionLaplace}{{12}{8}}
-\newlabel{eq:operands1}{{13}{8}}
-\newlabel{eq:operands2}{{14}{8}}
-\newlabel{eq:operands3}{{15}{8}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.1}Approximation of the TBCs using a constant polynomial}{8}}
+\citation{besse2015}
+\citation{laplaceTransform}
+\newlabel{eq:DKdV}{{5}{3}}
+\newlabel{eq:lambda}{{6}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Approximations for the Transparent Boundary Conditions for the dispersion equation}{3}}
+\newlabel{sec:TBC}{{4}{3}}
+\newlabel{eq:TBCnoConvolution}{{7}{3}}
+\newlabel{eq:linearityLaplace}{{8}{3}}
+\newlabel{eq:firstDerivativeLaplace}{{9}{4}}
+\newlabel{eq:secondDerivativeLaplace}{{10}{4}}
+\newlabel{eq:convolutionLaplace}{{11}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Approximation of the TBCs using a constant polynomial}{4}}
+\newlabel{eq:appP0}{{12}{4}}
+\newlabel{eq:appTBCP0}{{13}{4}}
 \citation{besse2015}
 \citation{zheng2008}
-\newlabel{eq:appP0A}{{16}{9}}
-\newlabel{eq:appP0B}{{17}{9}}
-\newlabel{eq:appP0C}{{18}{9}}
-\newlabel{eq:appP0D}{{19}{9}}
-\newlabel{eq:appTBCP0}{{20}{9}}
-\newlabel{eq:appDiscTBCP0}{{21}{9}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.2}Initial numerical experiments}{9}}
-\newlabel{eq:testCaseBesse1}{{22}{9}}
-\newlabel{eq:testCaseBesse2}{{23}{9}}
-\newlabel{eq:testCaseBesse3}{{24}{9}}
+\citation{zheng2008}
 \citation{besse2015}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Best and worst solution compared with analytical solution, for the constant polynomial approximation \relax }}{11}}
-\newlabel{fig:firstTestsP0}{{10}{11}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Best results (smallest $e_{L2}$) for the constant polynomial approximation \relax }}{11}}
-\newlabel{tab:firstTestsP0}{{3}{11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Approximation of the TBCs using a linear polynomial}{11}}
-\newlabel{eq:appDiscTBCP0}{{27}{12}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Initial numerical experiments}{12}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Best results (smallest $e_{L2}$) for the linear polynomial approximation \relax }}{12}}
 \citation{besse2015}
-\newlabel{tab:firstTestsP1}{{4}{13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Partial conclusion}{13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Optimization of the approximate TBCs (minimization of the errors compared to the analytical solution)}{13}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline {a}{\ignorespaces General view of all the tested coefficients\relax }}{13}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline {b}{\ignorespaces Detail for $c_L \in [0.8,2.0]$\relax }}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Error of the numerical solution compared to the analytical solution as function of the constant polynomial approximation for the TBC \relax }}{13}}
-\newlabel{fig:optimTBC}{{11}{13}}
+\citation{besse2015}
+\newlabel{eq:appDiscTBCP0}{{14}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Initial numerical experiments}{5}}
+\newlabel{eq:testCaseBesse1}{{15}{5}}
+\newlabel{eq:testCaseBesse2}{{16}{5}}
+\newlabel{eq:testCaseBesse3}{{17}{5}}
+\newlabel{eq:exactSolution}{{19}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Best and worst solution compared with analytical solution, for the constant polynomial approximation \relax }}{6}}
+\newlabel{fig:firstTestsP0}{{1}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Best results (smallest $e_{L2}$) for the constant polynomial approximation \relax }}{7}}
+\newlabel{tab:firstTestsP0}{{1}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Approximation of the TBCs using a linear polynomial}{7}}
+\newlabel{eq:appDiscTBCP1}{{21}{8}}
+\citation{besse2015}
+\citation{besse2015}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Initial numerical experiments}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Best results (smallest $e_{L2}$) for the linear polynomial approximation \relax }}{9}}
+\newlabel{tab:firstTestsP1}{{2}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Partial conclusion}{9}}
 \citation{Japhet2003}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Optimization of the approximate TBCs (minimization of the errors compared to the analytical solution)}{10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline {a}{\ignorespaces General view of all the tested coefficients\relax }}{10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline {b}{\ignorespaces Detail for $c_L \in [0.8,2.0]$\relax }}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Error of the numerical solution compared to the analytical solution as function of the constant polynomial approximation for the TBC \relax }}{10}}
+\newlabel{fig:optimTBC}{{2}{10}}
 \citation{Japhet2013}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Application to a Domain Decomposition Method}{14}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}The Schwarz Methods}{14}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}ASM with the approximate TBCs for the dispersive equation}{15}}
-\newlabel{eq:problemDDM1}{{30}{15}}
-\newlabel{eq:problemDDM2}{{31}{15}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Error in the converged solution}{16}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Study of the error in the DDM method for the dispersion equation}{16}}
-\newlabel{eq:FDdiscretization}{{36}{16}}
-\newlabel{eq:TBCsIterOmega1A}{{37}{17}}
-\newlabel{eq:TBCsIterOmega1B}{{38}{17}}
-\newlabel{eq:TBCsIterOmega2}{{39}{17}}
-\newlabel{eq:TBCsCVOmega1A}{{40}{17}}
-\newlabel{eq:TBCsCVOmega1B}{{41}{17}}
-\newlabel{eq:TBCsCVOmega2}{{42}{18}}
-\newlabel{eq:diffEquations}{{43}{18}}
-\@writefile{toc}{\contentsline {paragraph}{Numerical verification of the error}{18}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Numerical verification of the order of convergence of the error due to the Domain Decomposition Method \relax }}{19}}
-\newlabel{fig:orderVerification}{{12}{19}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Corrections for the approximate TBCs}{19}}
-\@writefile{toc}{\contentsline {paragraph}{Determination of $\theta _1, \theta _1'$}{19}}
-\newlabel{eq:FDdiscretizationN}{{47}{19}}
-\newlabel{eq:modifiedTBC1}{{50}{20}}
-\@writefile{toc}{\contentsline {paragraph}{Determination of $\theta _2, \theta _2'$}{20}}
-\newlabel{eq:modifiedTBC2}{{52}{20}}
-\@writefile{toc}{\contentsline {paragraph}{Determination of $\theta _3, \theta _3'$}{20}}
-\newlabel{eq:FDdiscretizationNm1}{{54}{21}}
-\@writefile{toc}{\contentsline {paragraph}{Modification of the reference solution}{21}}
-\newlabel{eq:uncenteredFDdiscretizationN}{{56}{22}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Optimization of the CBCs (speed of convergence)}{22}}
-\newlabel{eq:criteriaConvergence}{{57}{22}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Application to a Domain Decomposition Method}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Schwarz Method}{11}}
+\citation{Xavieretal2008}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}ASM with the approximate TBCs for the dispersive equation}{12}}
+\newlabel{eq:problemDDM1}{{24}{13}}
+\newlabel{eq:problemDDM2}{{25}{13}}
+\newlabel{eq:externalBCsDDM}{{26}{13}}
+\@writefile{toc}{\contentsline {paragraph}{Remarks on the notation}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Error in the converged solution}{14}}
+\newlabel{eq:FDdiscretization}{{30}{14}}
+\newlabel{eq:uncenteredFDdiscretization0}{{31}{14}}
+\newlabel{eq:TBCsIterOmega1A}{{32}{15}}
+\newlabel{eq:TBCsIterOmega1B}{{33}{15}}
+\newlabel{eq:TBCsIterOmega2}{{34}{15}}
+\newlabel{eq:TBCsCVOmega1A}{{35}{15}}
+\newlabel{eq:TBCsCVOmega1B}{{36}{15}}
+\newlabel{eq:TBCsCVOmega2}{{37}{15}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Analytical proof of error = $O(\Delta x)$}{16}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Numerical verification of the error}{16}}
+\newlabel{eq:errorDDM}{{39}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Numerical verification of the order of convergence of the error due to the Domain Decomposition Method \relax }}{16}}
+\newlabel{fig:orderVerification}{{3}{16}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Corrections for the approximate TBCs}{17}}
+\@writefile{toc}{\contentsline {paragraph}{Determination of $\theta _1, \theta _1'$}{17}}
+\newlabel{eq:FDdiscretizationN}{{41}{17}}
+\newlabel{eq:modifiedTBC1}{{44}{17}}
+\@writefile{toc}{\contentsline {paragraph}{Determination of $\theta _2, \theta _2'$}{17}}
+\newlabel{eq:modifiedTBC2}{{46}{18}}
+\@writefile{toc}{\contentsline {paragraph}{Determination of $\theta _3, \theta _3'$}{18}}
+\newlabel{eq:FDdiscretizationNm1}{{48}{18}}
+\@writefile{toc}{\contentsline {paragraph}{Remark : modification of the reference solution}{19}}
+\newlabel{eq:uncenteredFDdiscretizationN}{{50}{19}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Optimization of the IBCs (speed of convergence)}{19}}
+\newlabel{eq:criteriaConvergence}{{51}{20}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}Test varying the initial time step and the interface position}{20}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline {a}{\ignorespaces General view for positive and negative coefficients \relax }}{21}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline {b}{\ignorespaces Detail for $c \geq 0.$ \relax }}{21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed interface and different values of $t_0$) \relax }}{21}}
+\newlabel{fig:optimVarT0}{{4}{21}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline {a}{\ignorespaces General view for positive and negative coefficients \relax }}{21}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline {b}{\ignorespaces Detail for $c \geq 0$ \relax }}{21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $t_0$ and different positions of the interface \relax }}{21}}
+\newlabel{fig:optimVarInterface}{{5}{21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Error evolution with the iterations for the fastest results \relax }}{22}}
+\newlabel{fig:errorEvolution}{{6}{22}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}Tests varying $\Delta t$ and $\Delta x$}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $2N = 250$ and different values of $\Delta t$) \relax }}{22}}
+\newlabel{fig:niterxCoefVarDt}{{7}{22}}
+\bibdata{../may/biblio}
+\bibcite{Xavieretal2008}{1}
+\bibcite{besse2015}{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $\Delta t = 0.02$ and different values of $\Delta x$) \relax }}{23}}
+\newlabel{fig:niterxCoefVarDx}{{8}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Optimal coefficients as function of the time step and the space step\relax }}{23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Partial conclusion}{23}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{23}}
+\bibcite{laplaceTransform}{3}
+\bibcite{Japhet2003}{4}
+\bibcite{zheng2008}{5}

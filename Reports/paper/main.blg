@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: abbrv.bst
+Database file #1: ../may/biblio.bib
+Warning--I didn't find a database entry for "Japhet2013"
+You've used 5 entries,
+            2118 wiz_defined-function locations,
+            529 strings with 4764 characters,
+and the built_in function-call counts, 1473 in all, are:
+= -- 141
+> -- 84
+< -- 0
++ -- 33
+- -- 28
+* -- 106
+:= -- 269
+add.period$ -- 15
+call.type$ -- 5
+change.case$ -- 29
+chr.to.int$ -- 0
+cite$ -- 5
+duplicate$ -- 41
+empty$ -- 101
+format.name$ -- 28
+if$ -- 290
+int.to.chr$ -- 0
+int.to.str$ -- 5
+missing$ -- 2
+newline$ -- 28
+num.names$ -- 10
+pop$ -- 25
+preamble$ -- 1
+purify$ -- 24
+quote$ -- 0
+skip$ -- 32
+stack$ -- 0
+substring$ -- 77
+swap$ -- 3
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 20
+warning$ -- 0
+while$ -- 13
+width$ -- 6
+write$ -- 52
+(There was 1 warning)

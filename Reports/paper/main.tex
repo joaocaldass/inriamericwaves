@@ -9,6 +9,8 @@
 \usepackage{numprint} % round numbers
 \usepackage{siunitx} % round numbers
 \usepackage{booktabs}  % nice looking tables
+\usepackage{indentfirst} % indent first line after section title
+\usepackage{breqn} %break inline equation
 
 \author{Joao Guilherme Caldas Steinstraesser}
 
@@ -16,11 +18,18 @@
 
 \newcommand{\laplinv}{\mathcal{L}^{-1}}
 
+\bibliographystyle{abbrv}
+
 \begin{document}
 
-\input{images}
+\tableofcontents
+\newpage
+%\input{images}
+\input{intro}
+\input{errors}
 \input{derivationTBC}
 \input{approximationTBC}
 \input{DDM}
-
+\input{conclusion}
+\bibliography{../may/biblio}
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  20 JUN 2016 17:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  21 JUN 2016 17:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -799,44 +799,154 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \@lastruleclass=\count161
 \@thisrulewidth=\dimen178
 )
-(./main.aux
-
-LaTeX Warning: Label `tab:firstTestsP0' multiply defined.
-
-
-LaTeX Warning: Label `eq:appDiscTBCP0' multiply defined.
-
-
-LaTeX Warning: Label `tab:firstTestsP1' multiply defined.
-
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/indentfirst.sty
+Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 )
+(/usr/local/texlive/2015/texmf-dist/tex/latex/breqn/breqn.sty
+Package: breqn 2015/08/11 v0.98d Breaking equations
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/breqn/flexisym.sty
+Package: flexisym 2015/08/11 v0.98d Make math characters macros
+LaTeX Info: Redefining \textprime on input line 299.
+LaTeX Info: Redefining \not on input line 357.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/breqn/cmbase.sym
+File: cmbase.sym 2007/12/19 v0.92
+LaTeX Info: Redefining \hbar on input line 324.
+LaTeX Info: Redefining \surd on input line 326.
+LaTeX Info: Redefining \angle on input line 334.
+LaTeX Info: Redefining \neq on input line 335.
+LaTeX Info: Redefining \mapsto on input line 336.
+LaTeX Info: Redefining \cong on input line 337.
+LaTeX Info: Redefining \notin on input line 340.
+LaTeX Info: Redefining \rightleftharpoons on input line 341.
+LaTeX Info: Redefining \doteq on input line 342.
+LaTeX Info: Redefining \hookrightarrow on input line 343.
+LaTeX Info: Redefining \hookleftarrow on input line 344.
+LaTeX Info: Redefining \bowtie on input line 345.
+LaTeX Info: Redefining \models on input line 346.
+LaTeX Info: Redefining \Longrightarrow on input line 347.
+LaTeX Info: Redefining \longrightarrow on input line 348.
+LaTeX Info: Redefining \Longleftarrow on input line 349.
+LaTeX Info: Redefining \longleftarrow on input line 350.
+LaTeX Info: Redefining \longmapsto on input line 351.
+LaTeX Info: Redefining \longleftrightarrow on input line 352.
+LaTeX Info: Redefining \Longleftrightarrow on input line 353.
+LaTeX Info: Redefining \cdots on input line 357.
+LaTeX Info: Redefining \vdots on input line 360.
+LaTeX Info: Redefining \ddots on input line 365.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/breqn/mathstyle.sty
+Package: mathstyle 2015/08/11 v0.98d Tracking mathstyle implicitly
+LaTeX Info: Redefining \displaystyle on input line 93.
+LaTeX Info: Redefining \textstyle on input line 95.
+LaTeX Info: Redefining \scriptstyle on input line 97.
+LaTeX Info: Redefining \scriptscriptstyle on input line 99.
+LaTeX Info: Redefining \genfrac on input line 145.
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count162
+\calc@Bcount=\count163
+\calc@Adimen=\dimen179
+\calc@Bdimen=\dimen180
+\calc@Askip=\skip62
+\calc@Bskip=\skip63
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count164
+\calc@Cskip=\skip64
+)
+\inf@bad=\count165
+\maxint=\count166
+\listwidth=\dimen181
+\eqnumsep=\dimen182
+\eqmargin=\dimen183
+\eqlinespacing=\skip65
+\eqlineskip=\skip66
+\eqlineskiplimit=\dimen184
+\eqbinoffset=\muskip17
+\eqdelimoffset=\muskip18
+\eqindentstep=\dimen185
+\eqstyle=\toks26
+\eqbreakdepth=\count167
+\eqinterlinepenalty=\count168
+\intereqpenalty=\count169
+\intereqskip=\skip67
+\prerelpenalty=\count170
+\prebinoppenalty=\count171
+\Dmedmuskip=\muskip19
+\Dthickmuskip=\muskip20
+\eqleftskip=\skip68
+\eqrightskip=\skip69
+\eq@vspan=\skip70
+\eq@binoffset=\muskip21
+\EQ@box=\box50
+\EQ@copy=\box51
+\EQ@numbox=\box52
+\eq@wdNum=\dimen186
+\GRP@numbox=\box53
+\grp@wdNum=\dimen187
+\eq@lines=\count172
+\eq@curline=\count173
+\eq@badness=\count174
+\EQ@vims=\count175
+\eq@dp=\dimen188
+\eq@wdL=\dimen189
+\eq@wdT=\dimen190
+\eq@wdMin=\dimen191
+\grp@wdL=\dimen192
+\grp@wdR=\dimen193
+\grp@wdT=\dimen194
+\eq@wdRmax=\dimen195
+\eq@firstht=\dimen196
+\eq@wdCond=\dimen197
+\eq@indentstep=\dimen198
+\eq@linewidth=\dimen199
+\grp@linewidth=\dimen256
+\eq@hshift=\dimen257
+\eq@given@sidespace=\dimen258
+\mathindent=\dimen259
+\eq@final@linecount=\count176
+\eq@wdR=\dimen260
+\EQ@continue=\toks27
+\lr@level=\count177
+\GRP@queue=\toks28
+\GRP@box=\box54
+\GRP@wholebox=\box55
+\darraycolsep=\skip71
+\cur@row=\count178
+\cur@col=\count179
+\conditionsep=\skip72
+) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
- (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+
+(/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count162
-\scratchdimen=\dimen179
-\scratchbox=\box50
-\nofMPsegments=\count163
-\nofMParguments=\count164
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count165
-\MPscratchDim=\dimen180
-\MPnumerator=\count166
-\makeMPintoPDFobject=\count167
-\everyMPtoPDFconversion=\toks27
+\scratchcounter=\count180
+\scratchdimen=\dimen261
+\scratchbox=\box56
+\nofMPsegments=\count181
+\nofMParguments=\count182
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count183
+\MPscratchDim=\dimen262
+\MPnumerator=\count184
+\makeMPintoPDFobject=\count185
+\everyMPtoPDFconversion=\toks30
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -969,347 +1079,126 @@ Dictionary: translator-basic-dictionary, Language: English
 (/usr/local/texlive/2015/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
 File: siunitx-abbreviations.cfg 2016/03/01 v2.6q siunitx: Abbreviated units
 )
-\c__siunitx_mathsf_int=\count168
-LaTeX Font Info:    Try loading font information for U+msa on input line 19.
+\c__siunitx_mathsf_int=\count186
+LaTeX Font Info:    Try loading font information for U+msa on input line 23.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 19.
+LaTeX Font Info:    Try loading font information for U+msb on input line 23.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-\c__siunitx_mathtt_int=\count169
- (./images.tex
-<figures/firstTestsP0Snap2.png, id=1, 433.62pt x 289.08pt>
-File: figures/firstTestsP0Snap2.png Graphic file (type png)
+\c__siunitx_mathtt_int=\count187
+ (./main.toc)
+\tf@toc=\write3
+\openout3 = `main.toc'.
 
-<use figures/firstTestsP0Snap2.png>
-Package pdftex.def Info: figures/firstTestsP0Snap2.png used on input line 6.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 6--7
-[][] 
- []
-
-<figures/firstTestsP0Snap4.png, id=3, 433.62pt x 289.08pt>
-File: figures/firstTestsP0Snap4.png Graphic file (type png)
-
-<use figures/firstTestsP0Snap4.png>
-Package pdftex.def Info: figures/firstTestsP0Snap4.png used on input line 9.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 9--10
-[][] 
- []
-
-
-Package caption Warning: \captionsetup{type*=...} or \captionof
-(caption)                outside box or environment on input line 11.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 5--11
-$[]$ $[]$ 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 26
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 27
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 28
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 29
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 30
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 31
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 32
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 33
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 34
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 36
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 45
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 46
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 47
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 48
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 49
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 50
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 51
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 52
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 53
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 55
- 
- []
 
 [1
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./figur
-es/firstTestsP0Snap2.png> <./figures/firstTestsP0Snap4.png>] [2]
-<figures/errorOptimOnlyL2.png, id=23, 433.62pt x 289.08pt>
-File: figures/errorOptimOnlyL2.png Graphic file (type png)
-
-<use figures/errorOptimOnlyL2.png>
-Package pdftex.def Info: figures/errorOptimOnlyL2.png used on input line 65.
-(pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
-
-<figures/errorOptimOnlyL2Detail.png, id=24, 433.62pt x 289.08pt>
-File: figures/errorOptimOnlyL2Detail.png Graphic file (type png)
-
-<use figures/errorOptimOnlyL2Detail.png>
-Package pdftex.def Info: figures/errorOptimOnlyL2Detail.png used on input line 
-69.
-(pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
-
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 64--72
-$[]$ $[]$ 
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+(./intro.tex) (./errors.tex) (./derivationTBC.tex [2]) (./approximationTBC.tex
+Overfull \hbox (8.18576pt too wide) in paragraph at lines 1--1
+[]\OT1/cmr/bx/n/17.28 Approximations for the Trans-par-ent Bound-
  []
 
-[3 <./figures/errorOptimOnlyL2.png> <./figures/errorOptimOnlyL2Detail.png>]
-<figures/convergenceVerification.png, id=31, 433.62pt x 289.08pt>
-File: figures/convergenceVerification.png Graphic file (type png)
-
-<use figures/convergenceVerification.png>
-Package pdftex.def Info: figures/convergenceVerification.png used on input line
- 95.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-<figures/NiterxCoefVarT0NegativeCoef.png, id=32, 433.62pt x 289.08pt>
-File: figures/NiterxCoefVarT0NegativeCoef.png Graphic file (type png)
-
-<use figures/NiterxCoefVarT0NegativeCoef.png>
-Package pdftex.def Info: figures/NiterxCoefVarT0NegativeCoef.png used on input 
-line 104.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
-
-<figures/NiterxCoefVarT0.png, id=33, 433.62pt x 289.08pt>
-File: figures/NiterxCoefVarT0.png Graphic file (type png)
-
-<use figures/NiterxCoefVarT0.png>
-Package pdftex.def Info: figures/NiterxCoefVarT0.png used on input line 110.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
-
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 102--114
-$[]$ $[]$ 
- []
-
-<figures/NiterxCoefVarInterfaceNegativeCoef.png, id=34, 433.62pt x 289.08pt>
-File: figures/NiterxCoefVarInterfaceNegativeCoef.png Graphic file (type png)
-
-<use figures/NiterxCoefVarInterfaceNegativeCoef.png>
-Package pdftex.def Info: figures/NiterxCoefVarInterfaceNegativeCoef.png used on
- input line 118.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
-
-<figures/NiterxCoefVarInterface.png, id=35, 433.62pt x 289.08pt>
-File: figures/NiterxCoefVarInterface.png Graphic file (type png)
-
-<use figures/NiterxCoefVarInterface.png>
-Package pdftex.def Info: figures/NiterxCoefVarInterface.png used on input line 
-124.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
-
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 116--128
-[]$[]$ $[]$ 
- []
-
-[4 <./figures/convergenceVerification.png> <./figures/NiterxCoefVarT0NegativeCo
-ef.png> <./figures/NiterxCoefVarT0.png>]
-<figures/errorEvolutionFixedT0BNegativeCoef.png, id=42, 433.62pt x 289.08pt>
-File: figures/errorEvolutionFixedT0BNegativeCoef.png Graphic file (type png)
-
-<use figures/errorEvolutionFixedT0BNegativeCoef.png>
-Package pdftex.def Info: figures/errorEvolutionFixedT0BNegativeCoef.png used on
- input line 131.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-<figures/NiterxCoefVarDtdx500.png, id=43, 433.62pt x 289.08pt>
-File: figures/NiterxCoefVarDtdx500.png Graphic file (type png)
-
-<use figures/NiterxCoefVarDtdx500.png>
-Package pdftex.def Info: figures/NiterxCoefVarDtdx500.png used on input line 13
-6.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-<figures/NiterxCoefVarDxdt2em2.png, id=44, 433.62pt x 289.08pt>
-File: figures/NiterxCoefVarDxdt2em2.png Graphic file (type png)
-
-<use figures/NiterxCoefVarDxdt2em2.png>
-Package pdftex.def Info: figures/NiterxCoefVarDxdt2em2.png used on input line 1
-41.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
- [5 <./figures/NiterxCoefVarInterfaceNegativeCoef.png> <./figures/NiterxCoefVar
-Interface.png> <./figures/errorEvolutionFixedT0BNegativeCoef.png> <./figures/Ni
-terxCoefVarDtdx500.png>]
-<figures/OptimalCoefVarDxDt.png, id=52, 433.62pt x 289.08pt>
-File: figures/OptimalCoefVarDxDt.png Graphic file (type png)
-
-<use figures/OptimalCoefVarDxDt.png>
-Package pdftex.def Info: figures/OptimalCoefVarDxDt.png used on input line 146.
-
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-) (./derivationTBC.tex
-
-LaTeX Warning: Citation `besse2015' on page 6 undefined on input line 3.
-
-[6 <./figures/NiterxCoefVarDxdt2em2.png> <./figures/OptimalCoefVarDxDt.png>]
-
-LaTeX Warning: Reference `eq:kdv' on page 7 undefined on input line 31.
-
-
-LaTeX Warning: Citation `besse2015' on page 7 undefined on input line 40.
-
-) (./approximationTBC.tex
-Underfull \hbox (badness 10000) in paragraph at lines 1--1
-[]\OT1/cmr/bx/n/17.28 Approximations for the Trans-par-ent
- []
-
-
-LaTeX Warning: Citation `besse2015' on page 7 undefined on input line 5.
-
-
-LaTeX Warning: Citation `besse2015' on page 7 undefined on input line 5.
-
-[7]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 21.
- (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 22.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 21.
- [8]
-
-LaTeX Warning: Citation `besse2015' on page 9 undefined on input line 90.
-
-
-LaTeX Warning: Citation `zheng2008' on page 9 undefined on input line 90.
-
-[9]
-
-LaTeX Warning: Citation `besse2015' on page 10 undefined on input line 115.
-
-File: figures/firstTestsP0Snap2.png Graphic file (type png)
-<use figures/firstTestsP0Snap2.png>
-Package pdftex.def Info: figures/firstTestsP0Snap2.png used on input line 129.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 129--130
- [][] 
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 22.
+ [3] [4] [5]
+Overfull \hbox (43.3311pt too wide) in paragraph at lines 123--124
+\OT1/cmr/m/n/12 we made sev-eral tests with all the pos-si-ble pairs $\OML/cmm/
+m/it/12 c[]; c[] \OMS/cmsy/m/n/12 2 f^^@\OT1/cmr/m/n/12 10\OML/cmm/m/it/12 ; \O
+MS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 ^^@\OT1/
+cmr/m/n/12 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/
+12 0\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 1\OML
+/cmm/m/it/12 ; \OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 10\OMS/cmsy/
+m/n/12 g[]$\OT1/cmr/m/n/12 .
  []
 
-<figures/firstTestsP0Snap3.png, id=74, 433.62pt x 289.08pt>
-File: figures/firstTestsP0Snap3.png Graphic file (type png)
+<figures/BessefirstTestsP0Snap2.png, id=30, 433.62pt x 289.08pt>
+File: figures/BessefirstTestsP0Snap2.png Graphic file (type png)
 
-<use figures/firstTestsP0Snap3.png>
-Package pdftex.def Info: figures/firstTestsP0Snap3.png used on input line 133.
+<use figures/BessefirstTestsP0Snap2.png>
+Package pdftex.def Info: figures/BessefirstTestsP0Snap2.png used on input line 
+127.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 127--128
+[][] 
+ []
+
+<figures/BessefirstTestsP0Snap3.png, id=32, 433.62pt x 289.08pt>
+File: figures/BessefirstTestsP0Snap3.png Graphic file (type png)
+
+<use figures/BessefirstTestsP0Snap3.png>
+Package pdftex.def Info: figures/BessefirstTestsP0Snap3.png used on input line 
+130.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 130--131
+[][] 
+ []
+
+<figures/BessefirstTestsP0Snap4.png, id=33, 433.62pt x 289.08pt>
+File: figures/BessefirstTestsP0Snap4.png Graphic file (type png)
+
+<use figures/BessefirstTestsP0Snap4.png>
+Package pdftex.def Info: figures/BessefirstTestsP0Snap4.png used on input line 
+133.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
 Overfull \hbox (21.80946pt too wide) in paragraph at lines 133--134
- [][] 
+[][] 
  []
 
-File: figures/firstTestsP0Snap4.png Graphic file (type png)
-<use figures/firstTestsP0Snap4.png>
-Package pdftex.def Info: figures/firstTestsP0Snap4.png used on input line 137.
+<figures/BessefirstTestsP0Snap5.png, id=34, 433.62pt x 289.08pt>
+File: figures/BessefirstTestsP0Snap5.png Graphic file (type png)
+
+<use figures/BessefirstTestsP0Snap5.png>
+Package pdftex.def Info: figures/BessefirstTestsP0Snap5.png used on input line 
+136.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 137--138
- [][] 
- []
-
-<figures/firstTestsP0Snap5.png, id=75, 433.62pt x 289.08pt>
-File: figures/firstTestsP0Snap5.png Graphic file (type png)
-
-<use figures/firstTestsP0Snap5.png>
-Package pdftex.def Info: figures/firstTestsP0Snap5.png used on input line 141.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 141--142
- [][] 
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 136--137
+[][] 
  []
 
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 127--143
+Overfull \hbox (20.2359pt too wide) in paragraph at lines 126--138
 []$[]$ $[]$
  []
 
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 127--143
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 126--138
 []$ $[]$ 
  []
 
-[10 <./figures/firstTestsP0Snap3.png>]
+
+Overfull \hbox (11.74988pt too wide) detected at line 148
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 149
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 150
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 151
+ 
+ []
+
+
 Overfull \hbox (11.74988pt too wide) detected at line 152
  
  []
@@ -1335,285 +1224,270 @@ Overfull \hbox (11.74988pt too wide) detected at line 156
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 157
- 
- []
-
-
 Overfull \hbox (11.74988pt too wide) detected at line 158
  
  []
 
-
-Overfull \hbox (11.74988pt too wide) detected at line 159
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 160
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 162
- 
- []
-
-
-Overfull \hbox (70.66382pt too wide) detected at line 178
-[] []
- []
-
-[11 <./figures/firstTestsP0Snap5.png>]
-Overfull \hbox (6.271pt too wide) detected at line 185
+[6 <./figures/BessefirstTestsP0Snap2.png> <./figures/BessefirstTestsP0Snap3.png
+> <./figures/BessefirstTestsP0Snap4.png> <./figures/BessefirstTestsP0Snap5.png>
+] [7]
+Overfull \hbox (61.52502pt too wide) detected at line 192
 [] []
  []
 
 
-Overfull \hbox (39.95622pt too wide) detected at line 191
+Overfull \hbox (6.271pt too wide) detected at line 199
 [] []
  []
 
 
-Underfull \hbox (badness 1635) in paragraph at lines 195--196
-\OT1/cmr/m/n/12 We re-peated the nu-mer-i-cal tests that we made for the ap-pro
-x-i-ma-
+Overfull \hbox (39.95622pt too wide) detected at line 205
+[] []
+ []
+
+[8]
+Overfull \hbox (28.03668pt too wide) in paragraph at lines 209--210
+\OT1/cmr/m/n/12 mak-ing the co-ef-fi-cients $\OML/cmm/m/it/12 c[]$ \OT1/cmr/m/n
+/12 and $\OML/cmm/m/it/12 d[]$ \OT1/cmr/m/n/12 as-sume the val-ues in $\OMS/cms
+y/m/n/12 f^^@\OT1/cmr/m/n/12 10\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 ^^@\OT1/cmr/
+m/n/12 1\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 0\OML/cmm/m/it/1
+2 :\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/m/it/12 ; \OT1
+/cmr/m/n/12 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n
+/12 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 10\OMS/cmsy/m/n/12 g$\OT1/cmr/m/n/12 .
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 204
+Overfull \hbox (11.74988pt too wide) detected at line 218
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 205
+Overfull \hbox (11.74988pt too wide) detected at line 219
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 206
+Overfull \hbox (11.74988pt too wide) detected at line 220
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 207
+Overfull \hbox (11.74988pt too wide) detected at line 221
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 208
+Overfull \hbox (11.74988pt too wide) detected at line 222
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 209
+Overfull \hbox (11.74988pt too wide) detected at line 223
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 210
+Overfull \hbox (11.74988pt too wide) detected at line 224
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 211
+Overfull \hbox (11.74988pt too wide) detected at line 225
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 212
+Overfull \hbox (11.74988pt too wide) detected at line 226
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 214
+Overfull \hbox (11.74988pt too wide) detected at line 228
  
  []
 
-[12]
-
-LaTeX Warning: Citation `besse2015' on page 13 undefined on input line 225.
-
-
-LaTeX Warning: Reference `fig:optimTBC' on page 13 undefined on input line 227.
-
-
+[9] <figures/errorOptimOnlyL2.png, id=56, 433.62pt x 289.08pt>
 File: figures/errorOptimOnlyL2.png Graphic file (type png)
+
 <use figures/errorOptimOnlyL2.png>
-Package pdftex.def Info: figures/errorOptimOnlyL2.png used on input line 230.
-(pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
-File: figures/errorOptimOnlyL2Detail.png Graphic file (type png)
- <use figures/errorOptimOnlyL2Detail.png>
-Package pdftex.def Info: figures/errorOptimOnlyL2Detail.png used on input line 
-234.
+Package pdftex.def Info: figures/errorOptimOnlyL2.png used on input line 254.
 (pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 229--237
+<figures/errorOptimOnlyL2Detail.png, id=57, 433.62pt x 289.08pt>
+File: figures/errorOptimOnlyL2Detail.png Graphic file (type png)
+
+<use figures/errorOptimOnlyL2Detail.png>
+Package pdftex.def Info: figures/errorOptimOnlyL2Detail.png used on input line 
+258.
+(pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
+
+Overfull \hbox (20.2359pt too wide) in paragraph at lines 253--261
 []$[]$ $[]$ 
  []
 
 ) (./DDM.tex
+Overfull \hbox (45.27779pt too wide) in paragraph at lines 1--1
+[]\OT1/cmr/bx/n/17.28 Application to a Do-main De-com-po-si-tion Method 
+ []
 
-LaTeX Warning: Reference `eq:TBC3' on page 13 undefined on input line 3.
+[10 <./figures/errorOptimOnlyL2.png> <./figures/errorOptimOnlyL2Detail.png>]
 
-[13]
+LaTeX Warning: Citation `Japhet2013' on page 11 undefined on input line 26.
 
-LaTeX Warning: Citation `Japhet2003' on page 14 undefined on input line 7.
-
-
-LaTeX Warning: Citation `Japhet2013' on page 14 undefined on input line 34.
-
-
-LaTeX Warning: Reference `REFTBCMAY' on page 14 undefined on input line 34.
-
-[14]
-
-LaTeX Warning: Reference `REFTBCMAY' on page 15 undefined on input line 36.
-
-[15]
-
-LaTeX Warning: Reference `eq:problemDDM1' on page 16 undefined on input line 76
-.
-
-
-LaTeX Warning: Reference `eq:problemDDM2' on page 16 undefined on input line 76
-.
-
-
-LaTeX Warning: Reference `eq:linearizedKdV' on page 16 undefined on input line 
-83.
-
-[16]
-Overfull \hbox (38.56067pt too wide) detected at line 108
+[11] [12] [13] [14]
+Overfull \hbox (38.56067pt too wide) detected at line 132
 [] []
  []
 
 
-LaTeX Warning: Reference `eq:TBCsIterOmega1A' on page 17 undefined on input lin
-e 121.
+Overfull \hbox (1.90248pt too wide) detected at line 171
+[] []
+ []
 
+[15] <figures/convergenceVerification.png, id=79, 433.62pt x 289.08pt>
+File: figures/convergenceVerification.png Graphic file (type png)
 
-LaTeX Warning: Reference `eq:TBCsIterOmega2' on page 17 undefined on input line
- 121.
-
-
-Overfull \hbox (1.90248pt too wide) detected at line 147
+<use figures/convergenceVerification.png>
+Package pdftex.def Info: figures/convergenceVerification.png used on input line
+ 207.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+ [16 <./figures/convergenceVerification.png>]
+Overfull \hbox (88.88455pt too wide) detected at line 254
 [] []
  []
 
 [17]
-
-LaTeX Warning: Reference `eq:TBCsCVOmega1A' on page 18 undefined on input line 
-149.
-
-
-LaTeX Warning: Reference `eq:FDdiscretization' on page 18 undefined on input li
-ne 149.
-
-
-LaTeX Warning: Reference `eq:problemDDM1' on page 18 undefined on input line 16
-1.
-
-
-LaTeX Warning: Reference `eq:problemDDM2' on page 18 undefined on input line 16
-1.
-
-
-LaTeX Warning: Reference `fig:orderVerification' on page 18 undefined on input 
-line 173.
-
-File: figures/convergenceVerification.png Graphic file (type png)
-<use figures/convergenceVerification.png>
-Package pdftex.def Info: figures/convergenceVerification.png used on input line
- 176.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
- [18]
-
-LaTeX Warning: Reference `eq:FDdiscretization' on page 19 undefined on input li
-ne 197.
-
-
-Overfull \hbox (88.88455pt too wide) detected at line 222
-[] []
- []
-
-[19]
-
-LaTeX Warning: Reference `eq:FDdiscretization' on page 20 undefined on input li
-ne 224.
-
-
-LaTeX Warning: Reference `eq:diffEquations' on page 20 undefined on input line 
-228.
-
-
-LaTeX Warning: Reference `eq:FDdiscretization' on page 20 undefined on input li
-ne 249.
-
-
-LaTeX Warning: Reference `eq:modifiedTBC2' on page 20 undefined on input line 2
-54.
-
-
-LaTeX Warning: Reference `eq:TBCsIterOmega1B' on page 20 undefined on input lin
-e 254.
-
-
-LaTeX Warning: Reference `eq:FDdiscretization' on page 20 undefined on input li
-ne 260.
-
-[20]
-Overfull \hbox (78.16164pt too wide) in paragraph at lines 287--287
+Overfull \hbox (78.16164pt too wide) in paragraph at lines 319--319
 [] 
  []
 
-[21]
+[18] [19] [20]
+<figures/NiterxCoefVarT0NegativeCoefCorrectN.png, id=97, 433.62pt x 289.08pt>
+File: figures/NiterxCoefVarT0NegativeCoefCorrectN.png Graphic file (type png)
 
-LaTeX Warning: Reference `sec:TBC' on page 22 undefined on input line 300.
+<use figures/NiterxCoefVarT0NegativeCoefCorrectN.png>
+Package pdftex.def Info: figures/NiterxCoefVarT0NegativeCoefCorrectN.png used o
+n input line 375.
+(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
+<figures/NiterxCoefVarT0CorrectN.png, id=98, 433.62pt x 289.08pt>
+File: figures/NiterxCoefVarT0CorrectN.png Graphic file (type png)
 
-Overfull \hbox (2.1619pt too wide) detected at line 307
-\OML/cmm/m/it/12 e[] \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 jj[] ^^@ []jj[] \OT1/cm
-r/m/n/12 = []
+<use figures/NiterxCoefVarT0CorrectN.png>
+Package pdftex.def Info: figures/NiterxCoefVarT0CorrectN.png used on input line
+ 381.
+(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
+
+Overfull \hbox (20.2359pt too wide) in paragraph at lines 373--385
+[]$[]$ $[]$ 
  []
 
-) [22] (./main.aux)
+
+<figures/NiterxCoefVarInterfaceNegativeCoefCorrectN.png, id=99, 433.62pt x 289.
+08pt>
+File: figures/NiterxCoefVarInterfaceNegativeCoefCorrectN.png Graphic file (type
+ png)
+ <use figures/NiterxCoefVarInterfaceNegativeCoefCorrectN.png>
+Package pdftex.def Info: figures/NiterxCoefVarInterfaceNegativeCoefCorrectN.png
+ used on input line 391.
+(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
+
+<figures/NiterxCoefVarInterfaceCorrectN.png, id=100, 433.62pt x 289.08pt>
+File: figures/NiterxCoefVarInterfaceCorrectN.png Graphic file (type png)
+
+<use figures/NiterxCoefVarInterfaceCorrectN.png>
+Package pdftex.def Info: figures/NiterxCoefVarInterfaceCorrectN.png used on inp
+ut line 397.
+(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
+
+Overfull \hbox (20.2359pt too wide) in paragraph at lines 389--401
+[]$[]$ $[]$ 
+ []
+
+
+<figures/errorEvolutionFixedT0BNegativeCoefCorrectN.png, id=101, 433.62pt x 289
+.08pt>
+File: figures/errorEvolutionFixedT0BNegativeCoefCorrectN.png Graphic file (type
+ png)
+ <use figures/errorEvolutionFixedT0BNegativeCoefCorrectN.png>
+Package pdftex.def Info: figures/errorEvolutionFixedT0BNegativeCoefCorrectN.png
+ used on input line 408.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+ [21 <./figures/NiterxCoefVarT0NegativeCoefCorrectN.png> <./figures/NiterxCoefV
+arT0CorrectN.png> <./figures/NiterxCoefVarInterfaceNegativeCoefCorrectN.png> <.
+/figures/NiterxCoefVarInterfaceCorrectN.png>]
+<figures/NiterxCoefVarDtdx250CorrectN.png, id=109, 433.62pt x 289.08pt>
+File: figures/NiterxCoefVarDtdx250CorrectN.png Graphic file (type png)
+
+<use figures/NiterxCoefVarDtdx250CorrectN.png>
+Package pdftex.def Info: figures/NiterxCoefVarDtdx250CorrectN.png used on input
+ line 421.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+
+<figures/NiterxCoefVarDxdt2em2CorrectN.png, id=110, 433.62pt x 289.08pt>
+File: figures/NiterxCoefVarDxdt2em2CorrectN.png Graphic file (type png)
+
+<use figures/NiterxCoefVarDxdt2em2CorrectN.png>
+Package pdftex.def Info: figures/NiterxCoefVarDxdt2em2CorrectN.png used on inpu
+t line 428.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+ [22 <./figures/errorEvolutionFixedT0BNegativeCoefCorrectN.png> <./figures/Nite
+rxCoefVarDtdx250CorrectN.png>]
+<figures/OptimalCoefVarDxDtCorrectN.png, id=116, 433.62pt x 289.08pt>
+File: figures/OptimalCoefVarDxDtCorrectN.png Graphic file (type png)
+
+<use figures/OptimalCoefVarDxDtCorrectN.png>
+Package pdftex.def Info: figures/OptimalCoefVarDxDtCorrectN.png used on input l
+ine 434.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+) (./conclusion.tex) (./main.bbl
+[23 <./figures/NiterxCoefVarDxdt2em2CorrectN.png> <./figures/OptimalCoefVarDxDt
+CorrectN.png>]
+Underfull \hbox (badness 1122) in paragraph at lines 22--26
+[]\OT1/cmr/m/n/12 C. Japhet and F. Nataf.  The best in-ter-face con-di-tions fo
+r Do-
+ []
+
+
+Underfull \hbox (badness 2512) in paragraph at lines 22--26
+\OT1/cmr/m/n/12 main De-com-pos-tion meth-ods : Ab-sorb-ing Bound-ary Con-di-ti
+ons.
+ []
+
+) [24] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 13778 strings out of 493027
- 276718 string characters out of 6134069
- 291307 words of memory out of 5000000
- 17179 multiletter control sequences out of 15000+600000
- 14323 words of font info for 57 fonts, out of 8000000 for 9000
+ 14576 strings out of 493027
+ 287388 string characters out of 6134069
+ 305629 words of memory out of 5000000
+ 17945 multiletter control sequences out of 15000+600000
+ 14670 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,11n,42p,10399b,545s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,17n,42p,10399b,561s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.p
-fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pf
-b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
-></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
-sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
-/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
-ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loc
-al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/tex
-live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (22 pages, 494109 bytes).
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
+r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
+local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
+cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
+l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
+15/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (24 pages, 504715 bytes).
 PDF statistics:
- 175 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
+ 181 PDF objects out of 1000 (max. 8388607)
+ 106 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  76 words of extra memory for PDF output out of 10000 (max. 10000000)
 

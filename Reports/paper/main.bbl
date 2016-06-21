@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+
+\bibitem{Xavieretal2008}
+X.~Antoine, A.~Arnold, C.~Besse, M.~Ehrhardt, and C.~Schädle.
+\newblock {A review of Transparent Boundary Conditions or linear and nonlinear
+  Schrödinger equations}.
+\newblock {\em {Communications in Compuational Physics}}, 4(4):{729--796},
+  October 2008.
+
+\bibitem{besse2015}
+C.~Besse, M.~Ehrhardt, and I.~Lacroix-Violet.
+\newblock {Discrete Artificial Boundary Conditions for the Korteweg-de Vries
+  Equation}.
+\newblock working paper or preprint, Jan. 2015.
+
+\bibitem{laplaceTransform}
+P.~Cheung.
+\newblock {Lecture 6 - Frequence-domain analysis : Laplace Transform}.
+\newblock [Imperial College of London - Signals and Linear Systems.
+
+\bibitem{Japhet2003}
+C.~Japhet and F.~Nataf.
+\newblock {The best interface conditions for Domain Decompostion methods :
+  Absorbing Boundary Conditions}.
+\newblock http://www.ann.jussieu.fr/~nataf/chapitre.pdf.
+
+\bibitem{zheng2008}
+C.~Zheng, X.~Wen, and H.~Han.
+\newblock Numerical solution to a linearized kdv equation on unbounded domain.
+\newblock {\em Numerical Methods for Partial Differential Equations},
+  24(2):383--399, 2008.
+
+\end{thebibliography}
