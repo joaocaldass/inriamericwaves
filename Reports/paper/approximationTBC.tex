@@ -1,5 +1,5 @@
 \section{Approximations for the Transparent Boundary Conditions for the dispersion equation}
-\label{sec:TBC}
+\label{sec:approxTBC}
 
 \indent The computation of the TBCs \eqref{eq:continuousTBC} is not simple due to the inverse Laplace transform that, which makes these conditions to be nonlocal in time. Therefore, we will propose approximations of the root \eqref{eq:lambda} that avoid integrations in time, making the TBCs considerably simpler.
 
@@ -10,7 +10,7 @@
 \begin{gather}
 \label{eq:TBCnoConvolution}
     \begin{cases}
-        u(t,a) - U_2 \laplinv \left( \frac{\lambda_1(s)^2}{s} \hat{u}_x(t,s) \right)  - U_2 \laplinv \left( \frac{\lambda_1(s)}{s}  \hat{u}_{xx}(t,s) \right) = 0 \\
+        u(t,a) - \laplinv \left( \frac{\lambda_1(s)^2}{s} \hat{u}_x(t,s) \right)  - \laplinv \left( \frac{\lambda_1(s)}{s}  \hat{u}_{xx}(t,s) \right) = 0 \\
         u(t,b) - \laplinv \left( \frac{1}{\lambda_1(s)^2}   \hat{u}_{xx}(t,s) \right) = 0 \\
         u_x(t,b) - \laplinv \left( \frac{1}{\lambda_1(s)}   \hat{u}_{xx}(t,s) \right) = 0 
     \end{cases}
@@ -46,7 +46,7 @@
 
 \noindent where $\delta (t)$ is the Dirac delta function and $*$ denotes the convolution operator.
 
-\indent The properties \eqref{eq:linearityLaplace} to \eqref{eq:convolutionLaplace} motivate us to approximate the operands of the inverse Laplace transforms in \eqref{eq:continuousTBC} by polynomials in $s$. We will initially use a constant polynomial for this approximation. Before that, we remark the following useful relations between the mentioned operands, as a consequence of \eqref{eq:lambda}
+\indent The properties \eqref{eq:linearityLaplace} to \eqref{eq:convolutionLaplace} motivate us to approximate the operands of the inverse Laplace transforms in \eqref{eq:continuousTBC} by polynomials in $s$. We will initially use a constant polynomial for this approximation. Before that, we remark the following useful relations between the mentioned operands, as a consequence of \eqref{eq:lambda}.
 
 \subsection{Approximation of the TBCs using a constant polynomial}
 
@@ -71,7 +71,7 @@
     \end{cases}
 \end{equation}
 
-\indent Considering a discrete domain with mesh size $\Delta x$ and points $x_0, ..., x_N$ and using finite difference approximations, the approximate TBCs (\ref{eq:appTBCP0}) are discretized as
+\indent Considering a discrete domain with mesh size $\Delta x$ and points $x_0, ..., x_N$ and using some finite difference approximations, the approximate TBCs (\ref{eq:appTBCP0}) are discretized as
 
 \begin{equation}
 \label{eq:appDiscTBCP0}
@@ -120,7 +120,7 @@ $$ e_{Tm} = \max\limits_{0 < n < T_{max}} (e^n) $$
 
 $$ e_{L2} = \sqrt{ \Delta t \sum_{n=1}^{T_{max}} (e^n)^2 } $$
 
-\indent In order to verify the influence of $c_L$ and $c_R$ on the computed solutions (and possibly identify a range of values that better approximate the TBCs), we made several tests with all the possible pairs $c_L,c_R \in \{-10,-1,-0.1,0,0.1,1,10\}^2$. The results were classified accordingly to their errors $e_{L2}$ (a criteria based on the error $e_{Tm}$ gives a similar result). The figure \ref{fig:firstTestsP0} shows, for some instants, a comparison between the best, the worst and the exact solution. For naming the worst result, we did not considered the ones in which the numerical solution diverged (following the arbitrary criteria $e_{L2} > 10$). 
+\indent In order to verify the influence of $c_L$ and $c_R$ on the computed solutions (and possibly identify a range of values that better approximate the TBCs), we made several tests with all the possible pairs $c_L,c_R \in \{-10,-1,-0.1,0,0.1,1,10\}^2$. The results were classified accordingly to their errors $e_{L2}$ (a criteria based on the error $e_{Tm}$ gives a similar result). The figure \ref{fig:firstTestsP0} shows, for some instants, a comparison between the best, the worst and the exact solution. For naming the worst result, we did not consider the ones in which the numerical solution diverged (following the arbitrary criteria $e_{L2} > 10$). 
 
 \begingroup
 \begin{minipage}{.5\linewidth}
@@ -165,7 +165,7 @@ $$ e_{L2} = \sqrt{ \Delta t \sum_{n=1}^{T_{max}} (e^n)^2 } $$
 
 \indent In a similar way as done above, we approximate  $\frac{\lambda^2}{s}$ by $P_1(s) = ds + c$. Then, using relations similar to \eqref{eq:appP0}, the inverse Laplace transforms in \eqref{eq:TBCnoConvolution} reads :
 
-\begin{equation}
+\begin{equation*}
 	\begin{aligned}
     \mathcal{L}^{-1} \left( \frac{\lambda^2}{s} \hat{u}_x(s,x) \right) = & \mathcal{L}^{-1} \left[ (ds+c) \hat{u}_x(t,s) \right] = \\
     			 & d\mathcal{L}^{-1} \left[ \hat{u}_{xt}(t,s) \right] + c \mathcal{L}^{-1} \left[ \hat{u}_{x}(t,s) \right] = \\
@@ -179,30 +179,30 @@ $$ e_{L2} = \sqrt{ \Delta t \sum_{n=1}^{T_{max}} (e^n)^2 } $$
     \mathcal{L}^{-1} \left( \frac{1}{\lambda} \hat{u}_{xx}(s,x) \right) = & \mathcal{L}^{-1} \left[ -(ds+c) \hat{u}_{xx}(t,s) \right] = \\
     			& -du_{xxt}(x,t) - du_{xx}(0,x)\delta (t) - cu_{xx}(x,t)
 \end{aligned}
-\end{equation}
+\end{equation*}
 
 \indent Using forward first order forward finite difference approximations for the first derivative in time, second order centered for the second derivative in time, and considering that the initial solution and its derivatives are equal to zero on the boundaries (which is the case of the test case treated here), we obtain the following discretized approximate TBCs : 
 
-\begin{equation}
+\begin{equation*}
 \label{eq:appDiscTBCP1}
 	\begin{aligned}
     u_0^{n+1} - \left( \frac{d_L}{\Delta t} + c_L \right) \left( \frac{u_1^{n+1} - u_0^{n+1}}{\Delta x}\right) +   \left( \frac{d_L^2}{\Delta t^2} + \frac{2d_Lc_L}{\Delta t} + c_L^2  \right) \left(  \frac{u_0^{n+1} - 2u_1^{n+1} + u_2^{n+1}}{\Delta x^2} \right)  = \\
         -\frac{d_L}{\Delta t}\left( \frac{u_1^{n} - u_0^{n}}{\Delta x}\right) +  \left( 2\frac{d_L^2}{\Delta t^2} + \frac{2d_Lc_L}{\Delta t}\right) \left(  \frac{u_0^{n} - 2u_1^n + u_2^{n}}{\Delta x^2} \right)    -  \frac{d_L^2}{\Delta t^2} \left(  \frac{u_0^{n-1} - 2u_1^{n-1} + u_2^{n-1}}{\Delta x^2} \right)
    \end{aligned}
-\end{equation} 
+\end{equation*} 
 
-\begin{equation}
+\begin{equation*}
 	\begin{aligned}
     u_N^{n+1} - \left( \frac{d_R^2}{\Delta t^2} + \frac{2d_Rc_R}{\Delta t} + c_R^2  \right) \left(  \frac{u_{N}^{n+1} - 2u_{N-1}^{n+1} + u_{N-2}^{n+1}}{\Delta x^2} \right) = \\
      -\left( 2\frac{d_R^2}{\Delta t^2} + \frac{2d_Rc_R}{\Delta t}\right) \left(  \frac{u_N^{n} - 2u_{N-1}^n + u_{N-2}^{n}}{\Delta x^2} \right) + \frac{d_R^2}{\Delta t^2} \left(  \frac{u_N^{n-1} - 2u_{N-1}^{n-1} + u_{N-2}^{n-1}}{\Delta x^2} \right)
     \end{aligned}
-\end{equation} 
+\end{equation*} 
    
-\begin{equation}
+\begin{equation*}
 	\begin{aligned}	
     \frac{u_N^{n+1} - u_{N-1}^{n+1}}{\Delta x} + \left( \frac{d_R}{\Delta t} + c_R \right) \left( \frac{u_N^{n+1} -2 u_{N-1}^{n+1} + u_{N-2}^{n+1}}{\Delta x^2}\right) =      \frac{d_R}{\Delta t}\left( \frac{u_{N}^{n} - 2u_{N-1}^{n} + u_{N-2}^n}{\Delta x^2}\right)
     \end{aligned}
-\end{equation}
+\end{equation*}
 
 \subsubsection{Initial numerical experiments}
 
@@ -231,21 +231,21 @@ $$ e_{L2} = \sqrt{ \Delta t \sum_{n=1}^{T_{max}} (e^n)^2 } $$
 
 \subsection{Partial conclusion}
 
-\indent It must be clear that our approach is not better than the one proposed by \cite{besse2015} what, in fact, is not the objective of the work developed here. Indeed, \cite{besse2015} derives TBCs for two discrete schemes, and the worst result among them, using the same $\Delta x $ and $\Delta t$ that we used here, presents an error $e_{L2} \approx 0.005$ for $t = 4$, while our best result has $e_{L2} \approx 0.1$ for the same instant.
+\indent It must be clear that our approach is not better than the one proposed by \cite{besse2015}, what, as discussed in the section \ref{sec:errors} of this paper, it is not the objective of the work developed here. Indeed, \cite{besse2015} derives TBCs for two discrete schemes, and the worst result among them, using the same $\Delta x $ and $\Delta t$ that we used here, presents an error $e_{L2} \approx 0.005$ for $t = 4$, while our best result has $e_{L2} \approx 0.1$ for the same instant.
 
-\indent However, we can say that the boundary conditions proposed here work relatively well as TBCs, with a very simple implementation and, consequently, low computation and memory costs. Moreover, as shown in the results of this section, the approximation using a linear polynomial, although the increment in the complexity (including time derivative terms up to the second derivative, what requires the storage of previous computed solutions), does not provide a better approximation for the TBC. Therefore, in the following, we will use only the linear approximation, which will be denoted as  
+\indent However, we can say that the boundary conditions proposed here work relatively well as TBCs, with a very simple implementation and, consequently, low computation and memory costs. Moreover, as shown in the results of this section, the approximation using a linear polynomial, although the increment in the complexity (including time derivative terms up to the second derivative, what requires the storage of previous computed solutions), does not provide a better approximation for the TBC, in comparison with the approximation using a constant polynomial. Therefore, in the following, we will use only this last approximation, for which the TBCs will be denoted as  
 
 \begin{equation*}
-    \begin{cases}
-        \Theta_1(u,x)^c_L = u(t,x) - c_L u_x(t,x)  + c_L^2  u_{xx}(t,x) \\
-        \Theta_2(u,x)^c_R =  u(t,x) - c_R^2    u_{xx}(t,x)\\
-        \Theta_3(u,x)^c_R = u_x(t,b) + c_R u_{xx}(t,s) 
-    \end{cases}
+    \begin{gathered}
+        \Theta_1^{c_L}(u,x) = u(t,x) - c_L u_x(t,x)  + c_L^2  u_{xx}(t,x) \\
+        \Theta_2^{c_R}(u,x) =  u(t,x) - c_R^2    u_{xx}(t,x)\\
+        \Theta_3^{c_R} (u,x)= u_x(t,x) + c_R u_{xx}(t,x) 
+    \end{gathered}
 \end{equation*}
 
 \subsection{Optimization of the approximate TBCs (minimization of the errors compared to the analytical solution)}
 
-\indent In this subsection, we investigate deeply the influence of this approximation over the error of the computed solution, compared with the analytical one. For this purpose, we repeat the computations, but with a much more refined range of coefficients, always using as criteria of quality the error $e_{L2}$ of each test.
+\indent In this subsection, we investigate deeply the influence of the constant polynomial approximation over the error of the computed solution, compared with the analytical one. For this purpose, we repeat the computations, but with a much more refined range of coefficients, always using as criteria of quality the error $e_{L2}$ of each test.
 
 \indent As a consequence of the remarks made in the last subsection, this refinement is made higher for the coefficient $c_L$. By making a gradual study, in which we identified at each step the intervals of $c_L$ which give the best results and studied it even more deeply (up to a step $0.01$ for the variation of $c_L$), we were able to construct the curves presented in the figure \ref{fig:optimTBC} and identify the empirical optimum $c_L = 1.16$ :
 

@@ -1,5 +1,9 @@
 \begin{thebibliography}{1}
 
+\bibitem{balagurusamy2008}
+{\em Numerical methods}.
+\newblock Tata McGraw-Hill, 2008.
+
 \bibitem{Xavieretal2008}
 X.~Antoine, A.~Arnold, C.~Besse, M.~Ehrhardt, and C.~Schädle.
 \newblock {A review of Transparent Boundary Conditions or linear and nonlinear
@@ -23,6 +27,16 @@ C.~Japhet and F.~Nataf.
 \newblock {The best interface conditions for Domain Decompostion methods :
   Absorbing Boundary Conditions}.
 \newblock http://www.ann.jussieu.fr/~nataf/chapitre.pdf.
+
+\bibitem{karniadakis1995}
+G.~Karniadakis.
+\newblock {Toward a numerical error bar in CFD}.
+\newblock {\em ASM Journal of Fluids Engineer}, 117(1):7--9, 1995.
+
+\bibitem{roache1997}
+P.~J. Roache.
+\newblock {Quantification of uncertainty in Computational Fluid Dynamics}.
+\newblock {\em Annual Review of Fluid Mechanics}, 29:123--160, 1997.
 
 \bibitem{zheng2008}
 C.~Zheng, X.~Wen, and H.~Han.

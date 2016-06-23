@@ -12,18 +12,18 @@
 
 $$\mathcal{B}_i(u_i^{n,k+1}) = \mathcal{B}_i(u_j^{n,k})$$
 
-\noindent where $\mathcal{B}$ denotes the operator of the IBC.
+\noindent where $\mathcal{B}_i$ denotes the operator of the IBC.
 
 \indent Without loss of generality, in the following we will consider a domain $\Omega$ decomposed in two non-overlapping subdomains, $\Omega_1$ and $\Omega_2$, with $\Gamma = \Omega_1 \bigcap \Omega_2$.
 
-\indent When implementing a Schwarz methods, one must define appropriate operators $\mathcal{B}$ such that :
+\indent When implementing a Schwarz methods, one must define appropriate operators $\mathcal{B}_i$ such that :
 
 \begin{itemize}
-\item The solution $u_i$ in each subdomain $\Omega_i$ converges to $u|_{\Omega_i}$, i.e, the solution $u$ of the monodomain $\Omega$ restricted to $\Omega_i$;
+\item The solution $u_i$ in each subdomain $\Omega_i$ converges to $u|_{\Omega_i}$, i.e, the solution $u$,restricted to $\Omega_i$, of the problem in the monodomain $\Omega$;
 \item The method shows a fast convergence.
 \end{itemize} 
 
-\indent In fact, accordingly to \cite{Japhet2013}, the optimal additive Schwarz method for solving the problem 
+\indent In fact, accordingly to \cite{Japhet2003}, the optimal additive Schwarz method for solving the problem 
 
 \begin{gather*}
 \mathcal{A}(u) = f \ \ \text{in} \ \ \Omega\\
@@ -42,7 +42,7 @@ $$\left. D2N : \alpha(x) \mapsto \frac{\partial}{\partial n_i^c}v \right\rvert_\
 
 \begin{gather*}
 \mathcal{A}(v) = f \ \ \text{in} \ \ \Omega_i^c\\
-v = 0 \ \ \text{on} \ \ \delta \Omega_i \backslash \Gamma \\
+v = 0 \ \ \text{on} \ \ \partial \Omega_i \backslash \Gamma \\
 v = \alpha \ \ \text{on} \ \ \Gamma
 \end{gather*}
 
@@ -74,26 +74,28 @@ v = \alpha \ \ \text{on} \ \ \Gamma
      \end{cases}
 \end{equation}
 
-\noindent where $ \Upsilon_i, \ \ i=1,2,3$, are the external boundary conditions (i.e, $\partial \Omega_i \backslash \Gamma$). These external BCs are independent of the interface BCs. Here, we will consider $\Upsilon_1 = \Theta_1^{c_L = 1.0}$, $\Upsilon_2 = \Theta_2^{c_R = 0.0}$ and $\Upsilon_3 = \Theta_3^{c_R = 0.0}$, which gives
+\noindent where $ \Upsilon_i, \ \ i=1,2,3$, are the external boundary conditions (i.e, defined on $\partial \Omega_i \backslash \Gamma$). These external BCs are independent of the interface BCs. Here, we will consider $\Upsilon_1 = \Theta_1^{c_L = 1.0}$, $\Upsilon_2 = \Theta_2^{c_R = 0.0}$ and $\Upsilon_3 = \Theta_3^{c_R = 0.0}$, which gives
 
-\begin{gather}
+\begin{equation}
 	\label{eq:externalBCsDDM}
+	\begin{gathered}
 	\Upsilon_1(u,x) = u - u_x + u_{xx} = 0\\
 	\Upsilon_2(u,x) = u = 0\\
 	\Upsilon_3(u,x) = u_x = 0\\
-\end{gather}
+	\end{gathered}
+\end{equation}
 
-\indent This choice was made based on the easy implementation and the good results provided by the coefficients $c_L = 1.0$ and $c_R = 0.0$ in approximating the analytical solution in $\Omega$ (as shown in the table \ref{tab:firstTestsP0}). Nevertheless, it does not have much importance in the study that we will done here. In fact, our purpose is to study exclusively the behavior of the DDM implemented here; therefore, all the results must be compared to a referential solution $u_{ref}$, that can be simply the numerical solution of the monodomain problem. The only restriction for an appropriate study is that the external BCs for computing $u_{ref}$ must be the same $\Upsilon_i, \ \ i=1,2,3$ used for each subdomain in the DDM.
+\indent This choice was made based on the easy implementation and the good results provided by the coefficients $c_L = 1.0$ and $c_R = 0.0$ in approximating the analytical solution in $\Omega$ (as shown in the table \ref{tab:firstTestsP0}). Nevertheless, it does not have much importance in the study that we will done here. In fact, our purpose is to study exclusively the behavior of the DDM; therefore, all the results must be compared to a referential solution $u_{ref}$, that can be simply the numerical solution of the monodomain problem. The only restriction for an appropriate study is that the external BCs for computing $u_{ref}$ must be the same $\Upsilon_i, \ \ i=1,2,3$ used for each subdomain in the DDM.
 
 \paragraph{Remarks on the notation}
 
-\indent From here to the end of this paper, we will focus exclusively on the error produced by the DDM, compared to the referential solution, independently of the other possible components of the error compared to the analytical solution (external boundary conditions, error accumulation over the time steps, for example). Therefore, all the following study will be made considering the execution of the method over only one time step, allowing us to suppress the index denoting the instant $t_n$ and use a clearer notation for the solution : $u_j^i$, where $i$ indicates the subdomain $\Omega_i$ (or, in the case of the reference solution, $i = ref$, and in the convergence of the method, $i = *$) and $j$ indicates the spatial discrete position. In the cases where the iterative process is take in account, we will add the superscript $k$ to indicate the iteration.
+\indent From here to the end of this paper, we will focus exclusively on the error produced by the DDM, compared to the referential solution, independently of the other possible components of the error compared to the analytical solution (external boundary conditions, error accumulation over the time steps, for example, as discussed in the section \ref{sec:errors}). Therefore, all the following study will be made considering the execution of the method over only one time step, allowing us to suppress the index denoting the instant $t_n$ and use a clearer notation for the solution : $u_j^i$, where $i$ indicates the subdomain $\Omega_i$ (or, in the case of the reference solution, $i = ref$, and in the convergence of the method, $i = *$) and $j$ indicates the spatial discrete position. In the cases where the iterative process is take in account, we will add the superscript $k$ to indicate the iteration.
 
 \indent Concerning the spatial discretization, the monodomain $\Omega$ will be divided in $2N + 1$ homogeneously distributed points, numbered from $0$ to $2N$. In all the analytical description, we will consider that the two subdomains $\Omega_1$ and $\Omega_2$ have the same number of points, respectively $x_0,...,x_N$ and $x_N,...,x_{2N}$. The interface point $x_N$ is common to the two domains, having different computed solutions $u_N^1$ and $u_N^2$ in each one of them. Evidently, we expect, at the convergence of the ASM, that $u_N^1 = u_N^2 = u_N^*$
 
 \subsection{Error in the converged solution}
 
-\indent When using approximate TBCs in the ASM, one should guarantee that the converged solutions $u_1,u_2$ satisfies the same equation as the solution $u_{ref}$ of the monodomain problem. In the following paragraphs, we show that this property is not verified by the method \eqref{eq:problemDDM1} - \eqref{eq:problemDDM2} proposed here. Based on that, we will be able to propose corrections for it.
+\indent When using approximate TBCs in the ASM, one should guarantee that the converged solutions $u_1,u_2$ satisfy the same equation as the solution $u_{ref}$ of the monodomain problem. In the following paragraphs, we show that this property is not verified by the method \eqref{eq:problemDDM1} - \eqref{eq:problemDDM2} proposed here. Based on that, we will be able to propose corrections for it.
 
 \indent For the interior points of each one of the domains, we will consider a second order spatial discretization of the equation (\ref{eq:DKdV}).
 
@@ -102,7 +104,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
     \frac{u_j^i - \alpha_j^i}{\Delta t} + \frac{-\frac{1}{2}u_{j-2}^i + u_{j-1}^i - u_{j+1}^i + \frac{1}{2}u_{j+2}^i }{\Delta x ^3} = 0
 \end{equation}
 
-\indent for $j=2,...,N-2$ in the case $i=1$; for $j=N+2,...,2N-2$ in the case $i=2$; and for $j=2,...,2N-2$ in the case $i=ref$. In the above expression, $\alpha_j^i$ is a given data (for example, the converged solution in the previous time step).
+\noindent which is valid for $j=2,...,N-2$ in the case $i=1$; for $j=N+2,...,2N-2$ in the case $i=2$; and for $j=2,...,2N-2$ in the case $i=ref$. In the above expression, $\alpha_j^i$ is a given data (for example, the converged solution in the previous time step).
 
 \indent For the points near the boundaries, we use second order uncentered discretizations or the appropriate TBCs. For example, for the point $x_0$ : 
 
@@ -142,35 +144,35 @@ v = \alpha \ \ \text{on} \ \ \Gamma
     \end{aligned}
 \end{equation}
 
-\indent In the convergence, the expressions \eqref{eq:TBCsIterOmega1A} to \eqref{eq:TBCsIterOmega2} gives respectively
+\indent In the convergence, the expressions \eqref{eq:TBCsIterOmega1A} to \eqref{eq:TBCsIterOmega2} give respectively
 
-\begin{equation}
+\begin{equation*}
     \label{eq:TBCsCVOmega1A}
 \begin{aligned}
     && 			    &u_N^* - c_R^2 \frac{u_N^* - 2u_{N-1}^* + u_{N-2}^*}{\Delta x^2} = u_N^* - c_R^2 \frac{u_N^* - 2u_{N+1}^* + u_{N+2}^*}{\Delta x^2} \implies  \\
     && \implies & 2c_R^2 \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x^2} = 0
     \end{aligned}
-    \end{equation}
+    \end{equation*}
     
-\begin{equation}
+\begin{equation*}
     \label{eq:TBCsCVOmega1B}
 \begin{aligned}
     &&             &\frac{u_N^* - u_{N-1}^*}{\Delta x} + c_R \frac{u_N^* - 2u_{N-1}^* + u_{N-2}^*}{\Delta x^2} = \\
     && 			   &\frac{u_{N+1}^* - u_{N}^*}{\Delta x} + c_R \frac{u_N^* - 2u_{N+1}^* + u_{N+2}^*}{\Delta x^2} \implies \\
     && \implies & -\frac{u_{N-1}^* - 2 u_{N}^* + u_{N+1}^*}{\Delta x} - 2c_R\frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x^2} = 0 
 \end{aligned}
-\end{equation}
+\end{equation*}
 
-\begin{equation}
+\begin{equation*}
     \label{eq:TBCsCVOmega2}
 \begin{aligned}
    && 					&	 u_N^* -  c_L\frac{u_{N+1}^* - u_{N}^*}{\Delta x} + c_L^2 \frac{u_{N}^* - 2u_{N+1}^* + u_{N+2}^*}{\Delta x^2} =  \\
    && 					& u_N^* -  c_L\frac{u_{N}^* - u_{N-1}^*}{\Delta x} + c_L^2 \frac{u_{N}^* - 2u_{N-1}^* + u_{N-2}^*}{\Delta x^2} \implies \\
 	&&  \implies	    & -c_L\frac{u_{N-1}^* - 2 u_{N}^* + u_{N+1}^*}{\Delta x} + 2c_L^2\frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x^2} = 0 
 \end{aligned}
-\end{equation}
+\end{equation*}
 
-\indent Therefore, we can see that, the converged solution of the DDM method satisfies the same equation as the reference solution in all the points $x_j \in \Omega_1$, except in $x_{N-1}$ and $x_N$, and in all the points $x_j \in \Omega_2$, except in $x_N$.
+\indent Therefore, we can see that the converged solution of the DDM method satisfies the same equation as the reference solution in all the points $x_j \in \Omega_1$, except in $x_{N-1}$ and $x_N$, and in all the points $x_j \in \Omega_2$, except in $x_N$.
 
 
 %For example, it's easy to verify that \eqref{eq:TBCsCVOmega1A} differ from \eqref{eq:FDdiscretization} by a $O(\Delta x)$ term :
@@ -185,26 +187,28 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \subsubsection{Analytical proof of error = $O(\Delta x)$}
 
+...
+
 \subsubsection{Numerical verification of the error}
 
-\indent The problem \eqref{eq:problemDDM1} - \eqref{eq:problemDDM2} was solved until the convergence with 5 different uniform spatial discretizations, over one time step (in the interval $[0,\Delta t]$). In each case, the adopted referential solution $u^{ref}$ was the monodomain problem, solved with the same mesh size. Two errors were computed : 
+\indent The problem \eqref{eq:problemDDM1} - \eqref{eq:problemDDM2} was solved until the convergence with five different uniform spatial discretizations, over one time step (in the interval $[0,\Delta t]$). In each case, the adopted referential solution $u^{ref}$ was the monodomain problem, solved with the same mesh size. Two errors were computed : 
 
-\begin{equation}
-	e^{N,\Gamma} = |u^{ref}_N - u^{*}_N|
-\end{equation}
+\begin{equation*}
+	e^{N,*} = |u^{ref}_N - u^{*}_N|
+\end{equation*}
 
 \begin{equation}
 	\label{eq:errorDDM}
 	e^{\Omega,*} = ||u^{ref}_N - u^{*}_N||_2 = \sqrt{\Delta x \left[ \sum_{j=0}^N{(u^{ref}_j - u^{1,\infty}_j)^2 } + \sum_{j=N}^{2N}{(u^{ref}_j - u^{2,\infty}_j)^2 } \right] }
 \end{equation}
 
-\noindent corresponding respectively to the error on the interface and the error on the whole domain. In the notation $e^{N,\bullet}$, $N$ refers to the number of space steps in $\Omega$.
+\noindent corresponding respectively to the error on the interface and the error on the whole domain.
 
 \indent We are interested in the behavior of these error as the mesh size changes. As shown in the figure \ref{fig:orderVerification}, we verify that the DDM proposed here produces a $O(\Delta x)$ error:
 
 \begingroup
 \begin{center}
-	\includegraphics[scale=.5]{figures/convergenceVerification.png}
+	\includegraphics[scale=.5]{figures/convergenceVerificationCorrectN.png}
 	\captionof{figure}{Numerical verification of the order of convergence of the error due to the Domain Decomposition Method \label{fig:orderVerification}}
 \end{center}
 \endgroup
@@ -213,13 +217,13 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \indent We will formulate modified TBCs for the ASM method in order to cancel these errors :
 
-\begin{equation}
-    \begin{cases}
-        \Theta_1^{c_L^*}(u_2^{n+1,k+1}) + \theta_1 = \Theta_1^{c_L^*}(u_1^{n,k}) + \theta_1' \\
-        \Theta_2^{c_R^*}(u_1^{n+1,k+1}) + \theta_2 = \Theta_2^{c_R^*}(u_2^{n,k}) + \theta_2' \\
-        \Theta_3^{c_R^*}(u_1^{n+1,k+1}) + \theta_3 = \Theta_3^{c_R^*}(u_2^{n,k}) + \theta_3'
-    \end{cases}
-\end{equation}
+\begin{equation*}
+    \begin{gathered}
+        \Theta_1^{c_L}(u_2^{n+1,k+1}) + \theta_1 = \Theta_1^{c_L}(u_1^{n,k}) + \theta_1' \\
+        \Theta_2^{c_R}(u_1^{n+1,k+1}) + \theta_2 = \Theta_2^{c_R}(u_2^{n,k}) + \theta_2' \\
+        \Theta_3^{c_R}(u_1^{n+1,k+1}) + \theta_3 = \Theta_3^{c_R}(u_2^{n,k}) + \theta_3'
+    \end{gathered}
+\end{equation*}
 
 \noindent with $\theta_i, \theta_i'$ derived below : 
 
@@ -228,21 +232,21 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \indent Our objective is to write the second order centered finite difference discretization (\ref{eq:FDdiscretization}) for the point $x_{N}$ :
 
-\begin{equation}
+\begin{equation*}
     \label{eq:FDdiscretizationN}
     \frac{u_{N}^* - \alpha_{N}^*}{\Delta t} + \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x ^3} = 0
-\end{equation}
+\end{equation*}
 
 \indent Defining 
 
-\begin{gather}
+\begin{gather*}
     \theta_1 = c_L \frac{u_{N+1}^2 - u_{N}^2}{\Delta x} + c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^2 - \alpha_{N}^2 \right)\\
     \theta_1' = c_L \frac{u_{N}^1 - u_{N-1}^1}{\Delta x} - c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^1 - \alpha_{N}^1 \right)
-\end{gather}
+\end{gather*}
 
 \indent we have, in the convergence, that
 
-\begin{equation}
+\begin{equation*}
 \label{eq:modifiedTBC1}
 \begin{aligned}
 && &    \Theta_1^{c_L}(u_N^*) + \theta_1 = \Theta_1^{c_L}(u_N^*) + \theta_1'\implies \\
@@ -251,20 +255,18 @@ v = \alpha \ \ \text{on} \ \ \Gamma
  && \implies &    2c_L^2 \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x ^2}  +             2c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^* - \alpha_{N}^* \right) = 0 \implies \\
 && \implies &    \frac{u_{N}^* - \alpha_{N}^*}{\Delta t} + \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x ^3} = 0
 \end{aligned}
-\end{equation}
-
-\noindent which corresponds to the discretization \eqref{eq:FDdiscretization} satisfied in $x_N$. 
+\end{equation*}
 
 \paragraph{Determination of $\theta_2, \theta_2'$}
 
 \indent We define
 
-\begin{equation}
+\begin{equation*}
 \begin{gathered}
     \theta_2 = \frac{\Delta x}{\Delta t} c_R^2 (u_N^1 - \alpha_N^1) \\
     \theta_2' = -\frac{\Delta x}{\Delta t} c_R^2 (u_N^2 - \alpha_N^2)
 \end{gathered}
-\end{equation}
+\end{equation*}
 
 \indent Indeed, we then have, in the convergence
 
@@ -285,25 +287,25 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \indent Using \eqref{eq:modifiedTBC2} in \eqref{eq:TBCsIterOmega1B}, we get
 
-\begin{equation}
+\begin{equation*}
 -\frac{u_{N-1}^* - 2 u_{N}^* + u_{N+1}^*}{\Delta x} + 2c_R\Delta x\frac{u_N^* - \alpha_N^*}{\Delta t} = 0 
-\end{equation}
+\end{equation*}
 
 \indent As, when correcting $\Theta_2$, we have already written the discretization \eqref{eq:FDdiscretization} for $x_N \in \Omega_1$, now our objective is to write it for the point $x_{N-1}$ :
 
-\begin{equation}
+\begin{equation*}
     \label{eq:FDdiscretizationNm1}
     \frac{u_{N-1}^* - \alpha_{N-1}^*}{\Delta t} + \frac{-\frac{1}{2}u_{N-3}^* + u_{N-2}^* - u_{N}^* + \frac{1}{2}u_{N+1}^* }{\Delta x ^3} = 0
-\end{equation}
+\end{equation*}
 
 \noindent what can be achieved by defining
 
-\begin{equation}
+\begin{equation*}
 \begin{gathered}
     \theta_3 = 2\frac{\Delta x}{\Delta t} \left[-\Delta x(u_{N-1}^1 - \alpha_{N-1}^1) - c_R (u_N^1 - \alpha_N^1) \right] + \frac{u_{N-3}^1 - 2u_{N-2}^1 + u_{N-1}^1}{\Delta x} \\
     \theta_3' = 0
 \end{gathered}
-\end{equation}
+\end{equation*}
 
 \indent In fact, in the convergence,
 
@@ -320,25 +322,25 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \paragraph{Remark : modification of the reference solution}
 
-\indent The modifications proposed above for the Interface Boundary Conditions effectively allows the points $x_{N-1},x_N \in \Omega_1$ and $x_N \in \Omega_2$ to satisfy the same discrete equation as in the monodomain problem. Nevertheless, the solution of the DDM does not converge exactly to $u^{ref}$, for a reason that does not depend on the expression of the IBCs, but on the fact that for each domain we write two IBCs in the left boundry and only one on the right. We are using a second order centered discretization for the third spatial derivative (which uses a stencil of two points in each side of the central point), implying that we must write an uncentered discretization for the point $x_{N+1}$ when solving the problem in $\Omega_2$. Therefore, this point does not satisfy the same discrete equation as in the reference problem. In order to avoid this problem and allow us to verify that our method is able to correct the error of the DDM, we modify the discretization for the point $u_{N+1}$ in the monodomain problem, using the same second-order uncentered expression :
+\indent The modifications proposed above for the Interface Boundary Conditions effectively allow the points $x_{N-1},x_N \in \Omega_1$ and $x_N \in \Omega_2$ to satisfy the same discrete equation as in the monodomain problem. Nevertheless, the solution of the DDM does not converge exactly to $u^{ref}$, for a reason that does not depend on the expression of the IBCs, but on the fact that for each domain we write two IBCs in the left boundry and only one on the right. We are using a second order centered discretization for the third spatial derivative (which uses a stencil of two points in each side of the central point), implying that we must write an uncentered discretization for the point $x_{N+1}$ when solving the problem in $\Omega_2$. Therefore, this point does not satisfy the same discrete equation as in the reference problem. In order to avoid this incompatibility and allow us to verify that our method is able to correct the error of the DDM, we modify the discretization for the point $u_{N+1}$ in the monodomain problem, using the same second-order uncentered expression :
 
-\begin{equation}
+\begin{equation*}
     \label{eq:uncenteredFDdiscretizationN}
     \frac{u_{N+1}^2 - \alpha_{N+1}^2}{\Delta t} + \frac{-\frac{5}{2}u_{N+1}^2 + 9u_{N+2}^2 - 12 u_{N+3}^2 + 7\frac{1}{2}u_{N+4}^2 -\frac{3}{2}u_{N+1}^2}{\Delta x ^3} = 0
-\end{equation}
+\end{equation*}
 
 \subsection{Optimization of the IBCs (speed of convergence)}
 
-\indent Our objective now is to optimize the IBCs in the sense of minimizing the number of iterations of the ASM until the convergence. Therefore, similarly to the optimization of the TBCs made in the section \ref{sec:TBC}, we will made a very large set of tests in order to find the coefficients $c_L$ and $c_R$ (i.e., the constant polynomial approximation for the TBC) that provides the fastest convergence. In a first moment, we will make this study with fixed time step and space step, in order to analyze exclusively the influence of the coefficient, and after we will introduce these two parameters into the study.
+\indent Our objective now is to optimize the IBCs in the sense of minimizing the number of iterations of the ASM until the convergence. Therefore, similarly to the optimization of the TBCs made in the section \ref{sec:approxTBC}, we will made a very large set of tests in order to find the coefficients $c_L$ and $c_R$ (i.e., the constant polynomial approximation for the TBC) that provides the fastest convergence. In a first moment, we will make this study with fixed time step and space step, in order to analyze exclusively the influence of the coefficient, and after we will introduce these two parameters into the study.
 
 \indent As we are interested in the speed with which the solution of the DDM method converges to the reference solution, the criteria of convergence used is
 
-\begin{equation}
+\begin{equation*}
 \label{eq:criteriaConvergence}
 	e^{\Omega,k} \leq \epsilon
-\end{equation}
+\end{equation*}
 
-\noindent with $\epsilon = 10^{-9}$ and $e^{\Omega,k}$ defined in \eqref{eq:errorDDM}.
+\noindent with $\epsilon = 10^{-9}$ and $e^{\Omega,k}$ defined as in \eqref{eq:errorDDM}.
  
 \indent In order to simplify the tests and avoid too expensive computations, we will always consider $c_L = c_R = c$ in this optimization. The range of tested coefficients is $[-2.25,2.25]$, with a step of $0.01$ between them, and the maximal number of iterations is set to 100.
 
@@ -346,11 +348,11 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \subsubsection{Test varying the initial time step and the interface position}
 
-\indent As said above, in the first set of tests we will consider a fixed time step $\Delta t = 20/2560 = 0.0078125$ and a fixed mesh size $\Delta x = 12/500 = 0.024$. Nevertheless, we will consider two subsets tests, that will allow us to study the speed of convergence with different initial conditions :
+\indent As said above, in the first set of tests we will consider a fixed time step $\Delta t = 20/2560 = 0.0078125$ and a fixed mesh size $\Delta x = 12/500 = 0.024$. Moreover, we will consider two subsets of tests, that will allow us to study the speed of convergence with different initial conditions and different sizes of the subdomains:
 
 \begin{enumerate}
 	\item Tests varying the initial time step $t_0$, with the interface in the center of the monodomain $\Omega = [-6,6]$;
-	\item Tests varying the position of the interface ($x_{interface} = -L + \alpha 2L$, where $L = 6$ and $0 < \alpha < 1$), for a fixed initial time $t_0 = 0.78125$
+	\item Tests varying the position of the interface ($x_{interface} = -L + \alpha 2L$, where $L = 6$ and $0 < \alpha < 1$), for a fixed initial time $t_0 = 0.78125$.
 \end{enumerate}
 
 \indent In all the cases, the reference solution $u^{ref}$ will be the solution of the monodomain problem
@@ -358,14 +360,14 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \begin{equation*}
 	\begin{cases}
 	u_t + u_{xxx} = 0, \ \ x \in \Omega, \ \ t \in [t_0, t_0+\Delta t] \\
-	u_(t_0,x) = u^{exact}(t_0,x) , \ \ x \in \Omega \\ 
+	u(t_0,x) = u^{exact}(t_0,x) , \ \ x \in \Omega \\ 
 	\Upsilon_1(u,-L) = 0, \ \ t \in [t_0, t_0+\Delta t] \\
 	\Upsilon_2(u,L) = 0, \ \ t \in [t_0, t_0+\Delta t] \\
 	\Upsilon_3(u,L) = 0, \ \ t \in [t_0, t_0+\Delta t]
 	\end{cases}
 \end{equation*}
 
-\noindent where $u^{exact}$ is the exact solution given by \ref{eq:exactSolution} and $\Upsilon_i , \ i =1,2,3$ are the external boundary conditions given by \ref{eq:externalBCsDDM}.
+\noindent where $u^{exact}$ is the exact solution given by \eqref{eq:exactSolution} and $\Upsilon_i , \ i =1,2,3$ are the external boundary conditions given by \eqref{eq:externalBCsDDM}.
 
 \indent The results are summarized in the figures \ref{fig:optimVarT0} and \ref{fig:optimVarInterface}, with the number of of iterations plotted as function of the coefficient $c$. They show a very similar behavior of these curves, and, instead of some differences in the zone of convergence of the method and a separation for the values of $c$ that result in higher numbers of iterations, all the curves reaches the minimum (6 iterations) on the same point ($c = 0.25$).
 
@@ -398,7 +400,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 	\captionof{subfigure}{Detail for $c \geq 0$ }
 \end{center}
 \end{minipage}
-	\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $t_0$ and different positions of the interface \label{fig:optimVarInterface}}
+	\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $t_0$ and different positions of the interface) \label{fig:optimVarInterface}}
 \endgroup
 
 \indent The figure \ref{fig:errorEvolution} shows the evolution of the error, as function of the iterations, for the five coefficients $c$ that gave the fastest convergences. 
@@ -412,29 +414,58 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \subsubsection{Tests varying $\Delta t$ and $\Delta x$}
 
-\indent After verifying that the method behaves similarly for every initial condition (i.e., every $t_0$) and every position of the interface, we will now keep these parameters fixed ($t_0 = 0$ and $\alpha = 0.5$) and make new tests with different values of $\Delta t$ (with fixed $\Delta x = 12/500$) and different values of $\Delta x$ (with fixed $\Delta t = 0.02$).
+\indent After verifying that the method behaves similarly for every initial condition (i.e., every $t_0$) and every position of the interface, we will now keep these parameters fixed ($t_0 = 0$ and $\alpha = 0.5$) and make new tests with different values of $\Delta t$ (with fixed $\Delta x = 12/250$) and different values of $\Delta x$ (with fixed $\Delta t = 0.02$).
 
-\indent The number of iterations as functions of the coefficients, for some of the tests, are shown in the figures \ref{fig:niterxCoefVarDt} and \ref{fig:niterxCoefVarDx}. The figure \ref{fig:niterxCoefVarDx} presents the minimal number of iterations for each $\Delta t$ or $\Delta x$. 
+\indent The number of iterations as functions of the coefficients, for some of the tests, are shown in the figure \ref{fig:niterxCoefVarDtDx}. The figure \ref{fig:optimalCoefVarDxDtCorrectN} presents the optimal coefficient for each $\Delta t$ or $\Delta x$. 
 
 \begingroup
+\begin{minipage}{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.5]{figures/NiterxCoefVarDtdx250CorrectN.png}
-\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $2N = 250$ and different values of $\Delta t$) \label{fig:niterxCoefVarDt}}
+	\includegraphics[scale=.45]{figures/NiterxCoefVarDtdx250CorrectN.png}
+\captionof{subfigure}{Fixed $2N = 250$ and different values of $\Delta t$}
 \end{center}
+\end{minipage}
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.45]{figures/NiterxCoefVarDxdt2em2CorrectN.png}
+\captionof{subfigure}{Fixed $\Delta t = 0.02$ and different values of $\Delta x$}
+\end{center}
+\end{minipage}
+\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC \label{fig:niterxCoefVarDtDx}}
 \endgroup
 
 \begingroup
-\begin{center}
-	\includegraphics[scale=.5]{figures/NiterxCoefVarDxdt2em2CorrectN.png}
-\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $\Delta t = 0.02$ and different values of $\Delta x$) \label{fig:niterxCoefVarDx}}
-\end{center}
+
 \endgroup
+
+%\begingroup
+%\begin{center}
+%	\includegraphics[scale=.5]{figures/NiterxCoefVarDtdx250CorrectN.png}
+%\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $2N = 250$ and different values of $\Delta t$) \label{fig:niterxCoefVarDt}}
+%\end{center}
+%\endgroup
+%
+%\begingroup
+%\begin{center}
+%	\includegraphics[scale=.5]{figures/NiterxCoefVarDxdt2em2CorrectN.png}
+%\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $\Delta t = 0.02$ and different values of $\Delta x$) \label{fig:niterxCoefVarDx}}
+%\end{center}
+%\endgroup
 
 \begin{center}
 	\includegraphics[scale=.5]{figures/OptimalCoefVarDxDtCorrectN.png}
-	\captionof{figure}{Optimal coefficients as function of the time step and the space step}
+	\captionof{figure}{Optimal coefficients as function of the time step and the space step 	\label{fig:optimalCoefVarDxDtCorrectN}}
+\end{center}
+
+\indent The figure \ref{fig:optimalCoefVarDxDtCorrectN} suggests that the optimal coefficient is independent of $\Delta x$ and is function of $\sqrt{\Delta t}$. In order to verify this last conclusion, we made a linear regression $Y = A + BX$ of the data points, where $X$ is the vector containing the square root of the values of $\Delta t$, and $Y$ is the vector with the respective optimal coefficients. As a result, we obtained the regression curve $c_{optimal} = 0.1515 + 1.0620\sqrt{\Delta t}$, which is effectively a good approximation both quantitatively (with a coefficient of determination $R^2 = 0.9933$) and qualitatively (as shown in the figure \ref{fig:regression}).
+
+\begin{center}
+	\includegraphics[scale=.5]{figures/regression.png}
+	\captionof{figure}{Empirical and regression curve for the optimal coefficient as function of $\Delta t$\label{fig:regression}}
 \end{center}
 
 \subsection{Partial conclusion}
+ 
+\indent The results presented in this section show that the Domain Decomposition Method proposed here, consisting in the Additive Schwarz Method with our approximate TBCs, is able to provide a fast convergence toward the solution of the monodomain problem. Therefore, we reached our goals of solving the dispersion equation in a finite domain divided in two subdomains.
 
-...
+\indent Moreover, the results of the optimization tests are very satisfying regarding a more general application of our method. Firstly, for fixed spatial and temporal discretizations, we obtained optimal coefficients for the method independently of the initial solution and the size of the subdomains (i.e., independently of the initial instant and the position of the interface). Secondly, we verified that it is also independent of $\Delta x$, and has a dependency on $\Delta t$ that we empirically estimate as function of $\sqrt{\Delta t}$.

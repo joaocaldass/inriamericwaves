@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  21 JUN 2016 17:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  23 JUN 2016 09:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -918,35 +918,327 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \cur@row=\count178
 \cur@col=\count179
 \conditionsep=\skip72
-) (./main.aux)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+\pgfutil@everybye=\toks29
+\pgfutil@tempdima=\dimen261
+\pgfutil@tempdimb=\dimen262
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
+sts.tex))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box56
+(/usr/local/texlive/2015/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+))
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks30
+\pgfkeys@temptoks=\toks31
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+ode.tex
+\pgfkeys@tmptoks=\toks32
+))
+\pgf@x=\dimen263
+\pgf@y=\dimen264
+\pgf@xa=\dimen265
+\pgf@ya=\dimen266
+\pgf@xb=\dimen267
+\pgf@yb=\dimen268
+\pgf@xc=\dimen269
+\pgf@yc=\dimen270
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count180
+\c@pgf@countb=\count181
+\c@pgf@countc=\count182
+\c@pgf@countd=\count183
+\t@pgf@toka=\toks33
+\t@pgf@tokb=\toks34
+\t@pgf@tokc=\toks35
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+)))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count184
+\pgfsyssoftpath@bigbuffer@items=\count185
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+)) (/usr/local/texlive/2015/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen271
+\pgfmath@count=\count186
+\pgfmath@box=\box57
+\pgfmath@toks=\toks36
+\pgfmath@stack@operand=\toks37
+\pgfmath@stack@operation=\toks38
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count187
+))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen272
+\pgf@picmaxx=\dimen273
+\pgf@picminy=\dimen274
+\pgf@picmaxy=\dimen275
+\pgf@pathminx=\dimen276
+\pgf@pathmaxx=\dimen277
+\pgf@pathminy=\dimen278
+\pgf@pathmaxy=\dimen279
+\pgf@xx=\dimen280
+\pgf@xy=\dimen281
+\pgf@yx=\dimen282
+\pgf@yy=\dimen283
+\pgf@zx=\dimen284
+\pgf@zy=\dimen285
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen286
+\pgf@path@lasty=\dimen287
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+\pgf@shorten@end@additional=\dimen288
+\pgf@shorten@start@additional=\dimen289
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex
+File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+\pgfpic=\box58
+\pgf@hbox=\box59
+\pgf@layerbox@main=\box60
+\pgf@picture@serial@count=\count188
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+\pgflinewidth=\dimen290
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex
+File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+\pgf@pt@x=\dimen291
+\pgf@pt@y=\dimen292
+\pgf@pt@temp=\dimen293
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+\pgfarrowsep=\dimen294
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen295
+\pgf@sys@shading@range@num=\count189
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box61
+))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+)))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex
+File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+\pgfnodeparttextbox=\box62
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen296
+\pgf@nodesepend=\dimen297
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen298
+\pgffor@skip=\dimen299
+\pgffor@stack=\toks39
+\pgffor@toks=\toks40
+))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
+\pgf@plot@mark@count=\count190
+\pgfplotmarksize=\dimen300
+)
+\tikz@lastx=\dimen301
+\tikz@lasty=\dimen302
+\tikz@lastxsaved=\dimen303
+\tikz@lastysaved=\dimen304
+\tikzleveldistance=\dimen305
+\tikzsiblingdistance=\dimen306
+\tikz@figbox=\box63
+\tikz@figbox@bg=\box64
+\tikz@tempbox=\box65
+\tikz@tempbox@bg=\box66
+\tikztreelevel=\count191
+\tikznumberofchildren=\count192
+\tikznumberofcurrentchild=\count193
+\tikz@fig@count=\count194
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count195
+\pgfmatrixcurrentcolumn=\count196
+\pgf@matrix@numberofcolumns=\count197
+)
+\tikz@expandcount=\count198
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
+)))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/refcheck/refcheck.sty
+Package: refcheck 2013/02/14 v1.9.1
+\btoks=\toks41
+)
+(./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-
-(/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+ (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count180
-\scratchdimen=\dimen261
-\scratchbox=\box56
-\nofMPsegments=\count181
-\nofMParguments=\count182
-\everyMPshowfont=\toks29
-\MPscratchCnt=\count183
-\MPscratchDim=\dimen262
-\MPnumerator=\count184
-\makeMPintoPDFobject=\count185
-\everyMPtoPDFconversion=\toks30
+\scratchcounter=\count199
+\scratchdimen=\dimen307
+\scratchbox=\box67
+\nofMPsegments=\count266
+\nofMParguments=\count267
+\everyMPshowfont=\toks42
+\MPscratchCnt=\count268
+\MPscratchDim=\dimen308
+\MPnumerator=\count269
+\makeMPintoPDFobject=\count270
+\everyMPtoPDFconversion=\toks43
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -1078,38 +1370,60 @@ Dictionary: translator-basic-dictionary, Language: English
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
 File: siunitx-abbreviations.cfg 2016/03/01 v2.6q siunitx: Abbreviated units
-)
-\c__siunitx_mathsf_int=\count186
-LaTeX Font Info:    Try loading font information for U+msa on input line 23.
- (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
+) ABD: EveryShipout initializing macros
+Package: `refcheck' v1.9.1 <2013/02/14>
+options: showrefs, showcites, msgs, chckunlbld
+\c__siunitx_mathsf_int=\count271
+LaTeX Font Info:    Try loading font information for U+msa on input line 25.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 23.
+LaTeX Font Info:    Try loading font information for U+msb on input line 25.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-\c__siunitx_mathtt_int=\count187
+\c__siunitx_mathtt_int=\count272
  (./main.toc)
-\tf@toc=\write3
-\openout3 = `main.toc'.
+\tf@toc=\write4
+\openout4 = `main.toc'.
 
 
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./intro.tex) (./errors.tex) (./derivationTBC.tex [2]) (./approximationTBC.tex
+(./intro.tex) (./errors.tex [2]) (./derivationTBC.tex [3])
+(./approximationTBC.tex
 Overfull \hbox (8.18576pt too wide) in paragraph at lines 1--1
 []\OT1/cmr/bx/n/17.28 Approximations for the Trans-par-ent Bound-
  []
 
+[4]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 22.
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 22.
- [3] [4] [5]
+
+
+Package refcheck Warning: Unused label `eq:firstDerivativeLaplace' on input lin
+e 29.
+
+
+Package refcheck Warning: Unused label `eq:secondDerivativeLaplace' on input li
+ne 34.
+
+[5]
+
+Package refcheck Warning: Unused label `eq:testCaseBesse2' on input line 96.
+
+
+Package refcheck Warning: Unlabelled equation (17) on input line 102.
+
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 102.
+[6]
 Overfull \hbox (43.3311pt too wide) in paragraph at lines 123--124
 \OT1/cmr/m/n/12 we made sev-eral tests with all the pos-si-ble pairs $\OML/cmm/
 m/it/12 c[]; c[] \OMS/cmsy/m/n/12 2 f^^@\OT1/cmr/m/n/12 10\OML/cmm/m/it/12 ; \O
@@ -1120,7 +1434,7 @@ cmr/m/n/12 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/
 m/n/12 g[]$\OT1/cmr/m/n/12 .
  []
 
-<figures/BessefirstTestsP0Snap2.png, id=30, 433.62pt x 289.08pt>
+<figures/BessefirstTestsP0Snap2.png, id=38, 433.62pt x 289.08pt>
 File: figures/BessefirstTestsP0Snap2.png Graphic file (type png)
 
 <use figures/BessefirstTestsP0Snap2.png>
@@ -1132,7 +1446,7 @@ Overfull \hbox (21.80946pt too wide) in paragraph at lines 127--128
 [][] 
  []
 
-<figures/BessefirstTestsP0Snap3.png, id=32, 433.62pt x 289.08pt>
+<figures/BessefirstTestsP0Snap3.png, id=40, 433.62pt x 289.08pt>
 File: figures/BessefirstTestsP0Snap3.png Graphic file (type png)
 
 <use figures/BessefirstTestsP0Snap3.png>
@@ -1144,7 +1458,7 @@ Overfull \hbox (21.80946pt too wide) in paragraph at lines 130--131
 [][] 
  []
 
-<figures/BessefirstTestsP0Snap4.png, id=33, 433.62pt x 289.08pt>
+<figures/BessefirstTestsP0Snap4.png, id=41, 433.62pt x 289.08pt>
 File: figures/BessefirstTestsP0Snap4.png Graphic file (type png)
 
 <use figures/BessefirstTestsP0Snap4.png>
@@ -1156,7 +1470,7 @@ Overfull \hbox (21.80946pt too wide) in paragraph at lines 133--134
 [][] 
  []
 
-<figures/BessefirstTestsP0Snap5.png, id=34, 433.62pt x 289.08pt>
+<figures/BessefirstTestsP0Snap5.png, id=42, 433.62pt x 289.08pt>
 File: figures/BessefirstTestsP0Snap5.png Graphic file (type png)
 
 <use figures/BessefirstTestsP0Snap5.png>
@@ -1178,7 +1492,8 @@ Overfull \hbox (2.61108pt too wide) in paragraph at lines 126--138
 []$ $[]$ 
  []
 
-
+[7 <./figures/BessefirstTestsP0Snap2.png> <./figures/BessefirstTestsP0Snap3.png
+>]
 Overfull \hbox (11.74988pt too wide) detected at line 148
  
  []
@@ -1228,11 +1543,14 @@ Overfull \hbox (11.74988pt too wide) detected at line 158
  
  []
 
-[6 <./figures/BessefirstTestsP0Snap2.png> <./figures/BessefirstTestsP0Snap3.png
-> <./figures/BessefirstTestsP0Snap4.png> <./figures/BessefirstTestsP0Snap5.png>
-] [7]
+[8 <./figures/BessefirstTestsP0Snap4.png> <./figures/BessefirstTestsP0Snap5.png
+>]
+
+Package refcheck Warning: Unused label `eq:appDiscTBCP1' on input line 187.
+
+
 Overfull \hbox (61.52502pt too wide) detected at line 192
-[] []
+[] [][]
  []
 
 
@@ -1245,7 +1563,7 @@ Overfull \hbox (39.95622pt too wide) detected at line 205
 [] []
  []
 
-[8]
+[9]
 Overfull \hbox (28.03668pt too wide) in paragraph at lines 209--210
 \OT1/cmr/m/n/12 mak-ing the co-ef-fi-cients $\OML/cmm/m/it/12 c[]$ \OT1/cmr/m/n
 /12 and $\OML/cmm/m/it/12 d[]$ \OT1/cmr/m/n/12 as-sume the val-ues in $\OMS/cms
@@ -1306,14 +1624,14 @@ Overfull \hbox (11.74988pt too wide) detected at line 228
  
  []
 
-[9] <figures/errorOptimOnlyL2.png, id=56, 433.62pt x 289.08pt>
+[10] <figures/errorOptimOnlyL2.png, id=64, 433.62pt x 289.08pt>
 File: figures/errorOptimOnlyL2.png Graphic file (type png)
 
 <use figures/errorOptimOnlyL2.png>
 Package pdftex.def Info: figures/errorOptimOnlyL2.png used on input line 254.
 (pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-<figures/errorOptimOnlyL2Detail.png, id=57, 433.62pt x 289.08pt>
+<figures/errorOptimOnlyL2Detail.png, id=65, 433.62pt x 289.08pt>
 File: figures/errorOptimOnlyL2Detail.png Graphic file (type png)
 
 <use figures/errorOptimOnlyL2Detail.png>
@@ -1330,164 +1648,214 @@ Overfull \hbox (45.27779pt too wide) in paragraph at lines 1--1
 []\OT1/cmr/bx/n/17.28 Application to a Do-main De-com-po-si-tion Method 
  []
 
-[10 <./figures/errorOptimOnlyL2.png> <./figures/errorOptimOnlyL2Detail.png>]
+[11 <./figures/errorOptimOnlyL2.png> <./figures/errorOptimOnlyL2Detail.png>]
+[12] [13] [14]
 
-LaTeX Warning: Citation `Japhet2013' on page 11 undefined on input line 26.
+Package refcheck Warning: Unused label `eq:uncenteredFDdiscretization0' on inpu
+t line 112.
 
-[11] [12] [13] [14]
-Overfull \hbox (38.56067pt too wide) detected at line 132
+
+Overfull \hbox (38.56067pt too wide) detected at line 134
 [] []
  []
 
+[15]
 
-Overfull \hbox (1.90248pt too wide) detected at line 171
-[] []
+Package refcheck Warning: Unused label `eq:TBCsCVOmega1A' on input line 150.
+
+
+Package refcheck Warning: Unused label `eq:TBCsCVOmega1B' on input line 158.
+
+
+Package refcheck Warning: Unused label `eq:TBCsCVOmega2' on input line 167.
+
+
+Overfull \hbox (1.90248pt too wide) detected at line 173
+[] [][]
  []
 
-[15] <figures/convergenceVerification.png, id=79, 433.62pt x 289.08pt>
-File: figures/convergenceVerification.png Graphic file (type png)
+[16] <figures/convergenceVerificationCorrectN.png, id=87, 433.62pt x 289.08pt>
+File: figures/convergenceVerificationCorrectN.png Graphic file (type png)
 
-<use figures/convergenceVerification.png>
-Package pdftex.def Info: figures/convergenceVerification.png used on input line
- 207.
+<use figures/convergenceVerificationCorrectN.png>
+Package pdftex.def Info: figures/convergenceVerificationCorrectN.png used on in
+put line 211.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
- [16 <./figures/convergenceVerification.png>]
-Overfull \hbox (88.88455pt too wide) detected at line 254
-[] []
+ [17 <./figures/convergenceVerificationCorrectN.png>]
+
+Package refcheck Warning: Unused label `eq:FDdiscretizationN' on input line 236
+.
+
+
+Package refcheck Warning: Unused label `eq:modifiedTBC1' on input line 250.
+
+
+Overfull \hbox (88.88455pt too wide) detected at line 258
+[] [][]
  []
 
-[17]
-Overfull \hbox (78.16164pt too wide) in paragraph at lines 319--319
+[18]
+
+Package refcheck Warning: Unused label `eq:FDdiscretizationNm1' on input line 2
+97.
+
+
+Package refcheck Warning: Unused label `eq:modifiedTBC3' on input line 321.
+
+
+Overfull \hbox (78.16164pt too wide) in paragraph at lines 321--321
 [] 
  []
 
-[18] [19] [20]
-<figures/NiterxCoefVarT0NegativeCoefCorrectN.png, id=97, 433.62pt x 289.08pt>
+[19]
+
+Package refcheck Warning: Unused label `eq:uncenteredFDdiscretizationN' on inpu
+t line 328.
+
+[20]
+
+Package refcheck Warning: Unused label `eq:criteriaConvergence' on input line 3
+39.
+
+[21]
+<figures/NiterxCoefVarT0NegativeCoefCorrectN.png, id=105, 433.62pt x 289.08pt>
 File: figures/NiterxCoefVarT0NegativeCoefCorrectN.png Graphic file (type png)
 
 <use figures/NiterxCoefVarT0NegativeCoefCorrectN.png>
 Package pdftex.def Info: figures/NiterxCoefVarT0NegativeCoefCorrectN.png used o
-n input line 375.
+n input line 377.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-<figures/NiterxCoefVarT0CorrectN.png, id=98, 433.62pt x 289.08pt>
+<figures/NiterxCoefVarT0CorrectN.png, id=106, 433.62pt x 289.08pt>
 File: figures/NiterxCoefVarT0CorrectN.png Graphic file (type png)
 
 <use figures/NiterxCoefVarT0CorrectN.png>
 Package pdftex.def Info: figures/NiterxCoefVarT0CorrectN.png used on input line
- 381.
+ 383.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 373--385
+Overfull \hbox (20.2359pt too wide) in paragraph at lines 375--387
 []$[]$ $[]$ 
  []
 
 
-<figures/NiterxCoefVarInterfaceNegativeCoefCorrectN.png, id=99, 433.62pt x 289.
-08pt>
+<figures/NiterxCoefVarInterfaceNegativeCoefCorrectN.png, id=107, 433.62pt x 289
+.08pt>
 File: figures/NiterxCoefVarInterfaceNegativeCoefCorrectN.png Graphic file (type
  png)
  <use figures/NiterxCoefVarInterfaceNegativeCoefCorrectN.png>
 Package pdftex.def Info: figures/NiterxCoefVarInterfaceNegativeCoefCorrectN.png
- used on input line 391.
+ used on input line 393.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-<figures/NiterxCoefVarInterfaceCorrectN.png, id=100, 433.62pt x 289.08pt>
+<figures/NiterxCoefVarInterfaceCorrectN.png, id=108, 433.62pt x 289.08pt>
 File: figures/NiterxCoefVarInterfaceCorrectN.png Graphic file (type png)
 
 <use figures/NiterxCoefVarInterfaceCorrectN.png>
 Package pdftex.def Info: figures/NiterxCoefVarInterfaceCorrectN.png used on inp
-ut line 397.
+ut line 399.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 389--401
+Overfull \hbox (20.2359pt too wide) in paragraph at lines 391--403
 []$[]$ $[]$ 
  []
 
 
-<figures/errorEvolutionFixedT0BNegativeCoefCorrectN.png, id=101, 433.62pt x 289
+<figures/errorEvolutionFixedT0BNegativeCoefCorrectN.png, id=109, 433.62pt x 289
 .08pt>
 File: figures/errorEvolutionFixedT0BNegativeCoefCorrectN.png Graphic file (type
  png)
  <use figures/errorEvolutionFixedT0BNegativeCoefCorrectN.png>
 Package pdftex.def Info: figures/errorEvolutionFixedT0BNegativeCoefCorrectN.png
- used on input line 408.
+ used on input line 410.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
- [21 <./figures/NiterxCoefVarT0NegativeCoefCorrectN.png> <./figures/NiterxCoefV
+ [22 <./figures/NiterxCoefVarT0NegativeCoefCorrectN.png> <./figures/NiterxCoefV
 arT0CorrectN.png> <./figures/NiterxCoefVarInterfaceNegativeCoefCorrectN.png> <.
 /figures/NiterxCoefVarInterfaceCorrectN.png>]
-<figures/NiterxCoefVarDtdx250CorrectN.png, id=109, 433.62pt x 289.08pt>
+<figures/NiterxCoefVarDtdx250CorrectN.png, id=117, 433.62pt x 289.08pt>
 File: figures/NiterxCoefVarDtdx250CorrectN.png Graphic file (type png)
 
 <use figures/NiterxCoefVarDtdx250CorrectN.png>
 Package pdftex.def Info: figures/NiterxCoefVarDtdx250CorrectN.png used on input
- line 421.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+ line 424.
+(pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-<figures/NiterxCoefVarDxdt2em2CorrectN.png, id=110, 433.62pt x 289.08pt>
+<figures/NiterxCoefVarDxdt2em2CorrectN.png, id=118, 433.62pt x 289.08pt>
 File: figures/NiterxCoefVarDxdt2em2CorrectN.png Graphic file (type png)
 
 <use figures/NiterxCoefVarDxdt2em2CorrectN.png>
 Package pdftex.def Info: figures/NiterxCoefVarDxdt2em2CorrectN.png used on inpu
-t line 428.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
- [22 <./figures/errorEvolutionFixedT0BNegativeCoefCorrectN.png> <./figures/Nite
-rxCoefVarDtdx250CorrectN.png>]
-<figures/OptimalCoefVarDxDtCorrectN.png, id=116, 433.62pt x 289.08pt>
+t line 430.
+(pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
+
+Overfull \hbox (20.2359pt too wide) in paragraph at lines 422--434
+[]$[]$ $[]$ 
+ []
+
+<figures/OptimalCoefVarDxDtCorrectN.png, id=119, 433.62pt x 289.08pt>
 File: figures/OptimalCoefVarDxDtCorrectN.png Graphic file (type png)
 
 <use figures/OptimalCoefVarDxDtCorrectN.png>
 Package pdftex.def Info: figures/OptimalCoefVarDxDtCorrectN.png used on input l
-ine 434.
+ine 456.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-) (./conclusion.tex) (./main.bbl
-[23 <./figures/NiterxCoefVarDxdt2em2CorrectN.png> <./figures/OptimalCoefVarDxDt
-CorrectN.png>]
-Underfull \hbox (badness 1122) in paragraph at lines 22--26
+ [23 <./figures/errorEvolutionFixedT0BNegativeCoefCorrectN.png> <./figures/Nite
+rxCoefVarDtdx250CorrectN.png> <./figures/NiterxCoefVarDxdt2em2CorrectN.png>]
+<figures/regression.png, id=126, 433.62pt x 289.08pt>
+File: figures/regression.png Graphic file (type png)
+
+<use figures/regression.png>
+Package pdftex.def Info: figures/regression.png used on input line 463.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+) (./conclusion.tex [24 <./figures/OptimalCoefVarDxDtCorrectN.png> <./figures/r
+egression.png>]) (./main.bbl
+Underfull \hbox (badness 1122) in paragraph at lines 26--30
 []\OT1/cmr/m/n/12 C. Japhet and F. Nataf.  The best in-ter-face con-di-tions fo
 r Do-
  []
 
 
-Underfull \hbox (badness 2512) in paragraph at lines 22--26
+Underfull \hbox (badness 2512) in paragraph at lines 26--30
 \OT1/cmr/m/n/12 main De-com-pos-tion meth-ods : Ab-sorb-ing Bound-ary Con-di-ti
 ons.
  []
 
-) [24] (./main.aux)
+) [25] (./main.aux)
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 14576 strings out of 493027
- 287388 string characters out of 6134069
- 305629 words of memory out of 5000000
- 17945 multiletter control sequences out of 15000+600000
- 14670 words of font info for 58 fonts, out of 8000000 for 9000
+ 24605 strings out of 493027
+ 501531 string characters out of 6134069
+ 491158 words of memory out of 5000000
+ 27760 multiletter control sequences out of 15000+600000
+ 14978 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,17n,42p,10399b,561s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
-live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
-15/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (24 pages, 504715 bytes).
+ 55i,17n,54p,10399b,563s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></u
+sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr
+/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loc
+al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive
+/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/20
+15/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2015/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (25 pages, 558998 bytes).
 PDF statistics:
- 181 PDF objects out of 1000 (max. 8388607)
- 106 compressed objects within 2 object streams
+ 198 PDF objects out of 1000 (max. 8388607)
+ 118 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 
