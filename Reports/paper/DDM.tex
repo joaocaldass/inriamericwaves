@@ -225,8 +225,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
     \end{gathered}
 \end{equation*}
 
-\noindent with $\theta_i, \theta_i'$ derived below : 
-
+\noindent with $\theta_i, \theta_i'$ derived below. In order not to cause substantial modifications to the approximate TBCs $\Theta_i$, these corrections must be relatively small (for example, they should be composed of terms of order $O(\Delta x)$) .
 
 \paragraph{Determination of $\theta_1, \theta_1'$}
 
@@ -240,8 +239,8 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \indent Defining 
 
 \begin{gather*}
-    \theta_1 = c_L \frac{u_{N+1}^2 - u_{N}^2}{\Delta x} + c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^2 - \alpha_{N}^2 \right)\\
-    \theta_1' = c_L \frac{u_{N}^1 - u_{N-1}^1}{\Delta x} - c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^1 - \alpha_{N}^1 \right)
+    \theta_1 = \Delta x c_L \frac{u_{N+1}^2 - 2u_{N}^2 + u_{N-1}^1}{\Delta x^2} + c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^2 - \alpha_{N}^2 \right)\\
+    \theta_1' = - c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^1 - \alpha_{N}^1 \right)
 \end{gather*}
 
 \indent we have, in the convergence, that
@@ -250,12 +249,20 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \label{eq:modifiedTBC1}
 \begin{aligned}
 && &    \Theta_1^{c_L}(u_N^*) + \theta_1 = \Theta_1^{c_L}(u_N^*) + \theta_1'\implies \\
-&& \implies &    u_N^* - c_L \frac{u_{N+1}^* - u_N^*}{\Delta x} + c_L^2\frac{u_N^* - 2u_{N+1}^* + u_{N+2}^*}{\Delta x^2} + c_L \frac{u_{N+1}^* - u_{N}^*}{\Delta x} + c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^* - \alpha_{N}^* \right) = \\
-&& & u_N^* - c_L \frac{u_{N}^* - u_{N-1}^*}{\Delta x} + c_L^2\frac{u_N^* - 2u_{N-1}^* + u_{N-2}^*}{\Delta x^2} + c_L \frac{u_{N}^* - u_{N-1}^*}{\Delta x} - c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^* - \alpha_{N}^* \right) \implies \\
+&& \implies &    u_N^* - c_L \frac{u_{N+1}^* - u_N^*}{\Delta x} + c_L^2\frac{u_N^* - 2u_{N+1}^* + u_{N+2}^*}{\Delta x^2} + \\ 
+&& & \Delta x c_L \frac{u_{N+1}^* - 2u_{N}^* + u_{N-1}^*}{\Delta x^2} + c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^* - \alpha_{N}^* \right) = \\
+&& & u_N^* - c_L \frac{u_{N}^* - u_{N-1}^*}{\Delta x} + c_L^2\frac{u_N^* - 2u_{N-1}^* + u_{N-2}^*}{\Delta x^2}  - c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^* - \alpha_{N}^* \right) \implies \\
  && \implies &    2c_L^2 \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x ^2}  +             2c_L^2\frac{\Delta x}{\Delta t} \left( u_{N}^* - \alpha_{N}^* \right) = 0 \implies \\
 && \implies &    \frac{u_{N}^* - \alpha_{N}^*}{\Delta t} + \frac{-\frac{1}{2}u_{N-2}^* + u_{N-1}^* - u_{N+1}^* + \frac{1}{2}u_{N+2}^* }{\Delta x ^3} = 0
 \end{aligned}
 \end{equation*}
+
+\indent We notice that $\theta_1$ and $\theta_1'$ are indeed $O(\Delta x)$, which can be seen we they are written in the continuous form : 
+
+\begin{gather*}
+    \theta_1 \approx \Delta x c_L u_xx(t,x_N) + c_L^2\Delta x u_t(t,x_N)\\
+    \theta_1' = - c_L^2\Delta x u_t(t,x_N)
+\end{gather*}
 
 \paragraph{Determination of $\theta_2, \theta_2'$}
 
@@ -280,7 +287,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \end{aligned}
 \end{equation}
 
-\noindent which corresponds to the discretization \eqref{eq:FDdiscretization} satisfied in $x_N$.
+\noindent which corresponds to the discretization \eqref{eq:FDdiscretization} satisfied in $x_N$. As in the case of $\theta_1, theta_1'$, these correction terms are $O(\Delta x)$. 
 
 
 \paragraph{Determination of $\theta_3, \theta_3'$}
@@ -302,7 +309,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \begin{equation*}
 \begin{gathered}
-    \theta_3 = 2\frac{\Delta x}{\Delta t} \left[-\Delta x(u_{N-1}^1 - \alpha_{N-1}^1) - c_R (u_N^1 - \alpha_N^1) \right] + \frac{u_{N-3}^1 - 2u_{N-2}^1 + u_{N-1}^1}{\Delta x} \\
+    \theta_3 = 2\frac{\Delta x}{\Delta t} \left[-\Delta x(u_{N-1}^1 - \alpha_{N-1}^1) - c_R (u_N^1 - \alpha_N^1) \right] + \Delta x \frac{u_{N-3}^1 - 2u_{N-2}^1 + u_{N-1}^1}{\Delta x^2} \\
     \theta_3' = 0
 \end{gathered}
 \end{equation*}
@@ -319,6 +326,8 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 && \implies  & -2\frac{-\frac{1}{2}u_{N-3}^* + u_{N-2}^* - u_{N}^* + \frac{1}{2}u_{N+1}^* }{\Delta x} - 2\frac{\Delta x^2}{\Delta t}(u_{N-1}^* - 					\alpha_{N-1}^*) = 0 \implies \\
 && \implies &  \frac{u_{N-1}^* - \alpha_{N-1}^*}{\Delta t} + \frac{-\frac{1}{2}u_{N-3}^* + u_{N-2}^* - u_{N}^* + \frac{1}{2}u_{N+1}^* }{\Delta x ^3} = 0
 \end{align*}
+
+\indent Again, we notice that $\theta_3,theta_3'$ are $O(\Delta x)$
 
 \paragraph{Remark : modification of the reference solution}
 
@@ -342,7 +351,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \noindent with $\epsilon = 10^{-9}$ and $e^{\Omega,k}$ defined as in \eqref{eq:errorDDM}.
  
-\indent In order to simplify the tests and avoid too expensive computations, we will always consider $c_L = c_R = c$ in this optimization. The range of tested coefficients is $[-2.25,2.25]$, with a step of $0.01$ between them, and the maximal number of iterations is set to 100.
+\indent In order to simplify the tests and avoid too expensive computations, we will always consider $c_L = c_R = c$ in this optimization. The range of tested coefficients is $[-10.0, 20.0]$ (chosen after initial tests to identify a proper interval), with a step equal to  $0.1$ between them (or even smaller, up to $0.005$, in the regions near the optimal coefficients), and the maximal number of iterations is set to 100.
 
 \indent As a last remark, also based on the fact that we are interested only in the study of the DDM method (without influence, for example, of the error accumulated along the time steps, due to the temporal discretization), we remember that all the optimization tests will be made along only one time step.
 
@@ -369,45 +378,93 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \noindent where $u^{exact}$ is the exact solution given by \eqref{eq:exactSolution} and $\Upsilon_i , \ i =1,2,3$ are the external boundary conditions given by \eqref{eq:externalBCsDDM}.
 
-\indent The results are summarized in the figures \ref{fig:optimVarT0} and \ref{fig:optimVarInterface}, with the number of of iterations plotted as function of the coefficient $c$. They show a very similar behavior of these curves, and, instead of some differences in the zone of convergence of the method and a separation for the values of $c$ that result in higher numbers of iterations, all the curves reaches the minimum (6 iterations) on the same point ($c = 0.25$).
+\indent The results are summarized in the figures \ref{fig:optimVarT0} and \ref{fig:optimVarInterface}, with the number of of iterations plotted as function of the coefficient $c$. For the sake of clearness, the results for negative and positive coefficients are shown in separated graphs. They show a very similar behavior of all the curves, with two minimums for $c < 0$ and other two for $c>0$, which have practically the same value for all the curves (approximately -1.35, -0.10, 0.20 and 4.50). The minima closest to zero are associate to a very discontinuous peak, while the other two are associated with smoother curves. A detail of the curves around each minima are shown in the figures \ref{fig:optimVarT0NDetail}-\ref{fig:optimVarT0PDetail2} and \ref{fig:optimVarInterfaceNDetail}-\ref{fig:optimVarInterfacePDetail2}. For some curves, the minimum is associated with the coefficients closest to zero, and, for other ones, to the other minimum, but the minimal number of iterations are very similar (between five and seven).
 
 \begingroup
 \begin{minipage}{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.4]{figures/NiterxCoefVarT0NegativeCoefCorrectN.png}
-	\captionof{subfigure}{General view for positive and negative coefficients }
+	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarT0FinalVersionN.png}
+	\captionof{subfigure}{General view for negative coefficients}
 \end{center}
 \end{minipage}
 \begin{minipage}{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.4]{figures/NiterxCoefVarT0CorrectN.png}
-	\captionof{subfigure}{Detail for $c \geq 0.$ }
+	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png}
+	\captionof{subfigure}{General view for positive  coefficients}
 \end{center}
 \end{minipage}
-\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed interface and different values of $t_0$) \label{fig:optimVarT0}}
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail.png}
+	\captionof{subfigure}{Detail around one of the optimal negative coefficients  \label{fig:optimVarT0NDetail}}
+\end{center}
+\end{minipage}
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail2.png}
+	\captionof{subfigure}{Detail around the other optimal negative coefficient  \label{fig:optimVarT0NDetail2}}
+\end{center}
+\end{minipage}
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png}
+	\captionof{subfigure}{Detail around one of the optimal positive coefficients \label{fig:optimVarT0PDetail} }
+\end{center}
+\end{minipage}
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png}
+	\captionof{subfigure}{Detail around the other optimal positive coefficient  \label{fig:optimVarT0PDetail2}}
+\end{center}
+\end{minipage}
+	\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed interface and different values of $t_0$) \label{fig:optimVarT0}}
 \endgroup
 
 \begingroup
 \begin{minipage}{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.4]{figures/NiterxCoefVarInterfaceNegativeCoefCorrectN.png}
-	\captionof{subfigure}{General view for positive and negative coefficients }
+	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionN.png}
+	\captionof{subfigure}{General view for negative coefficients}
 \end{center}
 \end{minipage}
 \begin{minipage}{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.4]{figures/NiterxCoefVarInterfaceCorrectN.png}
-	\captionof{subfigure}{Detail for $c \geq 0$ }
+	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarinterfaceFinalVersionP.png}
+	\captionof{subfigure}{General view for positive coefficients }
+\end{center}
+\end{minipage}
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail.png}
+	\captionof{subfigure}{Detail around one of the optimal negative coefficients  \label{fig:optimVarInterfaceNDetail}}
+\end{center}
+\end{minipage}
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail2.png}
+	\captionof{subfigure}{Detail around the other optimal negative coefficient  \label{fig:optimVarInterfaceNDetail2}}
+\end{center}
+\end{minipage}
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png}
+	\captionof{subfigure}{Detail around one of the optimal positive coefficient \label{fig:optimVarInterfacePDetail}  }
+\end{center}
+\end{minipage}
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.png}
+	\captionof{subfigure}{Detail around the other optimal positive coefficient  \label{fig:optimVarInterfacePDetail2}}
 \end{center}
 \end{minipage}
 	\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $t_0$ and different positions of the interface) \label{fig:optimVarInterface}}
 \endgroup
 
-\indent The figure \ref{fig:errorEvolution} shows the evolution of the error, as function of the iterations, for the five coefficients $c$ that gave the fastest convergences. 
+\indent The figure \ref{fig:errorEvolution} shows the evolution of the error, as function of the iterations, for the five coefficients $c$ that gave the fastest convergences, for a fixed initial instant and a fixed position position of the interface. For other values of $t_0$ and $\alpha$ this graph is similar, concerning the number of iterations and the fact that the convergence is more regular for the coefficients closest to zero, compared to the other optimal coefficients.
 
 \begingroup
 \begin{center}
-\includegraphics[scale=.5]{figures/errorEvolutionFixedT0BNegativeCoefCorrectN.png}
+\includegraphics[scale=.5]{figures/FinalFigures/errorEvolutionFixedT0BFinalVersion.png}
 \captionof{figure}{Error evolution with the iterations for the fastest results \label{fig:errorEvolution}}
 \end{center}
 \endgroup
@@ -416,22 +473,36 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \indent After verifying that the method behaves similarly for every initial condition (i.e., every $t_0$) and every position of the interface, we will now keep these parameters fixed ($t_0 = 0$ and $\alpha = 0.5$) and make new tests with different values of $\Delta t$ (with fixed $\Delta x = 12/250$) and different values of $\Delta x$ (with fixed $\Delta t = 0.02$).
 
-\indent The number of iterations as functions of the coefficients, for some of the tests, are shown in the figure \ref{fig:niterxCoefVarDtDx}. The figure \ref{fig:optimalCoefVarDxDtCorrectN} presents the optimal coefficient for each $\Delta t$ or $\Delta x$. 
+\indent The number of iterations as functions of the coefficients, for some of the tests, are shown in the figure \ref{fig:niterxCoefVarDt} and \ref{fig:niterxCoefVarDx}. The figure \ref{fig:optimalCoefVarDxDtCorrectN} presents the optimal coefficient for each $\Delta t$ or $\Delta x$. Considering the observation we did before about the similar results (i.e, the number of iterations until the convergence) for the four optimal coefficients, we only took into account, for the construction of this curve, the two minima farther from zero : it was done because, as shown  in the figures\ref{fig:niterxCoefVarDt} and \ref{fig:niterxCoefVarDx}, these minima have a strong dependence on $\Delta t$ or $\Delta x$, and we will seek to study such relation.
 
 \begingroup
 \begin{minipage}{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.45]{figures/NiterxCoefVarDtdx250CorrectN.png}
-\captionof{subfigure}{Fixed $2N = 250$ and different values of $\Delta t$}
+	\includegraphics[scale=.45]{figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionNMarshal.png}
+\captionof{subfigure}{Negative coefficients}
 \end{center}
 \end{minipage}
 \begin{minipage}{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.45]{figures/NiterxCoefVarDxdt2em2CorrectN.png}
-\captionof{subfigure}{Fixed $\Delta t = 0.02$ and different values of $\Delta x$}
+	\includegraphics[scale=.45]{figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png}
+\captionof{subfigure}{Positive coefficients}
 \end{center}
 \end{minipage}
-\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC \label{fig:niterxCoefVarDtDx}}
+\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC, for a fixed $2N = 250$ and different values of $\Delta t$  \label{fig:niterxCoefVarDt}}
+
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.45]{figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionN.png}
+\captionof{subfigure}{Negative coefficients}
+\end{center}
+\end{minipage}
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.45]{figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png}
+\captionof{subfigure}{Positive coefficients}
+\end{center}
+\end{minipage}
+\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC, for a fixed $\Delta t = 0.02$ and different values of $\Delta x$ \label{fig:niterxCoefVarDx}}
 \endgroup
 
 \begingroup
@@ -453,19 +524,42 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 %\endgroup
 
 \begin{center}
-	\includegraphics[scale=.5]{figures/OptimalCoefVarDxDtCorrectN.png}
+	\includegraphics[scale=.5]{{figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal.png}}
 	\captionof{figure}{Optimal coefficients as function of the time step and the space step 	\label{fig:optimalCoefVarDxDtCorrectN}}
 \end{center}
 
-\indent The figure \ref{fig:optimalCoefVarDxDtCorrectN} suggests that the optimal coefficient is independent of $\Delta x$ and is function of $\sqrt{\Delta t}$. In order to verify this last conclusion, we made a linear regression $Y = A + BX$ of the data points, where $X$ is the vector containing the square root of the values of $\Delta t$, and $Y$ is the vector with the respective optimal coefficients. As a result, we obtained the regression curve $c_{optimal} = 0.1515 + 1.0620\sqrt{\Delta t}$, which is effectively a good approximation both quantitatively (with a coefficient of determination $R^2 = 0.9933$) and qualitatively (as shown in the figure \ref{fig:regression}).
+\indent The figure \ref{fig:optimalCoefVarDxDtCorrectN} suggests that some kind of regressions could be done in order to obtain a curve of the optimal coefficient in function of $\Delta t$ or $\Delta x$. The shape of the numerical curves suggests that the optimal $c$ is function of $\sqrt{|Delta t}$ and $\frac{1}{\Delta x}$. In fact, as shown in the figures \ref{fig:regressionDt} and \ref{fig:regressionDt}, these models provide very good approximations (specially in the case $c = c(\Delta x)$), both quantitatively (with all the coefficients of determination $R^2$  bigger than 0.99) and qualitatively .
 
+\begin{minipage}{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.5]{figures/regression.png}
-	\captionof{figure}{Empirical and regression curve for the optimal coefficient as function of $\Delta t$\label{fig:regression}}
+	\includegraphics[scale=.5]{figures/FinalFigures/regressionDtFinalVersionNMarshal.png}
+	\captionof{subfigure}{Regression for negative coefficients}
 \end{center}
+\end{minipage}
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.5]{figures/FinalFigures/regressionDtFinalVersionPMarshal.png}
+	\captionof{subfigure}{Regression for positive coefficients}
+\end{center}
+\end{minipage}
+\captionof{figure}{Numerical and regression curve for the optimal coefficient as function of $\Delta t$\label{fig:regressionDt}}
+
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.5]{figures/FinalFigures/regressionDxFinalVersionMarshalN.png}
+	\captionof{subfigure}{Regression for negative coefficients}
+\end{center}
+\end{minipage}
+\begin{minipage}{.5\linewidth}
+\begin{center}
+	\includegraphics[scale=.5]{figures/FinalFigures/regressionDxFinalVersionMarshalP.png}
+	\captionof{subfigure}{Regression for positive coefficients}
+\end{center}
+\end{minipage}
+\captionof{figure}{Numerical and regression curve for the optimal coefficient as function of $\Delta t$\label{fig:regressionDx}}
 
 \subsection{Partial conclusion}
  
 \indent The results presented in this section show that the Domain Decomposition Method proposed here, consisting in the Additive Schwarz Method with our approximate TBCs, is able to provide a fast convergence toward the solution of the monodomain problem. Therefore, we reached our goals of solving the dispersion equation in a finite domain divided in two subdomains.
 
-\indent Moreover, the results of the optimization tests are very satisfying regarding a more general application of our method. Firstly, for fixed spatial and temporal discretizations, we obtained optimal coefficients for the method independently of the initial solution and the size of the subdomains (i.e., independently of the initial instant and the position of the interface). Secondly, we verified that it is also independent of $\Delta x$, and has a dependency on $\Delta t$ that we empirically estimate as function of $\sqrt{\Delta t}$.
+\indent Moreover, the results of the optimization tests are very satisfying regarding a more general application of our method. Firstly, for fixed spatial and temporal discretizations, we obtained optimal coefficients for the method independently of the initial solution and the size of the subdomains (i.e., independently of the initial instant and the position of the interface). Secondly, we obtained good regression curves for the optimal coefficient as function of $\Delta t$ or $\Delta x$, which could allow the application of the model, with fast convergence, for tests different for the ones made in this study.
