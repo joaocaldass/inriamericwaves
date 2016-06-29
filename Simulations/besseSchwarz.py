@@ -5,7 +5,7 @@ import numpy as np
 import kdv
 import besseTBC
 import matplotlib.pyplot as plt
-import pickle
+import cPickle as pickle
 import generalFunctions as gF
 def showRankingSpeed(tests,nb,criteria="speed") :
     if criteria == "speed":
@@ -48,7 +48,7 @@ def getTestResult(tests,cL,cR) :
 def getTestResultVariableT0(tests,t0) :
     
     return tests[str(t0)]
-def getTestResumeVariableT0(tests) :
+def getTestResumeVariableT0(tests,barrierN=0,barrierP=0) :
     
     resumeT0 = {}
     resumeCoef = {}
@@ -56,22 +56,39 @@ def getTestResumeVariableT0(tests) :
         testT0 = getTestResultVariableT0(tests,t0)
 
         resultsRanking =  showRankingSpeed(testT0,0,criteria="speed")
+        resultsRankingN = np.copy(resultsRanking) ## only negative cL
+        resultsRankingP = np.copy(resultsRanking) ## only positive cL
         for i in range(resultsRanking.shape[0]) :
-            resultsRanking[i,0] = resultsRanking[i,0][0]  ### only cL 
+            resultsRanking[i,0] = resultsRanking[i,0][0]  ### only cL
+            resultsRankingP[i,0] = resultsRankingP[i,0][0]
+            resultsRankingN[i,0] = resultsRankingN[i,0][0]
+            if resultsRanking[i,0] < barrierN:
+                resultsRankingP[i,1] = 999
+            if resultsRanking[i,0] > barrierP:
+                resultsRankingN[i,1] = 999
         
         orderedIndex = np.argsort(resultsRanking[:,0])  ### growing cL
         resultsOrdered = resultsRanking[orderedIndex,:]
+        resultsOrderedN = resultsRankingN[orderedIndex,:]
+        resultsOrderedP = resultsRankingP[orderedIndex,:]
         
         itmin = np.argmin(resultsOrdered[:,1])
         itmax = np.argmax(resultsOrdered[:,1])
+        itminN = np.argmin(resultsOrderedN[:,1])
+        itmaxN = np.argmax(resultsOrderedN[:,1])
+        itminP = np.argmin(resultsOrderedP[:,1])
+        itmaxP = np.argmax(resultsOrderedP[:,1])
         errmin = np.argmin(resultsOrdered[:,2])
         errmax = np.argmax(resultsOrdered[:,2])       
+
         
         resumeT0[t0] = [resultsOrdered,resultsRanking,
                         np.array([resultsOrdered[itmin,0],resultsOrdered[itmin,1]]),
                         np.array([resultsOrdered[itmax,0],resultsOrdered[itmax,1]]),
                         np.array([resultsOrdered[errmin,0],resultsOrdered[errmin,2]]),
-                        np.array([resultsOrdered[errmax,0],resultsOrdered[errmax,2]])]
+                        np.array([resultsOrdered[errmax,0],resultsOrdered[errmax,2]]),
+                        np.array([resultsOrderedN[itminN,0],resultsOrderedN[itminN,1]]),
+                        np.array([resultsOrderedP[itminP,0],resultsOrderedP[itminP,1]])]
         
         
     return resumeT0
@@ -150,7 +167,7 @@ def plotErrorEvolution(tests,nb,legloc=0,savePath = None, ext = "png",titleCompl
 from itertools import cycle
 
 def plotIterationsxCoef(tests,legLabel,titleCompl = "", legloc=0,savePath = None, ext = "png", txtFmt="%.4f",
-                        xmin = None, xmax = None, differentLines = False, markevery = 10) : 
+                        xmin = None, xmax = None, ymin= None, ymax = None, differentLines = False, markevery = 10) : 
 
     if differentLines :
         lines = ["-","--","-.",":"]
@@ -168,11 +185,13 @@ def plotIterationsxCoef(tests,legLabel,titleCompl = "", legloc=0,savePath = None
     ax = fig.add_axes([0.1, 0.1, 0.6, 0.75])
     
     t0s = np.array(a.keys())
+    t0sb = []
     print(t0s)
     for i in range(t0s.size):
         t0s[i] = eval(t0s[i])
-    orderedt0s = np.sort(t0s)
-     
+        t0sb.append(eval(t0s[i]))
+    orderedt0s = np.sort(t0sb)
+        
     for t0float in orderedt0s :
     #for t0 in a.keys():   
         t0 = str(t0float)
@@ -198,7 +217,12 @@ def plotIterationsxCoef(tests,legLabel,titleCompl = "", legloc=0,savePath = None
         xmin = niterOrdered[0,0]
     if xmax == None :
         xmax = niterOrdered[-1,0]
+    if ymin == None :
+        ymin = np.amin(niterOrdered[:,1]) - 1
+    if ymax == None :
+        ymax = np.amax(niterOrdered[:,1]) + 1
     plt.xlim((xmin,xmax))
+    plt.ylim((ymin,ymax))
     plt.legend(bbox_to_anchor=(1.02, 1), loc=2, borderaxespad=0.)
     plt.xlabel("$c$",fontsize="x-large")
     plt.ylabel("Number of iterations",fontsize="large")
@@ -228,7 +252,8 @@ def computeCorrectionsTBC(u1,u2,uprev1,uprev2,dx,dt,cL,cR,pointR) :
     
     ### TBC for the point N in Omega2
     if pointR == 0:
-        corr[0] = cL/dx*(u1[-1] - u1[-2]) - dx/dt*cL*cL*(u1[-1] - uprev1[-1] - uprev2[0])
+        #corr[0] = cL/dx*(u1[-1] - u1[-2]) - dx/dt*cL*cL*(u1[-1] - uprev1[-1] - uprev2[0])
+        corr[0] = -cL/dx*(u1[-2]) - dx/dt*cL*cL*(u1[-1] - uprev1[-1] - uprev2[0])
         corr[1] = -dx/dt*cR*cR*(u2[0] - uprev2[0] - uprev1[-1])
         corr[2] = -2.*dx/dt*(dx*uprev1[-2] + cR*uprev1[-1])
     
@@ -354,7 +379,7 @@ def ASM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
         useTBCR = False    
         u2 = besseTBC.IFDBesse(u2prev,None,None,t,dt,dx,1.,0,coef,corrTBC,0,useTBCL,useTBCR,BC2,
                                fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
-                               middlePoint = middlePoint, uNeig = u1[-2])
+                               middlePoint = middlePoint, uNeig = uleft)
         
         if verbose :
             print(" ")
@@ -527,7 +552,7 @@ def MSM(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbos
    
         u2 = besseTBC.IFDBesse(u2prev,None,None,t,dt,dx,1.,0,coef,corrTBC,0,useTBCL,useTBCR,BC2,
                                fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
-                               middlePoint = middlePoint, uNeig = u1[-2])
+                               middlePoint = middlePoint, uNeig = u1)
        
         if uref != None:
             nx = u1.size
@@ -630,7 +655,7 @@ def MSMi(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbo
    
         u2 = besseTBC.IFDBesse(u2prev,None,None,t,dt,dx,1.,0,coef,corrTBC,0,useTBCL,useTBCR,BC2,
                                fourConditions = fourConditions,pointR = pointR, modifyDiscret = modifyDiscret,
-                               middlePoint = middlePoint, uNeig = u1[-2])
+                               middlePoint = middlePoint, uNeig = u1)
         
         corr = computeCorrectionsTBC(uleft,u2,u1prev,u2prev,dx,dt,cL,cR,pointR)
         ## BC for Omega_1
@@ -666,7 +691,8 @@ def MSMi(x1,x2,u1,u2,t,dx,dt,order,cL,cR,maxiter,eps,uref,it,debug,corrTBC,verbo
     return u1,u2,niter, np.sqrt(dx)*np.linalg.norm(u1-u1m), np.sqrt(dx)*np.linalg.norm(u2-u2m),\
            diff,err,err1,err2,errInterfaceL,errInterfaceR
 def optimizeSpeed(x,x1,x2,u,uallref,cLs,cRs,prevTests,t0,tmax,dx,dt,maxiter = 100, equalCoef = False,
-                  middlePoint = 0, criteria = "diffIteration", epsCV = 1e-7, DDMmethod = ASM) :
+                  middlePoint = 0, criteria = "diffIteration", epsCV = 1e-7, DDMmethod = ASM,
+                  modifyDiscret = 3) :
   
     testsSpeed = prevTests
 
@@ -713,14 +739,15 @@ def optimizeSpeed(x,x1,x2,u,uallref,cLs,cRs,prevTests,t0,tmax,dx,dt,maxiter = 10
                                                           fourConditions = 0, pointR = 0,
                                                           middlePoint = middlePoint,
                                                           criteria = criteria,
-                                                          DDMmethod = DDMmethod)
+                                                          DDMmethod = DDMmethod,
+                                                          modifyDiscret = modifyDiscret)
                 print(cL,cR,niterallSpeed[1],errallSpeed[-1,1])
                 #if errallSpeed[-1,1] != 'nan' and  errallSpeed[-1,1] != 'inf' and errallSpeed[-1,1]  < 1e6:
-                testsSpeed[str((cL,cR))] = (niterallSpeed[1],errallSpeed[-1,1],
+                testsSpeed[str((cL,cR))] = (int(niterallSpeed[1]),float(errallSpeed[-1,1]),
                                             np.ndarray.tolist(errallSpeed[:niterallSpeed[1]+1,1]),
-                                            errall1Speed[-1,1],
+                                            float(errall1Speed[-1,1]),
                                             np.ndarray.tolist(errall1Speed[:niterallSpeed[1]+1,1]),
-                                            errall2Speed[-1,1],
+                                            float(errall2Speed[-1,1]),
                                             np.ndarray.tolist(errall2Speed[:niterallSpeed[1]+1,1]),)
                 
             if equalCoef :

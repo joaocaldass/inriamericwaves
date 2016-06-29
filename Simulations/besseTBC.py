@@ -8,6 +8,7 @@ import sys
 import math
 import json
 import yaml
+import marshal
 
 nan = float('nan')
 ## supposing x.size = y.size  (???)
@@ -42,7 +43,10 @@ def imposeTBC(M,rhs,um,umm,U2,dx,dt,order,coef,BCs,correctTBCL,correctTBCR,fourC
         ## Eq. in N
             if pointR == 0:
                 M[0,:] = 0
-                M[0,0] = 1. + cL*U2/dx + cL*cL*U2/(dx*dx) + correctTBCL*(-cL/dx + dx/dt*cL*cL) 
+                ####M[0,0] = 1. + cL*U2/dx + cL*cL*U2/(dx*dx) + correctTBCL*(-cL/dx + dx/dt*cL*cL) 
+                ####M[0,1] = -cL*U2/dx - 2.*cL*cL*U2/(dx*dx) + correctTBCL*(cL/dx)
+                ####M[0,2] = cL*cL*U2/(dx*dx)
+                M[0,0] = 1. + cL*U2/dx + cL*cL*U2/(dx*dx) + correctTBCL*(-2.*cL/dx + dx/dt*cL*cL) 
                 M[0,1] = -cL*U2/dx - 2.*cL*cL*U2/(dx*dx) + correctTBCL*(cL/dx)
                 M[0,2] = cL*cL*U2/(dx*dx)
                 rhs[0] = BCs[0]
@@ -262,13 +266,21 @@ def IFDBesse(u,um,umm,t,dt,dx,U2,order,coef,correctTBCL,correctTBCR,useTBCL, use
             M[mp,mp+3] = 7.*k
             M[mp,mp+4] = -3./2.*k
     
-    if modifyDiscret == 2 :  #### centered discret. for point N+1 in Omega2
+    if modifyDiscret == 2 :  #### centered discret for point N+1 in Omega2
         M[1,:] = 0
         M[1,0] = k
         M[1,1] = 1.
         M[1,2] = -k
         M[1,3] = 1./2.*k
-                    
+        
+    if modifyDiscret == 3 :   #### centered discret for point N+1 in Omega2 (1/2 + 1/2)
+        M[1,:] = 0.
+        M[1,0] = k/2.
+        M[1,1] = 1.
+        M[1,2] = -k
+        M[1,3] = k/2.        
+        
+        
     rhs = np.copy(u)
     
     M,rhs = imposeTBC(M,rhs,um,umm,U2,dx,dt,order,coef,BCs,correctTBCL,correctTBCR,fourConditions,pointR,
@@ -276,6 +288,8 @@ def IFDBesse(u,um,umm,t,dt,dx,U2,order,coef,correctTBCL,correctTBCR,useTBCL, use
     
     if modifyDiscret == 2 :  #### centered discret. for point N+1 in Omega2
         rhs[1] = rhs[1] + uNeig*k/2.
+    if modifyDiscret == 3 :  #### centered discret for point N+1 in Omega2 (1/2 + 1/2)
+        rhs[1] = rhs[1] - k/2.*(uNeig[-1] - uNeig[-2])
     
     np.set_printoptions(threshold=np.nan)
     np.set_printoptions(suppress=True)
@@ -466,13 +480,16 @@ def exactSolution2(x,t) :
     print(t)
     return c
 ## Load previous results from file and put in the library (or create a new one)
-def loadTests(filename) :
+def loadTests(filename,module="marshal") :
 
     # load from file:
     try :
         with open(filename, 'r') as f:
             try:
-                tests = yaml.safe_load(f)
+                if module == "yaml":
+                    tests = yaml.safe_load(f)
+                elif module == "marshal":
+                    tests = marshal.load(f)
             # if the file is empty the ValueError will be thrown
             except ValueError:
                 tests= {}
@@ -480,10 +497,13 @@ def loadTests(filename) :
         
     return tests
 
-def saveTests(tests,filename):
+def saveTests(tests,filename,module="marshal"):
     # save to file:
     with open(filename, 'w') as f:
-        json.dump(tests, f)
+        if module == "marshal":
+            marshal.dump(tests, f)
+        elif module == "json" :
+            json.dump(tests, f)
     
 def showRanking(tests,nb,criteria="L2") :
     if criteria == "Tm":
