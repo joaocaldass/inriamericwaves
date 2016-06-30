@@ -1,3 +1,41 @@
 \section{Introduction}
 
-...
+\indent The Korteweg - de Vries (KdV) equation, derived by \cite{kdv1895} in 1895, models the propagation of waves with small amplitude and large wavelength, taking in account nonlinear and dispersive effects. In terms of dimensionless but unscaled variables, it can be written as \cite{BBM1971}
+
+\begin{equation}
+	u_t + u_x + uu_x + u_{xxx} = 0
+\end{equation}
+
+\indent As done in \cite{zheng2008} (and in \cite{besse2015} as a special case of their work), we will focus in this paper on the linearized KdV equation without the advective term : 
+
+\begin{equation}
+ \label{eq:DKdV}
+	u_t + u_x + uu_x + u_{xxx} = 0
+\end{equation}
+
+\noindent to which we will refer as \emph{dispersion equation}.
+
+\indent The work developed here is inspired on  \cite{zheng2008} and \cite{besse2015}. Nevertheless, our objectives are very different from theirs; to understand these differences, a contextualization must be done, with a brief description of the sources of errors and uncertainties  that affect the numerical simulations of physical models.
+
+\indent In a general way, we can group these sources in conceptual modeling errors and numerical errors \cite{roache1997}. In the first group, we can mention conceptual modeling assumptions (for the physical phenomena and the boundary conditions) and uncertainties in the geometry, the initial data, boundary data (missing informations or erros in the measuring method) and in the parameters that play a role in the model \cite{roache1997,balagurusamy2008}. Concerning the numerical errors, we can mention those related to the computational domain size, the temporal errors and the spatial errors.  \cite{karniadakis1995,roache1997} 
+
+\indent The total error of the numerical simulation is a contribution of each one of these sources. Knowing and quantifying them is essential to improve the implementation of the physical of model, and, in this context, the separated study of each one of these contributions has a great importance.
+
+\indent Among the types of errors mentioned above, \cite{zheng2008} and \cite{besse2015} attempted to reduce the one related to the modeling of the boundary conditions. Such modeling is necessary when one solves in a finite computational domain the problem \eqref{eq:problemDKdV} :
+
+\begin{equation}
+ \label{eq:problemDKdV}
+\begin{cases}
+	u_t + u_{xxx} = 0, \ \ t \in \mathbb{R}^+, \ \ x \in \mathbb{R} \\
+	u(0,x) = u_0(x), \ \ x \in \mathbb{R} \\
+	u \longrightarrow 0, \ \ x \longrightarrow \infty
+\end{cases}
+\end{equation}
+
+\indent In fact,``in the case when a PDE is employed to model waves on unbounded domain and the numerical simulation is performed, it is a common practice to truncate the unbounded domain by introducing artificial boundaries, which necessitates additional boundary conditions to be designed. A proper choice of these boundary conditions should ensure both stability and accuracy of the truncated initial-boundary value problem.'' \cite{zheng2008}. Although using different approaches, both authors sought to construct Absorbing Boundary Conditions (ABCs) (which simulate the absorption of a wave quitting the computational domain) or Transparent Boundary Conditions (TBCs) (which makes the approximate solution on the computational domain coincides with solution of the whole domain).
+
+\indent In this paper, we will propose a Domain Decomposition Method (DDM) for solving the problem \eqref{eq:problemDKdV} in a finite domain, i.e., we will decompose the computational domain in subdomains and solve \eqref{eq:problemDKdV} in each one of them. This requires the formulation of appropriate conditions on the interface between the subdomains, in order to minimize the error due to the DDM (which we include in the list of numerical errors in the simulation of a physical model). Following the principle of studying each type of numerical error separately, we do not attempt here to minimize the errors due to the introduction of external boundaries of the computational domain (although we also make use of TBCs), but only due to the decomposition of the domain and the introduction of an interface boundary.
+
+\indent As a consequence, our work shall not use the same reference solution as the one used by \cite{zheng2008} and \cite{besse2015} : for validating their approaches,  they compare their approximate solution with the exact solution of the whole domain. In the other hand, our reference solution will be the solution computed on the computational monodomain, which we will construct with approximate formulations for the TBCs proposed in the mentioned works.
+
+\indent This paper is organized in the following way : in section \ref{sec:TBC}, we recall the exact TBCs derived by \cite{zheng2008} for \eqref{eq:DKdV} and propose approximations for them, leading to very simple conditions (avoiding, for example, integrations in time) depending on two coefficients. With some numerical experiments, we show that these approximate TBCs work quite well (although not so well as the approaches of \cite{zheng2008} and \cite{besse2015}), motivating us to use them in the sequence of our work. In section \ref{sec:DDM}, we describe the Domain Decomposition Method used here and we construct it using our approximate TBCs as Interface Boundary Conditions (IBCs). Small modifications are proposed for these IBCs such that the solution of the DDM problem converges exactly to the reference solution (the solution of the monodomain problem). Finally, we perform a large set of numerical tests in order to optimize the IBCs, in the sense that we search the coefficients for the approximate TBCs that provide the fastest convergence.

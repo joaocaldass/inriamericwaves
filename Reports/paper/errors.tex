@@ -20,18 +20,4 @@
 
 \indent In this paper, we will propose a Domain Decomposition Method (DDM), i.e., we will decompose the computational domain in subdomains and solve the problem \eqref{eq:problemDKdV} in each one of them. This requires the formulation of appropriate conditions on the interface between the subdomains, in order to minimize the error due to the DDM (which we include in the list of numerical errors in the simulation of a physical model). Following the principle of studying each type of numerical error separately, we do not attempt here to minimize the errors due to the introduction of external boundaries of the computational domain (although we also make use of TBCs), but only due to the decomposition of the domain and the introduction of an interface boundary.
 
-%\indent The following scheme briefly illustrates these remarks :
-
-\tikzstyle{node}=[minimum width=0cm, minimum height=0cm, rectangle,
-			draw]
-			
-%\begin{tikzpicture}
-%	\node[node] (A) at (0,4) {$u$  :   Problem solved in the infinite domain};
-%	\node[node] (B) at (0,2) {$\overline{u}$ :  Problem solved in the finite computational domain};
-%	\node[node] (C) at (0,0) {$\tilde{u}$ :  Problem solved in the finite computational domain divided in subdomains};
-%	
-%	\draw[->] (A) -- (B) node[midway,right]  {Work of \cite{zheng2008} and \cite{besse2015}};
-%	\draw[->] (B) -- (C) node[midway,right]  {Our work};
-%\end{tikzpicture}
-
 \noindent As a consequence, our work shall not use the same reference solution as the one used by \cite{zheng2008} and \cite{besse2015} : for validating their approaches,  they compare their approximate solution with the solution of the whole domain. In the other hand, our reference solution will be the solution computed on the computational monodomain, which we will construct with approximate formulations for the TBCs proposed in the mentioned works.
