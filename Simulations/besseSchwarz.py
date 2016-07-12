@@ -47,7 +47,10 @@ def getTestResult(tests,cL,cR) :
     return None
 def getTestResultVariableT0(tests,t0) :
     
-    return tests[str(t0)]
+    if isinstance(t0,tuple):
+        return tests[t0]
+    else :
+        return tests[str(t0)]
 def getTestResumeVariableT0(tests,barrierN=0,barrierP=0) :
     
     resumeT0 = {}
@@ -95,7 +98,8 @@ def getTestResumeVariableT0(tests,barrierN=0,barrierP=0) :
         
 from itertools import cycle
 
-def plotErrorEvolution(tests,nb,legloc=0,savePath = None, ext = "png",titleCompl = "", errorLR = False) : 
+def plotErrorEvolution(tests,nb,legloc=0,savePath = None, ext = "png",titleCompl = "", errorLR = False,
+                       rangeCoefs="all") : 
 
     lines = ["-","--","-.",":"]
     linecycler = cycle(lines)
@@ -122,24 +126,32 @@ def plotErrorEvolution(tests,nb,legloc=0,savePath = None, ext = "png",titleCompl
 
     fig = plt.figure()
     ax = fig.add_axes([0.1, 0.1, 0.6, 0.75])
-    for i in range(nb):
+    cnt = 0
+    i = 0
+    while cnt < nb:
         c = orderedList[i,0]
-        error = getTestResult(tests,c,c)[2]
+        if ((rangeCoefs=="all" or rangeCoefs =="positive") and c >= 0.) or \
+           ((rangeCoefs=="all" or rangeCoefs =="negative") and c <= 0.):
 
-        ax.plot(np.log10(error),label="$c_L = %.3f$"%c,linestyle=next(linecycler), marker = next(markercycler))
-        plt.xlabel("Iteration")
-        plt.ylabel("log(Error)")
-        #plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.) 
-        legend = plt.legend(loc=legloc)
-        # Set the fontsize
-        for label in legend.get_texts():
-            label.set_fontsize('small')
-            
-        if titleCompl == "":
-            plt.title("Error evolution - %d faster cases (for the complete domain)"%nb)
-        else :
-            #plt.title("Error evolution - %d faster cases (for the complete domain) - "%nb + titleCompl)
-            plt.title(titleCompl)
+            error = getTestResult(tests,c,c)[2]
+
+            ax.plot(np.log10(error),label="$c_L = %.3f$"%c,linestyle=next(linecycler), marker = next(markercycler))
+            plt.xlabel("Iteration")
+            plt.ylabel("log(Error)")
+            #plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.) 
+            legend = plt.legend(loc=legloc)
+            # Set the fontsize
+            for label in legend.get_texts():
+                label.set_fontsize('small')
+
+            if titleCompl == "":
+                plt.title("Error evolution - %d faster cases (for the complete domain)"%nb)
+            else :
+                #plt.title("Error evolution - %d faster cases (for the complete domain) - "%nb + titleCompl)
+                plt.title(titleCompl)
+            cnt = cnt+1
+        i = i+1
+
             
     if savePath != None:
         plt.savefig(savePath + "." + ext)            
