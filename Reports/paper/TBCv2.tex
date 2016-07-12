@@ -22,7 +22,7 @@
 \end{cases}
 \end{equation*}
 
-\noindent the TBCs are given by 
+\noindent the TBCs are given \cite[equations 2.17,2.18]{besse2015} by 
 
 \begin{equation}
 \label{eq:continuousTBC}
@@ -52,9 +52,9 @@
 
 \begin{equation}
 	\label{eq:appP0}
-	\frac{\lambda^2}{s}  = c \qquad
-	\frac{\lambda}{s}  = -c^2 \qquad
-	\frac{1}{\lambda_1(s)^2}  = c^2\qquad 
+	\frac{\lambda^2}{s}  = c, \qquad
+	\frac{\lambda}{s}  = -c^2, \qquad
+	\frac{1}{\lambda_1(s)^2}  = c^2, \qquad 
 	 \frac{1}{\lambda_1(s)}  = -c 
 \end{equation}
 
@@ -154,7 +154,7 @@
 
 \indent It must be clear that our approach does not provide better Transparent Boundary Conditions than the one proposed by \cite{besse2015}, what, as discussed in the introduction of this paper, is not the objective of the work developed here. Indeed, \cite{besse2015} derives TBCs for two discrete schemes, and the worst result among them, using the same $\Delta x $ and $\Delta t$ that we used here, presents an error $e_{L2} \approx 0.005$ for $t = 4$, while our best result has $e_{L2} \approx 0.1$ for the same instant. Nevertheless, considering that our main goal is the application of the TBCs to a Domain Decomposition Method, we focus in minimizing the error due to the Interface Boundary Conditions imposed in this kind of method, and not in the errors due to the external boundary conditions.
 
-\indent In fact, we can say that the boundary conditions proposed here work relatively well as TBCs, with a very simple implementation and, consequently, low computation and memory costs. As a development of our approach, we also tested an approximation for $\frac{\lambda^2}{s}$ using a linear polynomial, but, although the increment in the complexity (including time derivative terms up to the second derivative, what requires the storage of previous computed solutions), it does not provide a better approximation for the TBC, in comparison with the approximation using a constant polynomial.
+\indent In fact, we can say that the boundary conditions proposed here work relatively well as TBCs, with a very simple implementation (with need, for example, of storing the solution of many previous time steps). As a development of our approach, we also tested an approximation for $\frac{\lambda^2}{s}$ using a linear polynomial, but, although the increment in the complexity (including time derivative terms up to the second derivative, what requires the storage of previous computed solutions), it does not provide a better approximation for the TBC, in comparison with the approximation using a constant polynomial.
 
 \indent Therefore, in the following of this paper, we will continue using the approximate TBCs given by the operators $\Theta_i^{c}, \ i=1,2,3$, defined in \eqref{eq:appTBCP0}.
 
