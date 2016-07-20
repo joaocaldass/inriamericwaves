@@ -1,4 +1,8 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{energyMethod}
+{Analytical Solution of Partial Differential Equations - School of Mathemtics,
+  University of Leeds}, 2003/2004.
 
 \bibitem{Xavieretal2008}
 X.~Antoine, A.~Arnold, C.~Besse, M.~Ehrhardt, and C.~Schädle.
@@ -10,7 +14,7 @@ X.~Antoine, A.~Arnold, C.~Besse, M.~Ehrhardt, and C.~Schädle.
 \bibitem{balagurusamy2008}
 E.~Balagurusamy.
 \newblock {\em Numerical methods}.
-\newblock Tata McGraw-Hill, 2008.
+\newblock Tata McGraw-Hill, New Delhi, 2008.
 
 \bibitem{BBM1971}
 T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony.
@@ -23,6 +27,12 @@ C.~Besse, M.~Ehrhardt, and I.~Lacroix-Violet.
 \newblock {Discrete Artificial Boundary Conditions for the Korteweg-de Vries
   Equation}.
 \newblock working paper or preprint, Jan. 2015.
+
+\bibitem{odeUniqueness}
+J.~Hu and W.-P. Li.
+\newblock {Theory of Ordinary Differential Equations - Existence, uniqueness
+  and stability (Department of Mathematics - The Honk Kong University of
+  Science and Technology)}, 2005.
 
 \bibitem{Japhet2003}
 C.~Japhet and F.~Nataf.
@@ -40,6 +50,12 @@ D.~J. Korteweg and G.~de~Vries.
 \newblock On the change of form of long waves advancing in a rectangular canal
   and on a new type of long stationary waves.
 \newblock {\em {Philosophical Magazine}}, 5(39):422–443, 1895.
+
+\bibitem{finiteFourier}
+N.~T. Negero.
+\newblock Fourier transform methods for partial differential equations.
+\newblock {\em International Journal of Partial Differential Equations and
+  Applications}, 2(3):44--57, 2014.
 
 \bibitem{roache1997}
 P.~J. Roache.

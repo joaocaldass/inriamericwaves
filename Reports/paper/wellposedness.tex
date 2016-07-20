@@ -1,0 +1,195 @@
+\section{Appendix: well-posedness of the problem}
+
+\indent We will prove here the well-posedness of the following problem:
+
+\begin{equation}
+    \label{eq:genericProblem}
+    \begin{cases}
+        u_t + u_{xxx} = 0 , \ \ x \in [a,b], \ \ t \geq t_0\\
+        u(0,x)  = u_0(x) , \ \ x \in [a,b] \\
+        \Theta_1^{c_L}(u,a) = \alpha_1, \\ 
+        \Theta_2^{c_R}(u,b) = \alpha_2, \\
+        \Theta_3^{c_R}(u,b) = \alpha_3
+     \end{cases}
+\end{equation}
+
+\noindent with
+
+\begin{equation}
+    \begin{gathered}
+        \Theta_1^{c_L}(u,x) = u(t,x) - c_L u_x(t,x)  + c_L^2  u_{xx}(t,x) = 0 \\
+        \Theta_2^{c_R}(u,x) =  u(t,x) - c_R^2    u_{xx}(t,x) = 0\\
+        \Theta_3^{c_R} (u,x)= u_x(t,x) + c_R u_{xx}(t,x)  = 0
+    \end{gathered}
+\end{equation}
+
+\indent The problem  \eqref{eq:genericProblem} was written in a very generic way, allowing us to study simultaneously the monodomain problem and the problem solved in each subdomain in the DDM. Indeed, each one of these cases correspond to the following combination of parameters :
+
+\begin{itemize}
+	\item Monodomain problem :
+		\begin{equation*}
+			a = -L, \qquad
+			b = L, \qquad
+			c_L = 1, \qquad
+			cR = 0, \qquad
+			\alpha_1 = \alpha_2 = \alpha_3 = 0 \qquad
+		\end{equation*}
+		
+	\item $\Omega_1$ problem :
+		\begin{equation*}
+			a = -L, \qquad
+			b = 0, \qquad
+			c_L = 1, \qquad
+			c_R = c, \qquad
+			\alpha_1 = 0 \qquad
+			\alpha_j = \Theta_j^{c}(u_2,b),  j=2,3\qquad
+		\end{equation*}
+		
+	\item $\Omega_2$ problem :
+		\begin{equation*}
+			a = 0, \qquad
+			b = L, \qquad
+			c_L = c, \qquad
+			c_R = 0, \qquad
+			\alpha_1 =\Theta_1^{c}(u_1,a) \qquad
+			\alpha_2 = \alpha_3 = 0 \qquad
+		\end{equation*}
+\end{itemize}
+
+\subsection{Existence of the solution}
+
+\indent ??? (question left open by \cite{zheng2008})
+
+\subsection{Uniqueness of the solution}
+
+\subsubsection{Proof following \cite{zheng2008}}
+
+\indent We will proceed as \cite{zheng2008}. Multiplying $u_t + u_{xxx} = 0$ by $2u$, we get
+
+\begin{equation}
+\label{eq:uniq1}
+2uu_t + 2uu_{xxx} = 0 \implies \frac{\partial}{\partial t}(u^2) + 2uu_{xxx} = 0
+\end{equation}
+
+\indent Integrating \eqref{eq:uniq1} in space and using the boundary conditions:
+
+\begin{equation}
+\label{eq:uniq2}
+\begin{aligned}
+		 \frac{\partial}{\partial t} \int_a^b{u^2 dx} && = & \  -2 \int_a^b{uu_{xxx}}dx = -2 \int_a^b{\left( uu_{xx} - \frac{1}{2}(u_x)^2 \right)_x}dx = \\
+		 																  && = & \ 2 \left[(c_L u_x - c_L^2 u_{xx} + \alpha_1 )u_{xx} - \frac{1}{2}(u_x)^2  \right](t,a)  +\\
+		 																  &&    & \ \left[ -2(c_R^2 u_{xx} + \alpha_2 )u_{xx} + (-c_R u_{xx} + \alpha_3)^2 \right](t,b) = \\
+		 																  && = & \ \left[(2c_L u_x u_{xx} - c_L^2(u_{xx})^2 - (u_x)^2 \right](t,a) +  \alpha_1(u_{xx})^2 (t,a) + \\
+		 																  &&    & \ \ \left[ -2(c_R^2 u_{xx} + \alpha_2 )u_{xx} + c_R^2 (u_{xx})^2 -2u_{xx}c_R\alpha_3 + \alpha_3^2 \right](t,b) = \\
+		 																  && = & \ - \left(u_x - c_Lu_{xx}\right)^2(t,a) - c_L^2 (u_{xx})^2(t,a) - c_R^2 (u_{xx})^2(t,b) + \\
+		 																  &&    & \ 2\alpha_1 u_{xx}(t,a) - 2(\alpha_2 + c_R\alpha_3)u_{xx}(t,b) + \alpha_3^2 
+\end{aligned}
+\end{equation}
+
+\indent Integrating in time :
+
+\begin{equation}
+\label{eq:uniq3}
+\begin{aligned}
+	 \int_a^b{u(t,x)^2 dx} && = & \\
+	 									&&  = & \int_a^b{u_0(x)^2 dx}  - \int_0^t{ \left[ \left(u_x - c_Lu_{xx}\right)^2(t,a) + c_L^2 (u_{xx})^2(t,a) + c_R^2 (u_{xx})^2(t,b) \right]dt} + \\
+	 																			&&    & \ \int_0^t{ \left[ 2\alpha_1 u_{xx}(t,a) - 2(\alpha_2 + c_R\alpha_3)u_{xx}(t,b) + \alpha_3^2 \right] dt} \leq \\
+	 									&& \leq & \  \int_a^b{u_0(x)^2 dx} + \int_0^t{ \left[ 2\alpha_1 u_{xx}(t,a) - 2(\alpha_2 + c_R\alpha_3)u_{xx}(t,b) + \alpha_3^2 \right] dt}
+\end{aligned}
+\end{equation}
+
+\indent In the monodomain problem, where $\alpha_j = 0, \ j=1,2,3$, we have 
+
+\begin{equation*}
+	 \int_a^b{u(t,x)^2 dx} \leq \int_a^b{u_0(x)^2 dx}
+\end{equation*}
+
+\noindent assuring the uniqueness of the solution.
+
+\indent In order to make the same conclusion for the problems in the DDM, we must prove, respectively for the problems in $\Omega_1$ and $\Omega_2$ :
+
+\begin{equation}
+	\label{eq:integralOmega1}
+	\int_0^t{ \left[ - 2(\Theta_2^{c}(u_2,0)  + c\Theta_3^{c}(u_2,0))u_{xx}(t,0) + (\Theta_3^{c}(u_2,0))^2 \right] dt} \leq 0
+\end{equation}
+
+\begin{equation}
+	\label{eq:integralOmega2}
+	\int_0^t{ \Theta_1^{c}(u_1,0)  u_{xx}(t,0) dt} \leq 0
+\end{equation}
+
+\paragraph{Remark} : the inequalities \eqref{eq:integralOmega1} and \eqref{eq:integralOmega2} possibly are not always true, explaining the divergence observed for some coefficients 
+
+
+
+\subsubsection{Proof using the energy method}
+
+\indent The following proof is based on \cite{energyMethod}. Suppose there are two solutions of the problem \eqref{eq:genericProblem}, $u$ and $v$, and let $w = u-v$. Thus, $w$ is solution of the problem
+
+\begin{equation}
+    \label{eq:genericProblemW}
+    \begin{cases}
+        u_t + u_{xxx} = 0 , \ \ x \in [a,b], \ \ t \geq t_0\\
+        u(0,x)  = 0 , \ \ x \in [a,b] \\
+        \Theta_1^{c_L}(u,a) = 0 \implies u(t,a) - c_L u_x(t,a) + c_L^2 u_{xx}(t,a) = 0\\ 
+        \Theta_2^{c_R}(u,b) = 0 \implies u(t,b) - c_R^2 u_{xx}(t,b) = 0 \\
+        \Theta_3^{c_R}(u,b) = 0 \implies u_x(t,b) + c_R u_{xx}(t,b) = 0
+     \end{cases}
+\end{equation}
+
+\indent Define the energy function
+
+\begin{equation*}
+	I(t) = \frac{1}{2}\int_a^b{w^2(t,x)dx}
+\end{equation*}
+
+\indent We can see that $I(0) = 0$ and $I(t) \geq 0 \ \forall t$.
+
+\indent We have, integrating par parts twice nd using the boundary conditions:
+
+\begin{equation}
+	\begin{aligned}
+		\frac{dI}{dt} & =  \frac{1}{2}\int_a^b{(w^2)_t dx} = \int_a^b{w w_t dx} = - \int_a^b{w w_{xxx} dx}  = \\
+							 & = - \left[ w w_{xx} \right]_a^b + \int_a^b{w_x w_{xx} dx} = - \left[ w w_{xx} \right]_a^b + \frac{1}{2} \left[ (w_{x})^2 \right]_a^b = \\
+							 & = -c_R^2 (w_{xx}(t,b))^2 + (c_L w_x(t,a) - c_L^2 w_{xx}(t,a))w_{xx}(t,a) +  \frac{1}{2} c_R^2 (w_{xx}(t,b))^2 - \frac{1}{2}(w_{x}(t,a))^2 \leq \\
+							 & \leq c_Lw_x(t,a)w_{xx}(t,a)
+	\end{aligned}
+\end{equation} 
+
+\noindent If we assure that $\frac{dI}{dt} <0 \ \forall t$, we conclude that $w \equiv 0$, so $u \equiv v$ and the solution to \eqref{eq:genericProblem} is unique.
+
+
+\subsubsection{Proof solving in the Fourier space}
+
+\indent We will solve the problem \eqref{eq:genericProblem} in the Fourier space, with the (finite) Fourier transforms performed on the spatial variable.
+
+\indent Using successive integrations by parts, we can write the Fourier transform of $u_{xxx}$ taking into account the boundary conditions (in a similar way as done in \cite{finiteFourier}):
+
+
+
+\begin{equation*}
+	\begin{aligned}
+		\hat{u}_{xxx}(t,\xi) & = \int_a^b{u_{xxx}(t,x) \eF dx} = [u_{xx}(t,x) \eF]_a^b + i\xi \int_a^b{u_{xx}(t,x) \eF dx} = \\
+										 & =  [u_{xx}(t,x) \eF]_a^b + i \xi [u_{x}(t,x) \eF]_a^b - \xi^2 \int_a^b{u_{x}(t,x) \eF dx} = \\
+										 & = [u_{xx}(t,x) \eF]_a^b + i \xi [u_{x}(t,x) \eF]_a^b - \xi^2 [u(t,x) \eF]_a^b - i\xi^3 \int_a^b{u(t,x) \eF dx} = \\
+										 & = F(t,b) - F(t,a) - i\xi^3 \int_a^b{u(t,x) \eF dx} = F(t,b) - F(t,a) - i\xi^3 \hat{u}(t,\xi)
+	\end{aligned} 
+\end{equation*}
+
+\noindent with
+
+\begin{equation*}
+	F(t,x) =(u_{xx}(t,x) + i \xi u_{x}(t,x) - \xi^2 u(t,x)) \eF 
+\end{equation*}
+
+\indent Therefore, in the Fourier space, \eqref{eq:genericProblem} is the following first order ODE problem in time:
+
+\begin{equation}
+	\label{eq:fourierProblem}
+	\begin{cases}
+		\hat{u}_t(t,\xi) - i\xi^3 \hat{u}(t,\xi) = F(t,a)-F(t,b) \\
+		\hat{u}(0,\xi) = \hat{u}_0(\xi)
+	\end{cases}
+\end{equation}
+
+\indent The uniqueness (and the existence?) of the solution of \eqref{eq:fourierProblem} is assured given that the function $h(t) = F(t,a)-F(t,b) + i\xi^3 \hat{u}(t,\xi)$ satisfies a Lipschitz condition in $[a,b]$ \cite[theorem 1.2.1]{odeUniqueness} 

@@ -1,17 +1,17 @@
 \contentsline {section}{\numberline {1}Introduction}{2}
 \contentsline {section}{\numberline {2}Approximate Transparent Boundary Conditions for the dispersive equation}{4}
 \contentsline {subsection}{\numberline {2.1}The exact TBCs for the continuous equation}{4}
-\contentsline {subsection}{\numberline {2.2}Approximation for the TBCs using a constant polynomial}{4}
+\contentsline {subsection}{\numberline {2.2}Approximation for the TBCs using a constant polynomial}{5}
 \contentsline {subsection}{\numberline {2.3}Partial conclusion}{7}
 \contentsline {section}{\numberline {3}Application to a Domain Decomposition Method}{8}
 \contentsline {subsection}{\numberline {3.1}The Schwarz Method}{8}
-\contentsline {subsection}{\numberline {3.2}ASM with the approximate TBCs for the dispersion equation}{9}
+\contentsline {subsection}{\numberline {3.2}ASM with the approximate TBCs for the dispersion equation}{10}
 \contentsline {paragraph}{Remarks on the notation}{11}
-\contentsline {subsection}{\numberline {3.3}Discretization of the problem}{11}
+\contentsline {subsection}{\numberline {3.3}Discretization of the problem}{12}
 \contentsline {paragraph}{Remark : modification of the reference solution}{12}
 \contentsline {subsection}{\numberline {3.4}Corrections for the approximate IBCs}{13}
 \contentsline {subsection}{\numberline {3.5}Optimization of the IBCs (speed of convergence)}{14}
-\contentsline {subsubsection}{\numberline {3.5.1}Test varying the initial time step and the interface position}{14}
+\contentsline {subsubsection}{\numberline {3.5.1}Test varying the initial data and the interface position}{15}
 \contentsline {subsubsection}{\numberline {3.5.2}Tests varying $\Delta t$ and $\Delta x$}{17}
-\contentsline {subsection}{\numberline {3.6}Partial conclusion}{20}
+\contentsline {subsection}{\numberline {3.6}Partial conclusion}{19}
 \contentsline {section}{\numberline {4}Conclusion}{20}

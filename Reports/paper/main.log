@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  30 JUN 2016 10:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  20 JUL 2016 17:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1206,12 +1206,7 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 (/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
-)))
-(/usr/local/texlive/2015/texmf-dist/tex/latex/refcheck/refcheck.sty
-Package: refcheck 2013/02/14 v1.9.1
-\btoks=\toks41
-)
-(./trackchanges.sty
+))) (./trackchanges.sty
 Package: trackchanges 2009/04/22 v0.7.0 TrackChanges file 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ifthen.sty
@@ -1219,11 +1214,11 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/soul/soul.sty
 Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
-\SOUL@word=\toks42
-\SOUL@lasttoken=\toks43
-\SOUL@cmds=\toks44
-\SOUL@buffer=\toks45
-\SOUL@token=\toks46
+\SOUL@word=\toks41
+\SOUL@lasttoken=\toks42
+\SOUL@cmds=\toks43
+\SOUL@buffer=\toks44
+\SOUL@token=\toks45
 \SOUL@spaceskip=\skip73
 \SOUL@ttwidth=\dimen307
 \SOUL@uldp=\dimen308
@@ -1266,18 +1261,18 @@ Package: cases 2002/05/02 ver 2.5
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1286,12 +1281,12 @@ LaTeX Font Info:    ... okay on input line 27.
 \scratchbox=\box67
 \nofMPsegments=\count271
 \nofMParguments=\count272
-\everyMPshowfont=\toks47
+\everyMPshowfont=\toks46
 \MPscratchCnt=\count273
 \MPscratchDim=\dimen311
 \MPnumerator=\count274
 \makeMPintoPDFobject=\count275
-\everyMPtoPDFconversion=\toks48
+\everyMPtoPDFconversion=\toks47
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -1407,14 +1402,13 @@ Dictionary: translator-basic-dictionary, Language: English
 (/usr/local/texlive/2015/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
 File: siunitx-abbreviations.cfg 2016/03/01 v2.6q siunitx: Abbreviated units
 ) ABD: EveryShipout initializing macros
-Package: `refcheck' v1.9.1 <2013/02/14>
-options: showrefs, showcites, msgs, chckunlbld
 \c__siunitx_mathsf_int=\count276
-LaTeX Font Info:    Try loading font information for U+msa on input line 27.
+LaTeX Font Info:    Try loading font information for U+msa on input line 30.
+
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 27.
+LaTeX Font Info:    Try loading font information for U+msb on input line 30.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1428,26 +1422,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./intro.tex
-
-Package refcheck Warning: Unlabelled equation (1) on input line 7.
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 7.
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 7.
- [2]) (./TBCv2.tex [3]
+(./intro.tex [2]) (./TBCv2.tex [3]
 Overfull \hbox (2.73624pt too wide) in paragraph at lines 45--45
 []\OT1/cmr/bx/n/14.4 Approximation for the TBCs us-ing a con-stant poly-
  []
 
 [4] [5]
-
-Package refcheck Warning: Unused label `eq:testCaseBesse2' on input line 98.
-
-
 Overfull \hbox (43.3311pt too wide) in paragraph at lines 116--117
 \OT1/cmr/m/n/12 we made sev-eral tests with all the pos-si-ble pairs $\OML/cmm/
 m/it/12 c[]; c[] \OMS/cmsy/m/n/12 2 f^^@\OT1/cmr/m/n/12 10\OML/cmm/m/it/12 ; \O
@@ -1458,81 +1438,73 @@ cmr/m/n/12 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/
 m/n/12 g[]$\OT1/cmr/m/n/12 .
  []
 
-<figures/BessefirstTestsP0Snap2.png, id=35, 433.62pt x 289.08pt>
-File: figures/BessefirstTestsP0Snap2.png Graphic file (type png)
 
-<use figures/BessefirstTestsP0Snap2.png>
-Package pdftex.def Info: figures/BessefirstTestsP0Snap2.png used on input line 
-120.
+<figures/FinalFigures/BessefirstTestsP0CorrectSnap1.png, id=33, 433.62pt x 289.
+08pt>
+File: figures/FinalFigures/BessefirstTestsP0CorrectSnap1.png Graphic file (type
+ png)
+ <use figures/FinalFigures/BessefirstTestsP0CorrectSnap1.png>
+Package pdftex.def Info: figures/FinalFigures/BessefirstTestsP0CorrectSnap1.png
+ used on input line 121.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 120--121
-[][] 
- []
-
-<figures/BessefirstTestsP0Snap3.png, id=37, 433.62pt x 289.08pt>
-File: figures/BessefirstTestsP0Snap3.png Graphic file (type png)
-
-<use figures/BessefirstTestsP0Snap3.png>
-Package pdftex.def Info: figures/BessefirstTestsP0Snap3.png used on input line 
-123.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 123--124
-[][] 
- []
-
-<figures/BessefirstTestsP0Snap4.png, id=38, 433.62pt x 289.08pt>
-File: figures/BessefirstTestsP0Snap4.png Graphic file (type png)
-
-<use figures/BessefirstTestsP0Snap4.png>
-Package pdftex.def Info: figures/BessefirstTestsP0Snap4.png used on input line 
-126.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 126--127
-[][] 
- []
-
-<figures/BessefirstTestsP0Snap5.png, id=39, 433.62pt x 289.08pt>
-File: figures/BessefirstTestsP0Snap5.png Graphic file (type png)
-
-<use figures/BessefirstTestsP0Snap5.png>
-Package pdftex.def Info: figures/BessefirstTestsP0Snap5.png used on input line 
-129.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 129--130
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 121--122
 [][] 
  []
 
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 119--131
-[]$[]$ $[]$
+<figures/FinalFigures/BessefirstTestsP0CorrectSnap2.png, id=35, 433.62pt x 289.
+08pt>
+File: figures/FinalFigures/BessefirstTestsP0CorrectSnap2.png Graphic file (type
+ png)
+ <use figures/FinalFigures/BessefirstTestsP0CorrectSnap2.png>
+Package pdftex.def Info: figures/FinalFigures/BessefirstTestsP0CorrectSnap2.png
+ used on input line 125.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 125--126
+[][] 
  []
 
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 119--131
-[]$ $[]$ 
- []
+<figures/FinalFigures/BessefirstTestsP0CorrectSnap3.png, id=36, 433.62pt x 289.
+08pt>
+File: figures/FinalFigures/BessefirstTestsP0CorrectSnap3.png Graphic file (type
+ png)
+ <use figures/FinalFigures/BessefirstTestsP0CorrectSnap3.png>
+Package pdftex.def Info: figures/FinalFigures/BessefirstTestsP0CorrectSnap3.png
+ used on input line 128.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-[6 <./figures/BessefirstTestsP0Snap2.png> <./figures/BessefirstTestsP0Snap3.png
->]
-Overfull \hbox (11.74988pt too wide) detected at line 139
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 140
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 141
- 
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 128--129
+[][] 
  []
 
 
+<figures/FinalFigures/BessefirstTestsP0CorrectSnap4.png, id=37, 433.62pt x 289.
+08pt>
+File: figures/FinalFigures/BessefirstTestsP0CorrectSnap4.png Graphic file (type
+ png)
+ <use figures/FinalFigures/BessefirstTestsP0CorrectSnap4.png>
+Package pdftex.def Info: figures/FinalFigures/BessefirstTestsP0CorrectSnap4.png
+ used on input line 132.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+
+Overfull \hbox (21.80946pt too wide) in paragraph at lines 132--133
+[][] 
+ []
+
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 119--134
+[]  []
+ []
+
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 119--134
+[]  [] 
+ []
+
+[6]
 Overfull \hbox (11.74988pt too wide) detected at line 142
  
  []
@@ -1563,404 +1535,262 @@ Overfull \hbox (11.74988pt too wide) detected at line 147
  []
 
 
+Overfull \hbox (11.74988pt too wide) detected at line 148
+ 
+ []
+
+
 Overfull \hbox (11.74988pt too wide) detected at line 149
  
  []
 
-[7 <./figures/BessefirstTestsP0Snap4.png> <./figures/BessefirstTestsP0Snap5.png
+
+Overfull \hbox (11.74988pt too wide) detected at line 150
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 152
+ 
+ []
+
+[7 <./figures/FinalFigures/BessefirstTestsP0CorrectSnap1.png> <./figures/FinalF
+igures/BessefirstTestsP0CorrectSnap2.png> <./figures/FinalFigures/BessefirstTes
+tsP0CorrectSnap3.png> <./figures/FinalFigures/BessefirstTestsP0CorrectSnap4.png
 >]) (./DDMv2.tex
 Overfull \hbox (45.27779pt too wide) in paragraph at lines 1--1
 []\OT1/cmr/bx/n/17.28 Application to a Do-main De-com-po-si-tion Method 
  []
 
+
+LaTeX Warning: Citation `Gander2008' on page 8 undefined on input line 10.
+
+[8]
+
+LaTeX Warning: Citation `Lions1988' on page 9 undefined on input line 19.
+
+
+LaTeX Warning: Citation `Lions1988' on page 9 undefined on input line 19.
+
+
+LaTeX Warning: Citation `Lions1990' on page 9 undefined on input line 21.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 28.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 23.
-[8] [9]
-
-Package refcheck Warning: Unused label `eq:externalBCsDDM' on input line 102.
-
-[10]
-
-Package refcheck Warning: Unused label `eq:uncenteredFDdiscretization0' on inpu
-t line 134.
-
-[11]
-
-Package refcheck Warning: Unused label `eq:uncenteredFDdiscretizationN' on inpu
-t line 147.
-
-[12]
-Overfull \hbox (2.59785pt too wide) detected at line 281
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 28.
+ [9] [10] [11]
+[12] [13]
+Overfull \hbox (2.59785pt too wide) detected at line 287
 [] []
  []
 
-[13]
-
-Package refcheck Warning: Unused label `eq:criteriaConvergence' on input line 2
-95.
-
 [14]
-<figures/FinalFigures/NiterxCoefVarT0FinalVersionN.png, id=78, 433.62pt x 289.0
-8pt>
-File: figures/FinalFigures/NiterxCoefVarT0FinalVersionN.png Graphic file (type 
-png)
- <use figures/FinalFigures/NiterxCoefVarT0FinalVersionN.png>
-Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionN.png 
-used on input line 323.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
-
-<figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png, id=79, 433.62pt x 289.0
-8pt>
+<figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png, id=76, 434.62375pt x 26
+9.005pt>
 File: figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png Graphic file (type 
 png)
  <use figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png 
-used on input line 329.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
+used on input line 331.
+(pdftex.def)             Requested size: 173.8464pt x 107.60008pt.
 
-<figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail.png, id=80, 433.62pt x
- 289.08pt>
-File: figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail.png Graphic file 
-(type png)
- <use figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail.png>
-Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetai
-l.png used on input line 335.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
-
-<figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail2.png, id=81, 433.62pt 
-x 289.08pt>
-File: figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail2.png Graphic file
- (type png)
- <use figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail2.png>
-Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetai
-l2.png used on input line 341.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
-
-
-Package refcheck Warning: Unused label `fig:optimVarT0NDetail2' on input line 3
-42.
-
-
-<figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png, id=82, 433.62pt x
- 289.08pt>
-File: figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png Graphic file 
-(type png)
- <use figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png>
-Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetai
-l.png used on input line 347.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
-
-
-Package refcheck Warning: Unused label `fig:optimVarT0PDetail' on input line 34
-8.
-
-
-<figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png, id=83, 433.62pt 
-x 289.08pt>
-File: figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png Graphic file
- (type png)
- <use figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png>
-Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetai
-l2.png used on input line 353.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
-
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 321--357
-[]$[]$ $[]$
- []
-
-
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 321--357
-[]$ $[]$
- []
-
-
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 321--357
-[]$ $[]$ 
- []
-
-[15 <./figures/FinalFigures/NiterxCoefVarT0FinalVersionN.png> <./figures/FinalF
-igures/NiterxCoefVarT0FinalVersionP.png> <./figures/FinalFigures/NiterxCoefVarT
-0FinalVersionNDetail.png> <./figures/FinalFigures/NiterxCoefVarT0FinalVersionND
-etail2.png>]
-<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionN.png, id=91, 433.62pt 
-x 289.08pt>
-File: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionN.png Graphic file
- (type png)
- <use figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionN.png>
-Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersio
-nN.png used on input line 363.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
-
-<figures/FinalFigures/NiterxCoefVarinterfaceFinalVersionP.png, id=92, 433.62pt 
-x 289.08pt>
+<figures/FinalFigures/NiterxCoefVarinterfaceFinalVersionP.png, id=77, 432.61626
+pt x 269.005pt>
 File: figures/FinalFigures/NiterxCoefVarinterfaceFinalVersionP.png Graphic file
  (type png)
- <use figures/FinalFigures/NiterxCoefVarinterfaceFinalVersionP.png>
+
+<use figures/FinalFigures/NiterxCoefVarinterfaceFinalVersionP.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarinterfaceFinalVersio
-nP.png used on input line 369.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
+nP.png used on input line 337.
+(pdftex.def)             Requested size: 173.04343pt x 107.60008pt.
 
-<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail.png, id=93, 433
-.62pt x 289.08pt>
-File: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail.png Graphi
-c file (type png)
+<figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png, id=78, 427.5975pt
+ x 269.005pt>
+File: figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png Graphic file 
+(type png)
 
-<use figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail.png>
-Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersio
-nNDetail.png used on input line 375.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
+<use figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png>
+Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetai
+l.png used on input line 343.
+(pdftex.def)             Requested size: 171.03596pt x 107.60008pt.
 
-<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail2.png, id=94, 43
-3.62pt x 289.08pt>
-File: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail2.png Graph
-ic file (type png)
+<figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png, id=79, 427.5975p
+t x 269.005pt>
+File: figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png Graphic file
+ (type png)
 
-<use figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail2.png>
-Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersio
-nNDetail2.png used on input line 381.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
+<use figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png>
+Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetai
+l2.png used on input line 349.
+(pdftex.def)             Requested size: 171.03596pt x 107.60008pt.
 
-
-Package refcheck Warning: Unused label `fig:optimVarInterfaceNDetail2' on input
- line 382.
-
-
-<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png, id=95, 433
-.62pt x 289.08pt>
+<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png, id=80, 427
+.5975pt x 269.005pt>
 File: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png Graphi
 c file (type png)
 
 <use figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersio
-nPDetail.png used on input line 387.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
+nPDetail.png used on input line 355.
+(pdftex.def)             Requested size: 171.03596pt x 107.60008pt.
 
-
-Package refcheck Warning: Unused label `fig:optimVarInterfacePDetail' on input 
-line 388.
-
-
-<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.png, id=96, 43
-3.62pt x 289.08pt>
+<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.png, id=81, 42
+7.5975pt x 269.005pt>
 File: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.png Graph
 ic file (type png)
 
 <use figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersio
-nPDetail2.png used on input line 393.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
+nPDetail2.png used on input line 361.
+(pdftex.def)             Requested size: 171.03596pt x 107.60008pt.
 
-
-Package refcheck Warning: Unused label `fig:optimVarInterfacePDetail2' on input
- line 394.
-
-
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 361--397
-[]$[]$ $[]$
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 328--366
+[] []
  []
 
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 361--397
-[]$ $[]$
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 328--366
+[] []
  []
 
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 361--397
-[]$ $[]$ 
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 328--366
+[] []
  []
 
-[16 <./figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png> <./figures/
-FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png> <./figures/FinalFigures/N
-iterxCoefVarInterfaceFinalVersionN.png> <./figures/FinalFigures/NiterxCoefVarin
-terfaceFinalVersionP.png> <./figures/FinalFigures/NiterxCoefVarInterfaceFinalVe
-rsionNDetail.png> <./figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDe
-tail2.png>]
-<figures/FinalFigures/errorEvolutionFixedT0BFinalVersion.png, id=106, 433.62pt 
-x 289.08pt>
-File: figures/FinalFigures/errorEvolutionFixedT0BFinalVersion.png Graphic file 
-(type png)
- <use figures/FinalFigures/errorEvolutionFixedT0BFinalVersion.png>
-Package pdftex.def Info: figures/FinalFigures/errorEvolutionFixedT0BFinalVersio
-n.png used on input line 404.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-[17 <./figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png> <./f
-igures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.png> <./figures/
-FinalFigures/errorEvolutionFixedT0BFinalVersion.png>]
-<figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionNMarshal.png, id=113, 433
-.62pt x 289.08pt>
-File: figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionNMarshal.png Graphic
- file (type png)
+Underfull \hbox (badness 10000) in paragraph at lines 328--366
 
-<use figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionNMarshal.png>
-Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionN
-Marshal.png used on input line 418.
-(pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
+ []
 
-<figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png, id=114, 433
-.62pt x 289.08pt>
+[15]
+<figures/FinalFigures/errorEvolutionFixedT0CFinalVersionOnlyPositive.png, id=85
+, 433.62pt x 289.08pt>
+File: figures/FinalFigures/errorEvolutionFixedT0CFinalVersionOnlyPositive.png G
+raphic file (type png)
+
+<use figures/FinalFigures/errorEvolutionFixedT0CFinalVersionOnlyPositive.png>
+Package pdftex.def Info: figures/FinalFigures/errorEvolutionFixedT0CFinalVersio
+nOnlyPositive.png used on input line 395.
+(pdftex.def)             Requested size: 260.17401pt x 173.44933pt.
+
+[16 <./figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png> <./figures/FinalF
+igures/NiterxCoefVarinterfaceFinalVersionP.png> <./figures/FinalFigures/NiterxC
+oefVarT0FinalVersionPDetail.png> <./figures/FinalFigures/NiterxCoefVarT0FinalVe
+rsionPDetail2.png> <./figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPD
+etail.png> <./figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.p
+ng>]
+<figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png, id=95, 439.
+6425pt x 269.005pt>
 File: figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png Graphic
  file (type png)
 
 <use figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionP
-Marshal.png used on input line 424.
-(pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
+Marshal.png used on input line 411.
+(pdftex.def)             Requested size: 197.8373pt x 121.05112pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 416--428
-[]$[]$ $[]$ 
+Overfull \hbox (2.8373pt too wide) in paragraph at lines 411--412
+ [] 
  []
 
 
-<figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionN.png, id=115, 433.62pt 
-x 289.08pt>
-File: figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionN.png Graphic file 
-(type png)
- <use figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionN.png>
-Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersion
-N.png used on input line 432.
-(pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
-
-<figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png, id=116, 433.62pt 
-x 289.08pt>
+<figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png, id=96, 441.65pt x
+ 269.005pt>
 File: figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png Graphic file 
 (type png)
  <use figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersion
-P.png used on input line 438.
+P.png used on input line 417.
+(pdftex.def)             Requested size: 198.74066pt x 121.05112pt.
+
+Overfull \hbox (3.74066pt too wide) in paragraph at lines 417--418
+ [] 
+ []
+
+
+Overfull \hbox (20.2359pt too wide) in paragraph at lines 409--421
+[]$[]$ $[]$ 
+ []
+
+[17 <./figures/FinalFigures/errorEvolutionFixedT0CFinalVersionOnlyPositive.png>
+]
+<figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDt.png, id=1
+01, 433.62pt x 289.08pt>
+File: figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDt.png 
+Graphic file (type png)
+
+<use figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDt.png>
+Package pdftex.def Info: figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMar
+shal2em2OnlyDt.png used on input line 440.
 (pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 430--442
-[]$[]$ $[]$ 
+Overfull \hbox (19.62839pt too wide) in paragraph at lines 440--441
+[][] 
  []
 
 
-<figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal.png, id=117, 433.62
-pt x 289.08pt>
-File: figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal.png Graphic fi
-le (type png)
+<figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDx.png, id=1
+02, 433.62pt x 289.08pt>
+File: figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDx.png 
+Graphic file (type png)
 
-<use figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal.png>
+<use figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDx.png>
 Package pdftex.def Info: figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMar
-shal.png used on input line 465.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
- [18 <./figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionNMarshal.png> <./f
-igures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png> <./figures/Fi
-nalFigures/NiterxCoefVarDxdt2em2FinalVersionN.png> <./figures/FinalFigures/Nite
-rxCoefVarDxdt2em2FinalVersionP.png>]
-<figures/FinalFigures/regressionDtFinalVersionNMarshal.png, id=125, 433.62pt x 
-289.08pt>
-File: figures/FinalFigures/regressionDtFinalVersionNMarshal.png Graphic file (t
-ype png)
- <use figures/FinalFigures/regressionDtFinalVersionNMarshal.png>
-Package pdftex.def Info: figures/FinalFigures/regressionDtFinalVersionNMarshal.
-png used on input line 475.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+shal2em2OnlyDx.png used on input line 445.
+(pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 475--476
- [] 
+Overfull \hbox (19.62839pt too wide) in paragraph at lines 445--446
+[][] 
  []
 
-
-<figures/FinalFigures/regressionDtFinalVersionPMarshal.png, id=126, 433.62pt x 
-289.08pt>
-File: figures/FinalFigures/regressionDtFinalVersionPMarshal.png Graphic file (t
-ype png)
- <use figures/FinalFigures/regressionDtFinalVersionPMarshal.png>
-Package pdftex.def Info: figures/FinalFigures/regressionDtFinalVersionPMarshal.
-png used on input line 481.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 481--482
- [] 
- []
-
-
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 473--485
-[]$[]$ $[]$ 
- []
-
-
-<figures/FinalFigures/regressionDxFinalVersionMarshalN.png, id=127, 433.62pt x 
-289.08pt>
-File: figures/FinalFigures/regressionDxFinalVersionMarshalN.png Graphic file (t
-ype png)
- <use figures/FinalFigures/regressionDxFinalVersionMarshalN.png>
-Package pdftex.def Info: figures/FinalFigures/regressionDxFinalVersionMarshalN.
-png used on input line 489.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 489--490
- [] 
- []
-
-
-<figures/FinalFigures/regressionDxFinalVersionMarshalP.png, id=128, 433.62pt x 
-289.08pt>
-File: figures/FinalFigures/regressionDxFinalVersionMarshalP.png Graphic file (t
-ype png)
- <use figures/FinalFigures/regressionDxFinalVersionMarshalP.png>
-Package pdftex.def Info: figures/FinalFigures/regressionDxFinalVersionMarshalP.
-png used on input line 495.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 495--496
- [] 
- []
-
-
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 487--499
-[]$[]$ $[]$ 
- []
-
-[19 <./figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal.png> <./figur
-es/FinalFigures/regressionDtFinalVersionNMarshal.png> <./figures/FinalFigures/r
-egressionDtFinalVersionPMarshal.png>]) (./conclusion.tex) (./main.bbl [20 <./fi
-gures/FinalFigures/regressionDxFinalVersionMarshalN.png> <./figures/FinalFigure
-s/regressionDxFinalVersionMarshalP.png>]
-Underfull \hbox (badness 1122) in paragraph at lines 28--32
-[]\OT1/cmr/m/n/12 C. Japhet and F. Nataf.  The best in-ter-face con-di-tions fo
-r Do-
- []
-
-
-Underfull \hbox (badness 2512) in paragraph at lines 28--32
+[18 <./figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png> <./fi
+gures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png> <./figures/FinalFigu
+res/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDt.png> <./figures/FinalFigure
+s/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDx.png>]) (./conclusion.tex)
+(./main.bbl [19]
+Underfull \hbox (badness 1565) in paragraph at lines 38--42
 \OT1/cmr/m/n/12 main De-com-pos-tion meth-ods : Ab-sorb-ing Bound-ary Con-di-ti
 ons.
  []
 
-) [21] (./main.aux) ) 
+[20]) [21] (./main.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 25225 strings out of 493027
- 513585 string characters out of 6134069
- 497782 words of memory out of 5000000
- 28357 multiletter control sequences out of 15000+600000
- 15291 words of font info for 60 fonts, out of 8000000 for 9000
+ 25000 strings out of 493027
+ 508014 string characters out of 6134069
+ 497169 words of memory out of 5000000
+ 28149 multiletter control sequences out of 15000+600000
+ 14983 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,13n,54p,10399b,588s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
-2.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.p
-fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></u
-sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/loc
-al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (21 pages, 752755 bytes).
+ 55i,12n,54p,10399b,577s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
+r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
+local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
+cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
+l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
+15/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (21 pages, 517856 bytes).
 PDF statistics:
- 205 PDF objects out of 1000 (max. 8388607)
- 109 compressed objects within 2 object streams
+ 175 PDF objects out of 1000 (max. 8388607)
+ 103 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 143 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 88 words of extra memory for PDF output out of 10000 (max. 10000000)
 

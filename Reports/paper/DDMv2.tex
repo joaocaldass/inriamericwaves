@@ -18,7 +18,7 @@
 
 \indent The ASM is a modification, proposed by \cite{Lions1988}, of the original (Alternating or Multiplicative) Schwarz Method, in which the IBCs are constructed using always the most updated solution of the neighbor domains. This modification originates an inherently parallel algorithm, which one naturally implements with parallel computing. The advantages obtained with the parallelism become more evident when the number of subdomains increases \cite{Lions1988}.
 
-\indent In \ref{eq:genericIBC}, $\mathcal{B}_i$ denotes the operator of the IBC. This operator allows the construction of of more general Schwarz methods : in the original one, the IBC's are Dirichlet conditions (i.e. ,$\mathcal{B}_i(u) = u$  ) \cite{Japhet2003,LionsI990}
+\indent In \ref{eq:genericIBC}, $\mathcal{B}_i$ denotes the operator of the IBC. This operator allows the construction of of more general Schwarz methods : in the original one, the IBC's are Dirichlet conditions (i.e. ,$\mathcal{B}_i(u) = u$  ) \cite{Japhet2003,Lions1990}
 
 \indent Without loss of generality, in the following we will consider a domain $\Omega$ decomposed in two non-overlapping subdomains, $\Omega_1$ and $\Omega_2$, with $\Gamma = \Omega_1 \bigcap \Omega_2$.
 
@@ -125,7 +125,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \subsection{Discretization of the problem}
 
-\indent For the interior points of each one of the domains, we will consider a second order spatial discretization of the equation (\ref{eq:DKdV}).
+\indent As done in the initial numerical tests in the section \ref{sec:TBC}, an implicit Finite Difference scheme will be used here. For the interior points of each one of the domains, we will consider a second order spatial discretization of the equation (\ref{eq:DKdV}).
 
 \begin{equation}
     \label{eq:FDdiscretization}
@@ -324,42 +324,45 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \indent The results are summarized in the figure \ref{fig:optimVarT0Interface}, with the number of iterations plotted as function of the coefficient $c$ (for the positive coefficients). We can see a very similar behavior of all the curves, with two minima whose position does not depend on $t_0$ and $\alpha$ (approximately, $c = 0.20$ and $c=4.5$). For $c<0$, the curves are very similar, with two minima located at $c = -0.10$ and $c = -1.35$, approximately. Moreover, the minima closest to zero ($c=-0.10$ and $c = 0.20$) are both associated with very discontinuous peaks, while the other two minima are associated with smoother curves. A detail of the curves around each positive minima are shown in the figures \ref{fig:optimVarT0PDetail} - \ref{fig:optimVarT0PDetail2} and \ref{fig:optimVarInterfacePDetail} - \ref{fig:optimVarInterfacePDetail2}. Finally, we remark that, for some curves, the minimal number of iterations is associated with the coefficients closest to zero, and, for other ones, to the other minimum, but the minimal number of iterations are very similar (between 5 and 7).
 
 \begingroup
-\begin{minipage}{.5\linewidth}
+\addtocounter{figure}{1}
+\noindent
+\begin{minipage}[t]{.5\linewidth}
 \begin{center}
 	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png}
 	\captionof{subfigure}{General view (for a fixed interface and different values of $t_0$)}
 \end{center}
 \end{minipage}
-\begin{minipage}{.5\linewidth}
+\begin{minipage}[t]{.5\linewidth}
 \begin{center}
 	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarinterfaceFinalVersionP.png}
 	\captionof{subfigure}{General view (for a fixed $t_0$ and different positions of the interface)}
 \end{center}
 \end{minipage}
-\begin{minipage}{.5\linewidth}
+\begin{minipage}[t]{.5\linewidth}
 \begin{center}
 	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png}
 	\captionof{subfigure}{Detail around one of the optimal coefficients (for a fixed interface and different values of $t_0$) \label{fig:optimVarT0PDetail} }
 \end{center}
 \end{minipage}
-\begin{minipage}{.5\linewidth}
+\begin{minipage}[t]{.5\linewidth}
 \begin{center}
 	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png}
 	\captionof{subfigure}{Detail around the other optimal positive coefficient (for a fixed interface and different values of $t_0$) \label{fig:optimVarT0PDetail2}}
 \end{center}
 \end{minipage}
-\begin{minipage}{.5\linewidth}
+\begin{minipage}[t]{.5\linewidth}
 \begin{center}
 	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png}
 	\captionof{subfigure}{Detail around one of the optimal coefficients (for a fixed $t_0$ and different positions of the interface) \label{fig:optimVarInterfacePDetail}  }
 \end{center}
 \end{minipage}
-\begin{minipage}{.5\linewidth}
+\begin{minipage}[t]{.5\linewidth}
 \begin{center}
 	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.png}
 	\captionof{subfigure}{Detail around the other optimal positive coefficient  (for a fixed $t_0$ and different positions of the interface) \label{fig:optimVarInterfacePDetail2}}
 \end{center}
 \end{minipage}
+\addtocounter{figure}{-1}
 	\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC, in the case of positive coefficients \label{fig:optimVarT0Interface}}
 \endgroup
 
@@ -433,22 +436,19 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 %\endgroup
 
 \begingroup
-\begin{minipage}{.5\linewidth}
-\begin{center}
-	\includegraphics[scale=.5]{{figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDt.png}}
+\begin{minipage}[t]{.45\linewidth}
+	\includegraphics[scale=.45]{{figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDt.png}}
 	\captionof{subfigure}{Fixed $\Delta x = \frac{12}{250}$ }
-\end{center}
 \end{minipage}
-\begin{minipage}{.5\linewidth}
-\begin{center}
-	\includegraphics[scale=.5]{{figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDx.png}}
+\hfill
+\begin{minipage}[t]{.45\linewidth}
+	\includegraphics[scale=.45]{{figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDx.png}}
 	\captionof{subfigure}{Fixed $\Delta t = 0.02$ }
-\end{center}
 \end{minipage}
 	\captionof{figure}{Optimal coefficients as function of the time step and the space step 	\label{fig:optimalCoefVarDxDtCorrectN}}
 \endgroup
 
-\indent The figure \ref{fig:optimalCoefVarDxDtCorrectN} suggests a dependence of the optimal coefficient on $(\Delta t)^\nu$ and $(\Delta x)^\eta$, with $0 \leq \nu \leq 1$ and $\eta < 1$. In fact, performing some regressions with $\Delta t $ or $\Delta x$ fixed, we could conclude that $\nu = \frac{2}{3}$ and $\eta = 1$ provide really well-fitted regression curves (with the coefficients of determination $R^2$ bigger than 0.99), both for the negative and the positive coefficients (although each one of these cases correspond to different pairs $(\nu,\eta)$). Therefore, we will seek to model a function
+\indent The figure \ref{fig:optimalCoefVarDxDtCorrectN} suggests a dependence of the optimal coefficient on $(\Delta t)^\nu$ and $(\Delta x)^\eta$, with $0 \leq \nu \leq 1$ and $\eta < 0$. In fact, performing some regressions with $\Delta t $ or $\Delta x$ fixed, we could conclude that $\nu = \frac{2}{3}$ and $\eta = -1$ provide really well-fitted regression curves (with the coefficients of determination $R^2$ bigger than 0.99), both for the negative and the positive coefficients (although each one of these cases correspond to different curves). Therefore, we will seek to model a function
 
 \begin{equation}
 	\label{eq:regression2D}
@@ -464,45 +464,15 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \noindent respectively for the positive and the negative optimal coefficients. The coefficients of determination of each regression are $R^{2,+} = 0.9999894$ are $R^{2,-} = 0.9998993$, showing a good representation.
 
-\indent In order to validate the expressions \eqref{eq:regression2DPos} and \eqref{eq:regression2DNeg}, they were used to compute the optimal coefficients for several points $(\Delta t, \Delta x)$, with $\Delta t \in [0.0005,0.3]$ and $\Delta x \in \left[ \frac{12}{5000},\frac{12}{50} \right]$. As shown in the figure \ref{fig:regressionValidation} (case of positive coefficients), for almost all the points in the considered domain, the computed optimal coefficient provides a fast convergence to the monodomain solution, with less than 20 iterations (or less than 12 iterations in a large part of the domain), which is also observed in the case of the negative coefficients. 
-
-\begingroup
-	\centering
-	\includegraphics[scale=.6]{figures/FinalFigures/contourValidationP.png}
-\captionof{figure}{Contour lines showing the number of iterations until the convergence, when using the regressions surfaces for obtaining $c_{opt}^+(\Delta t, \Delta x)$ \label{fig:regressionValidation}}.
-\endgroup
-
-\indent The number of iterations shown in the figure \ref{fig:regressionValidation} are not the smallest ones that we could find (cf. figures \ref{fig:optimVarT0Interface} to \ref{fig:niterxCoefVarDtDx}), because the expressions \eqref{eq:regression2DPos} and \eqref{eq:regression2DNeg} are regressions constructed from optimal coefficients obtained among a discrete set of possible values. Nevertheless, they give a very good approximation for the optimal $c$ for each $(\Delta t, \Delta x)$, and one could search around a small region around the computed $c_{opt}$ to obtain an even faster convergence.
+\indent In order to validate the expressions \eqref{eq:regression2DPos} and \eqref{eq:regression2DNeg}, they were used to compute the optimal coefficients for several points $(\Delta t, \Delta x)$, with $\Delta t \in [0.0005,0.3]$ and $\Delta x \in \left[ \frac{12}{5000},\frac{12}{50} \right]$. For almost all the points in the considered domain, the computed optimal coefficient provides a fast convergence to the monodomain solution, with less than 20 iterations, both in the case which is also observed in the case of the negative coefficients. The numbers of iterations observed are not always the smallest ones that we could find (cf. figures \ref{fig:optimVarT0Interface} to \ref{fig:niterxCoefVarDtDx}), because the expressions \eqref{eq:regression2DPos} and \eqref{eq:regression2DNeg} are regressions constructed from optimal coefficients obtained among a discrete set of possible values. Nevertheless, they give a very good approximation for the optimal $c$ for each $(\Delta t, \Delta x)$, and one could search around a small region around the computed $c_{opt}$ to obtain an even faster convergence.
 
 %\begingroup
-%\begin{minipage}{.5\linewidth}
-%\begin{center}
-%	\includegraphics[scale=.5]{figures/FinalFigures/regressionDtFinalVersionNMarshal.png}
-%	\captionof{subfigure}{Regression for negative coefficients}
-%\end{center}
-%\end{minipage}
-%\begin{minipage}{.5\linewidth}
-%\begin{center}
-%	\includegraphics[scale=.5]{figures/FinalFigures/regressionDtFinalVersionPMarshal.png}
-%	\captionof{subfigure}{Regression for positive coefficients}
-%\end{center}
-%\end{minipage}
-%\captionof{figure}{Numerical and regression curve for the optimal coefficient as function of $\Delta t$\label{fig:regressionDt}}
-%
-%\begin{minipage}{.5\linewidth}
-%\begin{center}
-%	\includegraphics[scale=.5]{figures/FinalFigures/regressionDxFinalVersionMarshalN.png}
-%	\captionof{subfigure}{Regression for negative coefficients}
-%\end{center}
-%\end{minipage}
-%\begin{minipage}{.5\linewidth}
-%\begin{center}
-%	\includegraphics[scale=.5]{figures/FinalFigures/regressionDxFinalVersionMarshalP.png}
-%	\captionof{subfigure}{Regression for positive coefficients}
-%\end{center}
-%\end{minipage}
-%\captionof{figure}{Numerical and regression curve for the optimal coefficient as function of $\Delta t$\label{fig:regressionDx}}
+%	\centering
+%	\includegraphics[scale=.6]{figures/FinalFigures/contourValidationP.png}
+%\captionof{figure}{Contour lines showing the number of iterations until the convergence, when using the regressions surfaces for obtaining $c_{opt}^+(\Delta t, \Delta x)$ \label{fig:regressionValidation}}.
 %\endgroup
+
+
 
 \subsection{Partial conclusion}
  
