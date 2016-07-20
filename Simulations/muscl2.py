@@ -198,6 +198,55 @@ def bcs_closed(h,hu,n):
     hub[n,-1] = -hu[n,-3]   
     hub[n,-2] = -hu[n,-3]    
     return hb,hub
+def bcs_closed_2(h,hu,n):
+    """ 
+        recibe las matrices y coloca los valores 
+        correspondientes a la celda cerrada.
+        
+        Este es el tipico borde cerrado.
+        
+        No estoy seguro
+        si modificar h,hu aqui dentro
+        hace que se modifique fuera,
+        asi que uso hb,hub
+    """
+    hb = 1.*h
+    hub = 1.*hu
+    hb[n,0] = h[n,3]
+    hb[n,1] = h[n,2]
+    hub[n,0] = -hu[n,3]
+    hub[n,1] = -hu[n,2]
+    
+    hb[n,-1] = h[n,-4]
+    hb[n,-2] = h[n,-3]
+    hub[n,-1] = -hu[n,-4]   
+    hub[n,-2] = -hu[n,-3]    
+    return hb,hub
+def bcs_open(h,hu,n):
+    """ 
+        recibe las matrices y coloca los valores 
+        correspondientes a la celda cerrada.
+        
+        Este es el tipico borde cerrado.
+        
+        No estoy seguro
+        si modificar h,hu aqui dentro
+        hace que se modifique fuera,
+        asi que uso hb,hub
+    """
+    hb = 1.*h
+    hub = 1.*hu
+    hb[n,0] = h[n,2]
+    hb[n,1] = h[n,2]
+    hub[n,0] = hu[n,2]
+    hub[n,1] = hu[n,2]
+    
+    hb[n,-1] = h[n,-3]
+    hb[n,-2] = h[n,-3]
+    hub[n,-1] = hu[n,-3]   
+    hub[n,-2] = hu[n,-3]    
+    return hb,hub
+    
 def simulate(h,hu,bcs,dx,cfl,t0,nt,riemann_solver=roe):
     """
         Rutina principal que corre la simulacion
