@@ -1,9 +1,9 @@
-\section{Approximate Transparent Boundary Conditions for the dispersive equation}
+\section{Approximate transparent boundary conditions for the dispersive equation}
 \label{sec:TBC}
 
 \subsection{The exact TBCs for the continuous equation}
 
-\indent In \cite{besse2015}, Transparent Boundary Conditions (TBCs) are derived for the one-dimensional continuous linearized KdV equation (or Airy equation) :
+\indent In \cite{besse2015}, transparent boundary conditions (TBCs) are derived for the one-dimensional continuous linearized KdV equation (or Airy equation) :
 
 \begin{equation}
  	\label{eq:LKdV}
@@ -22,7 +22,7 @@
 \end{cases}
 \end{equation*}
 
-\noindent the TBCs are given \cite[equations 2.17,2.18]{besse2015} by 
+\noindent the TBCs are given \cite[equations (2.17) -(2.18)]{besse2015} by 
 
 \begin{equation}
 \label{eq:continuousTBC}
@@ -42,13 +42,13 @@
 			\lambda(s) = \lambda_1(s) =  -\sqrt[3]{s} 
 \end{equation}
 
-\subsection{Approximation for the TBCs using a constant polynomial}
+\subsection{Approximation of the TBCs}
 
-\indent The computation of the TBCs \eqref{eq:continuousTBC} is not simple due to the inverse Laplace transform, which makes these conditions to be nonlocal in time. Therefore, we will propose approximations of the root \eqref{eq:lambda} that avoid integrations in time, making the TBCs considerably simpler.
+\indent The computation of the TBCs \eqref{eq:continuousTBC} is not simple due to the inverse Laplace transform, which makes these conditions nonlocal in time. Therefore, we will propose approximations of the root \eqref{eq:lambda} that avoid integrations in time, making the TBCs considerably simpler.
 
-\indent Obviously, as we can see through the results shown in this section, the approximate boundary conditions are not so precise as the ones proposed by \cite{besse2015} (who derives TBCs derived for the discrete linearized KdV equation). Nevertheless, the objectives of our work and the work of \cite{besse2015} are very different : while they seek to minimize the error of the computed solution (compared to the analytical one) due to the boundary conditions, we want here to apply our approximate TBCs as Interface Boundary Conditions (IBCs) in a Domain Decomposition Method (DDM). Therefore, our objective lays on the convergence of the DDM to the solution of the same problem in the monodomain, independetly of the errors on the external boundaries. 
+\indent Obviously, as we can see through the results shown in this section, the approximate boundary conditions are not as accurate as the ones proposed by \cite{besse2015} (who derives TBCs derived for the discrete linearized KdV equation). Nevertheless, the objectives of our work and the work of \cite{besse2015} are very different: while they seek to minimize the error of the computed solution (compared to the analytical one) due to the boundary conditions, we want here to apply our approximate TBCs as interface boundary conditions (IBCs) in a domain decomposition method (DDM). Therefore, our objective lays on the convergence of the DDM to the solution of the same problem in the monodomain, independetly of the errors on the external boundaries. 
 
-\indent We will use the constant polynomial $P_0(s) = c$ for approximating $\frac{\lambda^2}{s}$. Moreover, as a consequence of \eqref{eq:lambda}, we can approximate the other operands of the inverse Laplace transforms in \eqref{eq:continuousTBC} only in function of $c$ :
+\indent We will use the constant polynomial $P_0(s) = c$ for approximating $\lambda^2/s$. Moreover, as a consequence of \eqref{eq:lambda}, we can approximate the other operands of the inverse Laplace transforms in \eqref{eq:continuousTBC} only in function of $c$ :
 
 \begin{equation}
 	\label{eq:appP0}
@@ -58,7 +58,7 @@
 	 \frac{1}{\lambda_1(s)}  = -c 
 \end{equation}
 
-\indent Replacing \eqref{eq:appP0} in \eqref{eq:continuousTBC}, using some well-know properties of the Laplace Transform (linearity and convolution) and considering possibly different polynomial approximations for the left and the right boundaries (respectively with the coefficients $c_L$ and $c_R$), we get the approximate Transparent Boundary Conditions
+\indent Replacing \eqref{eq:appP0} in \eqref{eq:continuousTBC}, using some well-know properties of the Laplace Transform (linearity and convolution) and considering possibly different polynomial approximations for the left and the right boundaries (respectively with the coefficients $c_L$ and $c_R$), we get the approximate transparent boundary conditions
 
 %\begin{equation}
 %\label{eq:appTBCP0}
@@ -106,14 +106,14 @@
 
 \noindent where $Ai$ is the Airy function.
 
-\indent The numerical solution was computed with an implicit Finite Difference scheme, with third order discretizations for the spatial derivative. As done by \cite{zheng2008} and \cite{besse2015}, we solved the problem in the spatial domain $[-6,-6]$, for $0 \leq t \leq T_{max}$, with $T_{max} = 4$. The mesh size is $\Delta x = 12/500 = 0.024$ and the time step is $\Delta t = 4/2560 = 0.0015625$. We computed, as in \cite{besse2015}, the following errors, computed respectively in each time step and in all the time interval :
+\indent \add{The numerical solution was computed with an implicit finite difference scheme, with second order discretizations for the spatial derivative.} As done by \cite{zheng2008} and \cite{besse2015}, we solved the problem in the spatial domain $[-6,-6]$, for $0 \leq t \leq T_{max}$, with $T_{max} = 4$. The mesh size is $\Delta x = 12/500 = 0.024$ and the time step is $\Delta t = 4/2560 = 0.0015625$. We computed, as in \cite{besse2015}, the following errors, computed respectively in each time step and in all the time interval :
 
 \begin{equation*}
 	e^n = \frac{\left\Vert u_{exact}^n - u_{computed}^n\right\Vert_2}{\left\Vert u_{exact}^n\right\Vert_2} \qquad
 	e_{L2} = \sqrt{ \Delta t \sum_{n=1}^{T_{max}} (e^n)^2 }
 \end{equation*}
 
-\indent In order to verify the influence of $c_L$ and $c_R$ on the computed solutions (and possibly identify a range of values that better approximate the TBCs), we made several tests with all the possible pairs $c_L,c_R \in \{-10,-1,-0.1,0,0.1,1,10\}^2$. The results were classified accordingly to their errors $e_{L2}$ The figure \ref{fig:firstTestsP0} shows, for some instants, a comparison between the best, the worst and the exact solution. For naming the worst result, we did not consider the ones in which the numerical solution diverged (following the arbitrary criteria $e_{L2} > 10$).  Finally, the table \ref{tab:firstTestsP0} presents the ten tests that presented the smallest $e_{L2}$.
+\indent In order to verify the influence of $c_L$ and $c_R$ on the computed solutions (and possibly identify a range of values that better approximate the TBCs), we made several tests with all the possible pairs $c_L,c_R \in \{-10,-1,-0.1,0,0.1,1,10\}^2$. The results were classified accordingly to their errors $e_{L2}$. Figure \ref{fig:firstTestsP0} shows, for some instants, a comparison between the best, the worst and the exact solution. For naming the worst result, we did not consider the ones in which the numerical solution diverged (following the arbitrary criteria $e_{L2} > 10$).  Finally,  table \ref{tab:firstTestsP0} presents the ten tests that presented the smallest $e_{L2}$.
 
 \begingroup
 \noindent
@@ -155,8 +155,8 @@
 
 \subsection{Partial conclusion}
 
-\indent It must be clear that our approach does not provide better Transparent Boundary Conditions than the one proposed by \cite{besse2015}, what, as discussed in the introduction of this paper, is not the objective of the work developed here. Indeed, \cite{besse2015} derives TBCs for two discrete schemes, and the worst result among them, using the same $\Delta x $ and $\Delta t$ that we used here, presents an error $e_{L2} \approx 0.005$ for $t = 4$, while our best result has $e_{L2} \approx 0.1$ for the same instant. Nevertheless, considering that our main goal is the application of the TBCs to a Domain Decomposition Method, we focus in minimizing the error due to the Interface Boundary Conditions imposed in this kind of method, and not in the errors due to the external boundary conditions.
+\indent It must be clear that our approach does not provide better transparent boundary conditions than the one proposed by \cite{besse2015}, what, as discussed in the introduction of this paper, is not the objective of the work developed here. Indeed, \cite{besse2015} derives TBCs for two discrete schemes, and the worst result among them, using the same $\Delta x $ and $\Delta t$ that we used here, presents an error $e_{L2} \approx 0.005$ for $t = 4$, while our best result has $e_{L2} \approx 0.1$ for the same instant. Nevertheless, considering that our main goal is the application of the TBCs to a domain decomposition method, we focus in minimizing the error due to the interface boundary conditions imposed in this kind of method, and not in the errors due to the external boundary conditions. \add{For this same reason, we did not attempt to optimize the approximate TBCs (by finding the coefficients that provide the smallest error), and we performed tests only over a small set of possible coefficients, allowing us to observe the general behavior of our approach. An optimization of the TBCs will be made in the next section, in the context of the domain decomposition methods}.
 
-\indent In fact, we can say that the boundary conditions proposed here work relatively well as TBCs, with a very simple implementation (with need, for example, of storing the solution of many previous time steps). As a development of our approach, we also tested an approximation for $\frac{\lambda^2}{s}$ using a linear polynomial, but, although the increment in the complexity (including time derivative terms up to the second derivative, what requires the storage of previous computed solutions), it does not provide a better approximation for the TBC, in comparison with the approximation using a constant polynomial.
+\indent As a conclusion of the work presented in this section, we can say that the boundary conditions proposed here work relatively well as TBCs, with a very simple implementation (with need, for example, of storing the solution of many previous time steps). As a development of our approach, we also tested an approximation for $\lambda^2/s$ using a linear polynomial, but, although the increment in the complexity (including time derivative terms up to the second derivative, what requires the storage of previous computed solutions), it does not provide a better approximation for the TBC, in comparison with the approximation using a constant polynomial.
 
-\indent Therefore, in the following of this paper, we will continue using the approximate TBCs given by the operators $\Theta_i^{c}, \ i=1,2,3$, defined in \eqref{eq:appTBCP0}.
+\indent Therefore, in the sequel of this paper, we will continue using the approximate TBCs given by the operators $\Theta_i^{c}, \ i=1,2,3$, defined in \eqref{eq:appTBCP0}.

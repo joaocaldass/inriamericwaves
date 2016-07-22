@@ -1,7 +1,7 @@
-\section{Application to a Domain Decomposition Method}
+\section{Application to a domain decomposition method}
 \label{sec:DDM}
 
-\indent The discrete approximations \eqref{eq:appDiscTBCP0} for the Transparent Boundary Conditions for the equation \eqref{eq:DKdV} will be applied as Interface Boundary Conditions (IBC) in a Domain Decomposition Method (DDM). Firstly, following \cite{Japhet2003}, we will briefly describe the DDM that we will consider here, and after we will describe and test the incorporation of the proposed IBCs.
+\indent The discrete approximations \eqref{eq:appDiscTBCP0} for the transparent boundary conditions for the equation \eqref{eq:DKdV} will be applied as interface boundary conditions (IBC) in a domain decomposition method (DDM). Firstly, following \cite{Japhet2003}, we will briefly describe the DDM that we will consider here, and after we will describe and test the incorporation of the proposed IBCs.
 
 \subsection{The Schwarz Method}
 
@@ -9,7 +9,7 @@
 
 \indent The first DDM developed was the Schwarz method \cite{Japhet2003,Gander2008}, which consists on an iterative method: in the case of a evolution problem, the solution  $u_i^{n,\infty}$, in each time step $t_n$ and each subdomain $\Omega_i$, is computed as the convergence of the solution obtained in each iteration, $u_i^{n,k}, \ \ k\geq 0$.
 
-\indent We will consider here the Additive (or parallel) Schwarz method (ASM). In this method, the Interface Boundary Conditions are always constructed using the solution $u_j^{n,k-1}, \ \ j \neq i$ of the previous iteration in the neighbor subdomains. Therefore, in each interface between the subdomains $\Omega_i$ and $\Omega_j$, the boundary condition for the problem in $\Omega_i$ is
+\indent We will consider here the Additive (or parallel) Schwarz method (ASM). In this method, the interface boundary conditions are always constructed using the solution $u_j^{n,k-1}, \ \ j \neq i$ of the previous iteration in the neighbor subdomains. Therefore, in each interface between the subdomains $\Omega_i$ and $\Omega_j$, the boundary condition for the problem in $\Omega_i$ is
 
 \begin{equation}
 	\label{eq:genericIBC}
@@ -18,17 +18,18 @@
 
 \indent The ASM is a modification, proposed by \cite{Lions1988}, of the original (Alternating or Multiplicative) Schwarz Method, in which the IBCs are constructed using always the most updated solution of the neighbor domains. This modification originates an inherently parallel algorithm, which one naturally implements with parallel computing. The advantages obtained with the parallelism become more evident when the number of subdomains increases \cite{Lions1988}.
 
-\indent In \ref{eq:genericIBC}, $\mathcal{B}_i$ denotes the operator of the IBC. This operator allows the construction of of more general Schwarz methods : in the original one, the IBC's are Dirichlet conditions (i.e. ,$\mathcal{B}_i(u) = u$  ) \cite{Japhet2003,Lions1990}
+\indent In \ref{eq:genericIBC}, $\mathcal{B}_i$ denotes the operator of the IBC. This operator allows the construction of of more general Schwarz methods : in the original one, the IBC's are Dirichlet conditions (\emph{i.e.} ,$\mathcal{B}_i(u) = u$  ) \cite{Japhet2003,Lions1990}
 
 \indent Without loss of generality, in the following we will consider a domain $\Omega$ decomposed in two non-overlapping subdomains, $\Omega_1$ and $\Omega_2$, with $\Gamma = \Omega_1 \bigcap \Omega_2$.
 
 \indent When implementing a Schwarz methods, one must define appropriate operators $\mathcal{B}_i$ such that :
 
 \begin{itemize}
-\begingroup \color{red} \item There is a unique solution $u_i$ in each subdomain $\Omega_i$; \endgroup
-\item The solution $u_i$ in each subdomain $\Omega_i$ converges to $u|_{\Omega_i}$, i.e, the solution $u$, restricted to $\Omega_i$, of the problem in the monodomain $\Omega$;
-\item The method shows a fast convergence.
+\begingroup \item There is a unique solution $u_i$ in each subdomain $\Omega_i$; \endgroup
+\item The solution $u_i$ in each subdomain $\Omega_i$ converges to $u|_{\Omega_i}$, \emph{i.e.}, the solution $u$, restricted to $\Omega_i$, of the problem in the monodomain $\Omega$;
 \end{itemize} 
+
+\indent \add{Moreover, one wants the method to show a fast convergence}.
 
 \indent In fact, accordingly to \cite{Japhet2003}, the optimal additive Schwarz method for solving the problem 
 
@@ -39,7 +40,7 @@ u = 0 \ \ \text{on} \ \ \partial\Omega\\
 \end{cases}
 \end{equation*}
 
-\noindent where $\mathcal{A}$ is a partial differential operator, is the one which uses as Interface Boundary Conditions the exact Transparent Boundary Conditions, given by
+\noindent where $\mathcal{A}$ is a partial differential operator, is the one which uses as interface boundary conditions the exact transparent boundary conditions, given by
 
 $$B_i(u) = \frac{\partial}{\partial n_i}u + D2N(u)$$
 
@@ -57,7 +58,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \end{cases}
 \end{equation*}
 
-\indent The ASM using such exact TBCs is optimal in the sense that it converges in two iterations, and no other ASM can converge faster. Nevertheless, these TBC, in general, are not simple to compute both analtically and numerically. More specifically, they are nonlocal in time, so they must be approximated for an efficient numerical implementation \cite{Xavieretal2008}. It is in this context that we propose the implementation of our approximate TBCs as Interface Boundary Conditions for the ASM.
+\indent The ASM using such exact TBCs is optimal in the sense that it converges in two iterations, and no other ASM can converge faster \cite{Japhet2003}. Nevertheless, these TBC, in general, are not simple to compute both analtically and numerically. More specifically, they are nonlocal in time, so they must be approximated for an efficient numerical implementation \cite{Xavieretal2008}. It is in this context that we propose the implementation of our approximate TBCs as interface boundary conditions for the ASM.
 
 \subsection{ASM with the approximate TBCs for the dispersion equation}
 
@@ -85,7 +86,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
      \end{cases}
 \end{equation}
 
-\noindent where $ \Upsilon_i, \ \ i=1,2,3$, are the external boundary conditions (i.e, defined on $\partial \Omega_i \backslash \Gamma$).
+\noindent where $ \Upsilon_i, \ \ i=1,2,3$, are the external boundary conditions (\emph{i.e.}, defined on $\partial \Omega_i \backslash \Gamma$).
 
 \indent Considering that we want to analyze and minimize the error due to the application of a Domain Decomposition Method, the reference solution $u^{ref}$ in our study will be the solution of the monodomain problem
 
@@ -114,6 +115,8 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \end{equation}
 
 \indent This choice was made based on the easy implementation and the good results provided by the coefficients $c_L = 1.0$ and $c_R = 0.0$ in approximating the analytical solution in $\Omega$ (as shown in the table \ref{tab:firstTestsP0}). Nevertheless, it does not have much importance in the study that we will done here, as we want to study exclusively the behavior of the DDM. The only restriction for an appropriate study is that the external BCs for computing $u_{ref}$ must be the same $\Upsilon_i, \ \ i=1,2,3$, used for each subdomain in the DDM, as we done in \eqref{eq:problemDDM1}-\eqref{eq:problemDDM2} and \eqref{eq:problemMonodomain}.
+
+\indent A simple analysis (for example in the Laplace domain) shows that monodomain and DDM problems \eqref{eq:problemMonodomain} and \eqref{eq:problemDDM1}-\eqref{eq:problemDDM2} have an unique solution.
 
 \paragraph{Remarks on the notation}
 
@@ -147,14 +150,14 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \paragraph{Remark : modification of the reference solution}
 
-\indent  Even if the DDM with the proposed Interface Boundary Conditions is compatible with the monodomain problem (which we will see that is not the case), the solution of the DDM does not converge exactly to $u^{ref}$, for a reason that does not depend on the expression of the IBCs, but on the fact that for each domain we write two IBCs in the left boundary and only one on the right. We are using a second order centered discretization for the third spatial derivative (which uses a stencil of two points in each side of the central point), implying that we must write an uncentered discretization for the point $x_{N+1}$ when solving the problem in $\Omega_2$. Therefore, this point does not satisfy the same discrete equation as in the reference problem. In order to avoid this incompatibility and allow us to study the behavior of the DDM, we will modify the discretization for the point $u_{N+1}$ in the monodomain problem, using the same second-order uncentered expression :
+\indent  Even if the DDM with the proposed interface boundary conditions is compatible with the monodomain problem (which we will see that is not the case), the solution of the DDM does not converge exactly to $u^{ref}$, for a reason that does not depend on the expression of the IBCs, but on the fact that for each domain we write two IBCs in the left boundary and only one on the right. We are using a second order centered discretization for the third spatial derivative (which uses a stencil of two points in each side of the central point), implying that we must write an uncentered discretization for the point $x_{N+1}$ when solving the problem in $\Omega_2$. Therefore, this point does not satisfy the same discrete equation as in the reference problem. In order to avoid this incompatibility and allow us to study the behavior of the DDM, we will modify the discretization for the point $u_{N+1}$ in the monodomain problem, using the same second-order uncentered expression :
 
 \begin{equation*}
     \label{eq:uncenteredFDdiscretizationN}
     \frac{u_{N+1}^2 - \alpha_{N+1}^2}{\Delta t} + \frac{-\frac{5}{2}u_{N+1}^2 + 9u_{N+2}^2 - 12 u_{N+3}^2 + 7\frac{1}{2}u_{N+4}^2 -\frac{3}{2}u_{N+1}^2}{\Delta x ^3} = 0
 \end{equation*}
 
-\indent The figure \ref{fig:discretizations} resumes the discretizations imposed to each point in the monodomain and the DDM problems, as described above:
+\indent Figure \ref{fig:discretizations} resumes the discretizations imposed to each point in the monodomain and the DDM problems, as described above:
 
 \indent 
 
@@ -252,9 +255,9 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \subsection{Corrections for the approximate IBCs}
 
-\indent When using approximate TBCs in the ASM, one should guarantee that the converged solutions $u^*$ satisfy the same equation as the solution $u_{ref}$ of the monodomain problem. Nevertheless, \begingroup \color{red}{usually this property is not verified by DDMs} \endgroup, which is the case of the method proposed here : one can easily see that, in the convergence, the solution $u^*$ does not satisfy the discrete equation \eqref{eq:FDdiscretization} on the points where the IBCs are imposed (the poins $x_{N-1},x_N \in \Omega_1$ and $x_N \in \Omega_2$).
+\indent When using approximate TBCs in the ASM, one should guarantee that the converged solutions $u^*$ satisfy the same equation as the solution $u_{ref}$ of the monodomain problem. Nevertheless, one can easily see that, in the convergence, the solution $u^*$ does not satisfy the discrete equation \eqref{eq:FDdiscretization} on the points where the IBCs are imposed (the poins $x_{N-1},x_N \in \Omega_1$ and $x_N \in \Omega_2$). 
 
-\indent Therefore, we will formulate modified TBCs for the ASM in order to avoid this problem  :
+\indent As pointed out by \cite{Gander2001}, a finite difference discretization of the IBCs requires a special treatment to be consistent with the monodomain discretization. Therefore, we will formulate modified TBCs for the ASM in order to avoid this problem:
 
 \begin{equation}
 	\label{eq:correctedTBC}
@@ -286,14 +289,13 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \end{gathered}
 \end{equation*}
 
-\indent It is straightforward to verify that the DDM problem with these modifications in the TBCs assure that the converged solution $u^*$ satisfies, in every point, the same discrete equations as the solution $u^{ref}$ of the monodomain problem \eqref{eq:problemMonodomain}.
+\indent It is straightforward to verify that the DDM problem with these modifications in the TBCs insure that the converged solution $u^*$ satisfies, in every point, the same discrete equations as the solution $u^{ref}$ of the monodomain problem \eqref{eq:problemMonodomain}.
 
-\indent We notice that all the modification terms $\theta_i,\theta_i', \ i = 1,2,3$ are of order $O(\Delta x)$ (they are composed of discrete versions of time derivatives and second spatial derivatives multiplied by $\Delta x$). It is essential to assure that these terms are small, in order not to cause substantial modifications to the respective approximate TBCs $\Theta_i$.
-
+\indent In addition, we notice that all the modification terms $\theta_i,\theta_i', \ i = 1,2,3$ are of order $O(\Delta x)$ (they are composed of discrete versions of time derivatives and second spatial derivatives multiplied by $\Delta x$). It is essential to insure that these terms are small, for the consistency with the approximate TBCs $\Theta_i$ to be fulfilled.
 
 \subsection{Optimization of the IBCs (speed of convergence)}
 
-\indent Our objective now is to optimize the IBCs in the sense of minimizing the number of iterations of the ASM until the convergence. We will make a very large set of tests in order to find the coefficients $c_L$ and $c_R$ (i.e., the constant polynomial approximation for the TBC) that provides the fastest convergence. In a first moment, we will make this study with fixed time step and space step, in order to analyze exclusively the influence of the coefficient, and after we will introduce these two parameters into the study.
+\indent Our objective now is to optimize the IBCs in the sense of minimizing the number of iterations of the ASM until the convergence. We will make a very large set of tests in order to find the coefficients $c_L$ and $c_R$ (\emph{i.e.}, the constant polynomial approximation for the TBC) that provides the fastest convergence. To start with, we will make this study with fixed time step and space step, in order to analyze exclusively the influence of the coefficient.
 
 \indent As we are interested in the speed with which the solution of the DDM method converges to the reference solution, the criteria of convergence used is
 
@@ -308,7 +310,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 	e^{\Omega,k} = ||u^{ref}_N - u^{k}_N||_2 = \sqrt{\Delta x \left[ \sum_{j=0}^N{(u^{ref}_j - u^{1,k}_j)^2 } + \sum_{j=N}^{2N}{(u^{ref}_j - u^{2,k}_j)^2 } \right] }
 \end{equation*}
  
-\indent In order to simplify the tests and avoid too expensive computations, we will always consider $c_L = c_R = c$ in this optimization. The range of tested coefficients is $[-10.0, 20.0]$ (chosen after initial tests to identify a proper interval), with a step equal to  $0.1$ between them (or even smaller, up to $0.005$, in the regions near the optimal coefficients), and the maximal number of iterations is set to 100.
+\indent In order to simplify the tests and avoid expensive computations, we will always consider $c_L = c_R = c$ in this optimization. The range of tested coefficients is $[-10.0, 20.0]$ (chosen after initial tests to identify a proper interval), with a step equal to  $0.1$ between them (or even smaller, up to $0.005$, in the regions near the optimal coefficients), and the maximal number of iterations is set to 100.
 
 \subsubsection{Test varying the initial data and the interface position}
 
@@ -321,7 +323,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \indent In all the cases, the reference solution $u^{ref}$ will be the solution of the monodomain problem \eqref{eq:problemMonodomain}.
 
-\indent The results are summarized in the figure \ref{fig:optimVarT0Interface}, with the number of iterations plotted as function of the coefficient $c$ (for the positive coefficients). We can see a very similar behavior of all the curves, with two minima whose position does not depend on $t_0$ and $\alpha$ (approximately, $c = 0.20$ and $c=4.5$). For $c<0$, the curves are very similar, with two minima located at $c = -0.10$ and $c = -1.35$, approximately. Moreover, the minima closest to zero ($c=-0.10$ and $c = 0.20$) are both associated with very discontinuous peaks, while the other two minima are associated with smoother curves. A detail of the curves around each positive minima are shown in the figures \ref{fig:optimVarT0PDetail} - \ref{fig:optimVarT0PDetail2} and \ref{fig:optimVarInterfacePDetail} - \ref{fig:optimVarInterfacePDetail2}. Finally, we remark that, for some curves, the minimal number of iterations is associated with the coefficients closest to zero, and, for other ones, to the other minimum, but the minimal number of iterations are very similar (between 5 and 7).
+\indent The results are summarized in Figure \ref{fig:optimVarT0Interface}, with the number of iterations plotted as function of the coefficient $c$ (for the positive coefficients). We can see a very similar behavior of all the curves, with two minima whose position does not depend on $t_0$ and $\alpha$ (approximately, $c = 0.20$ and $c=4.5$). For $c<0$, the curves are very similar, with two minima located at $c = -0.10$ and $c = -1.35$, approximately. Moreover, the minima closest to zero ($c=-0.10$ and $c = 0.20$) are both associated with very discontinuous peaks, while the other two minima are associated with smoother curves. A detail of the curves around each positive minima are shown in Figures \ref{fig:optimVarT0PDetail} - \ref{fig:optimVarT0PDetail2} and \ref{fig:optimVarInterfacePDetail} - \ref{fig:optimVarInterfacePDetail2}. Finally, we remark that, for some curves, the minimal number of iterations is associated with the coefficients closest to zero, and, for other ones, to the other minimum, but the minimal number of iterations are very similar (between 5 and 7).
 
 \begingroup
 \addtocounter{figure}{1}
@@ -388,7 +390,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 %	\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $t_0$ and different positions of the interface), in the case of positive coefficients \label{fig:optimVarInterface}}
 %\endgroup
 
-\indent The figure \ref{fig:errorEvolution} shows the evolution of the error, as function of the iterations, for the five positive coefficients $c$ that gave the fastest convergences, for a fixed initial instant and a fixed position position of the interface. For other values of $t_0$ and $\alpha$ this graph is similar, concerning the number of iterations and the fact that the convergence is more regular for the coefficients closest to zero, compared to the other optimal coefficients.
+\indent Figure \ref{fig:errorEvolution} shows the evolution of the error, as function of the iterations, for the five positive coefficients $c$ that gave the fastest convergences, for a fixed initial instant and a fixed position position of the interface. For other values of $t_0$ and $\alpha$ this graph is similar, concerning the number of iterations and the fact that the convergence is more regular for the coefficients closest to zero, compared to the other optimal coefficients.
 
 \begingroup
 \begin{center}
@@ -399,11 +401,11 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \subsubsection{Tests varying $\Delta t$ and $\Delta x$}
 
-\indent After verifying that the method behaves similarly for every initial condition (i.e., every $t_0$) and every position of the interface, we will now keep these parameters fixed ($t_0 = 0$ and $\alpha = 0.5$) and make new tests with different values of $\Delta t$ (with fixed $\Delta x = 12/250$) and different values of $\Delta x$ (with fixed $\Delta t = 0.02$).
+\indent After verifying that the method behaves similarly for every initial condition (\emph{i.e.}, every $t_0$) and every position of the interface, we will now keep these parameters fixed ($t_0 = 0$ and $\alpha = 0.5$) and make new tests with different values of $\Delta t$ (with fixed $\Delta x = 12/250$) and different values of $\Delta x$ (with fixed $\Delta t = 0.02$).
 
-\indent The number of iterations as functions of the coefficient, for some of the tests, are shown in the figure \ref{fig:niterxCoefVarDtDx}, in the case of positive coefficients. The results for negative coefficients are similar.
+\indent The number of iterations as functions of the coefficient, for some of the tests, are shown in Figure \ref{fig:niterxCoefVarDtDx}, in the case of positive coefficients. The results for negative coefficients are similar.
 
-\indent The figure \ref{fig:optimalCoefVarDxDtCorrectN} presents the optimal positive coefficient for each $\Delta t$ or $\Delta x$ (for one fixed value for the other coefficient). Considering the observation we did before about the similar results (i.e, the number of iterations until the convergence) for the four optimal coefficients, we only took into account, for the construction of this curve, the positive minimum farther from zero : it was done because, as shown  in the figure \ref{fig:niterxCoefVarDtDx}, these minima have a strong dependence on $\Delta t$ or $\Delta x$, and we will seek to study this relation.
+\indent Figure \ref{fig:optimalCoefVarDxDtCorrectN} presents the optimal positive coefficient for each $\Delta t$ or $\Delta x$ (for one fixed value for the other coefficient). Considering the observation we did before about the similar results (\emph{i.e.} the number of iterations until the convergence) for the four optimal coefficients, we only took into account, for the construction of this curve, the positive minimum farther from zero : it was done because, as shown in Figure \ref{fig:niterxCoefVarDtDx}, these minima have a strong dependency on $\Delta t$ or $\Delta x$, and we will seek to study this relation.
 
 \begingroup
 \begin{minipage}{.5\linewidth}
@@ -448,7 +450,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 	\captionof{figure}{Optimal coefficients as function of the time step and the space step 	\label{fig:optimalCoefVarDxDtCorrectN}}
 \endgroup
 
-\indent The figure \ref{fig:optimalCoefVarDxDtCorrectN} suggests a dependence of the optimal coefficient on $(\Delta t)^\nu$ and $(\Delta x)^\eta$, with $0 \leq \nu \leq 1$ and $\eta < 0$. In fact, performing some regressions with $\Delta t $ or $\Delta x$ fixed, we could conclude that $\nu = \frac{2}{3}$ and $\eta = -1$ provide really well-fitted regression curves (with the coefficients of determination $R^2$ bigger than 0.99), both for the negative and the positive coefficients (although each one of these cases correspond to different curves). Therefore, we will seek to model a function
+\indent Figure \ref{fig:optimalCoefVarDxDtCorrectN} suggests a dependence of the optimal coefficient on $(\Delta t)^\nu$ and $(\Delta x)^\eta$, with $0 \leq \nu \leq 1$ and $\eta < 0$. In fact, performing some regressions with $\Delta t $ or $\Delta x$ fixed, we could conclude that $\nu = \frac{2}{3}$ and $\eta = -1$ provide really well-fitted regression curves (with the coefficients of determination $R^2$ bigger than 0.99), both for the negative and the positive coefficients (although each one of these cases correspond to different curves). Therefore, we will seek to model a function
 
 \begin{equation}
 	\label{eq:regression2D}
@@ -462,9 +464,9 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 	c_{opt}^-(\Delta t, \Delta x) = -0.0583 -1.5024 (\Delta t)^{\frac{2}{3}} - 0.0006 \frac{1}{\Delta x} -0.7287  \frac{(\Delta t)^{\frac{2}{3}}}{\Delta x} 	\label{eq:regression2DNeg}
 \end{gather}
 
-\noindent respectively for the positive and the negative optimal coefficients. The coefficients of determination of each regression are $R^{2,+} = 0.9999894$ are $R^{2,-} = 0.9998993$, showing a good representation.
+\noindent respectively for the positive and the negative optimal coefficients. The coefficients of determination of each regression are $R^{2,+} = 0.9999894$ are $R^{2,-} = 0.9998993$, showing an excellent representation.
 
-\indent In order to validate the expressions \eqref{eq:regression2DPos} and \eqref{eq:regression2DNeg}, they were used to compute the optimal coefficients for several points $(\Delta t, \Delta x)$, with $\Delta t \in [0.0005,0.3]$ and $\Delta x \in \left[ \frac{12}{5000},\frac{12}{50} \right]$. For almost all the points in the considered domain, the computed optimal coefficient provides a fast convergence to the monodomain solution, with less than 20 iterations, both in the case which is also observed in the case of the negative coefficients. The numbers of iterations observed are not always the smallest ones that we could find (cf. figures \ref{fig:optimVarT0Interface} to \ref{fig:niterxCoefVarDtDx}), because the expressions \eqref{eq:regression2DPos} and \eqref{eq:regression2DNeg} are regressions constructed from optimal coefficients obtained among a discrete set of possible values. Nevertheless, they give a very good approximation for the optimal $c$ for each $(\Delta t, \Delta x)$, and one could search around a small region around the computed $c_{opt}$ to obtain an even faster convergence.
+\indent In order to validate the expressions \eqref{eq:regression2DPos} and \eqref{eq:regression2DNeg},we used them to compute the optimal coefficients for several points $(\Delta t, \Delta x)$, with $\Delta t \in [0.0005,0.3]$ and $\Delta x \in \left[ \frac{12}{5000},\frac{12}{50} \right]$. For almost all the points in the considered domain, the computed optimal coefficient provides a fast convergence to the monodomain solution, with less than 20 iterations, both in the case which is also observed in the case of the negative coefficients. The numbers of iterations observed are not always the smallest ones that we could find (cf. Figures \ref{fig:optimVarT0Interface} to \ref{fig:niterxCoefVarDtDx}), because the expressions \eqref{eq:regression2DPos} and \eqref{eq:regression2DNeg} are regressions constructed from optimal coefficients obtained among a discrete set of possible values. Nevertheless, they give a very good approximation for the optimal $c$ for each $(\Delta t, \Delta x)$, and one could search around a small region around the computed $c_{opt}$ to obtain an even faster convergence.
 
 %\begingroup
 %	\centering
@@ -478,7 +480,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
  
 \indent The results presented in this section show that the Domain Decomposition Method proposed here, consisting in the Additive Schwarz Method with our approximate TBCs, is able to provide a fast convergence toward the solution of the monodomain problem. Furthermore, using the corrected TBCs \eqref{eq:correctedTBC}, this convergence is exact. Therefore, we reached our goals of solving the dispersion equation in a finite domain divided in two subdomains.
 
-\indent Moreover, the results of the optimization tests are very satisfying regarding a more general application of our method. Firstly, for fixed spatial and temporal discretizations, we obtained optimal coefficients for the method independently of the initial solution and the size of the subdomains (i.e., independently of the initial instant and the position of the interface). Secondly, we obtained good regression expressions for the optimal coefficient as function of $\Delta t$ and $\Delta x$, which could allow the application of the model, with fast convergence, for tests different from the ones made in this study.
+\indent Moreover, the results of the optimization tests are very satisfying regarding a more general application of our method. Firstly, for fixed spatial and temporal discretizations, we obtained optimal coefficients for the method independently of the initial solution and the size of the subdomains (\emph{i.e.}, independently of the initial instant and the position of the interface). Secondly, we obtained good regression expressions for the optimal coefficient as function of $\Delta t$ and $\Delta x$, which could allow the application of the model, with fast convergence, in other computational frameworks.
 
 
 
