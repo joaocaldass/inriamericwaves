@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  22 JUL 2016 17:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  26 JUL 2016 11:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1258,35 +1258,49 @@ Package morefloats Info: Maximum number of possible floats asked for: 36
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/cases/cases.sty
 Package: cases 2002/05/02 ver 2.5 
-) (./main.aux)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/footmisc/footmisc.sty
+Package: footmisc 2011/06/06 v5.5b a miscellany of footnote facilities
+\FN@temptoken=\toks46
+\footnotemargin=\dimen310
+\c@pp@next@reset=\count270
+Package footmisc Info: Declaring symbol style bringhurst on input line 855.
+Package footmisc Info: Declaring symbol style chicago on input line 863.
+Package footmisc Info: Declaring symbol style wiley on input line 872.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 883.
+
+Package footmisc Info: Declaring symbol style lamport* on input line 903.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 924
+.
+)
+(./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-
-(/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+ (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count270
-\scratchdimen=\dimen310
+\scratchcounter=\count271
+\scratchdimen=\dimen311
 \scratchbox=\box67
-\nofMPsegments=\count271
-\nofMParguments=\count272
-\everyMPshowfont=\toks46
-\MPscratchCnt=\count273
-\MPscratchDim=\dimen311
-\MPnumerator=\count274
-\makeMPintoPDFobject=\count275
-\everyMPtoPDFconversion=\toks47
+\nofMPsegments=\count272
+\nofMParguments=\count273
+\everyMPshowfont=\toks47
+\MPscratchCnt=\count274
+\MPscratchDim=\dimen312
+\MPnumerator=\count275
+\makeMPintoPDFobject=\count276
+\everyMPtoPDFconversion=\toks48
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -1402,27 +1416,32 @@ Dictionary: translator-basic-dictionary, Language: English
 (/usr/local/texlive/2015/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
 File: siunitx-abbreviations.cfg 2016/03/01 v2.6q siunitx: Abbreviated units
 ) ABD: EveryShipout initializing macros
-\c__siunitx_mathsf_int=\count276
-LaTeX Font Info:    Try loading font information for U+msa on input line 30.
+\c__siunitx_mathsf_int=\count277
+LaTeX Font Info:    Try loading font information for U+msa on input line 39.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 30.
+LaTeX Font Info:    Try loading font information for U+msb on input line 39.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-\c__siunitx_mathtt_int=\count277
- (./main.toc)
-\tf@toc=\write4
-\openout4 = `main.toc'.
+\c__siunitx_mathtt_int=\count278
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 41.
 
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 41.
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <7> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 43.
+ (./abstract.tex)
+(./intro.tex [1
 
-[1
-
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./intro.tex [2]) (./TBCv2.tex [3] [4] [5]
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]) (.
+/TBCv2.tex [3] [4] [5]
 Overfull \hbox (43.3311pt too wide) in paragraph at lines 116--117
 \OT1/cmr/m/n/12 we made sev-eral tests with all the pos-si-ble pairs $\OML/cmm/
 m/it/12 c[]; c[] \OMS/cmsy/m/n/12 2 f^^@\OT1/cmr/m/n/12 10\OML/cmm/m/it/12 ; \O
@@ -1434,7 +1453,7 @@ m/n/12 g[]$\OT1/cmr/m/n/12 .
  []
 
 
-<figures/FinalFigures/BessefirstTestsP0CorrectSnap1.png, id=33, 433.62pt x 289.
+<figures/FinalFigures/BessefirstTestsP0CorrectSnap1.png, id=37, 433.62pt x 289.
 08pt>
 File: figures/FinalFigures/BessefirstTestsP0CorrectSnap1.png Graphic file (type
  png)
@@ -1448,7 +1467,7 @@ Overfull \hbox (21.80946pt too wide) in paragraph at lines 121--122
  []
 
 
-<figures/FinalFigures/BessefirstTestsP0CorrectSnap2.png, id=35, 433.62pt x 289.
+<figures/FinalFigures/BessefirstTestsP0CorrectSnap2.png, id=39, 433.62pt x 289.
 08pt>
 File: figures/FinalFigures/BessefirstTestsP0CorrectSnap2.png Graphic file (type
  png)
@@ -1462,7 +1481,7 @@ Overfull \hbox (21.80946pt too wide) in paragraph at lines 125--126
  []
 
 
-<figures/FinalFigures/BessefirstTestsP0CorrectSnap3.png, id=36, 433.62pt x 289.
+<figures/FinalFigures/BessefirstTestsP0CorrectSnap3.png, id=40, 433.62pt x 289.
 08pt>
 File: figures/FinalFigures/BessefirstTestsP0CorrectSnap3.png Graphic file (type
  png)
@@ -1476,7 +1495,7 @@ Overfull \hbox (21.80946pt too wide) in paragraph at lines 128--129
  []
 
 
-<figures/FinalFigures/BessefirstTestsP0CorrectSnap4.png, id=37, 433.62pt x 289.
+<figures/FinalFigures/BessefirstTestsP0CorrectSnap4.png, id=41, 433.62pt x 289.
 08pt>
 File: figures/FinalFigures/BessefirstTestsP0CorrectSnap4.png Graphic file (type
  png)
@@ -1499,7 +1518,10 @@ Overfull \hbox (2.61108pt too wide) in paragraph at lines 119--134
 []  [] 
  []
 
-[6]
+[6 <./figures/FinalFigures/BessefirstTestsP0CorrectSnap1.png> <./figures/FinalF
+igures/BessefirstTestsP0CorrectSnap2.png> <./figures/FinalFigures/BessefirstTes
+tsP0CorrectSnap3.png> <./figures/FinalFigures/BessefirstTestsP0CorrectSnap4.png
+>]
 Overfull \hbox (11.74988pt too wide) detected at line 142
  
  []
@@ -1549,28 +1571,20 @@ Overfull \hbox (11.74988pt too wide) detected at line 152
  
  []
 
-[7 <./figures/FinalFigures/BessefirstTestsP0CorrectSnap1.png> <./figures/FinalF
-igures/BessefirstTestsP0CorrectSnap2.png> <./figures/FinalFigures/BessefirstTes
-tsP0CorrectSnap3.png> <./figures/FinalFigures/BessefirstTestsP0CorrectSnap4.png
->]) (./DDMv2.tex
+[7]) (./DDMv2.tex
 Overfull \hbox (34.83772pt too wide) in paragraph at lines 1--1
 []\OT1/cmr/bx/n/17.28 Application to a do-main de-com-po-si-tion method 
  []
 
 [8]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 28.
- (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 28.
- [9] [10]
-[11] [12] [13]
+ [9] [10] [11] [12]
 Overfull \hbox (2.59785pt too wide) detected at line 290
 [] []
  []
 
-[14] [15]
+[13] [14]
 <figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png, id=79, 434.62375pt x 26
 9.005pt>
 File: figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png Graphic file (type 
@@ -1649,13 +1663,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 330--368
 
  []
 
-[16 <./figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png> <./figures/FinalF
-igures/NiterxCoefVarinterfaceFinalVersionP.png> <./figures/FinalFigures/NiterxC
-oefVarT0FinalVersionPDetail.png> <./figures/FinalFigures/NiterxCoefVarT0FinalVe
-rsionPDetail2.png> <./figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPD
-etail.png> <./figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.p
-ng>]
-<figures/FinalFigures/errorEvolutionFixedT0CFinalVersionOnlyPositive.png, id=94
+[15 <./figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png> <./figures/FinalF
+igures/NiterxCoefVarinterfaceFinalVersionP.png>]
+<figures/FinalFigures/errorEvolutionFixedT0CFinalVersionOnlyPositive.png, id=90
 , 433.62pt x 289.08pt>
 File: figures/FinalFigures/errorEvolutionFixedT0CFinalVersionOnlyPositive.png G
 raphic file (type png)
@@ -1665,7 +1675,11 @@ Package pdftex.def Info: figures/FinalFigures/errorEvolutionFixedT0CFinalVersio
 nOnlyPositive.png used on input line 397.
 (pdftex.def)             Requested size: 260.17401pt x 173.44933pt.
 
-<figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png, id=95, 439.
+[16 <./figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png> <./figures/
+FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png> <./figures/FinalFigures/N
+iterxCoefVarInterfaceFinalVersionPDetail.png> <./figures/FinalFigures/NiterxCoe
+fVarInterfaceFinalVersionPDetail2.png>]
+<figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png, id=98, 439.
 6425pt x 269.005pt>
 File: figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png Graphic
  file (type png)
@@ -1680,7 +1694,7 @@ Overfull \hbox (2.8373pt too wide) in paragraph at lines 413--414
  []
 
 
-<figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png, id=96, 441.65pt x
+<figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png, id=99, 441.65pt x
  269.005pt>
 File: figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png Graphic file 
 (type png)
@@ -1701,7 +1715,7 @@ Overfull \hbox (20.2359pt too wide) in paragraph at lines 411--423
 [17 <./figures/FinalFigures/errorEvolutionFixedT0CFinalVersionOnlyPositive.png>
 ]
 <figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDt.png, id=1
-01, 433.62pt x 289.08pt>
+04, 433.62pt x 289.08pt>
 File: figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDt.png 
 Graphic file (type png)
 
@@ -1716,7 +1730,7 @@ Overfull \hbox (19.62839pt too wide) in paragraph at lines 442--443
 
 
 <figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDx.png, id=1
-02, 433.62pt x 289.08pt>
+05, 433.62pt x 289.08pt>
 File: figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDx.png 
 Graphic file (type png)
 
@@ -1741,46 +1755,48 @@ OT1/cmr/m/n/12 0005\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/m/it/12 :\OT1/c
 mr/m/n/12 3]$
  []
 
-) (./conclusion.tex [19]) (./main.bbl [20]
+) (./conclusion.tex [19]) (./ackn.tex
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 5.
+) (./main.bbl [20]
 Underfull \hbox (badness 1565) in paragraph at lines 41--45
 \OT1/cmr/m/n/12 main De-com-pos-tion meth-ods : Ab-sorb-ing Bound-ary Con-di-ti
 ons.
  []
 
-) [21] (./main.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+) [21] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 24992 strings out of 493027
- 507872 string characters out of 6134069
- 496094 words of memory out of 5000000
- 28141 multiletter control sequences out of 15000+600000
- 14983 words of font info for 59 fonts, out of 8000000 for 9000
+ 25113 strings out of 493027
+ 509787 string characters out of 6134069
+ 499009 words of memory out of 5000000
+ 28255 multiletter control sequences out of 15000+600000
+ 17613 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,12n,54p,10399b,573s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
-live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
-15/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (21 pages, 519889 bytes).
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.
+pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr
+/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
+local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/lo
+cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/loca
+l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (21 pages, 556162 bytes).
 PDF statistics:
- 175 PDF objects out of 1000 (max. 8388607)
- 103 compressed objects within 2 object streams
+ 187 PDF objects out of 1000 (max. 8388607)
+ 112 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  88 words of extra memory for PDF output out of 10000 (max. 10000000)
 

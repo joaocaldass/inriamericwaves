@@ -15,10 +15,19 @@
 %\usepackage{refcheck}
 \usepackage[finalnew]{trackchanges}
 \usepackage{cases} %numcases and subnumcases
+\usepackage[symbol]{footmisc}
 
-\author{Joao Guilherme Caldas Steinstraesser}
+\title{Optimized Schwarz method for the linearized KdV equation}
+\date{}
+\author{Joao Guilherme Caldas Steinstraesser \footnotemark[1]
+	 \and Rodrigo Cienfuegos \footnotemark[3]
+	 \and José Daniel Galaz Mora \footnotemark[3]
+	 \and Antoine Rousseau \footnotemark[2]     
+}
 
 \captionsetup[subfigure]{labelformat=parens,labelsep=space,font = scriptsize}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 \newcommand{\laplinv}{\mathcal{L}^{-1}}
 \newcommand{\eF}{e^{-i \xi x }}
@@ -29,16 +38,22 @@
 
 \begin{document}
 
-\tableofcontents
-\newpage
-%\input{images}
+\maketitle
+
+\footnotetext[1]{MERIC, Marine Energy Research \& Innovation Center, Avda. Apoquindo 2827, Santiago, Chile. joao.caldas@meric.cl}
+\footnotetext[2]{Inria and Inria Chile, Avda. Apoquindo 2827, Santiago, Chile}
+\footnotetext[3]{Departamento de Ingeniería Hidráulica y Ambiental, Pontificia Universidad Católica de Chile, Av. Vicuña Mackenna 4680 - Macul, Santiago, Chile}
+
+\input{abstract}
+
 \input{intro}
-%\input{errors}
-%\input{derivationTBC}
-%\input{approximationTBC}
+
+
 \input{TBCv2}
 \input{DDMv2}
 \input{conclusion}
+\input{ackn}
+
 \bibliography{../may/biblio}
 \newpage
 %\input{wellposedness}
