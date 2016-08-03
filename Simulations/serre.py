@@ -522,9 +522,9 @@ def get1d(u,dx,periodic,order):
     elif order == 2:
         a[1:-1] = 1./(2.*dx)*(u[2:] - u[0:-2])
     elif order == 4 :
-        a[2:-2] = 1./(12.*dx)*(u[0:-4] - 8.* u[1:-3] + 8.*u[3:-1] - u[4,:])
-        if (periodic) :
-            a[0] = 1./(12.*dx)*(u[-3] - 8.* u[-2] + 8.*u[1] - u[2])
+        a[2:-2] = 1./(12.*dx)*(u[0:-4] - 8.* u[1:-3] + 8.*u[3:-1] - u[4:])
+        #if (periodic) :
+        #    a[0] = 1./(12.*dx)*(u[-3] - 8.* u[-2] + 8.*u[1] - u[2])
             ##### Todo Boundaries
             #a[1] = 1./(12.*dx)*(u[-2] - 8.* u[-1] + 8.*u[1] - u[2])
     return a
@@ -544,7 +544,7 @@ def get2d(u,dx,periodic,order=2):
             a[0] = 1./(dx*dx)*(2.*u[0] - 5.*u[1] + 4.*u[2] - u[3])
             a[-1] = 1./(dx*dx)*(2.*u[-1] - 5.*u[-2] + 4.*u[-3] - u[-4])
     elif order == 4 :
-        a[2:-2] = 1./(12.*dx*dx)*(-u[0:-4] + 16.* u[1:-3] - 30*u[2:-2] + 16.*u[3:-1] - u[4,:])
+        a[2:-2] = 1./(12.*dx*dx)*(-u[0:-4] + 16.* u[1:-3] - 30*u[2:-2] + 16.*u[3:-1] - u[4:])
         #### TODO Boundaries
     return a
 
@@ -708,13 +708,13 @@ def EFDSolverFM4(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2):
     
     hu = h*u
     
-    ux = get1d(u,dx,periodic,order=2)
-    uxx = get2d(u,dx,periodic,order=2)
+    ux = get1d(u,dx,periodic,order=4)
+    uxx = get2d(u,dx,periodic,order=4)
     uux = u*ux
-    uuxdx = get1d(uux,dx,periodic,order=2)
-    hx = get1d(h,dx,periodic,order=2)
-    hxx = get2d(h,dx,periodic,order=2)
-    h2x = get1d(h*h,dx,periodic,order=2)
+    uuxdx = get1d(uux,dx,periodic,order=4)
+    hx = get1d(h,dx,periodic,order=4)
+    hxx = get2d(h,dx,periodic,order=4)
+    h2x = get1d(h*h,dx,periodic,order=4)
     hhx = h*hx
     
     Q = 2.*h*hx*ux*ux + 4./3.*h*h*ux*uxx
