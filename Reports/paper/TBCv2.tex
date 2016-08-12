@@ -16,7 +16,7 @@
 
 \begin{equation*}
 \begin{cases}
-	u_t + U_1u_x + U_2u_{xxx} = h(t,x), \ \ t \in \mathbb{R}^+, \ \ x \in [a,b] \\
+	u_t + U_1u_x + U_2u_{xxx} = 0, \ \ t \in \mathbb{R}^+, \ \ x \in [a,b] \\
 	u(0,x) = u_0(x), \ \ x \in [a,b] \\
 	+ \text{boundary conditions} \nonumber
 \end{cases}
@@ -54,8 +54,8 @@
 	\label{eq:appP0}
 	\frac{\lambda^2}{s}  = c, \qquad
 	\frac{\lambda}{s}  = -c^2, \qquad
-	\frac{1}{\lambda_1(s)^2}  = c^2, \qquad 
-	 \frac{1}{\lambda_1(s)}  = -c 
+	\frac{1}{\lambda(s)^2}  = c^2, \qquad 
+	 \frac{1}{\lambda(s)}  = -c 
 \end{equation}
 
 \indent Replacing \eqref{eq:appP0} in \eqref{eq:continuousTBC}, using some well-know properties of the Laplace Transform (linearity and convolution) and considering possibly different polynomial approximations for the left and the right boundaries (respectively with the coefficients $c_L$ and $c_R$), we get the approximate transparent boundary conditions

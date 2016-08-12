@@ -400,6 +400,7 @@ def optimizeParamO0(x,u,uallexact,t0,tmax,U2,cLs,cRs, N, dt, prevTests, verbose 
 
                     tests[str((cL,cR))] = (uall,tall,en,ErrTm,ErrL2)
                     testsLight[str((cL,cR))] = (ErrTm,ErrL2)
+                    print(ErrTm,ErrL2)
 
 
                     
@@ -443,11 +444,11 @@ def fundamentalSolution(x,t) :
     Ai,Aip,Bi,Bip = special.airy(x*a)
     return a*Ai
 ## Exact solution
-def exactSolution(x,t,initCond) :
+def exactSolution(x,t,initCond,app=1000.) :
     dx = x[1] - x[0]
-    left = np.arange(x[0]-1000.,x[0],dx)
+    left = np.arange(x[0]-app,x[0],dx)
     sizeL = np.size(left)
-    right = np.arange(x[-1] + dx,x[-1] + 1000., dx)
+    right = np.arange(x[-1] + dx,x[-1] + app, dx)
     sizeR = np.size(right)
     x2 = np.concatenate((left,x,right))
 

@@ -224,7 +224,7 @@ def plotIterationsxCoef(tests,legLabel,titleCompl = "", legloc=0,savePath = None
                 break
 
         print("t0 = %f --> min it = %d for cL = cR = %f and error = %e" % (float(t0),niterMin,cLiterMin,errIterMin))
-
+        
     if xmin == None:
         xmin = niterOrdered[0,0]
     if xmax == None :
@@ -235,15 +235,14 @@ def plotIterationsxCoef(tests,legLabel,titleCompl = "", legloc=0,savePath = None
         ymax = np.amax(niterOrdered[:,1]) + 1
     plt.xlim((xmin,xmax))
     plt.ylim((ymin,ymax))
-    plt.legend(bbox_to_anchor=(1.02, 1), loc=2, borderaxespad=0.)
-    plt.xlabel("$c$",fontsize="x-large")
+    legend = plt.legend(bbox_to_anchor=(1.02, 1), loc=2, borderaxespad=0.)
+    xlabel = plt.xlabel("$c$",fontsize="x-large")
     plt.ylabel("Number of iterations",fontsize="large")
-    #plt.title("Nb. of iter. until the convergence - " + titleCompl)
-        
+    #plt.title("Nb. of iter. until the convergence - " + titleCompl)    
     
     
     if savePath != None:
-        plt.savefig(savePath + "." + ext)
+        plt.savefig(savePath + "." + ext,bbox_extra_artists=[xlabel,legend], bbox_inches='tight')
 ## Returns TBC computed in \Omega_j for the resolution in \Omega_i
 
 def computeExteriorTBC(u,dx,cL,cR,cond,order=2) :

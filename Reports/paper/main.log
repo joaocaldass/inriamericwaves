@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  26 JUL 2016 11:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  10 AUG 2016 13:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1755,10 +1755,7 @@ OT1/cmr/m/n/12 0005\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/m/it/12 :\OT1/c
 mr/m/n/12 3]$
  []
 
-) (./conclusion.tex [19]) (./ackn.tex
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 5.
-) (./main.bbl [20]
+) (./conclusion.tex [19]) (./ackn.tex) (./main.bbl [20]
 Underfull \hbox (badness 1565) in paragraph at lines 41--45
 \OT1/cmr/m/n/12 main De-com-pos-tion meth-ods : Ab-sorb-ing Bound-ary Con-di-ti
 ons.
@@ -1766,10 +1763,10 @@ ons.
 
 ) [21] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 25113 strings out of 493027
- 509787 string characters out of 6134069
+ 25112 strings out of 493027
+ 509774 string characters out of 6134069
  499009 words of memory out of 5000000
- 28255 multiletter control sequences out of 15000+600000
+ 28254 multiletter control sequences out of 15000+600000
  17613 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,12n,54p,10399b,573s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1793,7 +1790,7 @@ cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/
 texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (21 pages, 556162 bytes).
+Output written on main.pdf (21 pages, 555567 bytes).
 PDF statistics:
  187 PDF objects out of 1000 (max. 8388607)
  112 compressed objects within 2 object streams

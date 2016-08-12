@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  14 JUN 2016 16:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.28)  16 JUN 2016 15:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1254,28 +1254,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 161--1
 [7 <./figures/secondCase1A.png> <./figures/secondCase1B.png> <./figures/secondC
 ase1ADetail.png> <./figures/secondCase1BDetail.png>] [8 <./figures/errFullB0.pn
 g> <./figures/errFullB1.png> <./figures/errTransport.png> <./figures/errSplitA.
-png> <./figures/errSplitB.png> <./figures/errSplitC.png>] [9]
-Overfull \hbox (73.30382pt too wide) detected at line 115
-[] []
- []
-
-[10]
-Overfull \hbox (63.83003pt too wide) detected at line 135
+png> <./figures/errSplitB.png> <./figures/errSplitC.png>] [9] [10]
+Overfull \hbox (73.30382pt too wide) detected at line 119
 [] []
  []
 
 
-Overfull \hbox (74.86545pt too wide) detected at line 152
+Overfull \hbox (45.631pt too wide) detected at line 141
 [] []
  []
 
 [11]
-Overfull \hbox (6.271pt too wide) detected at line 170
+Overfull \hbox (51.21696pt too wide) detected at line 158
+[] []
+ []
+
+
+Overfull \hbox (44.31068pt too wide) detected at line 171
+[] []
+ []
+
+
+Overfull \hbox (20.21872pt too wide) detected at line 184
 [] []
  []
 
 [12]
-Overfull \hbox (40.03056pt too wide) in paragraph at lines 230--231
+Overfull \hbox (40.03056pt too wide) in paragraph at lines 238--239
 \OT1/cmr/m/n/12 tested all the pos-si-ble com-bi-na-tions be-tween the val-ues 
 in $[\OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 10\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 
 ^^@\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 0\OM
@@ -1285,47 +1290,12 @@ it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ;
  []
 
 [13]
-Overfull \hbox (11.74988pt too wide) detected at line 239
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 240
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 241
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 242
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 243
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 244
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 245
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 246
- 
- []
-
-
 Overfull \hbox (11.74988pt too wide) detected at line 247
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 248
  
  []
 
@@ -1335,42 +1305,37 @@ Overfull \hbox (11.74988pt too wide) detected at line 249
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 259
+Overfull \hbox (11.74988pt too wide) detected at line 250
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 260
+Overfull \hbox (11.74988pt too wide) detected at line 251
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 261
+Overfull \hbox (11.74988pt too wide) detected at line 252
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 262
+Overfull \hbox (11.74988pt too wide) detected at line 253
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 263
+Overfull \hbox (11.74988pt too wide) detected at line 254
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 264
+Overfull \hbox (11.74988pt too wide) detected at line 255
  
  []
 
 
-Overfull \hbox (11.74988pt too wide) detected at line 265
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 266
+Overfull \hbox (11.74988pt too wide) detected at line 257
  
  []
 
@@ -1380,7 +1345,47 @@ Overfull \hbox (11.74988pt too wide) detected at line 267
  []
 
 
+Overfull \hbox (11.74988pt too wide) detected at line 268
+ 
+ []
+
+
 Overfull \hbox (11.74988pt too wide) detected at line 269
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 270
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 271
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 272
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 273
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 274
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 275
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 277
  
  []
 
@@ -1389,10 +1394,10 @@ File: figures/TBCbesse/firstTestsP0Snap2.png Graphic file (type png)
 
 <use figures/TBCbesse/firstTestsP0Snap2.png>
 Package pdftex.def Info: figures/TBCbesse/firstTestsP0Snap2.png used on input l
-ine 275.
+ine 283.
 (pdftex.def)             Requested size: 208.13524pt x 138.75682pt.
 
-Overfull \hbox (13.13524pt too wide) in paragraph at lines 275--276
+Overfull \hbox (13.13524pt too wide) in paragraph at lines 283--284
 [][] 
  []
 
@@ -1401,15 +1406,15 @@ File: figures/TBCbesse/firstTestsP0Snap4.png Graphic file (type png)
 
 <use figures/TBCbesse/firstTestsP0Snap4.png>
 Package pdftex.def Info: figures/TBCbesse/firstTestsP0Snap4.png used on input l
-ine 278.
+ine 286.
 (pdftex.def)             Requested size: 208.13524pt x 138.75682pt.
 
-Overfull \hbox (13.13524pt too wide) in paragraph at lines 278--279
+Overfull \hbox (13.13524pt too wide) in paragraph at lines 286--287
 [][] 
  []
 
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 274--280
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 282--288
 []$[]$ $[]$ 
  []
 
@@ -1417,25 +1422,25 @@ Overfull \hbox (2.61108pt too wide) in paragraph at lines 274--280
 File: figures/TBCbesse/firstTestsP0Snap2.png Graphic file (type png)
  <use figures/TBCbesse/firstTestsP0Snap2.png>
 Package pdftex.def Info: figures/TBCbesse/firstTestsP0Snap2.png used on input l
-ine 285.
+ine 293.
 (pdftex.def)             Requested size: 208.13524pt x 138.75682pt.
 
-Overfull \hbox (13.13524pt too wide) in paragraph at lines 285--286
+Overfull \hbox (13.13524pt too wide) in paragraph at lines 293--294
 [][] 
  []
 
 File: figures/TBCbesse/firstTestsP0Snap4.png Graphic file (type png)
 <use figures/TBCbesse/firstTestsP0Snap4.png>
 Package pdftex.def Info: figures/TBCbesse/firstTestsP0Snap4.png used on input l
-ine 288.
+ine 296.
 (pdftex.def)             Requested size: 208.13524pt x 138.75682pt.
 
-Overfull \hbox (13.13524pt too wide) in paragraph at lines 288--289
+Overfull \hbox (13.13524pt too wide) in paragraph at lines 296--297
 [][] 
  []
 
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 284--290
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 292--298
 []$[]$ $[]$ 
  []
 
@@ -1488,16 +1493,13 @@ Overfull \hbox (78.16164pt too wide) in paragraph at lines 379--379
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 13905 strings out of 493027
- 278304 string characters out of 6134069
+ 13913 strings out of 493027
+ 278441 string characters out of 6134069
  293687 words of memory out of 5000000
- 17284 multiletter control sequences out of 15000+600000
- 16692 words of font info for 66 fonts, out of 8000000 for 9000
+ 17292 multiletter control sequences out of 15000+600000
+ 18713 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,11n,42p,10406b,555s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
@@ -1519,7 +1521,7 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report_june.pdf (25 pages, 484502 bytes).
+Output written on report_june.pdf (25 pages, 486857 bytes).
 PDF statistics:
  199 PDF objects out of 1000 (max. 8388607)
  115 compressed objects within 2 object streams

@@ -111,10 +111,14 @@ $$ \label{eq:lambda} \lambda(s) = -\sqrt[3]{s} $$
 \begin{equation}
 	\begin{aligned}
     \mathcal{L}^{-1} \left( \frac{\lambda^2}{s} \hat{u}_x(t,s) \right) = & \mathcal{L}^{-1} \left[ (ds+c) \hat{u}_x(t,s) \right] = \\
-    			 & d\mathcal{L}^{-1} \left[ \hat{u}_{xt}(t,s) \right] + c \mathcal{L}^{-1} \left[ \hat{u}_{x}(t,s) \right] =   du_{xt}(x,t) + cu_x(x,t) \\
-    \mathcal{L}^{-1} \left( \frac{\lambda}{s} \hat{u}_{xx}(t,s) \right) = & \mathcal{L}^{-1} \left[ -(ds+c)^2 \hat{u}_{xx}(t,s) \right] =  -d^2u_{xxtt}(x,t) -2dcu_{xxt}(x,t) - c^2u_{xx}(x,t) \\
-    \mathcal{L}^{-1} \left( \frac{1}{\lambda^2} \hat{u}_{xx}(t,s) \right) = & \mathcal{L}^{-1} \left[ (ds+c)^2 \hat{u}_{xx}(t,s) \right] =d^2u_{xxtt}(x,t) + 2dcu_{xxt}(x,t) + c^2u_{xx}(x,t) \\
-    \mathcal{L}^{-1} \left( \frac{1}{\lambda} \hat{u}_{xx}(t,s) \right) = & \mathcal{L}^{-1} \left[ -(ds+c) \hat{u}_{xx}(t,s) \right] = -du_{xxt}(x,t) - cu_{xx}(x,t)
+    			 & d\mathcal{L}^{-1} \left[ \hat{u}_{xt}(t,s) \right] + c \mathcal{L}^{-1} \left[ \hat{u}_{x}(t,s) \right] = \\
+    			 &   du_{xt}(x,t) + cu_x(x,t) \\
+    \mathcal{L}^{-1} \left( \frac{\lambda}{s} \hat{u}_{xx}(t,s) \right) = & \mathcal{L}^{-1} \left[ -(ds+c)^2 \hat{u}_{xx}(t,s) \right] = \\
+    			&  -d^2u_{xxtt}(x,t) -2dcu_{xxt}(x,t) - c^2u_{xx}(x,t) \\
+    \mathcal{L}^{-1} \left( \frac{1}{\lambda^2} \hat{u}_{xx}(t,s) \right) = & \mathcal{L}^{-1} \left[ (ds+c)^2 \hat{u}_{xx}(t,s) \right] =\\
+    			& d^2u_{xxtt}(x,t) + 2dcu_{xxt}(x,t) + c^2u_{xx}(x,t) \\
+    \mathcal{L}^{-1} \left( \frac{1}{\lambda} \hat{u}_{xx}(t,s) \right) = & \mathcal{L}^{-1} \left[ -(ds+c) \hat{u}_{xx}(t,s) \right] =\\
+    			& -du_{xxt}(x,t) - cu_{xx}(x,t)
     \end{aligned}
 \end{equation}
 
