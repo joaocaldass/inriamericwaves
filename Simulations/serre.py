@@ -280,6 +280,18 @@ def RK4(x,uA,uB,f,bcf,bcp,dx,dt,nx,t,ng):
         k4B = extend2GhostCells(k4B,ng)
 
         return uA + 1./6.*(k1A+2.*k2A+2.*k3A+k4A), uB + 1./6.*(k1B+2.*k2B+2.*k3B+k4B)
+    
+# Euler for one time step
+def Euler(x,uA,uB,f,bcf,bcp,dx,dt,nx,t,ng):
+
+        uuA = np.copy(uA)
+        uuB = np.copy(uB)
+        uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+        k1A,k1B = getRK4coef(x,uuA,uuB,f,dx,dt,nx)
+        k1A = extend2GhostCells(k1A,ng)
+        k1B = extend2GhostCells(k1B,ng)
+
+        return uA + k1A, uB + k1B
 # Compute first derivative
 def get1d(u,dx,periodic,order):
     a = np.zeros_like(u)
@@ -512,6 +524,106 @@ def EFDSolverFM4(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2):
     hu2 = hu + dt*(gr*h*hx-z)
 
     return hu2/h
+def EFDSolverFM4Bottom(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2,eta=0.):
+    
+    """
+    Finite Difference Solver for the second step of the splitted Serre equations,
+    with a flart but non necessarily horizontal bottom, using the discretization derived
+    in the paper of Fabien Marche
+    
+    - Parameters
+        * h,u (1D array) : solution
+        * dx,dt,t (integers) : space step, time step, time
+        * BCfunction (function) : function that modifies the linear system to impose the BCs
+        * BCparam (1D array) : argument for BCfunction; contains the BCs in the form
+             BC=[u(left),ux(left),uxx(left),alpha1*u(left) + beta1*ux(right) + gamma1*uxx(right),
+                u(right),ux(right),uxx(right),alpha2*u(right) + beta2*ux(right) + gamma2*uxx(right),
+                alpha1,beta1,gamma1,alpha2,beta2,gamma2,Fleft,Fright] 
+        * periodic (boolean) : indicates if the function is periodic
+        * eta : slope of the bottom
+        
+    - Returns
+        * u2 (1D array) : solution (velocity)
+    """
+    
+    gr = 9.81
+
+    if periodic :
+        for v in [u,h] :
+            v = imposePeriodicity(v,ng)
+    
+    hu = h*u
+    
+    ux = get1d(u,dx,periodic,order=4)
+    uxx = get2d(u,dx,periodic,order=4)
+    uux = u*ux
+    uuxdx = get1d(uux,dx,periodic,order=4)
+    hx = get1d(h,dx,periodic,order=4)
+    hxx = get2d(h,dx,periodic,order=4)
+    h2x = get1d(h*h,dx,periodic,order=4)
+    hhx = h*hx
+    
+    Q = 2.*h*hx*ux*ux + 4./3.*h*h*ux*uxx + eta*eta*h*u*ux + eta*eta*(hx+eta)*u*u
+    rhs = gr*h*hx + h*Q + gr*h*eta  
+
+    if periodic :
+        for v in [ux,uux,uxx,uuxdx,h2x,hx,hhx] :
+            v = imposePeriodicity(v,ng)   
+    
+    d0 = 1. + hx*hx/3. + h*hxx/3. + 5.*h*h/(6.*dx*dx) + eta*(hx+eta)
+    dp1 = -2./3.*h*hx/(3.*dx) - 4./3.*h*h/(3.*dx*dx)
+    dp1 = dp1[0:-1]
+    dm1 = +2./3.*h*hx/(3.*dx) - 4./3.*h*h/(3.*dx*dx)
+    dm1 = dm1[1:]
+    dp2 = 1./3.*h*hx/(12.*dx) + 1./3.*h*h/(12.*dx*dx)
+    dp2 = dp2[0:-2]
+    dm2 = -1./3.*h*hx/(12.*dx) + 1./3.*h*h/(12.*dx*dx)
+    dm2 = dm2[2:]
+    
+    M = np.diag(d0) + np.diag(dp1,1) + np.diag(dm1,-1) + np.diag(dp2,2) + np.diag(dm2,-2)
+
+    M[0,:] = 0
+    M[1,:] = 0
+    M[-1,:] = 0
+    M[-2,:] = 0
+
+    ### Correct it (but in general these lines are replaced by the BC)
+    M[0,0] = h[0]*(1. - 3./4.*h2x[0]/dx - 2./3.*h[0]*h[0]/(dx*dx))
+    M[0,1] = h[0]*(h2x[0]/dx + 5./3.*h[0]*h[0]/(dx*dx))
+    M[0,2] = h[0]*(-1./4.*h2x[0]/dx - 4./3.*h[0]*h[0]/(dx*dx))
+    M[0,3] = h[0]*(1./3.*h[0]*h[0]/(dx*dx))
+
+    M[1,1] = h[1]*(1. - 3./4.*h2x[1]/dx - 2./3.*h[1]*h[1]/(dx*dx))
+    M[1,2] = h[1]*(h2x[1]/dx + 5./3.*h[1]*h[1]/(dx*dx))
+    M[1,3] = h[1]*(-1./4.*h2x[1]/dx - 4./3.*h[1]*h[1]/(dx*dx))
+    M[1,4] = h[1]*(1./3.*h[1]*h[1]/(dx*dx))    
+    
+    M[-1,-1] = h[-1]*(1. + 3./4.*h2x[-1]/dx - 2./3.*h[-1]*h[-1]/(dx*dx))
+    M[-1,-2] = h[-1]*(-h2x[-1]/dx + 5./3.*h[-1]*h[-1]/(dx*dx))
+    M[-1,-3] = h[-1]*(1./4.*h2x[-1]/dx - 4./3.*h[-1]*h[-1]/(dx*dx))
+    M[-1,-4] = h[-1]*(1./3.*h[-1]*h[-1]/(dx*dx))
+      
+    M[-2,-2] = h[-2]*(1. + 3./4.*h2x[-2]/dx - 2./3.*h[-2]*h[-2]/(dx*dx))
+    M[-2,-3] = h[-2]*(-h2x[-2]/dx + 5./3.*h[-2]*h[-2]/(dx*dx))
+    M[-2,-4] = h[-2]*(1./4.*h2x[-2]/dx - 4./3.*h[-2]*h[-2]/(dx*dx))
+    M[-2,-5] = h[-2]*(1./3.*h[-2]*h[-2]/(dx*dx))
+    ######
+
+    np.set_printoptions(threshold=np.nan)
+    np.set_printoptions(suppress=True)
+
+    if BCparam != None:
+        if BCparam[14] == keepFirstSolL :
+            BCparam[0] = u[0]
+        if BCparam[15] == keepFirstSolL :
+            BCparam[4] = u[-1]    
+    
+    M,rhs = BCfunction(M,rhs,t,dx,BCparam)
+
+    z = np.linalg.solve(M,rhs)
+    hu2 = hu + dt*(gr*h*hx-z)
+
+    return hu2/h
 def EFDSolverFM(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2):
     
     """
@@ -591,7 +703,7 @@ def EFDSolverFM(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2):
     M,rhs = BCfunction(M,rhs,t,dx,BCparam)
 
     z = np.linalg.solve(M,rhs)
-    hu2 = hu + dt*(gr*h*hx-z)
+    hu2 = hu + dt*(gr*h*(hx+eta)-z)
 
     return hu2/h
 # solve the Serre equation
