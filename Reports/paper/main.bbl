@@ -57,17 +57,17 @@ D.~J. Korteweg and G.~de~Vries.
 \bibitem{Lions1988}
 P.-L. Lions.
 \newblock {On the Schwarz alternating method.I}.
-\newblock In G.~J. R.Glowinski, G.Golub, editor, {\em {Proceedings of the First
-  International Symposium on Domain Decomposition Methods for Partial
-  Differential Equations}}, pages 1--42, 1988.
+\newblock In R.Glowinski, G.Golub, G.Meurant, and J.Périaux, editors, {\em
+  {Proceedings of the First International Symposium on Domain Decomposition
+  Methods for Partial Differential Equations}}, pages 1--42, 1988.
 
 \bibitem{Lions1990}
 P.-L. Lions.
 \newblock {On the Schwarz alternating method III: a variant for nonoverlapping
   sub-domains}.
-\newblock In J.~P. O.~W. T.~Chan, R.~Glowinski, editor, {\em {Proceedings of
-  the Third International Conference on Domain Decomposition Methods}}, page
-  202–223, 1990.
+\newblock In T.~Chan, R.~Glowinski, J.~Périaux, and O.~Widlund, editors, {\em
+  {Proceedings of the Third International Conference on Domain Decomposition
+  Methods}}, page 202–223, 1990.
 
 \bibitem{roache1997}
 P.~J. Roache.
