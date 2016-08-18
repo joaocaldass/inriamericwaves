@@ -1,0 +1,29 @@
+FOLDER DDM_NSWE_Serre
+
+* NOTEBOOKS
+	-  DDM_NSWE_Serre.ipynb :
+		:: functions for the coupling (main routine in time, imposition of BCs, definition of fluxes for NSWE) --> DDM_nswe_serre.py
+		:: Validation of the DDM NSWExNSWE
+		:: DDM SerrexNSWE and NSWExSerre
+	- DDM_NSWE_Serre_NonHorizontal.ipynb :
+		:: exactly the same as the previous notebook, but with the computations made for h-bottom instead of h
+		:: the functions are loaded from DDM_nswe_serre.py
+		:: optional argument eta=d/dx(bottom)=constant is passed to the main function in time (DDM_NSWE)
+
+* PYTHON SCRIPTS
+	- DDM_nswe_serre.py: see doc for details about the functions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
