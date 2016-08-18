@@ -27,42 +27,27 @@ def plotAnimation(x,u,t,xmin,xmax,ymin,ymax,ylabel) :
     
     return anim
 import matplotlib.pyplot as plt
-from matplotlib import animation
-from JSAnimation import IPython_display
-
-def plotAnimationTwoSolutions(x,u1,u2,t1,t2,xmin,xmax,ymin,ymax,lb1,lb2,ylabel) :
-    
-    print("*** Plotting animation ...")
-    
-    fig = plt.figure()
-    ax = plt.axes(xlim=(xmin, xmax), ylim=(ymin, ymax))
-    line1, = ax.plot([], [], lw=2, label=lb1)
-    line2, = ax.plot([], [], lw=2, label=lb2)    
-    ax.set_ylabel(ylabel)
-    title = ax.set_title(r'$t=0.0 s$')
-    plt.legend()
-
-    def init():
-        line1.set_data([], [])
-        line2.set_data([], [])
-        return line1,line2,
-
-    def animate(i):
-        line1.set_data(x, u1[:,i])
-        line2.set_data(x, u2[:,i])
-        title.set_text('t=%.3f'%(t1[i]))
-        return line1,line2,
-
-    anim = animation.FuncAnimation(fig, animate, init_func=init,
-                        frames=u1.shape[-1], interval=300)
-    
-    return anim
-import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import animation
 from JSAnimation import IPython_display
 
-def plotAnimationNSolutions(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel,location=0) :
+def plotAnimationNSolutions(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel,location=0,savePath=None) :
+    """
+    Animate N solutions, all of them defined in the same spatial domain x and the spatial domain t
+    
+    *Inputs :
+        - N : number of solutions
+        - x : array of spatial points
+        - t : array of instants
+        - u = np.array([u1,u2,...]) : array of arrays containing the solutions. Each solution ui must have the shape MxT,
+            where M = x.size and T = t.size
+        - xmin,xmax : x interval for plotting
+        - ymin,ymax : y interval for plotting
+        - lb = ["lb1",...,"lbN"] : labels for the legend
+        - ylabel = labelf for y axis
+        - location (optional) : position of the legend (location = 0 as default gives an optimal position)
+        - savePath (optional) : if not None, save the animation in a video specified by savePath
+    """
     
     print("*** Plotting animation ...")
     
@@ -89,13 +74,34 @@ def plotAnimationNSolutions(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel,location=0) :
     anim = animation.FuncAnimation(fig, animate, init_func=init,
                         frames=u.shape[-1], interval=300)
     
+    if savePath != None:
+        anim.save(savePath, writer="ffmpeg", fps=30)
+    
     return anim
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import animation
 from JSAnimation import IPython_display
 
-def plotAnimationNSolutionsDiffDomain(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel,location=0) :
+def plotAnimationNSolutionsDiffDomain(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel,location=0,savePath=None) :
+    """
+    Animate N solutions, defined on different spatial domains x but in the same spatial domain t.
+    Nevertelhess, all of the xi must have the same size and all the ui must have the same shape
+    (if necessary, complete xi with values outside of [xmin,xmax] and ui with zeros).
+    
+    *Inputs :
+        - N : number of solutions
+        - x = np.array([x1,x2,...])
+        - t : array of instants
+        - u = np.array([u1,u2,...]) : array of arrays containing the solutions. Each solution ui must have the shape MxT,
+            where M = x.size and T = t.size
+        - xmin,xmax : x interval for plotting
+        - ymin,ymax : y interval for plotting
+        - lb = ["lb1",...,"lbN"] : labels for the legend
+        - ylabel = labelf for y axis
+        - location (optional) : position of the legend (location = 0 as default gives an optimal position)
+        - savePath (optional) : if not None, save the animation in a video specified by savePath
+    """
     
     print("*** Plotting animation ...")
     
@@ -121,6 +127,9 @@ def plotAnimationNSolutionsDiffDomain(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel,loca
 
     anim = animation.FuncAnimation(fig, animate, init_func=init,
                         frames=u[0].shape[-1], interval=300)
+
+    if savePath != None:
+        anim.save(savePath, writer="ffmpeg", fps=30)
     
     return anim
 # save plot of N solutions in the instant t_n to an image file
