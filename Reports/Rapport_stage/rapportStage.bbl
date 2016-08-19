@@ -1,0 +1,157 @@
+\begin{thebibliography}{10}
+
+\bibitem{Xavieretal2008}
+X.~Antoine, A.~Arnold, C.~Besse, M.~Ehrhardt, and C.~Schädle.
+\newblock {A review of Transparent Boundary Conditions or linear and nonlinear
+  Schrödinger equations}.
+\newblock {\em {Communications in Compuational Physics}}, 4(4):{729--796},
+  October 2008.
+
+\bibitem{arpaia}
+L.~Arpaia and M.~Ricchiuto.
+\newblock {Mesh adaptation by continuous deformation. Basics : accuracy,
+  efficiency, well balancedness}.
+\newblock Technical report, INRIA Bordeaux Sud-Ouest, 2015.
+\newblock RR-8666, <hal-01102124>.
+
+\bibitem{askes}
+H.~ASKES, L.~J. SLUYS, and B.~C.~C. JONG.
+\newblock {Remeshing techniques for R-adaptives and combined H/R-adaptive
+  analysis with application to 2D/3D crack propagation}.
+\newblock {\em {European Congress on Computational Methods in Applied Sciences
+  and Engineering}}, 2000.
+
+\bibitem{balagurusamy2008}
+E.~Balagurusamy.
+\newblock {\em Numerical methods}.
+\newblock Tata McGraw-Hill, New Delhi, 2008.
+
+\bibitem{BBM1971}
+T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony.
+\newblock Model equations for long waves in nonlinear dispersive systems.
+\newblock {\em Philosophical Transactions of the Royal Society of London.
+  Series A, Mathematical and Physical Sciences}, 272(1220):47--78, 1972.
+
+\bibitem{besse2015}
+C.~Besse, M.~Ehrhardt, and I.~Lacroix-Violet.
+\newblock {Discrete Artificial Boundary Conditions for the Korteweg-de Vries
+  Equation}.
+\newblock working paper or preprint, Jan. 2015.
+
+\bibitem{Bonneton2011}
+P.~Bonneton, F.~Chazel, D.~Lannes, F.~Marche, and M.~Tissier.
+\newblock {A Splitting approach for the fully nonlinear and weakly dispersive
+  Green-Naghdi model}.
+\newblock {\em J. Comput. Phys.}, 230:1479--1498, 2011.
+
+\bibitem{CarterCienfuegos2011}
+J.~D. Carter and R.~Cienfuegos.
+\newblock {The kinematics and stability of solitary and cnoidal wave solutions
+  of the Serre equations}.
+\newblock {\em {European Journal of Mechanics B/Fluids}}, 2011.
+
+\bibitem{vecNormal}
+L.~Chen.
+\newblock Programmim of finite elements in matlab.
+\newblock Notes du cours Math 226 : Computational PDEs (Univeristy of
+  California Irvine).
+\newblock http://www.math.uci.edu/~chenlong/226/Ch3FEMCode.pdf.
+
+\bibitem{laplaceTransform}
+P.~Cheung.
+\newblock {Lecture 6 - Frequence-domain analysis : Laplace Transform}.
+\newblock [Imperial College of London - Signals and Linear Systems.
+
+\bibitem{cecile_these}
+C.~Dobrsynski.
+\newblock {\em Adaptation de maillage anisotrope 3D et application à
+  l'aéro-thermique des bâtiments}.
+\newblock PhD thesis, Université Pierre et Marie Curie - Paris VI, 2005.
+
+\bibitem{ducrot}
+V.~Ducrot and P.~Frey.
+\newblock Anisotropic level set adaptation for accurate interface capturing.
+\newblock In R.~Garimella, editor, {\em Proceedings of the 17th International
+  Meshing Roundtable}, pages 159--176. Springer Berlin Heidelberg, 2008.
+
+\bibitem{frey_alauzet}
+P.~J. Frey and F.~Alauzet.
+\newblock {Anisotropic metrics for mesh adaptation}.
+\newblock {\em {Computational Fluid and Solid Mechanics}}, 2003.
+
+\bibitem{Gander2008}
+M.~J. Gander.
+\newblock {Schwarz methods over the course of time.}
+\newblock {\em ETNA. Electronic Transactions on Numerical Analysis [electronic
+  only]}, 31:228--255, 2008.
+
+\bibitem{Japhet2003}
+C.~Japhet and F.~Nataf.
+\newblock {The best interface conditions for Domain Decompostion methods :
+  Absorbing Boundary Conditions}.
+\newblock http://www.ann.jussieu.fr/~nataf/chapitre.pdf.
+
+\bibitem{karniadakis1995}
+G.~Karniadakis.
+\newblock {Toward a numerical error bar in CFD}.
+\newblock {\em ASM Journal of Fluids Engineer}, 117(1):7--9, 1995.
+
+\bibitem{Khorsand2014}
+Z.~Khorsand and H.~Kalisch.
+\newblock On the shoaling of solitary waves in the kdv equation.
+\newblock {\em Coastal Engineering Proceedings}, 1(34):44, 2014.
+
+\bibitem{Lions1988}
+P.-L. Lions.
+\newblock {On the Schwarz alternating method.I}.
+\newblock In G.~J. R.Glowinski, G.Golub, editor, {\em {Proceedings of the First
+  International Symposium on Domain Decomposition Methods for Partial
+  Differential Equations}}, pages 1--42, 1988.
+
+\bibitem{Lions1990}
+P.-L. Lions.
+\newblock {On the Schwarz alternating method III: a variant for nonoverlapping
+  sub-domains}.
+\newblock In J.~P. O.~W. T.~Chan, R.~Glowinski, editor, {\em {Proceedings of
+  the Third International Conference on Domain Decomposition Methods}}, page
+  202–223, 1990.
+
+\bibitem{loseille}
+A.~Loseille and R.~Löhner.
+\newblock Robust boundary layer mesh generation.
+\newblock In X.~Jiao and J.-C. Weill, editors, {\em Proceedings of the 21st
+  International Meshing Roundtable}, pages 493--511. Springer Berlin
+  Heidelberg, 2013.
+
+\bibitem{leo}
+L.~Nouveau, H.~Beaugendre, C.~Dobrzynski, R.~Abgrall, and M.~Ricchiuto.
+\newblock {An explicit residual distribution scheme combined to mesh adaptation
+  for solving the unsteady penalized Navier Stokes equations with a splitting
+  approach}.
+\newblock {\em {????}}, Juin 2015.
+\newblock Preprint.
+
+\bibitem{rippa}
+S.~Rippa.
+\newblock Long and thin triangles can be good for linear interpolation.
+\newblock {\em SIAM Journal on Numerical Analysis}, 29(1):pp. 257--270, 1992.
+
+\bibitem{roache1997}
+P.~J. Roache.
+\newblock {Quantification of uncertainty in Computational Fluid Dynamics}.
+\newblock {\em Annual Review of Fluid Mechanics}, 29:123--160, 1997.
+
+\bibitem{conservationLaws2002}
+{University of Stanford}.
+\newblock Partial differential equations of applied mathematics - lecture 3 :
+  Conservation laws.
+\newblock http://web.stanford.edu/class/math220a/handouts/conservation.pdf,
+  2002.
+
+\bibitem{zheng2008}
+C.~Zheng, X.~Wen, and H.~Han.
+\newblock Numerical solution to a linearized kdv equation on unbounded domain.
+\newblock {\em Numerical Methods for Partial Differential Equations},
+  24(2):383--399, 2008.
+
+\end{thebibliography}

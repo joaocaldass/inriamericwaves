@@ -1,0 +1,374 @@
+\section{Les équations de Serre}
+\label{sec:Serre}
+
+\subsection{Le modèle}
+
+\indent Les équations de Serre constituent un modèle qui décrit la propagation d'ondes fortement non linéaires dans des eaux peu profondes. En considérant un fond plat, ces équations s'écrivent sous la forme suivante, pour les variables $(h,u)$:
+
+\begin{equation}
+\label{eq:serrehu}
+\begin{cases}
+h_t + (hu)_x = 0 \\
+u_t + uu_x + gh_x - \frac{1}{3h}\left(h^3 \left( u_{xt} + uu_{xx} - (u_x)^2  \right) \right)_x = 0
+\end{cases}
+\end{equation}
+
+\noindent où $u = u(x,t)$, $h = h(x,t)$ et $g$ sont, respectivement, la vitesse horizontal moyennée au long de la profondeur, la profondeur de l'eau et l'accélération de la gravité. Cette formulation s'est basée sur \cite{CarterCienfuegos2011}.
+
+\subsubsection{Les équations de Serre dans les variables $(h,hu)$}
+
+\indent Afin de mettre en œuvre une méthode de \emph{splitting} pour la résolution numérique de les équations de Serre (ainsi comme il est fait dans \cite{Bonneton2011} pour les équations de Green-Naghdi, qui sont la version en 2D de les équations de Serre), on va réécrire le système \eqref{eq:serrehu} dans les variables $(h,hu)$, afin d'avoir une formulation analogue à celle utilisé dans ce papier.
+
+\indent On va utiliser les identités
+
+\begin{equation*}
+	(hu^2)_x = (huu)_x = (hu)_xu + huu_x
+\end{equation*}
+
+\noindent et, de la première équation de \eqref{eq:serrehu},
+
+\begin{equation*}
+	hu_t = (hu)_t - h_tu = (hu)_t +  (hu)_xu
+\end{equation*}
+
+\indent En multipliant la deuxième équation de \eqref{eq:serrehu} par $h$, on obtient
+
+\begin{equation}
+	\label{eq:serreTimesh}
+	\begin{aligned}
+		&& & hu_t + huu_x + ghh_x - \frac{1}{3}\left(h^3 \left( u_{xt} + uu_{xx} - (u_x)^2  \right) \right)_x = 0 \\
+		&& \implies & (hu)_t +  (hu)_xu + (hu^2)_x - (hu)_xu + ghh_x - \frac{1}{3}\left(h^3 \left( u_{xt} + (uu_x)_x - 2(u_x)^2  \right) \right)_x = 0  \\
+		&& \implies & (hu)_t +  (hu^2)_x  + ghh_x - \frac{1}{3}\left(h^3 \left( u_{xt} + (uu_x)_x - 2(u_x)^2  \right) \right)_x = 0 
+	\end{aligned}
+\end{equation}
+
+\indent On remarque que
+
+\begin{equation*}
+	\begin{split}
+	u_{xt} = \left(\frac{1}{h} (hu) \right)_{xt} = \left( -\frac{h_t}{h^2}(hu) + \frac{1}{h}(hu)_t  \right)_x = \left( -\frac{h_tu}{h} + \frac{1}{h}(hu)_t  \right)_x &= \\ \left( \frac{1}{h} ((hu)_xu) \right)_x  + \left( \frac{1}{h}(hu)_t  \right)_x &=0
+	\end{split}
+\end{equation*}
+
+\noindent et
+
+\begin{equation*}
+	\begin{split}
+	(uu_x)_x = \left(  \frac{1}{h} (huu_x) \right)_x = \left(  \frac{1}{h} ((hu^2)_x - (hu)_xu) \right)_x = \left( \frac{1}{h} (hu^2)_x \right)_x - \left( \frac{1}{h} (hu)_xu \right)_x
+	\end{split}
+\end{equation*}
+
+\noindent alors, dans \eqref{eq:serreTimesh}, on obtient
+
+\begin{equation*}
+	(hu)_t  + (hu^2)_x + ghh_x - \frac{1}{3}\left[h^3 \left( \left( \frac{1}{h}(hu)_t  \right)_x  + \left( \frac{1}{h} (hu^2)_x \right)_x  - 2(u_x)^2  \right) \right]_x = 0
+\end{equation*}
+
+\indent Cette dernier équation peut être écrite sous la forme
+
+\begin{equation*}
+\begin{split}
+	\left(\opIhT \right) (hu)_t + \left(\opIhT \right)(hu^2)_x + ghh_x + h\opQ_1(u) + \\ \left(\opIhT \right) (ghh_x) - \left(\opIhT \right) (ghh_x) = 0
+\end{split}
+\end{equation*}
+
+\noindent où le terme $\left(\opIhT \right)(ghh_x)$ a été ajouté et soustrait pour avoir une formulation équivalente à de \cite{Bonneton2011}. LEs opérateurs $\opT$ et $\opQ$, aussi définis par \cite{Bonneton2011}, sont donnés par
+
+\begin{gather*}
+	\opT(w) = -\frac{1}{3h}(h^3w_x)_x = -\frac{h^2}{3}w_{xx} - hh_xw_x \\
+	\opQ(w) = \frac{2}{3h}(h^3(w_x)^2  )_x = \frac{4h^2}{3}(w_xw_{xx}) + 2hh_x(w_x)^2
+\end{gather*}
+
+\indent Ainsi, le système qu'on va résoudre est 
+
+\begin{equation}
+\label{eq:serrehhu}
+\begin{cases}
+h_t + (hu)_x = 0 \\
+\begin{split}
+(\opIhT) (hu)_t + (\opIhT)(hu^2)_x + ghh_x + h\opQ_1(u) + \\ \left(\opIhT \right) (ghh_x) - \left(\opIhT \right) (ghh_x) = 0
+\end{split}
+\end{cases}
+\end{equation}
+
+
+\subsection{Discrétisation}
+
+\indent Comme on a fait antérieurement pour la résolution numérique des équations de KdV et BBM, les équations de Serre \eqref{eq:serrehhu} seront numériquement résolues en utilisant une méthode de \emph{splitting}, dans laquelle le système d'équations sera décomposé dans deux parties: la première contiendra les termes d'advection, et la deuxième, les dérivées d'ordre supérieur.
+
+\indent Alors, la résolution numérique demandera la résolution, dans chaque pas de temps $[t_n, t_{n+1}]$, du problème suivant :
+
+\begin{equation}
+	\label{eq:splitSerre1}
+	\begin{cases}
+		\th_t + \left(\th\tu\right)_x = 0 \\
+		(\th\tu)_t + (\th\tu^2)_x + g\th\th_x = 0 
+	\end{cases}	
+\end{equation}
+
+\begin{equation}
+	\label{eq:splitSerre2}
+	\begin{cases}
+		\lh_t = 0 \\
+		(\lh\lu)_t  -g\lh\lh_x + (\opIhT)^{-1}\left[ g\lh\lh_x + \lh\opQ_1(\lu) \right] = 0
+	\end{cases}	
+\end{equation}
+
+\begin{equation*}
+\begin{cases}
+(h,u)(x,t_{n+1}) = (\lh,\lu)(x,t_{n+1})
+\end{cases}
+\end{equation*}
+
+\indent En dénotant les systèmes \eqref{eq:splitSerre1} et  \eqref{eq:splitSerre2} par les opérateurs $T_a^{\Delta t}$ et $T_d^{\Delta t}$, respectivement, où le superindice indique que l'opérateur est appliqué sur un pas de temps  $\Delta t$, le problème peut s'écrire comme :
+
+\begin{equation*}
+(h,u)(x,t_{n+1}) = T_d^{\Delta t} \left( T_a^{\Delta t} \left((h,u)(x,t_n) \right) \right)
+\end{equation*}
+
+\indent Quelques variations de ce schéma de \emph{splitting} seront également implémentés. Par exemple, en inversant l'ordre des opérateurs; ou encore la méthode connue comme \emph{"Strang splitting"}, où trois problèmes sont résolus dans chaque pas de temps :
+
+\begin{equation*}
+(h,u)(x,t_{n+1}) = T_a^{\frac{\Delta t}{2}} \left( T_d^{\Delta t} \left( T_a^{\frac{\Delta t}{2}} (h,u)(x,t_n) \right) \right)
+\end{equation*}
+
+\indent Dans las suite, le tilde et la barre supérieur seront supprimées pour clarifier la notation.
+
+\subsubsection{Première système d'équations (pas d'advection)}
+
+\indent La première partie des équations de Serre correspond au \emph{Non linear Shallow Water equation} (NSWE), qui, en tenant compte que
+
+\begin{align*}
+(hu)_t &= uh_t + hu_t = -u(hu)_x - h\left(uu_x + gh_x\right) \\
+	&= -u\left (h_xu + 2hu_x \right) - ghh_x  \\
+	&= -\left(hu^2\right)_x - \frac{1}{2}g\left(h^2\right)_x = - \left(hu^2 +  \frac{1}{2}gh^2 \right)_x
+\end{align*}
+
+\noindent peut être écrit comme une loi de conservation sous la forme
+
+\begin{equation}
+	U_t + F(U)_x = 0
+	\label{serre:conservative_swe}
+\end{equation}
+
+\indent Alors, on peut résoudre le première pas du \emph{splitting} en utilisant un schéma de volumes finies.
+
+\begingroup
+\color{red}
+Décrire de façon très résumé.
+\endgroup
+
+%\noindent où $U=(h,hu)^T$, $F(U) = (hu, hu^2 + \frac{1}{2}gh^2)$. Des solutions faibles sons approximés en utilisant un schéma de Volumes Finis, c'est-à-dire, après l'intégration du système \eqref{serre:conservative_swe} dans une cellule $\Omega_i = [x_i-\Delta x/2, x_i+\Delta x/2]$, et en définissant $ \overline U = \frac{1}{\Delta x} \int_{\Omega_i} U(x)dx$,, alors l'approximation semidiscrète de \eqref{serre:conservative_swe} est
+%
+%\begin{equation*}
+%	\overline U _t + \frac{1}{\Delta x}\left( F(U_{i+1/2}) - F(U_{i-1/2}) \right) = 0
+%\end{equation*}
+%
+%\noindent où $U_{i\pm1/2}$ correspond aux c+valeurs des variables conservées dans l'interface de chaque cellule.
+%
+%\indent Les valeurs dans chaque interface $U^* = U_{i+1/2}$ sont obtenues depuis la solution au problème de Riemann de la forme non conservative \eqref{serre:conservative_swe} entre deux états $U_L = U_i$ et $U_R = U_{i+1}$.
+%
+%\begin{equation}
+%	\begin{gathered}
+%	  U_t + A(U) U_x = 0 \\
+%	  U(t=0,x) = \begin{cases}
+%		 U_l &, \text{ if } x\leq 0. \\
+%		 U_r &, \text{ if } x > 0 
+%		\end{cases}
+%	\end{gathered}
+%	\label{serre:nonconservative_swe_1}
+%\end{equation}
+%
+%\noindent où $A$ est la matrice jacobienne de $F(U)$. La solution à ce problème de Riemann est trouvée en utilisant le solveur de Roe (solver approximée de Riemann), qui est décrit dans cite{marche2006}. Ce solveur réalise d'abord un change de variables qui permet d'écrire \eqref{serre:nonconservative_swe_1} comme
+%
+%\begin{equation}
+%	\begin{split}
+%	  V_t + C(V)V_x = 0 \\
+%	  V(t=0,x) = \begin{cases}
+%		V_l &, \text{ if } x\leq 0. \\
+%	 V_r &, \text{ if } x > 0 
+%		\end{cases}
+%	\end{split}
+%\end{equation}
+%
+%\noindent with $V = (2c,u)^T$ and 
+%$C(V) = \left( 
+%\begin{array}{cc} 
+%u & c \\ 
+%c & u \end{array}\right)$. 
+%
+%\indent Ensuite, au lieu d'utiliser la formulation exacte, un problème linéarisé est résolu en utilisant $C(\hat V)$ pour remplacer $C(V)$, avec $\hat V = (V_L +V_R)/2$. La matrice $C(\hat V)$ est diagonalisable et alors un système découplé peut être obtenu sous la forme
+%
+%\begin{equation*}
+%	\begin{gathered}
+%		(w_1)_t + \hat \lambda_1 (w_1)_x = 0\\
+%		(w_2)_t + \hat \lambda_2 (w_2)_x = 0 \\	
+%	(w_1,w_2)^T(t=0,x) = \begin{cases}
+%		((w_1)_L,(w_2)_L)^T &, \text{ if } x\leq 0. \\
+%		((w_1)_L,(w_2)_L)^T &, \text{ if } x > 0 
+%		\end{cases}
+%	\end{gathered}
+%\end{equation*}
+%
+%\noindent où $\hat \lambda_1 = \hat u - \hat c$, $\hat \lambda_2 = \hat u + \hat c$, $w_1 = u-2c$, $w_2 = u+2c$ et $ (w_1)_L = u_L - 2c_L, (w_2)_L = u_L - 2c_L$, $ (w_1)_R = u_R - 2c_R, (w_2)_R = u_R - 2c_R$. En écrivant $W=(w_1,w_2)$ et en utilisant les index $*,L,R,$ pour les valeurs dans l'interface et pour les états à gauche et à droite, et en prenant compte que $\hat \lambda_1 \leq \hat \lambda_2$, alors la solution peut être trouvée pour des cas séparés :
+%
+%\begin{itemize}
+%	\item If $\lambda_1 > 0$, then $W^* = W_L$
+%	\item If $\lambda_1 \leq 0 $ and $\lambda_2>0$, $W^* = ((w_R)_1, (w_L)_2)^T$
+%	\item If $\lambda_2\leq 0 $, $W^* = W_R$
+%\end{itemize}
+%
+%\noindent les valeurs à l'interface peuvent alors être trouvées en faisant la transformée inverse 
+%
+%\begin{equation*}
+%	\begin{gathered}
+%	u^* = \frac{1}{2}(w^*_1+w^*_2) \\
+%	h^* = \frac{1}{16g}(w^*_2-w^*_1)^2
+%	\end{gathered}	
+%\end{equation*}
+%
+%\indent Un troisième pas est nécessaire, consistant en une correction d'entropie pour sélectionner seulement des solutions faibles qui sont physiquement consistantes. Cela est obtenue simplement en imposant $W^* = \hat W$ pour $(\lambda_1)_L < 0$ et $(\lambda_1)_r >0$, ou $(\lambda_2)_L < 0 $ et $(\lambda_2)_R>0$.
+%
+%\paragraph{Schéma de Volumes Finies d'ordre 2}
+%
+%\indent Afin d'obtenir convergence de seconde ordre pour des solutions lisses, un schéma MUSCL (\emph{Monotonic Upstream-Centered Scheme}) est utilisé. Cela implique que, au lieu de résoudre un problème de Riemann entre $U_L=U_{i}$  et $U_R=U_{i+1}$, il faut résoudre pour $U_L = U_{i+1/2^-}$ et $U_{i+1/2^+}$, où $U_{i+1/2^+} = U_i + \frac{\Delta x}{2} s$,  $s = minmod(s_L,s_R)$, 
+%$s_L = \frac{U_{i}-U_{i-1}}{\Delta x}$, 
+%$s_R = \frac{U_{i+1}-U_{i}}{\Delta x}$ et
+%
+%\begin{equation*}
+%	minmod(s_1,s_2) = \begin{cases}
+%		min(s_1,s_2) & \text{ if } s_1>0 \textit{ and } s_2>0 \\
+%		max(s_1,s_2) & \text{ if } s_1<0 \textit{ and } s_2<0 \\
+%		0 & elsewhere
+%	\end{cases}
+%\end{equation*}
+
+\subsubsection{Deuxième système d'équations (pas de dispersion)}
+
+\indent Dans le deuxième système \eqref{eq:splitSerre2} des équations de Serre splittées, la profondeur d'eau $h$ est constante en temps, et par conséquent seulement la vitesse $u$ doit être mise à jour.  La résolution numérique proposée consiste en résoudre, à chaque pas de temps, le système linéaire
+
+\begin{equation}
+	\label{eq:systemhu}
+	\left(\opIhT \right)^{-1}\left[ hh_x + h\opQ_1(u) \right]  = z \implies \left(\opIhT \right)z = hh_x + h\opQ_1(u)
+\end{equation}
+
+\indent Le côté à gauche de \eqref{eq:systemhu} s'écrit
+
+\begin{equation*}
+\begin{aligned}
+	 \left(\opIhT\right)z  & =  z - \frac{h^3}{3}\left( \frac{1}{h} z\right)_{xx} - h^2h_x\left( \frac{1}{h} z\right)_x  = \\
+						  & = z - \frac{h^3}{3}\left[ \left( 2\frac{(h_x)^2}{h^3} - \frac{h_{xx}}{h^2} \right)z - 2\frac{h_x}{h^2}z_x + \frac{z_{xx}}{h}	\right] - h^2h_x\left[ -\frac{h_x}{h^2}z + \frac{z_x}{h}\right] = \\
+						  &  = \left( 1 + \frac{1}{3}(h_x)^2 + \frac{1}{3}hh_{xx}\right)z - \left(\frac{1}{3}hh_x\right)z_x - \left(\frac{1}{3}h^2\right)z_{xx}
+\end{aligned}
+\end{equation*}
+
+\indent En utilisant des différences finies d'ordre quatre pour discrétiser les dérivées spatiales de $z$, on résoudre, pour chaque $i = 1,...,N-1$ dans le pas de temps $t_n$ :
+
+\begin{equation*}
+	\begin{split}
+	 \left( 1 + \frac{1}{3}((h_x)_i^n)^2 + \frac{1}{3}h_i^n (h_{xx})_i^n + \frac{1}{\Delta x^2}\frac{5}{6}(h_i^n)^2\right)z_i^n + \\
+	   \frac{1}{3}\left( -\frac{2}{3}\frac{h_i^n(h_x)_i^n}{\Delta x} - \frac{4}{3}\frac{(h_i^n)^2}{\Delta x^2} \right)z_{i+1}^n +  \frac{1}{3}\left( \frac{2}{3}\frac{h_i^n(h_x)_i^n}{\Delta x} - \frac{4}{3}\frac{(h_i^n)^2}{\Delta x^2} \right)z_{i-1}^n  + \\
+	   \frac{1}{36}\left( \frac{h_i^n(h_x)_i^n}{\Delta x} + \frac{4}{3}\frac{(h_i^n)^2}{\Delta x^2} \right)z_{i+2}^n + \frac{1}{36}\left( -\frac{h_i^n(h_x)_i^n}{\Delta x} + \frac{4}{3}\frac{(h_i^n)^2}{\Delta x^2} \right)z_{i-2}^n  = \\
+	    h_i^n(h_x)_{i}^n  + h_i^n(\opQ_1(u))_i^n
+	\end{split}
+\end{equation*}
+
+\indent Ainsi, pour chaque $i=1,...N-1$, las solution est mise à jour en temps selon l'expression 
+
+\begin{equation*}
+(hu)_i^{n+1} = (hu)_i^n + \Delta t \left(gh_i^n(h_x)_i^n - z_i^n \right)
+\end{equation*}
+
+\subsection{Tests numériques}
+
+\subsubsection{Description de la solution initiale}
+
+\indent Afin de valider l'implémentation des équations de Serre, on les résoudra en utilisant la solution analytique comme solution initiale. D'après \cite{CarterCienfuegos2011}, les équations de Serre admettent la famille de solutions périodiques suivante : 
+
+\begin{equation*}
+    h(x,t) = a_0 + a_1 dn^2(\kappa(x-ct),k), \qquad
+    u(x,t) = c\left( 1 - \frac{h_0}{h(x,t)}\right)
+\end{equation*}
+
+\begin{equation*}
+    \kappa = \frac{\sqrt{3a_1}}{2\sqrt{a_0(a_0+a_1)(a_0+(1-k^2)a_1)}}, \qquad
+    c = \frac{\sqrt{g a_0(a_0+a_1)(a_0+(1-k^2)a_1)}}{h_0}
+\end{equation*}
+
+\noindent avec $k\in(0,1)$, $a_0>0$, $a_1>0$ et $dn(\cdot,k)$ une fonction elliptique de Jacobi de module $k$.
+
+\indent La relation entre la longueur d'onde $\lambda$ et $k\in(0,1)$ est $$\lambda = \frac{2K(k)}{\kappa}$$ et la profondeur moyenne de l'eau, $h_0$, es calculée à partir de $$h_0 = \frac{1}{\lambda}\int_{0}^\lambda h(x,t)dx = a_0 + a_1 \frac{E(k)}{K(k)}$$
+
+\noindent où $K(k)$ et $E(k)$ sont des intégrales elliptiques complètes de premier et deuxième types. 
+
+\indent La limite pour $k\to0^+$ est le niveau constant de l'eau $a_0+a_1$ en équilibre. Si $k\to1^-$, $(h,u)$ converge vers la solution de Rayleigh (onde solitaire). On testera aussi ce dernier cas, dans lequel la solution est décrite par
+
+\begin{equation*}
+    h(x,t) = a_0 + a_1 sech^2(\kappa(x-ct),k), \qquad
+    u(x,t) = c\left( 1 - \frac{a_0}{h(x,t)}\right)
+\end{equation*}
+
+\begin{equation*}
+    \kappa = \frac{\sqrt{3a_1}}{2\sqrt{a_0(a_0+a_1)}}, \qquad
+    c = \sqrt{g a_0(a_0+a_1)}
+\end{equation*}
+
+\indent Les expressions para la longueur d'onde $\lambda$ et la profondeur moyenne de l'eau $h_0$ sont les mêmes que pour lec as général de la solution cnoïdale.
+
+\subsubsection{Results}
+
+\indent With the objective to observe the nonlinear and the dispersive processes in the model, we solved the Serre equation and the Nonlinear Shallow Water Equation (NSWE), which is the first step of the proposed split scheme. The figures \ref{fig:cnoidalh} and \ref{fig:cnoidalu} shows the evolution of $(h,u)$ for the cnoidal solution; and the figures \ref{fig:solitaryh} and \ref{fig:solitaryu} for the solitary solution. In this last case, we also solved the problem with a first order finite volume solver for the resolution of the first step of the Serre equation.
+
+\begin{figure}[h!]
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/cnoidal1h.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/cnoidal2h.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/cnoidal3h.png}	
+	\end{subfigure}
+	\caption{Evolution of $h$ for the cnoidal solution in the Serre equation. Comparison between the analytical solution (in red) and the solutions (practically overlapped) computed with the Serre (in blue) and the NSWE (in green)  models \label{fig:cnoidalh}}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/cnoidal1u.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/cnoidal2u.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/cnoidal3u.png}	
+	\end{subfigure}
+	\caption{Evolution of $u$ for the cnoidal solution. Comparison between the analytical solution (in red) and the solutions (practically overlapped) computed with the Serre (in blue) and the NSWE (in green)  models \label{fig:cnoidalu}}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/solitary1h.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/solitary2h.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/solitary3h.png}	
+	\end{subfigure}
+	\caption{Evolution of $h$ for the solitary solution. Comparison between the analytical solution (in light blue) and the solutions computed with the Serre model with first order resolution for the finite volume scheme (in red), the Serre model with second order resolution for the finite volume scheme (in dark blue)  and the second order NSWE model (in green). The last two solutions are practically overlapped\label{fig:solitaryh}}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/solitary1u.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/solitary2u.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/solitary3u.png}	
+	\end{subfigure}
+	\caption{Evolution of $u$ for the solitary solution. Comparison between the analytical solution (in light blue) and the solutions computed with the Serre model with first order resolution for the finite volume scheme (in red), the Serre model with second order resolution for the finite volume scheme (in dark blue)  and the second order NSWE model (in green). The last two solutions are practically overlapped \label{fig:solitaryu}}
+\end{figure}
+
+\indent The results show the existence of modeling or programming errors. In both cases tested, the analytical solution is not preserved : we observe a strong dissipation of the solution, and, in the solitary wave case, an inversion of the velocity that causes the formation of secondary waves. The utilization of a higher-order solver for the Finite Volume scheme did not correct this last problem, but showed a lower dissipation.

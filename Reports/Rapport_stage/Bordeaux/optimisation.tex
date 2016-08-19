@@ -1,0 +1,25 @@
+\subsubsection{Algorithme d'optimisation}
+
+\indent L'optimisation d'un certain élément \(T\) est faite selon l'algorithme \eqref{alg:optim}: 
+
+\begin{algorithm}
+	\caption{Optimisation d'un élément \(T\) \label{alg:optim}}
+	\begin{algorithmic}
+		\For {\(iter = 1,...,iter_{max}\)}
+			\State \(continue = 0\)
+			\For {\(i \in T\)}
+				\State Compute $ Q_{min}^i = \min_{\To \ni i} Q_{\To} $ \Comment{ $Q$ : indicateur de qualité}
+				\State $  \tilde{\vecx}_i = \frac{1}{\Nn^i} \sum\limits_{\To \ni i} { \sum\limits_{j \in \To, j\neq i}{\vecx_j}  } $ \Comment{\(\Nn^i\) : nombre de voisins de \(i\)}
+			\EndFor
+			\If {$ \min_{\Tt \ni i}{\frac{Q_{\Tt}}{Q_{min}^i}} < \nu $}  \Comment{$\nu \geq 1$}
+				\State Relaxer
+			\EndIf
+			\If {$|\tilde{\vecx} - \vecx| > \epsilon $} 
+				\State \(continue = 1\)
+			\EndIf
+			\If {$continue = 0 $}
+				\State $ iter = iter_{max} $
+			\EndIf
+		\EndFor  
+	\end{algorithmic}
+\end{algorithm}

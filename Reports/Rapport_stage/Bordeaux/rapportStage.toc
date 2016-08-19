@@ -1,0 +1,20 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Intoduction}{2}
+\contentsline {section}{\numberline {2}Le mod\IeC {\`e}le}{3}
+\contentsline {subsection}{\numberline {2.1}Description du probl\IeC {\`e}me}{3}
+\contentsline {subsection}{\numberline {2.2}Discr\IeC {\'e}tisation en \IeC {\'e}l\IeC {\'e}ments finis}{4}
+\contentsline {subsection}{\numberline {2.3}Quelques \IeC {\'e}l\IeC {\'e}ments pour le calcul de \(K\)}{5}
+\contentsline {subsection}{\numberline {2.4}R\IeC {\'e}solution du syst\IeC {\`e}me lin\IeC {\'e}aire}{7}
+\contentsline {section}{\numberline {3}Application \IeC {\`a} la fonction Level Set}{7}
+\contentsline {subsection}{\numberline {3.1}Construction de la fonction \IeC {\`a} adapter (avec \(\omega \) donn\IeC {\'e} par l'expression \textup {\hbox {\mathsurround \z@ \normalfont (\ignorespaces \ref {eq:omega2}\unskip \@@italiccorr )}})}{8}
+\contentsline {subsubsection}{\numberline {3.1.1}Choix des param\IeC {\`e}tres}{10}
+\contentsline {subsection}{\numberline {3.2}Calcul des tailles d\IeC {\'e}sir\IeC {\'e}es}{12}
+\contentsline {subsubsection}{\numberline {3.2.1}R\IeC {\'e}sultats}{13}
+\contentsline {subsection}{\numberline {3.3}Relaxation et qualit\IeC {\'e} du maillage}{13}
+\contentsline {subsection}{\numberline {3.4}Adaptation 3D}{15}
+\contentsline {section}{\numberline {4}Application \IeC {\`a} l'adaptation physique}{19}
+\contentsline {subsection}{\numberline {4.1}Calcul des tailles d\IeC {\'e}sir\IeC {\'e}es}{19}
+\contentsline {subsection}{\numberline {4.2}Couplage entre adaptation Level Set et adaptation physique}{20}
+\contentsline {subsection}{\numberline {4.3}R\IeC {\'e}sultats}{21}
+\contentsline {section}{\numberline {5}Adaptation \IeC {\`a} un cas non stationnaire}{25}
+\contentsline {section}{\numberline {6}Autres rapports}{28}

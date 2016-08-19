@@ -1,0 +1,185 @@
+\section{Le modèle}
+\label{sec:modele}
+
+\subsection{Description du problème}
+
+\indent On va faire la distinction entre deux domaines : 
+
+\begin{itemize}
+  \item \textbf{Domaine physique ou réel } (\(\vecx =(x,y)\)) : domaine déformable, noté \(\dom\);
+  \item \textbf{Domaine computationnel ou de référence } (\(\vecxi =(\xi,\eta)\)) : domaine fixé, noté \(\domRef\)
+\end{itemize}
+
+\indent On cherche une fonction 
+
+\begin{equation*}
+  \vecx = \vecx(\vecxi)
+\end{equation*}
+
+\indent Dans le modèle utilisé, on va considérer que la position \(\vecx\) des noeuds du maillage est régie par l'équation
+
+\begin{equation*}
+  %\label{eq:laplacien}
+  \nabref \cdot \left( \omega \nabref \vecx \right) = 0
+\end{equation*}
+
+\noindent où \(\nabref\) est le gradient par rapport aux coordonnées de référence et \(\omega\) est une fonction de \(\vecx\) qui contient l'information qui déterminera le mouvement des noeuds. Dans le travail développé au cours du stage, on a implémenté deux modèles différents pour le calcul de cette fonction : 
+
+\begin{enumerate}
+	\item Dans un première moment, on a implémenté utilisé dans \cite{arpaia} : en supposant qu'on fait l'adaptation par rapport à une fonction \(u\), \(\omega\) est donné par l'expression
+
+	\begin{equation*}
+  		\omega(\vecx) = \sqrt{1 + \alpha ||\nabref u(\vecx)|| + \beta ||H(u)(\vecx)||}
+	\end{equation*}
+
+	\indent \(H(u)\) est le hessien de \(u\), et \(\alpha\) et \(\beta\) sont des paramètres choisis par l'utilisateur. Pour que ce choix soit moins dépendant du problème, on va toujours considérer les gradients et le hessiens normalisés.
+	
+	\item On a ensuite utilisé un modèle où on fournit directement à chaque noeud \(i\) la taille de maille \(\hdes\) qu'on désire, selon la formulation présentée par \cite{askes} : 
+	
+	\begin{equation}
+		\label{eq:omega2}
+		\omega(\vecx) = \frac{1}{\hdes(\vecx)}
+	\end{equation}
+	
+	\indent La façon dont on calcule les tailles désirées dépende du type d'adaptation qu'on fait (adaptation à une fonction Level Set ou à une solution physique), comme on précisera dans les sections suivantes de ce rapport.
+	
+	
+\end{enumerate} 
+
+\indent Pour que le problème soit bien posé, il faut définir des conditions aux bords appropriées : 
+
+\begin{equation}
+	\label{eq:systeme}
+	\begin{cases}
+  		\nabref \cdot \left( \omega \nabref \vecx \right) = 0 \ \ dans \ \ \domRef \\
+  		\vecx = \vecg \ \ sur \ \ \bordRef^D \\
+  		\nabref \vecx \cdot \vecn = 0 \ \ sur \ \ \bordRef^N 
+	\end{cases}
+\end{equation}
+
+\indent Ainsi, les conditions aux limites utilisées sont de deux types, de Dirichlet et de Neumann, définies sur des parties disjointes du bord, (\(\bordRef^D\) et \(\bordRef^N\), respectivement). Pour les conditions de Dirichlet, on impose \(\vecg = \vecxi\), indiquant que les points de \(\bordRef^D\) ne doivent pas bouger (ce qu'on impose, par exemple, dans les coins d'un domaine rectangulaire). En revanche, les conditions de Neumann (imposées par exemple dans les côtés du domaine), indiquent que les points de \(\bordRef^N\) doivent glisser sur le bord, i.e., bouger parallèlement  au bord (de façon que, dans notre exemple, le domaine reste toujours rectangulaire).
+
+\indent La formulation faible du problème, avec une fonction test  \(v \in H_1^0(\domRef)\), s'écrit comme
+
+\begin{equation}
+	\label{eq:faible}
+	0 = \iDom{v\nabref \cdot \left( \omega \nabref \vecx \right)} = -\iDom{\omega \nabref v \cdot \nabref \vecx} + \iBord{v\omega\nabref \vecx \cdot \vecn} 
+\end{equation}
+
+\indent Les conditions aux bords définies en \eqref{eq:systeme} annulent le dernier terme en \eqref{eq:faible}, et on arrive ainsi à 
+
+\begin{equation*}
+	\iDom{\omega \nabref v \cdot \nabref \vecx} = 0
+\end{equation*}
+
+
+
+
+\subsection{Discrétisation en éléments finis}
+
+\indent On utilise une discrétisation en élément finis P1, avec une base de fonctions \(\{\phii\}\) définis pour chacun des \(N\) noeuds du maillage. Ainsi, \(\vecx\) et la fonction test \(v \in H_0^1(\dom)\) se discrétisent sous la forme
+
+\begin{equation}
+  \label{eq:u_disc}
+  \begin{gathered}
+  \vecx_h = \sum_{j=1}^N{\vecx_j\phij} = \sum_{j=1}^N{ \left( \begin{array}{c}  x_j \\ y_j \end{array} \right)    \phij} \\
+  v_h = \sum_{i=1}^N{v_i\phii} 
+  \end{gathered}
+\end{equation}
+
+\indent En utilisant \eqref{eq:u_disc} dans \eqref{eq:faible}, on arrive à
+
+\begin{equation*}
+	\sum_{j=1}^N{ \left[  \left( \iDomh{ \omega \nabref \phii \cdot \nabref \phij }  \right)  \vecx_j \right] } = 0 \ \ \forall i \in \{1,...,N\}
+\end{equation*}
+
+\indent On voit ainsi que la discrétisation en éléments finis se ramène à la résolution de deux systèmes linéaires indépendants et de la même forme, un pour les coefficients \(\{x_j\}\) et l'autre pour \(\{y_j\}\) : 
+
+\begin{equation}
+	\label{eq:syst_final}
+	\begin{cases}
+		Kx = 0 \\
+		Ky = 0
+	\end{cases}
+\end{equation}
+
+\indent Les éléments de la matrice \(K\) ont la forme
+
+\begin{equation}
+  k_{ij} = \iDomh{ \omega \nabref \phii \cdot \nabref \phij }
+\end{equation}
+
+
+\subsection{Quelques éléments pour le calcul de \(K\)}
+\label{subsec:calculK}
+
+\indent Le calcul des éléments de K est fait de la manière usuelle, par assemblage des contributions des éléments pour les coefficients \(k_{ij}\). On précise dans la liste suivante quelques détails de l'implémentation de ce calcul : 
+
+\begin{itemize}
+	\item Le gradient de \(\phii\) sur l'élément \(T\) sera donnée par \((\nabref \phii)^T = \frac{\normT{i}}{d!|T|}\), où \(|T|\) est l'aire de \(T\), \(d=2\) est le nombre de dimensions spatiales et \(\normT{i}\) est le vecteur entrant à \(T\), dans le côté opposé à \(i\) et de norme égale à la longueur de ce côté \cite{vecNormal}.
+	\item La fonction \(\omega\) sera considérée constante dans chaque élément \(T\) et égale à la moyenne \(\omega^T\) de sa valeur sur les noeuds de \(T\).
+	\item Comme l'intégrale est calculée dans le domaine de référence, on utilisera toujours les vecteurs normaux et les aires du maillage initial. La fonction \(\omega\), en revanche, sera actualisée pour exprimer l'évolution du maillage, et son calcul sera faite en utilisant la solution interpolée à la fin de chaque itération.
+\end{itemize}
+
+\indent On a, ainsi : 
+
+\begin{equation}
+\label{eq:calculK_2d}
+\begin{gathered}
+\begin{aligned}
+	k_{ij} & = \iDomh{ \omega \nabref \phii  \cdot \nabref \phij } = \sum_{T \ni i} {\iT{ \omega \nabref \phii \cdot \nabref \phij }} = \\
+	       &  = \sum_{T \ni i}
+	              { 
+	                     { |T|\omega^T \frac{\normT{i}\cdot \normT{j}}{4|T|^2}
+	                     }
+	              }
+	          = \sum_{T \ni i}
+	              { 
+	                     { \omega^T \frac{\normT{i}\cdot \normT{j}}{4|T|}
+	                     }
+	              }	              
+\end{aligned}
+\end{gathered}
+\end{equation}
+
+\indent \textbf{Remarque 1} : comme montre le développement du modèle fait ci-dessus, le calcul de l'intégrale qui donne les éléments de la matrice \(K\) est faite \textbf{toujours sur le maillage de référence}, ce qui implique que, dans \eqref{eq:calculK_2d}, on utilisera toujours les mêmes vecteurs normaux et les mêmes aires pour le calcul discret. Néanmoins, \textbf{la fonction \(\omega\) est actualisée à chaque itération dans le maillage physique}, afin de bien indiquer que, dans ses nouvelles positions, les nœuds sont dans des régions de raffinement ou pas.
+
+\indent
+
+\indent \textbf{Remarque 2} : Pour le calcul des éléments de \(K\), on a profité du fait que, dans la méthode d'éléments finis P1, on a \(k_{ij} = 0\) si les noeuds \(i\) et \(j\) n'appartient pas au même élément. Ainsi, la matrice est creuse, ce que nous a motivé à le stocker avec une structure adaptée (au lieu d'allouer une matrice de taille \(N \times N\)), afin de réduire la consommation d'espace mémoire, comme décrit ci-dessous : 
+
+\input{Bordeaux/matriceCreuse}
+
+
+\subsection{Résolution du système linéaire}
+\label{subsec:jacobi}
+
+\indent Le système linéaire \eqref{eq:syst_final} est résolu de façon itérative, avec la méthode de Jacobi. Dans les tests, on utilise en général un nombre petit d'itérations (dix ou vingt), ce qui donne des bons résultats pour un temps de calcul raisonnable. La solution est calculée en terme des déplacements \(\vecdelta = \vecx - \vecxi\). Ainsi, on réécrit le système linéaire \eqref{eq:syst_final} sous la forme 
+
+\begin{equation*}
+	Kx = K(x-\delta+\delta) = 0 \longrightarrow K\delta = -K\xi
+\end{equation*}
+
+\indent où \(\vecdelta = \vecx - \vecxi\) est le déplacement des points. Ainsi, \(\forall i \in \{1,...,N\} \) :
+
+\begin{equation*}
+	k_{ii}\delta_i^{[n+1]} = -\sum_{j=1,j \neq i}^N k_{ij}\delta_{j}^{[n]} - \sum_{j=1}^N k_{ij}\xi_{j} = -\sum_{j=1}^N k_{ij}(\xi_j + \delta_{j}^{[n]}) + k_{ii}\delta_i^{[n]}
+\end{equation*}
+
+\indent Donc, finalement,
+
+\begin{equation*}
+	\delta_i^{[n+1]} =  \delta_i^{[n]} -\frac{1}{k_{ii}} \sum_{j=1}^N k_{ij}(x_j^{[n]})
+\end{equation*}
+
+\indent \textbf{Remarque} : avant d'actualiser la position des points, il faut vérifier si le déplacement calculé ne conduit pas à un croisement des noeuds. Pour faire cette vérification, on calculé les aires signés des éléments (i.e., en considérant l'ordre des noeuds). Si nécessaire, on relaxe le déplacement : 
+
+%\begin{equation}
+%	x_i^{[n+1]} = \xi_i + \theta \delta_i^{[n+1]}
+%\end{equation} 
+
+\begin{equation*}
+	\vecx^{[n+1]} = \vecx^{[n]} + \theta \left( \vecxi + \vecdelta^{[n+1]} - \vecx^{[n]} \right)
+\end{equation*} 
+
+\noindent avec \(\theta \in [0,1]\). La relaxation est ainsi appliquée sur la différence entre deux positions successives, non pas sur le déplacement par rapport à la position initiale, car dans ce cas-ci on peut avoir de "retours en arrière" des points du maillage.

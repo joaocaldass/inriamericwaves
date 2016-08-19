@@ -1,0 +1,30 @@
+
+\begin{itemize}
+	\item On identifie, d'abord, le nombre maximal de voisins d'un noeud du maillage, \(\Nn\), sous la convention qu'un noeud est toujours voisin de lui-même;
+	\item On alloue deux vecteurs :  
+	\begin{itemize}
+		\item Un vecteur d'entiers, \(A\), de taille \((\Nn+1).(N+1)\);
+		\item Un vecteur de doubles, \(\Ks\) , de taille \(\Nn.(N+1)\);
+	\end{itemize}
+%	\item Les éléments de ces vecteurs qui se réfèrent à l'élément \(i\) sont : 
+%	\begin{itemize}
+%		\item Dans \(A\) : \(A_{(\Nn+1).i}\) jusqu'à \(A_{(\Nn+1).(i+1)-1}\);
+%		\item Dans \(\Ks\) : \(\Ks_{\Nn . i}\) jusqu'à \(\Ks_{\Nn  .(i+1)-1}\);
+%	\end{itemize}
+	\item Le vecteur \(A\) contient les index des voisins de chaque noeud. Par convention,
+	\begin{itemize}
+		\item \(A_{(\Nn+1).i} = \Nn^i\) contient le nombre de voisins de \(i\);
+		\item \(A_{(\Nn+1).i+1}\) jusqu'à \(A_{(\Nn+1).i+\Nn^i}\) contiennent les index des voisins de \(i\) (pour commodité, on garde toujours \(A_{(\Nn+1).i+\Nn^i} = i\), mais cela n'est pas nécessaire)
+	\end{itemize}
+	\item Le vecteur \(\Ks\) contient les éléments de la matrice : 
+	\begin{itemize}
+		\item Si \(A_{(\Nn+1).i + z} = j\), alors \(\Ks_{\Nn . i + z - 1} = K_{ij}\)
+	\end{itemize}
+\end{itemize}
+
+\indent Le stockage ici proposé n'est pas optimal, car, dans des maillages non structurés, les noeuds n'ont pas tous le même nombre de voisins. Par ailleurs, les \(\Nn+1\) premier éléments de \(A\) et les \(\Nn\) premiers éléments de \(\Ks\) ne sont pas utilisés, pour être en concordance avec les conventions d'index utilisés dans la bibliothèque MMG. Néanmoins, par rapport au stockage de la matrice complète, on a vérifié des très grandes avantages : 
+
+\begin{itemize}
+	\item Par exemple, dans un test avec environ \(28000\) noeuds et 165 mille élements non nulles dans la matrice \(K\), on est passé d'un stockage de 783 million de doubles (soit 0.02\% d'utilisation) à un stockage de 308 mille doubles (soit 54\% d'utilisation) et 336 mille entiers, avec un considérable gain en temps d'exécution.
+	\item On a observé aussi des gains en temps d'exécution du programme. Dans la formulation originale, sans garder les index des voisins de chaque noeud, il fallait appeler une fonction qui retourne la liste de voisins. Cet appel était fait une fois par itération pour chaque noeud, lors de la résolution du système linéaire.
+\end{itemize}
