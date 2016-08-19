@@ -1,6 +1,6 @@
-# Shallow Water Finite Volume Models
+# Finite Volume Schemes implemented for the Non Linear Shallow Water Equations
 
-It is recommended to run all these notebooks at least once, in order to generate all required modules.
+It is recommended to run all these notebooks at least once, in order to generate all required modules. 
 
 
 ## Schemes considering horizontal bottom
