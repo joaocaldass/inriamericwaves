@@ -1,5 +1,23 @@
 FOLDER DDM_NSWE_Serre
 
+- Coupling of NSWE and Serre models, both with horizontal and non-horizontal bottom;
+
+- The functions for this coupling are defined in the notebook DDM_NSWE_Serre and are stored in DDM_nswe_serre.py. The notebooks also need the module ../Serre/serreTBC.py
+
+- Each notebook contains a validation with a coupling NSWE-NSWE. This coupling shall converge exactly and immediately to the monodomain solution
+
+- For now, the coupling works well for the following configuration :
+	-- Open external BCs
+	-- Dirichlet condition imposed in two cells at the interface 
+	-- 3 ghost cells in each side (requirement for the FV solver)
+
+- The main function for performing the DDM is DDM_nswe_serre.DDM. Special attention should be given to the following parameters :
+	-- fvTimesolver = serre.Euler (serre.RK4 not adapted to the imposing the IBCs)
+	-- ov: size of overlapping; ov < 0 means no overlapping; otherwise, we have 1 + 2*ov overlapping cells
+	-- eta : slope of the bottom
+	-- dirichletIBC = True : impose Dirichlet at the interface
+
+
 * NOTEBOOKS
 	-  DDM_NSWE_Serre.ipynb :
 		:: functions for the coupling (main routine in time, imposition of BCs, definition of fluxes for NSWE) --> DDM_nswe_serre.py

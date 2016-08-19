@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 import sys
 sys.path.append('../Serre')
@@ -11,6 +12,8 @@ import nswe_wbmuscl4 as wb4
 import serre
 import serreTBC
 import cnoidal
+
+reload(serreTBC)
 def openDomainThreeGC(h,hu,BC,dx,t):
     """
     *Function to be passed as "bcfunction" argument for DDM_NSWE
@@ -90,10 +93,10 @@ def fluxes(h,hu,n):
     
     fp, fm, sc = wb4.fluxes_sources(d0,h0,u0)
     return fp
-def DDM_NSWE(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
-             dt = 0.05, fvsolver=muscl2.fluxes2,fvTimesolver=serre.RK4,
-             ghostcells = 3,externalBC="open",coupleSerre=False,serreDomain=1,nitermax=10,dispersiveBC = None,
-             configDDM = 1, ov = 0,href=None,uref=None,xref=None, debug = False, modifyIBC = False,eta=0.):
+def DDM(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
+             dt = 0.05, fvsolver=muscl2.fluxes2,fvTimesolver=serre.Euler,
+             ghostcells = 3,externalBC="open",coupleSerre=False,serreDomain=1,dispersiveBC = None,
+             ov = 0,href=None,uref=None,xref=None, debug = False, dirichletIBC = False,eta=0.):
     
     """
     *Applies a DDM to solve the NSWE in two subdomains;
@@ -101,7 +104,7 @@ def DDM_NSWE(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
     
     * Inputs:
         - x1,x2,xref : subdomains/monodomain
-        - h1,h2,u1,u2,href,uref : solutions in the subdomains/in the monodomain
+        - h1,h2,u1,u2,href,uref : solutions in the subdomains/in the monodomain.
         - t0,tmax,dt
         - dx
         - nx: number of points in monodomain
@@ -113,15 +116,24 @@ def DDM_NSWE(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
         - coupleSerre : True/False : compute the dispersive part
         - serreDomain (1/2): subdomain with the dispersive equation
         - nitermax
-        - dispersiveBC : 
-        - configDDM : 1 (no overlap) / 2 (overlap)
-        - ov : size of overlap (Number of overlapped cells = 1 + 2*ov, ov>=0)
+        - dispersiveBC : BCs for the dispersive part, in the form [position,type,value,coefficients].
+                         see doc in serreTBC.ipynb
+        - dirichletIBC : if True, impose dirichlet in the two cells closest to the interface and
+                         ignores the argument dispersiveIBC
+        - ov : size of overlap (Number of overlapped cells = 1 + 2*ov, ov>=0); ov < 0  means no overlapping
         - debug : impose referential solution in ghost cells
+        - eta : slope of the bottom
     """
+    
+    nitermax = 1 ## it's not a DDM
+    
+    configDDM = 2  ## overlapping
+    if ov < 0: ## no overlapping
+        configDDM = 1
     
     t = t0
     it = 0
-    grav = 9.81/10.
+    grav = 9.81
     
     uall1 = u1
     hall1 = h1
@@ -174,7 +186,7 @@ def DDM_NSWE(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
                                      [-2,h1[4],hu1[4]],  #external 
                                      [-1,h1[5],hu1[5]]]) #external
             elif externalBC == "open":
-                if configDDM == 1:
+                if configDDM == 1: ## without overlapping
                     bcparam1 = np.array([[0,h1prev[3],hu1prev[3]],
                                          [1,h1prev[3],hu1prev[3]],
                                          [2,h1prev[3],hu1prev[3]],
@@ -188,7 +200,7 @@ def DDM_NSWE(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
                                          [-2,h2prev[-4],hu2prev[-4]],
                                          [-1,h2prev[-4],hu2prev[-4]]])
                 elif configDDM == 2:
-                    if not debug :
+                    if not debug : ## with overlapping
                         bcparam1 = np.array([[0,h1prev[3],hu1prev[3]],
                                              [1,h1prev[3],hu1prev[3]],
                                              [2,h1prev[3],hu1prev[3]],
@@ -227,9 +239,7 @@ def DDM_NSWE(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
                 print(href[Nddm-3:Nddm+4,it])
                 print(h1[-7:])
                 print(h2[:7])
-            #print("Stencils hu before:")
-            #print(hu1[-7:])
-            #print(hu2[:7])
+
             h1,hu1 = fvTimesolver(x1,h1prev,hu1prev,fvsolver,bcfunction,bcparam1,dx,dt,x1.size,t,ghostcells)
             h2,hu2 = fvTimesolver(x2,h2prev,hu2prev,fvsolver,bcfunction,bcparam2,dx,dt,x2.size,t,ghostcells)   
 
@@ -300,28 +310,11 @@ def DDM_NSWE(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
             
             ## verify convergence
             eps = 1e-9
-            #print(niter,np.linalg.norm(h1-h1mm),np.linalg.norm(h2-h2mm),np.linalg.norm(u1-u1mm),np.linalg.norm(u2-u2mm))
             if np.linalg.norm(h1-h1mm) < eps and np.linalg.norm(h2-h2mm) < eps and \
                np.linalg.norm(u1-u1mm) < eps and np.linalg.norm(u2-u2mm) < eps :
                     converg = True
-            
-            a1 = u1[-4]-np.sqrt(grav*h1[-4])
-            b1 = u1[-4]+np.sqrt(grav*h1[-4])
-            a2 = u2[3+2*ov]-np.sqrt(grav*h2[3+2*ov])
-            b2 = u2[3+2*ov]+np.sqrt(grav*h2[3+2*ov])
-            
-            #print("Int 1: ",niter,np.absolute(u1[-4]-u2[3+2*ov]),np.absolute(h1[-4]-h2[3+2*ov]),
-                #  np.absolute(a1-a2),np.absolute(b1-b2))
-            
-            a1 = u1[-4-2*ov]-np.sqrt(grav*h1[-4-2*ov])
-            b1 = u1[-4-2*ov]+np.sqrt(grav*h1[-4-2*ov])
-            a2 = u2[3]-np.sqrt(grav*h2[3])
-            b2 = u2[3]+np.sqrt(grav*h2[3])
-            
-            #print("Int 2: ", niter,np.absolute(u1[-4-2*ov]-u2[3]),np.absolute(h1[-4-2*ov]-h2[3]),
-            #np.absolute(a1-a2),np.absolute(b1-b2))
-                    
 
+            ## Error in the subdomains
             nxx = uref.shape[0]
             err1 = np.linalg.norm(u1[3:-3]-uref[3:u1.size-3,it])
             err2 = np.linalg.norm(u2[3:-3]-uref[nxx-u2.size+3:-3,it])
@@ -336,30 +329,26 @@ def DDM_NSWE(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
         FDorder = 4  ## order of FD scheme
         
         if coupleSerre:
-            if serreDomain == 1:
+            if serreDomain == 1:  ## serre in the left
                     ## define boundary conditions
                 
-                if modifyIBC :  ## Dirichlet condition
+                if dirichletIBC :  ## Dirichlet condition
                     dispersiveBC = np.array([[0,"Robin",0.,1.,0.], 
                                      [-2,"Robin",u1[-5],1.,0.], ## external boundaries
                                      [-1,"Robin",u1[-4],1.,0.]]) ## interface : Dirichlet 
-                u1aux = serreTBC.modifiedEFDSolverFM(h1[3:-3],u1[3:-3],dx,dt,FDorder,dispersiveBC)
-                #u1aux = serreTBC.linearEFDSolverFM(h1[3:-3],u1[3:-3],dx,dt,FDorder,dispersiveBC,h0=h1[-1],u0=u1[-1])
-                u1 = np.hstack((u1[:3],u1aux,u1[-3:]))
-                
+                u1aux = serreTBC.EFDSolverFM4(h1[3:-3],u1[3:-3],dx,dt,FDorder,dispersiveBC)
+                u1 = np.hstack((u1[:3],u1aux,u1[-3:]))               
                 ## copy to overlapped area
                 u2[3:4+2*ov] = u1[-4-2*ov:-3]
             elif serreDomain == 2:
-                if modifyIBC :
+                if dirichletIBC :
                     dispersiveBC = np.array([[0,"Robin",u2[3],1.,0.],
                                      [1,"Robin",u2[4],1.,0.],
                                      [-1,"Robin",0.,1.,0.]])
-                u2aux = serreTBC.modifiedEFDSolverFM(h2[3:-3],u2[3:-3],dx,dt,FDorder,dispersiveBC)
-                #u2aux = serreTBC.linearEFDSolverFM(h2[3:-3],u2[3:-3],dx,dt,FDorder,dispersiveBC,h0=h2[0],u0=u2[0])
+                u2aux = serreTBC.EFDSolverFM4(h2[3:-3],u2[3:-3],dx,dt,FDorder,dispersiveBC)
                 u2 = np.hstack((u2[:3],u2aux,u2[-3:]))
                 ## copy to overlapped area
                 u1[-4-2*ov:-3] = u2[3:4+2*ov]
-
 
         hall1 = np.column_stack((hall1,h1))
         uall1 = np.column_stack((uall1,u1))

@@ -10,7 +10,7 @@ import cnoidal
 import nswe_wbmuscl4 as wb4
 
 nan = float("nan")
-def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt):
+def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,eta=0.):
     
     """
     Impose three boundary conditions for the dispersive part
@@ -108,7 +108,7 @@ def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt):
                 M[0,0] = -dt/h[0]*c0
                 M[0,1] = -dt/h[1]*c1
                 M[0,2] = -dt/h[2]*c2
-                rhs[0] =val - (u[0]+dt*gr*hx[0])*c0 - (u[1]+dt*gr*hx[1])*c1 - (u[2]+dt*gr*hx[2])*c2
+                rhs[0] =val - (u[0]+dt*gr*(hx[0]+eta))*c0 - (u[1]+dt*gr*(hx[1]+eta))*c1 - (u[2]+dt*gr*(hx[2]+eta))*c2
             elif pos == 1 :
                 c0 = alpha/(dx*dx) - beta/dx
                 c1 = -2.*alpha/(dx*dx) + beta/dx + gamma
@@ -116,7 +116,7 @@ def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt):
                 M[1,0] = -dt/h[0]*c0
                 M[1,1] = -dt/h[1]*c1
                 M[1,2] = -dt/h[2]*c2
-                rhs[1] =val - (u[0]+dt*gr*hx[0])*c0 - (u[1]+dt*gr*hx[1])*c1 - (u[2]+dt*gr*hx[2])*c2
+                rhs[1] =val - (u[0]+dt*gr*(hx[0]+eta))*c0 - (u[1]+dt*gr*(hx[1]+eta))*c1 - (u[2]+dt*gr*(hx[2]+eta))*c2
             elif pos == -1 :
                 c0 = alpha/(dx*dx) + beta/dx + gamma
                 c1 = -2.*alpha/(dx*dx) - beta/dx
@@ -124,7 +124,8 @@ def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt):
                 M[pos,pos] = -dt/h[pos]*c0
                 M[pos,pos-1] = -dt/h[pos-1]*c1
                 M[pos,pos-2] = -dt/h[pos-2]*c2
-                rhs[pos] =val - (u[pos]+dt*gr*hx[pos])*c0 - (u[pos-1]+dt*gr*hx[pos-1])*c1 -(u[pos-2]+dt*gr*hx[pos-2])*c2
+                rhs[pos] =val - (u[pos]+dt*gr*(hx[pos]+eta))*c0 - (u[pos-1]+dt*gr*(hx[pos-1]+eta))*c1 - \
+                                (u[pos-2]+dt*gr*(hx[pos-2]+eta))*c2
             elif pos == -2 :
                 c0 = alpha/(dx*dx) + beta/dx
                 c1 = -2.*alpha/(dx*dx) - beta/dx + gamma
@@ -132,7 +133,8 @@ def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt):
                 M[pos,pos+1] = -dt/h[pos+1]*c0
                 M[pos,pos] = -dt/h[pos]*c1
                 M[pos,pos-1] = -dt/h[pos-1]*c2
-                rhs[pos] =val - (u[pos+1]+dt*gr*hx[pos+1])*c0 - (u[pos]+dt*gr*hx[pos])*c1 -(u[pos-1]+dt*gr*hx[pos-1])*c2
+                rhs[pos] =val - (u[pos+1]+dt*gr*(hx[pos+1]+eta))*c0 - (u[pos]+dt*gr*(hx[pos]+eta))*c1 -\
+                                (u[pos-1]+dt*gr*(hx[pos-1]+eta))*c2
         else :
             sys.exit("Wrong type of TBC!! Please use Dirichlet/Neumann/TBC")
     return M,rhs
@@ -245,7 +247,7 @@ def imposeBCDispersiveLinear(M,rhs,BCs,h,u,hx,hu,dx,dt):
                 rhs[-2] = val
             sys.exit("Wrong type of TBC!! Please use Dirichlet/Neumann/TBC")
     return M,rhs
-def modifiedEFDSolverFM(h,u,dx,dt,order,BCs,periodic=False,ng=2,side="left",href=None,uref=None,eta=0.):
+def EFDSolverFM4(h,u,dx,dt,order,BCs,periodic=False,ng=2,side="left",href=None,uref=None,eta=0.):
     
     """
     Finite Difference Solver for the second step of the splitted Serre equations, using the discretization derived
@@ -325,7 +327,7 @@ def modifiedEFDSolverFM(h,u,dx,dt,order,BCs,periodic=False,ng=2,side="left",href
     np.set_printoptions(threshold=np.nan)
     np.set_printoptions(suppress=True)
 
-    M,rhs = imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt)
+    M,rhs = imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,eta=eta)
 
     z = np.linalg.solve(M,rhs)
     hu2 = hu + dt*(gr*h*(hx+eta)-z)
@@ -459,7 +461,7 @@ def solveDispersiveSerre(u,href,t0,tmax,dt,dx,BCconfig,uref=None,debug=False,idx
             BCconfig[3,2] = uref[idxlims[1]-1,it+1]
             BCconfig[4,2] = uref[idxlims[0]+2,it+1]
             BCconfig[5,2] = uref[idxlims[1]-2,it+1]
-        u = modifiedEFDSolverFM(h,u,dx,dt,FDorder,BCconfig)
+        u = EFDSolverFM4(h,u,dx,dt,FDorder,BCconfig)
 
         uall = np.column_stack((uall,u))
         tall = np.hstack((tall,t*np.ones(1)))
