@@ -29,7 +29,7 @@
 \item The solution $u_i$ in each subdomain $\Omega_i$ converges to $u|_{\Omega_i}$, \emph{i.e.}, the solution $u$, restricted to $\Omega_i$, of the problem in the monodomain $\Omega$;
 \end{itemize} 
 
-\indent \add{Moreover, one wants the method to show a fast convergence}.
+\indent Moreover, one wants the method to show a fast convergence.
 
 \indent In fact, accordingly to \cite{Japhet2003}, the optimal additive Schwarz method for solving the problem 
 
@@ -106,7 +106,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \indent The external BCs $ \Upsilon_i, \ \ i=1,2,3$ are independent of the interface BCs. Here, we will consider $\Upsilon_1 = \Theta_1^{c_L = 1.0}$, $\Upsilon_2 = \Theta_2^{c_R = 0.0}$ and $\Upsilon_3 = \Theta_3^{c_R = 0.0}$, which gives
 
 \begin{equation*}
-	%\label{eq:externalBCsDDM}
+%	\label{eq:externalBCsDDM}
 	\begin{gathered}
 	\Upsilon_1(u,x) = u - u_x + u_{xx} = 0\\
 	\Upsilon_2(u,x) = u = 0\\
@@ -330,37 +330,37 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \noindent
 \begin{minipage}[t]{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.4]{figures/FinalFigures/DefinitiveFigures/NiterxCoefVarT0FinalVersionP.png}
+	\includegraphics[scale=.375]{Fig3a.png}
 	\captionof{subfigure}{General view (for a fixed interface and different values of $t_0$)}
 \end{center}
 \end{minipage}
 \begin{minipage}[t]{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.4]{figures/FinalFigures/DefinitiveFigures/NiterxCoefVarinterfaceFinalVersionP.png}
+	\includegraphics[scale=.375]{Fig3b.png}
 	\captionof{subfigure}{General view (for a fixed $t_0$ and different positions of the interface)}
 \end{center}
 \end{minipage}
 \begin{minipage}[t]{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.4]{figures/FinalFigures/DefinitiveFigures/NiterxCoefVarT0FinalVersionPDetail.png}
+	\includegraphics[scale=.375]{Fig3c.png}
 	\captionof{subfigure}{Detail around one of the optimal coefficients (for a fixed interface and different values of $t_0$) \label{fig:optimVarT0PDetail} }
 \end{center}
 \end{minipage}
 \begin{minipage}[t]{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.4]{figures/FinalFigures/DefinitiveFigures/NiterxCoefVarT0FinalVersionPDetail2.png}
+	\includegraphics[scale=.375]{Fig3d.png}
 	\captionof{subfigure}{Detail around the other optimal positive coefficient (for a fixed interface and different values of $t_0$) \label{fig:optimVarT0PDetail2}}
 \end{center}
 \end{minipage}
 \begin{minipage}[t]{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.4]{figures/FinalFigures/DefinitiveFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png}
+	\includegraphics[scale=.375]{Fig3e.png}
 	\captionof{subfigure}{Detail around one of the optimal coefficients (for a fixed $t_0$ and different positions of the interface) \label{fig:optimVarInterfacePDetail}  }
 \end{center}
 \end{minipage}
 \begin{minipage}[t]{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.4]{figures/FinalFigures/DefinitiveFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.png}
+	\includegraphics[scale=.375]{Fig3f.png}
 	\captionof{subfigure}{Detail around the other optimal positive coefficient  (for a fixed $t_0$ and different positions of the interface) \label{fig:optimVarInterfacePDetail2}}
 \end{center}
 \end{minipage}
@@ -368,34 +368,11 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 	\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC, in the case of positive coefficients \label{fig:optimVarT0Interface}}
 \endgroup
 
-%\begingroup
-%\begin{minipage}{1.\linewidth}
-%\begin{center}
-%	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarinterfaceFinalVersionP.png}
-%	\captionof{subfigure}{General view }
-%\end{center}
-%\end{minipage}
-%\begin{minipage}{.5\linewidth}
-%\begin{center}
-%	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png}
-%	\captionof{subfigure}{Detail around one of the optimal coefficients \label{fig:optimVarInterfacePDetail}  }
-%\end{center}
-%\end{minipage}
-%\begin{minipage}{.5\linewidth}
-%\begin{center}
-%	\includegraphics[scale=.4]{figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.png}
-%	\captionof{subfigure}{Detail around the other optimal positive coefficient  \label{fig:optimVarInterfacePDetail2}}
-%\end{center}
-%\end{minipage}
-%	\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $t_0$ and different positions of the interface), in the case of positive coefficients \label{fig:optimVarInterface}}
-%\endgroup
-
 \indent Figure \ref{fig:errorEvolution} shows the evolution of the error, as function of the iterations, for the five positive coefficients $c$ that gave the fastest convergences, for a fixed initial instant and a fixed position of the interface. For other values of $t_0$ and $\alpha$ this graph is similar, concerning the number of iterations and the fact that the convergence is more regular for the coefficients closest to zero, compared to the other optimal coefficients.
 
 \begingroup
 \begin{center}
-%\includegraphics[scale=.65]{figures/FinalFigures/errorEvolutionFixedT0CFinalVersionOnlyPositive.png}
-\includegraphics[scale=.65]{figures/FinalFigures/DefinitiveFigures/errorEvolutionFixedT0CFinalVersionP.png}
+\includegraphics[scale=.5]{Fig4.png}
 \captionof{figure}{Error evolution with the iterations for the fastest results \label{fig:errorEvolution}}
 \end{center}
 \endgroup
@@ -411,43 +388,28 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \begingroup
 \begin{minipage}{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.45]{figures/FinalFigures/DefinitiveFigures/NiterxCoefVarDtdx250FinalVersionP.png}
+	\includegraphics[scale=.375]{Fig5a.png}
 \captionof{subfigure}{Fixed $\Delta x = \frac{12}{250}$}
 \end{center}
 \end{minipage}
 \begin{minipage}{.5\linewidth}
 \begin{center}
-	\includegraphics[scale=.45]{figures/FinalFigures/DefinitiveFigures/NiterxCoefVarDxdt2em2FinalVersionP.png}
+	\includegraphics[scale=.375]{Fig5b.png}
 \captionof{subfigure}{Fixed $\Delta t = 0.02$}
 \end{center}
 \end{minipage}
 \captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for positive coefficients)  \label{fig:niterxCoefVarDtDx}}
 \endgroup
 
-%\begingroup
-%\begin{center}
-%	\includegraphics[scale=.5]{figures/NiterxCoefVarDtdx250CorrectN.png}
-%\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $2N = 250$ and different values of $\Delta t$) \label{fig:niterxCoefVarDt}}
-%\end{center}
-%\endgroup
-%
-%\begingroup
-%\begin{center}
-%	\includegraphics[scale=.5]{figures/NiterxCoefVarDxdt2em2CorrectN.png}
-%\captionof{figure}{Number of iterations until the convergence as function of the coefficient of the TBC (for a fixed $\Delta t = 0.02$ and different values of $\Delta x$) \label{fig:niterxCoefVarDx}}
-%\end{center}
-%\endgroup
 
 \begingroup
-\begin{minipage}[t]{.45\linewidth}
-	%\includegraphics[scale=.45]{{figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDt.png}}
-	\includegraphics[scale=.45]{{figures/FinalFigures/DefinitiveFigures/OptimalCoefVarDtFinalVersion.png}}
+\begin{minipage}[t]{.5\linewidth}
+	\includegraphics[scale=.4]{{Fig6a.png}}
 	\captionof{subfigure}{Fixed $\Delta x = \frac{12}{250}$ }
 \end{minipage}
 \hfill
-\begin{minipage}[t]{.45\linewidth}
-	%\includegraphics[scale=.45]{{figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal2em2OnlyDx.png}}
-	\includegraphics[scale=.45]{{figures/FinalFigures/DefinitiveFigures/OptimalCoefVarDxFinalVersion.png}}
+\begin{minipage}[t]{.5\linewidth}
+	\includegraphics[scale=.4]{{Fig6b.png}}
 	\captionof{subfigure}{Fixed $\Delta t = 0.02$ }
 \end{minipage}
 	\captionof{figure}{Optimal coefficients as function of the time step and the space step 	\label{fig:optimalCoefVarDxDtCorrectN}}
@@ -456,7 +418,6 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \indent Figure \ref{fig:optimalCoefVarDxDtCorrectN} suggests a dependence of the optimal coefficient on $(\Delta t)^\nu$ and $(\Delta x)^\eta$, with $0 \leq \nu \leq 1$ and $\eta < 0$. In fact, performing some regressions with $\Delta t $ or $\Delta x$ fixed, we could conclude that $\nu = \frac{2}{3}$ and $\eta = -1$ provide really well-fitted regression curves (with the coefficients of determination $R^2$ bigger than 0.99), both for the negative and the positive coefficients (although each one of these cases correspond to different curves). Therefore, we will seek to model a function
 
 \begin{equation*}
-	%\label{eq:regression2D}
 	c_{opt}(\Delta t, \Delta x) = \kappa + \alpha (\Delta t)^{\frac{2}{3}} + \beta \frac{1}{\Delta x} + \gamma   \frac{(\Delta t)^{\frac{2}{3}}}{\Delta x}
 \end{equation*}
 

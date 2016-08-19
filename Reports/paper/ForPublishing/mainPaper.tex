@@ -1,0 +1,70 @@
+\documentclass[final,smallcondensed]{svjour3}
+%\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[font=footnotesize]{caption}
+\usepackage{subcaption}  % for subfigure
+\usepackage{numprint} % round numbers
+\usepackage{siunitx} % round numbers
+\usepackage{booktabs}  % nice looking tables
+\usepackage{indentfirst} % indent first line after section title
+\usepackage{breqn} %break inline equation
+\usepackage{tikz}
+%\usepackage{refcheck}
+\usepackage{cases} %numcases and subnumcases
+\usepackage[symbol]{footmisc}
+
+
+\title{Optimized Schwarz method for the linearized KdV equation}
+\date{Received: date / Accepted: date}
+%\author{Joao Guilherme Caldas Steinstraesser \protect\footnotemark[1]
+%	 \and Rodrigo Cienfuegos \protect\footnotemark[3]
+%	 \and José Daniel Galaz Mora \protect\footnotemark[3]
+%	 \and Antoine Rousseau \protect\footnotemark[2]     
+%}
+\author{Joao Guilherme Caldas Steinstraesser
+	 \and Rodrigo Cienfuegos
+	 \and José Daniel Galaz Mora
+	 \and Antoine Rousseau   
+}
+
+\institute{J. G. Caldas Steinstraesser 
+						\at MERIC, Marine Energy Research \& Innovation Center, Avda. Apoquindo 2827, Santiago, Chile
+						\\\email{joao.caldas@meric.cl}
+			\and 
+				R. Cienfuegos  \and  J. D. Galaz Mora \at Departamento de Ingeniería Hidráulica y Ambiental, Pontificia Universidad Católica de Chile, Av. Vicuña Mackenna 4680 - Macul, Santiago, Chile \\\email{racienfu@ing.puc.cl; jdgalaz@uc.cl}
+			\and A. Rousseau \at Inria and Inria Chile, Avda. Apoquindo 2827, Santiago, Chile		\\\email{antoine.rousseau@inria.fr}	
+			}
+
+\captionsetup{compatibility=false}
+\captionsetup[subfigure]{labelformat=parens,labelsep=space,font = scriptsize}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\newcommand{\laplinv}{\mathcal{L}^{-1}}
+\newcommand{\eF}{e^{-i \xi x }}
+
+\renewcommand{\epsilon}{\varepsilon}
+
+\bibliographystyle{spmpsci}
+
+\begin{document}
+
+
+\maketitle
+
+\input{abstractPaper}
+
+\input{introPaper}
+
+\input{TBCPaper}
+\input{DDMPaper}
+\input{conclusionPaper}
+\input{acknPaper}
+
+\bibliography{biblioPaper}
+\newpage
+\end{document}

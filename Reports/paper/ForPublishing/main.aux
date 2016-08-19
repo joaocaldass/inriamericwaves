@@ -17,23 +17,23 @@
 \citation{zheng2008}
 \citation{besse2015}
 \citation{zheng2008}
-\newlabel{eq:DKdV}{{1}{2}}
+\newlabel{eq:DKdV}{{2}{2}}
 \citation{zheng2008}
 \citation{besse2015}
 \citation{zheng2008}
 \citation{zheng2008}
 \citation{besse2015}
 \citation{besse2015}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Approximate transparent boundary conditions for the dispersion equation}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Approximate transparent boundary conditions for the dispersive equation}{3}}
 \newlabel{sec:TBC}{{2}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}The exact TBCs for the continuous equation}{3}}
-\newlabel{eq:LKdV}{{2}{3}}
+\newlabel{eq:LKdV}{{3}{3}}
 \citation{besse2015}
 \citation{zheng2008}
 \citation{besse2015}
 \citation{besse2015}
-\newlabel{eq:continuousTBC}{{3}{4}}
-\newlabel{eq:lambda}{{4}{4}}
+\newlabel{eq:continuousTBC}{{4}{4}}
+\newlabel{eq:lambda}{{5}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Approximation of the TBCs}{4}}
 \citation{zheng2008}
 \citation{besse2015}
@@ -42,13 +42,13 @@
 \citation{zheng2008}
 \citation{besse2015}
 \citation{besse2015}
-\newlabel{eq:appP0}{{5}{5}}
-\newlabel{eq:appTBCP0}{{6}{5}}
-\newlabel{eq:appDiscTBCP0}{{7}{5}}
-\newlabel{eq:testCaseBesse1}{{8a}{5}}
-\newlabel{eq:testCaseBesse2}{{8b}{5}}
-\newlabel{eq:testCaseBesse3}{{8c}{5}}
-\newlabel{eq:exactSolution}{{9}{5}}
+\newlabel{eq:appP0}{{6}{5}}
+\newlabel{eq:appTBCP0}{{7}{5}}
+\newlabel{eq:appDiscTBCP0}{{8}{5}}
+\newlabel{eq:testCaseBesse1}{{9a}{5}}
+\newlabel{eq:testCaseBesse2}{{9b}{5}}
+\newlabel{eq:testCaseBesse3}{{9c}{5}}
+\newlabel{eq:exactSolution}{{10}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Best and worst solution compared with analytical solution, for the constant polynomial approximation \relax }}{6}}
 \newlabel{fig:firstTestsP0}{{1}{6}}
 \citation{besse2015}
@@ -66,24 +66,28 @@
 \@writefile{toc}{\contentsline {section}{\numberline {3}Application to a domain decomposition method}{8}}
 \newlabel{sec:DDM}{{3}{8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}The Schwarz Method}{8}}
-\newlabel{eq:genericIBC}{{10}{8}}
+\newlabel{eq:genericIBC}{{11}{8}}
 \citation{Japhet2003}
 \citation{Japhet2003}
 \citation{Xavieretal2008}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}ASM with the approximate TBCs for the dispersion equation}{10}}
-\newlabel{eq:problemDDM1}{{11}{10}}
-\newlabel{eq:problemDDM2}{{12}{10}}
-\newlabel{eq:problemMonodomain}{{13}{10}}
+\newlabel{eq:problemDDM1}{{12}{10}}
+\newlabel{eq:problemDDM2}{{13}{10}}
+\newlabel{eq:problemMonodomain}{{14}{10}}
+\newlabel{eq:externalBCsDDM}{{15}{11}}
 \@writefile{toc}{\contentsline {paragraph}{Remarks on the notation}{11}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Discretization of the problem}{11}}
-\newlabel{eq:FDdiscretization}{{14}{11}}
+\newlabel{eq:FDdiscretization}{{16}{11}}
+\newlabel{eq:uncenteredFDdiscretization0}{{17}{12}}
 \@writefile{toc}{\contentsline {paragraph}{Remark : modification of the reference solution}{12}}
+\newlabel{eq:uncenteredFDdiscretizationN}{{3.3}{12}}
 \citation{Gander2001}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Scheme indicating the discretization imposed to each point in the monodomain and the DDM problems \relax }}{13}}
 \newlabel{fig:discretizations}{{2}{13}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Corrections for the approximate IBCs}{13}}
-\newlabel{eq:correctedTBC}{{15}{13}}
+\newlabel{eq:correctedTBC}{{18}{13}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Optimization of the IBCs (speed of convergence)}{14}}
+\newlabel{eq:criteriaConvergence}{{3.5}{14}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Test varying the initial data and the interface position}{14}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline {a}{\ignorespaces General view (for a fixed interface and different values of $t_0$)\relax }}{15}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline {b}{\ignorespaces General view (for a fixed $t_0$ and different positions of the interface)\relax }}{15}}
@@ -108,10 +112,11 @@
 \@writefile{lof}{\contentsline {subfigure}{\numberline {b}{\ignorespaces Fixed $\Delta t = 0.02$ \relax }}{18}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Optimal coefficients as function of the time step and the space step \relax }}{18}}
 \newlabel{fig:optimalCoefVarDxDtCorrectN}{{6}{18}}
-\newlabel{eq:regression2DPos}{{16}{19}}
-\newlabel{eq:regression2DNeg}{{17}{19}}
+\newlabel{eq:regression2D}{{19}{18}}
+\newlabel{eq:regression2DPos}{{20}{19}}
+\newlabel{eq:regression2DNeg}{{21}{19}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Partial conclusion}{19}}
-\bibdata{../may/biblio}
+\bibdata{biblioPaper}
 \bibcite{Xavieretal2008}{1}
 \bibcite{balagurusamy2008}{2}
 \bibcite{BBM1971}{3}
