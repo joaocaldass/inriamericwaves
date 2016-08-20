@@ -1,71 +1,75 @@
 \contentsline {part}{I\hspace {1em}Inria Bordeaux - Mod\IeC {\`e}les d'adaptation de maillages}{4}
-\contentsline {section}{\numberline {1}Introduction}{5}
-\contentsline {section}{\numberline {2}Le mod\IeC {\`e}le}{6}
-\contentsline {subsection}{\numberline {2.1}Description du probl\IeC {\`e}me}{6}
-\contentsline {subsection}{\numberline {2.2}Discr\IeC {\'e}tisation en \IeC {\'e}l\IeC {\'e}ments finis}{7}
-\contentsline {subsection}{\numberline {2.3}Quelques \IeC {\'e}l\IeC {\'e}ments pour le calcul de \(K\)}{8}
-\contentsline {subsection}{\numberline {2.4}R\IeC {\'e}solution du syst\IeC {\`e}me lin\IeC {\'e}aire}{10}
-\contentsline {section}{\numberline {3}Application \IeC {\`a} la fonction Level Set}{11}
-\contentsline {subsection}{\numberline {3.1}Construction de la fonction \IeC {\`a} adapter (avec \(\omega \) donn\IeC {\'e} par l'expression \relax \eqref {eq:omega2})}{12}
-\contentsline {subsubsection}{\numberline {3.1.1}Choix des param\IeC {\`e}tres}{14}
-\contentsline {subsection}{\numberline {3.2}Calcul des tailles d\IeC {\'e}sir\IeC {\'e}es}{16}
-\contentsline {subsubsection}{\numberline {3.2.1}R\IeC {\'e}sultats}{16}
-\contentsline {subsection}{\numberline {3.3}Relaxation et qualit\IeC {\'e} du maillage}{17}
-\contentsline {subsection}{\numberline {3.4}Adaptation 3D}{18}
-\contentsline {section}{\numberline {4}Application \IeC {\`a} l'adaptation physique}{21}
-\contentsline {subsection}{\numberline {4.1}Calcul des tailles d\IeC {\'e}sir\IeC {\'e}es}{22}
-\contentsline {subsection}{\numberline {4.2}Couplage entre adaptation Level Set et adaptation physique}{23}
-\contentsline {subsection}{\numberline {4.3}R\IeC {\'e}sultats}{24}
-\contentsline {section}{\numberline {5}Adaptation \IeC {\`a} un cas non stationnaire}{28}
-\contentsline {part}{II\hspace {1em}Meric / Inria Chile - M\IeC {\'e}thodes de D\IeC {\'e}composition de Domaine}{30}
-\contentsline {section}{\numberline {1}Introduction}{31}
-\contentsline {section}{\numberline {2}L'\IeC {\'e}quation de KdV}{33}
-\contentsline {subsection}{\numberline {2.1}Le mod\IeC {\`e}le}{33}
-\contentsline {subsection}{\numberline {2.2}Discr\IeC {\'e}tisation}{34}
-\contentsline {subsubsection}{\numberline {2.2.1}Premier pas du \emph {splitting} - advection}{34}
-\contentsline {subsubsection}{\numberline {2.2.2}Deuxi\IeC {\`e}me pas du \emph {splitting} - dispersion}{36}
-\contentsline {paragraph}{Le cas p\IeC {\'e}riodique}{36}
-\contentsline {paragraph}{Le cas non p\IeC {\'e}riodique}{36}
-\contentsline {subsubsection}{\numberline {2.2.3}Choix de la taille de maille}{37}
-\contentsline {subsection}{\numberline {2.3}Analyse d'\IeC {\'e}chelle}{37}
-\contentsline {subsubsection}{\numberline {2.3.1}Caract\IeC {\'e}risation de la non lin\IeC {\'e}arit\IeC {\'e}}{38}
-\contentsline {subsubsection}{\numberline {2.3.2}Caract\IeC {\'e}risation de la dispersion}{38}
-\contentsline {subsection}{\numberline {2.4}Le crit\IeC {\`e}re pour choisir une solution initiale appropri\IeC {\'e}e}{39}
-\contentsline {subsubsection}{\numberline {2.4.1}Choix de la longueur d'onde}{39}
-\contentsline {subsubsection}{\numberline {2.4.2}Choix de l'amplitude de l'onde}{40}
-\contentsline {subsubsection}{\numberline {2.4.3}R\IeC {\'e}sum\IeC {\'e}}{40}
-\contentsline {subsection}{\numberline {2.5}Tests num\IeC {\'e}riques}{41}
-\contentsline {paragraph}{Conclusions partiales :}{42}
-\contentsline {section}{\numberline {3}Les \IeC {\'e}quations de Serre}{42}
-\contentsline {subsection}{\numberline {3.1}Le mod\IeC {\`e}le}{42}
-\contentsline {subsubsection}{\numberline {3.1.1}Les \IeC {\'e}quations de Serre dans les variables $(h,hu)$}{43}
-\contentsline {subsection}{\numberline {3.2}Discr\IeC {\'e}tisation}{44}
-\contentsline {subsubsection}{\numberline {3.2.1}Premi\IeC {\`e}re syst\IeC {\`e}me d'\IeC {\'e}quations (pas d'advection)}{45}
-\contentsline {subsubsection}{\numberline {3.2.2}Deuxi\IeC {\`e}me syst\IeC {\`e}me d'\IeC {\'e}quations (pas de dispersion)}{46}
-\contentsline {subsection}{\numberline {3.3}Tests num\IeC {\'e}riques}{47}
-\contentsline {subsubsection}{\numberline {3.3.1}Description de la solution initiale}{47}
-\contentsline {subsubsection}{\numberline {3.3.2}Results}{48}
-\contentsline {section}{\numberline {4}Premier \IeC {\'e}tude des conditions aux limites transparentes}{49}
-\contentsline {subsection}{\numberline {4.1}Introduction et quelques exemples de motivation}{49}
-\contentsline {subsection}{\numberline {4.2}Optimisation de conditions aux limites de Robin pour simuler des TBCs}{54}
-\contentsline {subsubsection}{\numberline {4.2.1}Conditions aux limites de Robin jusqu'\IeC {\`a} la d\IeC {\'e}riv\IeC {\'e}e premi\IeC {\`e}re}{54}
-\contentsline {subsubsection}{\numberline {4.2.2}Conditions aux limites de Robin jusqu'\IeC {\`a} la d\IeC {\'e}riv\IeC {\'e}e seconde}{57}
-\contentsline {subsubsection}{\numberline {4.2.3}Conclusion partiale}{58}
-\contentsline {section}{\numberline {5}Conditions aux limites transparentes approxim\IeC {\'e}es pour l'\IeC {\'e}quation de dispersion}{58}
-\contentsline {subsection}{\numberline {5.1}Approximation des TBCs utilisant des polyn\IeC {\^o}mes constants}{60}
-\contentsline {subsubsection}{\numberline {5.1.1}Tests de validation de l'approximation}{61}
-\contentsline {subsection}{\numberline {5.2}Approximation des TBCs utilisant un polyn\IeC {\^o}me lin\IeC {\'e}aire}{63}
-\contentsline {subsubsection}{\numberline {5.2.1}Tests de validation de l'approximation}{65}
-\contentsline {subsection}{\numberline {5.3}Conclusion partiale}{65}
-\contentsline {section}{\numberline {6}Application des TBCs approxim\IeC {\'e}es \IeC {\`a} une M\IeC {\'e}thode de D\IeC {\'e}composition de Domaine}{66}
-\contentsline {subsection}{\numberline {6.1}The Schwarz Methods}{66}
-\contentsline {subsection}{\numberline {6.2}ASM avec des TBCs approxim\IeC {\'e}es pour l'\IeC {\'e}quation de dispersion}{68}
-\contentsline {paragraph}{Remarques sur la notation}{69}
-\contentsline {subsection}{\numberline {6.3}Discr\IeC {\'e}tisation du probl\IeC {\`e}me et erreur dans la solution converg\IeC {\'e}e}{69}
-\contentsline {paragraph}{Remarque : modification de la solution de r\IeC {\'e}f\IeC {\'e}rence :}{71}
-\contentsline {subsubsection}{\numberline {6.3.1}Numerical verification of the error}{72}
-\contentsline {subsubsection}{\numberline {6.3.2}Corrections pour les TBCs approxim\IeC {\'e}es}{73}
-\contentsline {subsection}{\numberline {6.4}Optimisation des IBCs (vitesse de convergence)}{75}
-\contentsline {subsubsection}{\numberline {6.4.1}Tests variant l'instant initial et la position de l'interface}{76}
-\contentsline {subsubsection}{\numberline {6.4.2}Tests variant $\Delta t$ and $\Delta x$}{79}
-\contentsline {subsection}{\numberline {6.5}Partial conclusion}{81}
+\contentsline {section}{\numberline {1}Pr\IeC {\'e}sentation de l'organisme d'accueil et du ma\IeC {\^\i }tre de stage}{5}
+\contentsline {subsection}{\numberline {1.1}L'INRIA}{5}
+\contentsline {subsubsection}{\numberline {1.1.1}Inria Bordeaux Sud-Ouest}{6}
+\contentsline {section}{\numberline {2}Introduction}{6}
+\contentsline {section}{\numberline {3}Le mod\IeC {\`e}le}{7}
+\contentsline {subsection}{\numberline {3.1}Description du probl\IeC {\`e}me}{7}
+\contentsline {subsection}{\numberline {3.2}Discr\IeC {\'e}tisation en \IeC {\'e}l\IeC {\'e}ments finis}{9}
+\contentsline {subsection}{\numberline {3.3}Quelques \IeC {\'e}l\IeC {\'e}ments pour le calcul de \(K\)}{10}
+\contentsline {subsection}{\numberline {3.4}R\IeC {\'e}solution du syst\IeC {\`e}me lin\IeC {\'e}aire}{12}
+\contentsline {section}{\numberline {4}Application \IeC {\`a} la fonction Level Set}{12}
+\contentsline {subsection}{\numberline {4.1}Construction de la fonction \IeC {\`a} adapter (avec \(\omega \) donn\IeC {\'e} par l'expression \relax \eqref {eq:omega2})}{13}
+\contentsline {subsubsection}{\numberline {4.1.1}Choix des param\IeC {\`e}tres}{15}
+\contentsline {subsection}{\numberline {4.2}Calcul des tailles d\IeC {\'e}sir\IeC {\'e}es}{17}
+\contentsline {subsubsection}{\numberline {4.2.1}R\IeC {\'e}sultats}{18}
+\contentsline {subsection}{\numberline {4.3}Relaxation et qualit\IeC {\'e} du maillage}{18}
+\contentsline {subsection}{\numberline {4.4}Adaptation 3D}{19}
+\contentsline {section}{\numberline {5}Application \IeC {\`a} l'adaptation physique}{22}
+\contentsline {subsection}{\numberline {5.1}Calcul des tailles d\IeC {\'e}sir\IeC {\'e}es}{23}
+\contentsline {subsection}{\numberline {5.2}Couplage entre adaptation Level Set et adaptation physique}{24}
+\contentsline {subsection}{\numberline {5.3}R\IeC {\'e}sultats}{25}
+\contentsline {section}{\numberline {6}Adaptation \IeC {\`a} un cas non stationnaire}{29}
+\contentsline {part}{II\hspace {1em}Meric / Inria Chile - M\IeC {\'e}thodes de D\IeC {\'e}composition de Domaine}{32}
+\contentsline {subsection}{\numberline {0.1}Pr\IeC {\'e}sentation des organismes d'accueil}{32}
+\contentsline {subsubsection}{\numberline {0.1.1}Inria Chile}{32}
+\contentsline {subsubsection}{\numberline {0.1.2}MERIC}{33}
+\contentsline {section}{\numberline {1}Introduction}{34}
+\contentsline {section}{\numberline {2}L'\IeC {\'e}quation de KdV}{37}
+\contentsline {subsection}{\numberline {2.1}Le mod\IeC {\`e}le}{37}
+\contentsline {subsection}{\numberline {2.2}Discr\IeC {\'e}tisation}{37}
+\contentsline {subsubsection}{\numberline {2.2.1}Premier pas du \emph {splitting} - advection}{38}
+\contentsline {subsubsection}{\numberline {2.2.2}Deuxi\IeC {\`e}me pas du \emph {splitting} - dispersion}{39}
+\contentsline {paragraph}{Le cas p\IeC {\'e}riodique}{39}
+\contentsline {paragraph}{Le cas non p\IeC {\'e}riodique}{39}
+\contentsline {subsubsection}{\numberline {2.2.3}Choix de la taille de maille}{40}
+\contentsline {subsection}{\numberline {2.3}Analyse d'\IeC {\'e}chelle}{40}
+\contentsline {subsection}{\numberline {2.4}Le crit\IeC {\`e}re pour choisir une solution initiale appropri\IeC {\'e}e}{42}
+\contentsline {subsubsection}{\numberline {2.4.1}Choix de la longueur d'onde}{42}
+\contentsline {subsubsection}{\numberline {2.4.2}Choix de l'amplitude de l'onde}{43}
+\contentsline {subsubsection}{\numberline {2.4.3}R\IeC {\'e}sum\IeC {\'e}}{43}
+\contentsline {subsection}{\numberline {2.5}Tests num\IeC {\'e}riques}{44}
+\contentsline {paragraph}{Conclusions partiales :}{45}
+\contentsline {section}{\numberline {3}Les \IeC {\'e}quations de Serre}{45}
+\contentsline {subsection}{\numberline {3.1}Le mod\IeC {\`e}le}{45}
+\contentsline {subsubsection}{\numberline {3.1.1}Les \IeC {\'e}quations de Serre dans les variables $(h,hu)$}{45}
+\contentsline {subsection}{\numberline {3.2}Discr\IeC {\'e}tisation}{47}
+\contentsline {subsubsection}{\numberline {3.2.1}Premi\IeC {\`e}re syst\IeC {\`e}me d'\IeC {\'e}quations (pas d'advection)}{48}
+\contentsline {subsubsection}{\numberline {3.2.2}Deuxi\IeC {\`e}me syst\IeC {\`e}me d'\IeC {\'e}quations (pas de dispersion)}{48}
+\contentsline {subsection}{\numberline {3.3}Tests num\IeC {\'e}riques}{49}
+\contentsline {subsubsection}{\numberline {3.3.1}Description de la solution initiale}{49}
+\contentsline {subsubsection}{\numberline {3.3.2}Results}{50}
+\contentsline {section}{\numberline {4}Premier \IeC {\'e}tude des conditions aux limites transparentes}{52}
+\contentsline {subsection}{\numberline {4.1}Introduction et quelques exemples de motivation}{52}
+\contentsline {subsection}{\numberline {4.2}Optimisation de conditions aux limites de Robin pour simuler des TBCs}{57}
+\contentsline {subsubsection}{\numberline {4.2.1}Conditions aux limites de Robin jusqu'\IeC {\`a} la d\IeC {\'e}riv\IeC {\'e}e premi\IeC {\`e}re}{57}
+\contentsline {subsubsection}{\numberline {4.2.2}Conditions aux limites de Robin jusqu'\IeC {\`a} la d\IeC {\'e}riv\IeC {\'e}e seconde}{60}
+\contentsline {subsubsection}{\numberline {4.2.3}Conclusion partiale}{61}
+\contentsline {section}{\numberline {5}Conditions aux limites transparentes approxim\IeC {\'e}es pour l'\IeC {\'e}quation de dispersion}{62}
+\contentsline {subsection}{\numberline {5.1}Approximation des TBCs utilisant des polyn\IeC {\^o}mes constants}{64}
+\contentsline {subsubsection}{\numberline {5.1.1}Tests de validation de l'approximation}{64}
+\contentsline {subsection}{\numberline {5.2}Approximation des TBCs utilisant un polyn\IeC {\^o}me lin\IeC {\'e}aire}{67}
+\contentsline {subsubsection}{\numberline {5.2.1}Tests de validation de l'approximation}{68}
+\contentsline {subsection}{\numberline {5.3}Conclusion partiale}{68}
+\contentsline {section}{\numberline {6}Application des TBCs approxim\IeC {\'e}es \IeC {\`a} une M\IeC {\'e}thode de D\IeC {\'e}composition de Domaine}{69}
+\contentsline {subsection}{\numberline {6.1}The Schwarz Methods}{69}
+\contentsline {subsection}{\numberline {6.2}ASM avec des TBCs approxim\IeC {\'e}es pour l'\IeC {\'e}quation de dispersion}{71}
+\contentsline {paragraph}{Remarques sur la notation}{72}
+\contentsline {subsection}{\numberline {6.3}Discr\IeC {\'e}tisation du probl\IeC {\`e}me et erreur dans la solution converg\IeC {\'e}e}{72}
+\contentsline {paragraph}{Remarque : modification de la solution de r\IeC {\'e}f\IeC {\'e}rence :}{74}
+\contentsline {subsubsection}{\numberline {6.3.1}Numerical verification of the error}{75}
+\contentsline {subsubsection}{\numberline {6.3.2}Corrections pour les TBCs approxim\IeC {\'e}es}{76}
+\contentsline {subsection}{\numberline {6.4}Optimisation des IBCs (vitesse de convergence)}{78}
+\contentsline {subsubsection}{\numberline {6.4.1}Tests variant l'instant initial et la position de l'interface}{79}
+\contentsline {subsubsection}{\numberline {6.4.2}Tests variant $\Delta t$ and $\Delta x$}{82}
+\contentsline {subsection}{\numberline {6.5}Partial conclusion}{84}

@@ -317,7 +317,63 @@ Décrire de façon très résumé.
 
 \subsubsection{Results}
 
-\indent With the objective to observe the nonlinear and the dispersive processes in the model, we solved the Serre equation and the Nonlinear Shallow Water Equation (NSWE), which is the first step of the proposed split scheme. The figures \ref{fig:cnoidalh} and \ref{fig:cnoidalu} shows the evolution of $(h,u)$ for the cnoidal solution; and the figures \ref{fig:solitaryh} and \ref{fig:solitaryu} for the solitary solution. In this last case, we also solved the problem with a first order finite volume solver for the resolution of the first step of the Serre equation.
+\indent Afin d'observer les effets nonlinéaires et dispersives dans le modèle, on a résolu les équations de Serre et les équations nonlinéaires de \emph{Shallow Water} (NSWE). Ce dernier système d'équations est en fait le premier pas du schéma de \emph{splitting} proposé. Les figures \ref{fig:cnoidalh} et \ref{fig:cnoidalu} montrent l'évolution de $(h,u)$ pour la solution cnoïdale, et les figures  \ref{fig:solitaryh} et \ref{fig:solitaryu} le montrent dans le cas de la solution solitaire. 
+
+\begin{figure}[h!]
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/4x4cnoidal1h.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/4x4cnoidal2h.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/4x4cnoidal3h.png}	
+	\end{subfigure}
+	\caption{Evolution of $h$ for the cnoidal solution in the Serre equation. Comparison between the analytical solution (in red) and the solutions (practically overlapped) computed with the Serre (in blue) and the NSWE (in green)  models \label{fig:cnoidalh}}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/4x4cnoidal1u.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/4x4cnoidal2u.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/4x4cnoidal3u.png}	
+	\end{subfigure}
+	\caption{Evolution of $u$ for the cnoidal solution. Comparison between the analytical solution (in red) and the solutions (practically overlapped) computed with the Serre (in blue) and the NSWE (in green)  models \label{fig:cnoidalu}}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/4x4solitary1h.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/4x4solitary2h.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/4x4solitary3h.png}	
+	\end{subfigure}
+	\caption{Evolution of $h$ for the solitary solution. Comparison between the analytical solution (in light blue) and the solutions computed with the Serre model with first order resolution for the finite volume scheme (in red), the Serre model with second order resolution for the finite volume scheme (in dark blue)  and the second order NSWE model (in green). The last two solutions are practically overlapped\label{fig:solitaryh}}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/4x4solitary1u.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/4x4solitary2u.png}	
+	\end{subfigure}
+	\begin{subfigure}{.3\linewidth}
+		\includegraphics[scale=.3]{figures/Serre/4x4solitary3u.png}	
+	\end{subfigure}
+	\caption{Evolution of $u$ for the solitary solution. Comparison between the analytical solution (in light blue) and the solutions computed with the Serre model with first order resolution for the finite volume scheme (in red), the Serre model with second order resolution for the finite volume scheme (in dark blue)  and the second order NSWE model (in green). The last two solutions are practically overlapped \label{fig:solitaryu}}
+\end{figure}
+
+\indent On peut observer très clairement les effets du pas de dispersion sur la solution donnée par les NSWE. Le premier pas des équations de Serre splittées cause la formation de chocs. Par ailleurs, comme le schéma de volumes finis implémenté n'utilise pas des limiteurs, les discontinuités ne sont pas bien traitées, ce qui provoque les grandes déformations de la solution dans des instants plus avancées, comme montrent les dernières images dans les figures \ref{fig:cnoidalh} et \ref{fig:cnoidalu}. En revanche, dans la résolution des équations de Serre, le pas de dispersion fait une "correction" de la formation du choc, et la forme de la solution analytique est préservée.
+
+\indent Ainsi, ces exemples numériques valident notre implémentation des équations de Serre. On remarque également que, aussi comme la forme, l'amplitude de la solution est bien préservée, avec seulement une petite réduction. En fait, cet résultat a été obtenu seulement avec le schéma de volumes finies d'ordre 4. Au début, on a implémenté des schémas d'ordre 1 et 2, avec lesquels la réduction de l'amplitude était beaucoup plus importante (malgré la préservation de la forme), comme montre, à titre d'exemple, la figure \ref{fig:cnoidalhOrdre2}:
 
 \begin{figure}[h!]
 	\begin{subfigure}{.3\linewidth}
@@ -329,46 +385,7 @@ Décrire de façon très résumé.
 	\begin{subfigure}{.3\linewidth}
 		\includegraphics[scale=.3]{figures/Serre/cnoidal3h.png}	
 	\end{subfigure}
-	\caption{Evolution of $h$ for the cnoidal solution in the Serre equation. Comparison between the analytical solution (in red) and the solutions (practically overlapped) computed with the Serre (in blue) and the NSWE (in green)  models \label{fig:cnoidalh}}
-\end{figure}
-
-\begin{figure}[h!]
-	\begin{subfigure}{.3\linewidth}
-		\includegraphics[scale=.3]{figures/Serre/cnoidal1u.png}	
-	\end{subfigure}
-	\begin{subfigure}{.3\linewidth}
-		\includegraphics[scale=.3]{figures/Serre/cnoidal2u.png}	
-	\end{subfigure}
-	\begin{subfigure}{.3\linewidth}
-		\includegraphics[scale=.3]{figures/Serre/cnoidal3u.png}	
-	\end{subfigure}
-	\caption{Evolution of $u$ for the cnoidal solution. Comparison between the analytical solution (in red) and the solutions (practically overlapped) computed with the Serre (in blue) and the NSWE (in green)  models \label{fig:cnoidalu}}
-\end{figure}
-
-\begin{figure}[h!]
-	\begin{subfigure}{.3\linewidth}
-		\includegraphics[scale=.3]{figures/Serre/solitary1h.png}	
-	\end{subfigure}
-	\begin{subfigure}{.3\linewidth}
-		\includegraphics[scale=.3]{figures/Serre/solitary2h.png}	
-	\end{subfigure}
-	\begin{subfigure}{.3\linewidth}
-		\includegraphics[scale=.3]{figures/Serre/solitary3h.png}	
-	\end{subfigure}
-	\caption{Evolution of $h$ for the solitary solution. Comparison between the analytical solution (in light blue) and the solutions computed with the Serre model with first order resolution for the finite volume scheme (in red), the Serre model with second order resolution for the finite volume scheme (in dark blue)  and the second order NSWE model (in green). The last two solutions are practically overlapped\label{fig:solitaryh}}
-\end{figure}
-
-\begin{figure}[h!]
-	\begin{subfigure}{.3\linewidth}
-		\includegraphics[scale=.3]{figures/Serre/solitary1u.png}	
-	\end{subfigure}
-	\begin{subfigure}{.3\linewidth}
-		\includegraphics[scale=.3]{figures/Serre/solitary2u.png}	
-	\end{subfigure}
-	\begin{subfigure}{.3\linewidth}
-		\includegraphics[scale=.3]{figures/Serre/solitary3u.png}	
-	\end{subfigure}
-	\caption{Evolution of $u$ for the solitary solution. Comparison between the analytical solution (in light blue) and the solutions computed with the Serre model with first order resolution for the finite volume scheme (in red), the Serre model with second order resolution for the finite volume scheme (in dark blue)  and the second order NSWE model (in green). The last two solutions are practically overlapped \label{fig:solitaryu}}
+	\caption{Evolution of $h$ for the cnoidal solution in the Serre equation. Comparison between the analytical solution (in red) and the solutions (practically overlapped) computed with the Serre (in blue) and the NSWE (in green)  models \label{fig:cnoidalhOrdre2}}
 \end{figure}
 
 \indent The results show the existence of modeling or programming errors. In both cases tested, the analytical solution is not preserved : we observe a strong dissipation of the solution, and, in the solitary wave case, an inversion of the velocity that causes the formation of secondary waves. The utilization of a higher-order solver for the Finite Volume scheme did not correct this last problem, but showed a lower dissipation.

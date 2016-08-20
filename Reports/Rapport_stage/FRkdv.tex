@@ -1,11 +1,12 @@
 \section{L'équation de KdV}
 \label{sec:KdV}
+%%% Corrigé mais à revoir analyse d'echelle
 
 \subsection{Le modèle}
 
-\indent Le premier modèle de propagation d'ondes étudié et implémenté dans ce projet est l'équation de Korteweg-de Bries (KdV) , qui prend en compte les effets non linéaires et dispersives et qui est une bonne approximation pour des ondes de petite amplitude et large longueur. \cite{BBM1971}
+\indent Le premier modèle de propagation d'ondes étudié et implémenté dans ce projet est l'équation de Korteweg-de Bries (KdV) , qui prend en compte les effets non linéaires et dispersives et qui est une bonne approximation pour des ondes de petite amplitude et grande longueur. \cite{BBM1971}
 
- \indent Plusieurs formes de cette équation peuvent être trouvées dans la littérature, variant notamment dans les facteurs d'échelle pour chacun des processus physiques présents dans l'équation (non linéarité et dispersion). On va considérer la formulation présentée par \cite{BBM1971}, qui est écrite en termes de variables sans dimensions mais non échallonées : 
+ \indent Plusieurs formes de cette équation peuvent être trouvées dans la littérature, variant notamment dans les coefficients d'échelle pour chacun des processus physiques présents dans l'équation (non linéarité et dispersion). On considère la formulation présentée par \cite{BBM1971}, écrite en termes de variables sans dimensions mais non échallonées : 
 
 \begin{equation*}
     u_t + u_x + (u^2)_x + u_{xxx} = 0
@@ -13,7 +14,7 @@
 
 \subsection{Discrétisation}
 
-\indent Le problème qu'on veut résoudre, avec une condition initial $\Phi$ et des conditions aux bords appropriées, est
+\indent Le problème qu'on veut résoudre, avec une condition initiale $\Phi$ et des conditions aux bords appropriées, est
 
 \begin{equation*}
 \begin{cases}
@@ -23,16 +24,16 @@
 \end{cases}
 \end{equation*}
 
-\indent Dans un premier moment, pour valider l'implémentation du modèle, sans influence des bords, on va considérer des conditions aux bords périodiques, ou des conditions de Dirichlet et/ou de Neumann homogènes mais suffisamment éloignées de l'onde (c'est-à-dire, du support de la solution).
+\indent Dans un premier moment, pour valider l'implémentation du modèle, sans influence des bords, on considère des conditions aux bords périodiques, ou des conditions de Dirichlet et/ou de Neumann homogènes mais suffisamment éloignées de l'onde (c'est-à-dire, du support de la solution).
 
-\indent La résolution numérique du problème sera faite avec un schéma de \emph{splitting}, en séparant les termes d'advection et de dispersion. Alors, en définissant les opérateurs
+\indent La résolution numérique du problème est faite avec un schéma de \emph{splitting}, en séparant les termes d'advection et de dispersion. Alors, en définissant les opérateurs
 
-\begin{gather*}
-	T_a(u) = u_t + u_x + (u^2)_x \\
+\begin{equation*}
+	T_a(u) = u_t + u_x + (u^2)_x, \qquad
 	T_d(u) = u_t + u_{xxx}
-\end{gather*}
+\end{equation*}
 
- \noindent on va résoudre, dans chaque pas de temps $[t_n,t_{n+1}]$ :
+ \noindent on résout, dans chaque pas de temps $[t_n,t_{n+1}]$ :
  
 \begin{equation*}
 \begin{cases}
@@ -51,22 +52,22 @@
 
 \begin{equation}
   \label{eq:conservationLaw}
-	v_t + f(v)_x = 0, \ \ f(v) = v + v^2
+	v_t + f(v)_x = 0,  \qquad f(v) = v + v^2
 \end{equation}
 
-\indent Cette équation sera résolue avec une méthode de volumes finis, avec les cellules $[x_{i-1/2}, x_{i+1/2}]$ centrées aux points discrets $x_i$ et avec des valeurs moyens égales à la solution dans ces points. La dérivée spatiale dans \eqref{eq:conservationLaw} sera discretisée avec une méthode de Runge-Kutta d'ordre 4 :
+\indent Cette équation est résolue avec une méthode de volumes finis, où les cellules $[x_{i-1/2}, x_{i+1/2}]$ sont centrées dans les points discrets $x_i$ et avec des valeurs moyens de $u$ égales à la solution dans ces points. La dérivée spatiale dans \eqref{eq:conservationLaw} est discretisée avec une méthode de Runge-Kutta d'ordre 4 :
 
 \begin{equation*}
 \begin{gathered}
-k_1 = - f(v_i^n)_x \\
+k_1 = - f(v_i^n)_x, \qquad
 k_2 = - f\left(v_i^n + k_1\frac{\Delta t }{2}\right)_x \\
-k_3 = - f\left(v_i^n + k_2\frac{\Delta t }{2}\right)_x \\
+k_3 = - f\left(v_i^n + k_2\frac{\Delta t }{2}\right)_x, \qquad
 k_4 = - f(v_i^n + k_3 \Delta t)_x \\
 v_i^{n+1} = v_i^n + \frac{\Delta t}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 \end{gathered}
 \end{equation*}
 
-\noindent et la dérivée spatiale sera approximée en termes du flot dans les interfaces de las cellules :
+\noindent et la dérivée spatiale est approximée en termes du flot dans les interfaces de las cellules :
 
 \begin{equation*}
 f(v_i^n)_x = \frac{f\left(v_{i+1/2}^n\right) - f\left(v_{i-1/2}^n\right)}{\Delta x}
@@ -110,7 +111,7 @@ v^+ \ ,\ \ f'(v^+) < 0
 
 \subsubsection{Deuxième pas du \emph{splitting} - dispersion}
 
-\indent Deux schémas seront proposés pour la résolution du deuxième pas de l'équation de KdV :
+\indent Deux schémas sont proposés pour la résolution du deuxième pas de l'équation de KdV :
 
 \begin{equation}
 	\label{eq:dispersion}
@@ -139,7 +140,7 @@ v^+ \ ,\ \ f'(v^+) < 0
 
 \paragraph{Le cas non périodique}
 
-\indent Dans ce cas, l'équation \eqref{eq:dispersion} sera résolue avec un schéma de différences finies implicite, avec une discrétisation de quatrième ordre de la troisième dérivée spatiales, sauf dans les points les plus proches des bords, pour lesquels un schéma décentré  d'ordre 1 sera utilisé :
+\indent Dans ce cas, on discrétise l'équation \eqref{eq:dispersion} avec un schéma de différences finies implicite de quatrième ordre pour la troisième dérivée spatiale, sauf dans les points les plus proches des bords, pour lesquels un schéma décentré  d'ordre 1 est utilisé :
 
 \begin{equation*}
 \begin{gathered}
@@ -149,17 +150,17 @@ v^+ \ ,\ \ f'(v^+) < 0
 \end{gathered} 
 \end{equation*}
 
-\noindent ce qui ramène à la résolution d'un système linéaire, avec les modifications appropriés pour prendre en compte les conditions aux bords.
+\indent Cette discrétisation ramène à la résolution d'un système linéaire, pour lequel on fait les modifications appropriées pour prendre en compte les conditions aux bords.
 
 \subsubsection{Choix de la taille de maille}
 
-\indent Le pas de temps a été choisi en se basant sur le premier pas du schéma de \emph{splitting}. Dans la forme non conservative, l'équation \eqref{eq:conservationLaw} peut être écrite comme
+\indent On a implémenté les méthodes décrites ci-dessus avec un pas de temps variable, choisi en se basant sur le premier pas du schéma de \emph{splitting}. Dans la forme non conservative, l'équation \eqref{eq:conservationLaw} peut être écrite comme
 
 \begin{equation*}
 v_t +  (1+2v)v_x = 0
 \end{equation*}
 
-\noindent ce qui s'agite d'un problème d'advection avec une vitesse $1+2v$.
+\noindent ce qui s'agit d'un problème d'advection avec une vitesse $1+2v$.
 
 \indent Les pas spatial et temporal doivent vérifier la condition CFL :
 
@@ -167,7 +168,7 @@ v_t +  (1+2v)v_x = 0
 (1+2v)\frac{\Delta t}{\Delta x} \leq 1
 \end{equation*}
 
-\noindent pour éviter des comportements non physiques (e.g. création de masse). Alors, dans chaque pas de temps, on va choisir, pur un $\epsilon$ petit :
+\noindent pour éviter des comportements non physiques (e.g. création de masse). Alors, dans chaque pas de temps, on choisit, pour un $\epsilon$ petit :
 
 \begin{equation*}
 \Delta t = \frac{\Delta x}{1+2\max\limits_{x}|v|} - \epsilon
@@ -175,7 +176,7 @@ v_t +  (1+2v)v_x = 0
 
 \subsection{Analyse d'échelle}
 
-\indent En envisageant la correcte simulation des phénomènes physiques qui jouent un rôle dans l'équation de KdV, la solution initiale doit satisfaire les hypothèses faites lors de la dérivation du modèle. Ayant cet objectif en tête, on fait des les paragraphes suivants une analyse d'échelle en suivant les arguments présentés par \cite{BBM1971}. Cette analyse nous permettra d'étudier la validité physique du modèle et de dériver un critère pour sélectionner les conditions initiales pour quelques exemples de simulations.
+\indent En envisageant la correcte simulation des phénomènes physiques qui jouent un rôle dans l'équation de KdV, la solution initiale doit satisfaire les hypothèses faites lors de la dérivation du modèle. Ayant cet objectif en tête, on fait dans les paragraphes suivants une analyse d'échelle en suivant les arguments présentés par \cite{BBM1971}. Cette analyse nous permettra d'étudier la validité physique du modèle et de dériver un critère pour sélectionner les conditions initiales pour quelques exemples de simulations numériques.
 
 \indent On veut écrire l'équation de KdV dans la forme suivante (sans dimension et échallonée), selon la description de \cite{BBM1971} :
 
@@ -186,34 +187,43 @@ U_T + U_X + \frac{\epsilon}{2} (U^2)_X + \epsilon\alpha^2U_{XXX} = 0
 
 \noindent et la lier aux paramètres du modèle d'ondes de surface dans forme dimensionnelle \cite{Khorsand2014}
 
-\begin{equation*}
-    u^*_{t^*} + c_0u^*_{x^*} + \frac{3}{4}\frac{c_0}{h_0}({u^*}^2)_{x^*} + \frac{1}{6}c_0h_0^2u^*_{x^*x^*x^*} = 0 
-\end{equation*}
-
-\noindent où le $\cdot^*$ indique les variables physiques, $h_0$ la profondeur de l'eau non perturbée pour un fond plat, et $c_0 = \sqrt{gh_0}$ la vitesse d'onde longue.
-
-\subsubsection{Caractérisation de la non linéarité}
-
-\indent D'après \cite{BBM1971}, la non linéarité est caractérisée par un paramètre $\epsilon$ tel que las caractéristiques sont écrites dans la forme
-
-$$ \frac{1}{c_0} \frac{dx}{dt} = 1+ bu$$
-
-\noindent alors on peut choisir un $\epsilon \ll 1$ tel que  $bu=\epsilon U$, avec $u$ d'ordre 1. Pour le cas particulier d'ondes d'eau, ceci peut être représenté par
-
-$$ \frac{1}{c_0} \frac{dx}{dt} = 1 + \frac{3}{2h_0}u$$
-
-\noindent alors 
-
 \begin{equation}
-\label{eq:analysisb}
-b = \frac{3}{2h_0}
-\end{equation} 
+\label{eq:physiqueKdV}
+    u^*_{t^*} + c_0u^*_{x^*} + \frac{3}{4}\frac{c_0}{h_0}({u^*}^2)_{x^*} + \frac{1}{6}c_0h_0^2u^*_{x^*x^*x^*} = 0 
+\end{equation}
 
-\indent Ce paramètre sera utilisé dans les arguments suivants.
+\noindent où $\cdot^*$ indique les variables physiques, $h_0$ la profondeur de l'eau non perturbée pour un fond plat, et $c_0 = \sqrt{gh_0}$ la vitesse d'onde longue.
 
-\subsubsection{Caractérisation de la dispersion}
+%\subsubsection{Caractérisation de la non linéarité}
+%
+%\indent D'après \cite{BBM1971}, la non linéarité est caractérisée par un paramètre $\epsilon$ tel que les caractéristiques sont écrites dans la forme
+%
+%$$ \frac{1}{c_0} \frac{dx^*}{dt^*} = 1+ bu^*$$
+%
+%\noindent alors on peut choisir un $\epsilon \ll 1$ tel que  $bu=\epsilon U$, avec $u$ d'ordre 1. Pour le cas particulier d'ondes d'eau, ceci peut être représenté par
+%
+%$$ \frac{1}{c_0} \frac{dx}{dt} = 1 + \frac{3}{2h_0}u$$
+%
+%\noindent alors 
+%
+%\begin{equation}
+%\label{eq:analysisb}
+%b = \frac{3}{2h_0}
+%\end{equation} 
+%
+%\indent Ce paramètre sera utilisé dans les arguments suivants.
+%
+%\subsubsection{Caractérisation de la dispersion}
 
-\indent La caractérisation de la dispersion vient de la dérivation de l'équation de KdV. D'après \cite{BBM1971}, si la propagation de l'onde suit une loi de la forme
+
+\indent D'après \cite{BBM1971}, la non linéarité est caractérisée par un paramètre $\epsilon \ll 1$ tel que les caractéristiques sont écrites dans la forme
+
+$$ \frac{1}{c_0} \frac{dx^*}{dt^*} = 1+ bu^*$$
+
+\noindent et $bu*=\epsilon U$, avec $u$ d'ordre 1. 
+
+
+\indent La caractérisation de la dispersion, à son tour, vient de la dérivation de l'équation de KdV. D'après \cite{BBM1971}, si la propagation de l'onde suit une loi de la forme
 
 $$ u^*_{t^*} + u^*u^*_{x^*}+(\mathcal{L} u^*)_{x^*} = 0$$
 
@@ -224,7 +234,7 @@ $$ u^*_{t^*} + u^*u^*_{x^*}+(\mathcal{L} u^*)_{x^*} = 0$$
 c(\kappa) = c_0 + c_0 \sum_{n=1}^{\infty}A_n\epsilon^n\kappa^{2n}
 \end{equation}
 
-\noindent peut être approchée par  $c(\kappa) = c_0(1-\kappa^2)$, ce qui motive les remplacements $ X=\sqrt{\epsilon}x^*$, $T =c_0 \sqrt{\epsilon} t^*$, et $u^* = \frac{\epsilon}{ b} U$ pour obtenir l'équation équivalente   
+\noindent peut être approximée par  $c(\kappa) = c_0(1-\kappa^2)$, ce qui motive les remplacements $ X=\sqrt{\epsilon}x^*$, $T =c_0 \sqrt{\epsilon} t^*$, et $u^* = \frac{\epsilon}{ b} U$ pour obtenir l'équation équivalente   
 
 %, ce qui est équivalent à
 
@@ -254,18 +264,23 @@ c(\kappa) = c_0 + c_0 \sum_{n=1}^{\infty}A_n\epsilon^n\kappa^{2n}
 
 \noindent et si les termes pour $n\geq2$ sont négligeables (ce qui est le cas pour $\epsilon \ll 1 $) et si on suppose que toutes les dérivées de $U$ sont de la même ordre de magnitude, alors on obtient
 
-\begin{align*}
-    \mathcal{L}_\epsilon U &= U + A_n \epsilon \frac{\partial^2 U}{\partial x^2} \\
-    &= U - \alpha^2 \epsilon \frac{\partial^2 U}{\partial x^2} \\
-\end{align*}
+\begin{equation*}
+    \mathcal{L}_\epsilon U = U + A_n \epsilon \frac{\partial^2 U}{\partial x^2} = U - \alpha^2 \epsilon \frac{\partial^2 U}{\partial x^2}
+\end{equation*}
 
 \noindent avec $\alpha^2 = - A_n$. En remplaçant dans l'équation échelonnée \eqref{eq:scaledEquation}, on obtient
 
 $$U_T + U_X + \frac{\epsilon}{2} (U^2)_X + \epsilon\alpha^2U_{XXX} = 0$$
 
-\indent L'application du même échelonnement $ X=\sqrt{\epsilon}x^*$, $T =c_0 \sqrt{\epsilon} t^*$, et $u^* = \frac{\epsilon}{ b} U$ à l'équation physique fournit $$U_T + U_X + \frac{3\epsilon}{4h_0b} (U^2)_X + \frac{h_0^2\epsilon}{6}U_{XXX} = 0$$ 
+\indent L'application du même échelonnement $ X=\sqrt{\epsilon}x^*$, $T =c_0 \sqrt{\epsilon} t^*$, et $u^* = \frac{\epsilon}{ b} U$ à l'équation physique \eqref{eq:physiqueKdV} fournit $$U_T + U_X + \frac{3\epsilon}{4h_0b} (U^2)_X + \frac{h_0^2\epsilon}{6}U_{XXX} = 0$$ 
 
-\noindent d'où, en comparant avec  \eqref{eq:scaledKdV}, on conclue que  $ \alpha^2 = \frac{h_0^2}{6} $.
+\noindent d'où, en comparant avec  \eqref{eq:scaledKdV}, on conclue que 
+
+\begin{equation}
+\label{eq:analysisb}
+b = \frac{3}{2h_0}, \qquad \alpha^2 = \frac{h_0^2}{6}
+\end{equation} 
+
 
 \subsection{Le critère pour choisir une solution initiale appropriée}
 
@@ -281,7 +296,7 @@ $$c(\kappa) = c_0 \left(\frac{tanh(\kappa h_0)}{\kappa h_0}\right) = c_0 \left(1
 
 \noindent d'où on voit qu'il faut choisir $\kappa h_0 \ll 1$ pour que les dérivées d'ordre $n>1$ soient négligeables.
 
-\indent En dénotant la longueur d'onde par $\lambda$, et en choisissant une constante $B$ telle que $\kappa h_0  =  B \ll 1$, on a que $h_0 = \frac{B\lambda}{2\pi}$, et, de la relation $\alpha^2 = \frac{h_0^2}{6}$, on obtient $\alpha^2 = \frac{B^2\lambda^2}{6(2\pi)^2}$.
+\indent En dénotant la longueur d'onde par $\lambda$, et en choisissant une constante $B$ telle que $\kappa h_0  =  B \ll 1$, on a que $$h_0 = \frac{B\lambda}{2\pi}$$ et, de la relation $\alpha^2 = \frac{h_0^2}{6}$, on obtient $\alpha^2 = \frac{B^2\lambda^2}{6(2\pi)^2}$.
 
 \subsubsection{Choix de l'amplitude de l'onde}
 
@@ -291,14 +306,14 @@ $$c(\kappa) = c_0 \left(\frac{tanh(\kappa h_0)}{\kappa h_0}\right) = c_0 \left(1
 A = \frac{2}{3}\epsilon h_0
 \end{equation*}
 
-\noindent est l'amplitude de l'onde. La détermination de l'amplitude est fait en considérant $\epsilon \ll 1$. 
+\noindent est l'amplitude de l'onde. La détermination de l'amplitude est faite en considérant $\epsilon \ll 1$. 
 
 \subsubsection{Résumé}
 
-\indent Alors, le critère proposé ici pour construire la condition initial pour l'équation de KdV est 
+\indent Alors, le critère proposé ici pour construire la condition initiale pour l'équation de KdV est 
 
 \begin{enumerate}
-\item Adopter une profondeur $h_0$ (e.g. à partir du data disponible);
+\item Adopter une profondeur $h_0$ (e.g. à partir des données disponibles);
 \item Choisir une amplitude d'onde $A = \frac{2}{3}h_0\epsilon$, alors la restriction $\epsilon \ll 1$ ramène à $\frac{A}{h_0} = \frac{2}{3}\epsilon \ll 1$.
 \item Choisir une longueur d'onde $\lambda$ telle que $\kappa h_0 = \frac{2\pi}{\lambda}h_0 = B \ll 1$, ce qui ramène à $\frac{h_0}{\lambda} = \frac{B}{2\pi} \ll 1$
 \item L'effet de dispersion sur la non linéarité peut être mesurée par le quotient des respectifs coefficients, $\frac{\epsilon \alpha^2}{\epsilon} = \alpha^2$.
@@ -315,7 +330,7 @@ h_0^{valid} = \left[ \frac{3A}{2\epsilon}, \frac{B\lambda}{2\pi}\right]
 
 \subsection{Tests numériques}
 
-\indent On présente ci-dessous deux examples pour tester la résolution numérique proposée pour l'équation de KdV. Ces exemples sont inspirés dans ceux présentés dans \cite{conservationLaws2002}: les solutions initiales sont des gaussiennes (suffisamment lointaines des bords afin d'éviter son influence) avec des différentes amplitudes et longueurs (la longueur d'onde est adoptée comme étant l'écart standard). L'idée est de vèrifier l'influence de ces caractéristiques sur les effets non linéaires et dispersives, et aussi de vérifier le range de profondeur d'eau dans lequel la propagation de chaque solution peut être modelée par l'équation de KdV (selon l'expression \ref{eq:hvalid}). Les deux tests ont été faits en considérant $B = 0.1$ et $\epsilon = 0.001$.
+\indent On présente ci-dessous deux examples pour tester la résolution numérique proposée pour l'équation de KdV. Ces exemples sont inspirés dans ceux présentés dans \cite{conservationLaws2002}: les solutions initiales sont des gaussiennes (la solution est non périodique, mais suffisamment lointaine des bords afin d'éviter son influence) avec des différentes amplitudes et longueurs (la longueur d'onde est adoptée comme étant l'écart standard). L'idée est de vèrifier l'influence de ces caractéristiques sur les effets non linéaires et dispersives, et aussi de vérifier le range de profondeur d'eau dans lequel la propagation de chaque solution peut être modelée par l'équation de KdV (selon l'expression \ref{eq:hvalid}). Les deux tests ont été faits en considérant $B = 0.1$ et $\epsilon = 0.001$.
 
 \indent Les solutions initiales utilisées sont
 
