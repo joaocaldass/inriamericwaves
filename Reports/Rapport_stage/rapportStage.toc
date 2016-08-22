@@ -42,17 +42,17 @@
 \contentsline {paragraph}{Conclusions partiales :}{45}
 \contentsline {section}{\numberline {3}Les \IeC {\'e}quations de Serre}{45}
 \contentsline {subsection}{\numberline {3.1}Le mod\IeC {\`e}le}{45}
-\contentsline {subsubsection}{\numberline {3.1.1}Les \IeC {\'e}quations de Serre dans les variables $(h,hu)$}{45}
+\contentsline {subsubsection}{\numberline {3.1.1}Les \IeC {\'e}quations de Serre dans les variables $(h,hu)$}{46}
 \contentsline {subsection}{\numberline {3.2}Discr\IeC {\'e}tisation}{47}
 \contentsline {subsubsection}{\numberline {3.2.1}Premi\IeC {\`e}re syst\IeC {\`e}me d'\IeC {\'e}quations (pas d'advection)}{48}
-\contentsline {subsubsection}{\numberline {3.2.2}Deuxi\IeC {\`e}me syst\IeC {\`e}me d'\IeC {\'e}quations (pas de dispersion)}{48}
-\contentsline {subsection}{\numberline {3.3}Tests num\IeC {\'e}riques}{49}
-\contentsline {subsubsection}{\numberline {3.3.1}Description de la solution initiale}{49}
-\contentsline {subsubsection}{\numberline {3.3.2}Results}{50}
-\contentsline {section}{\numberline {4}Premier \IeC {\'e}tude des conditions aux limites transparentes}{52}
-\contentsline {subsection}{\numberline {4.1}Introduction et quelques exemples de motivation}{52}
+\contentsline {subsubsection}{\numberline {3.2.2}Deuxi\IeC {\`e}me syst\IeC {\`e}me d'\IeC {\'e}quations (pas de dispersion)}{49}
+\contentsline {subsection}{\numberline {3.3}Tests num\IeC {\'e}riques}{50}
+\contentsline {subsubsection}{\numberline {3.3.1}Description de la solution initiale}{50}
+\contentsline {subsubsection}{\numberline {3.3.2}R\IeC {\'e}sultats}{51}
+\contentsline {section}{\numberline {4}Premier \IeC {\'e}tude des conditions aux limites transparentes}{53}
+\contentsline {subsection}{\numberline {4.1}Introduction et quelques exemples de motivation}{53}
 \contentsline {subsection}{\numberline {4.2}Optimisation de conditions aux limites de Robin pour simuler des TBCs}{57}
-\contentsline {subsubsection}{\numberline {4.2.1}Conditions aux limites de Robin jusqu'\IeC {\`a} la d\IeC {\'e}riv\IeC {\'e}e premi\IeC {\`e}re}{57}
+\contentsline {subsubsection}{\numberline {4.2.1}Conditions aux limites de Robin jusqu'\IeC {\`a} la d\IeC {\'e}riv\IeC {\'e}e premi\IeC {\`e}re}{58}
 \contentsline {subsubsection}{\numberline {4.2.2}Conditions aux limites de Robin jusqu'\IeC {\`a} la d\IeC {\'e}riv\IeC {\'e}e seconde}{60}
 \contentsline {subsubsection}{\numberline {4.2.3}Conclusion partiale}{61}
 \contentsline {section}{\numberline {5}Conditions aux limites transparentes approxim\IeC {\'e}es pour l'\IeC {\'e}quation de dispersion}{62}
@@ -60,12 +60,12 @@
 \contentsline {subsubsection}{\numberline {5.1.1}Tests de validation de l'approximation}{64}
 \contentsline {subsection}{\numberline {5.2}Approximation des TBCs utilisant un polyn\IeC {\^o}me lin\IeC {\'e}aire}{67}
 \contentsline {subsubsection}{\numberline {5.2.1}Tests de validation de l'approximation}{68}
-\contentsline {subsection}{\numberline {5.3}Conclusion partiale}{68}
+\contentsline {subsection}{\numberline {5.3}Conclusion partiale}{69}
 \contentsline {section}{\numberline {6}Application des TBCs approxim\IeC {\'e}es \IeC {\`a} une M\IeC {\'e}thode de D\IeC {\'e}composition de Domaine}{69}
-\contentsline {subsection}{\numberline {6.1}The Schwarz Methods}{69}
+\contentsline {subsection}{\numberline {6.1}The Schwarz Methods}{70}
 \contentsline {subsection}{\numberline {6.2}ASM avec des TBCs approxim\IeC {\'e}es pour l'\IeC {\'e}quation de dispersion}{71}
 \contentsline {paragraph}{Remarques sur la notation}{72}
-\contentsline {subsection}{\numberline {6.3}Discr\IeC {\'e}tisation du probl\IeC {\`e}me et erreur dans la solution converg\IeC {\'e}e}{72}
+\contentsline {subsection}{\numberline {6.3}Discr\IeC {\'e}tisation du probl\IeC {\`e}me et erreur dans la solution converg\IeC {\'e}e}{73}
 \contentsline {paragraph}{Remarque : modification de la solution de r\IeC {\'e}f\IeC {\'e}rence :}{74}
 \contentsline {subsubsection}{\numberline {6.3.1}Numerical verification of the error}{75}
 \contentsline {subsubsection}{\numberline {6.3.2}Corrections pour les TBCs approxim\IeC {\'e}es}{76}

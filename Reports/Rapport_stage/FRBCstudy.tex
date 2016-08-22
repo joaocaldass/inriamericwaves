@@ -3,13 +3,13 @@
 
 \subsection{Introduction et quelques exemples de motivation}
 
-\indent Le contenu présenté dans cette section est une introduction aux objectifs qu'on envisage dans ce stage, concernant l'étude des conditions aux limites transparentes (en anglais, \emph{transparent boundary conditions} - TBCs) afin de les appliquer à des méthodes de décomposition de domaine. Cet étude a été développé sur l'équation de KdV, parce que c'était, parmi les modèles étudiés et implémentés jusqu'au moment où on a commencé cette partie du projet, celui pour lequel on a obtenu la meilleure et mas fiable implémentation numérique. En plus, la linéarisation de l'équation de KdV est beaucoup plus évidente que pour les équations de Serre - comme on discutera plus tard, l'étude des TBCs pour des équations linéaires est beaucoup plus développé que pour les non linéaires.
+\indent Le contenu présenté dans cette section est une introduction aux objectifs qu'on envisage dans ce stage, concernant l'étude des conditions aux limites transparentes (en anglais, \emph{transparent boundary conditions} - TBCs) afin de les appliquer à des méthodes de décomposition de domaine (en anglais, \emph{domain decomposition methods} - DDMs) . Cet étude a été développé sur l'équation de KdV, parce que c'était, parmi les modèles étudiés et implémentés jusqu'au moment où on a commencé cette partie du projet, celui pour lequel on a obtenu la meilleure et mas fiable implémentation numérique. En plus, la linéarisation de l'équation de KdV est plus évidente que pour les équations de Serre - comme on discutera plus tard, l'étude des TBCs pour des équations linéaires est beaucoup plus développé que pour les non linéaires.
 
 \indent Les TBCs sons construites de façon que la solution calculée dans le domaine comptuationnel fini $\Omega$ coïncide avec la solution du problème dans tout l'espace, restreinte à $\Omega$. En général, ces conditions aux bords son non locales en temps, alors elles doivent être approximés pour permettre une implémentation numérique efficiente \cite{Xavieretal2008}.
 
 %\indent Avant de commencer l'étude de ce sujet pour les modèles de propagation d'ondes, et pour introduire le contenu théorique lié aux TBCs (en suivant  \cite{Japhet2003}), on va présenter et implémenter un example simple, avec de solution y TBCs analytiques connues. On va considérer le problème 1D suivant :
 
-\indent Les TBCs exactes pour le problème
+\indent Pour le problème
 
 \begin{equation*}
 \begin{cases}
@@ -18,30 +18,33 @@ u = 0 \ \ \text{on} \ \ \partial\Omega\\
 \end{cases}
 \end{equation*}
 
-\noindent où $\mathcal{A}$ est un opérateur différentiel partiel, sont données par \cite{Japhet2003}
+\noindent où $\mathcal{A}$ est un opérateur différentiel partiel, les TBCs exactes dans $\Gamma \subset \partial\Omega$ (par example, dans une DDM, $\Gamma$ est l'interface entre deux subdomaines) sont données par \cite{Japhet2003}
 
 \begin{equation}
 \label{eq:exactTBC}
-B_i(u) = \frac{\partial}{\partial n_i}u + D2N(u) = 0
+B(u) = \frac{\partial}{\partial n}u + D2N(u) = 0
 \end{equation}
 
-\noindent où $\partial n_i$ est le vecteur normal sortant à $\Omega_i$ sur $\Gamma$ , et l'opérateur D2N (\emph{Dirichlet to Neumann}) est défini par
+\noindent où $\partial n$ est le vecteur normal sortant à $\Omega$ sur $\Gamma$ , et l'opérateur D2N (\emph{Dirichlet to Neumann}) est défini par
 
-$$\left. D2N : \alpha(x) \mapsto \frac{\partial}{\partial n_i^c}v \right\rvert_\Gamma$$
+$$\left. D2N : \alpha(x) \mapsto \frac{\partial}{\partial n^c}v \right\rvert_{\Gamma}$$
 
-\noindent avec $\alpha$ défini sur $\Gamma$. $v$ est solution du problème suivant,m résolu dans le complémentaire de $\Omega_i$, dénoté $\Omega_i^c$ : 
+\noindent avec $\alpha$ défini sur $\Gamma$. $v$ est solution du problème suivant, résolu dans le complémentaire de $\Omega$, dénoté $\Omega^c$ : 
 
 \begin{equation*}
 \begin{cases}
-\mathcal{A}(v) = f \ \ \text{in} \ \ \Omega_i^c\\
-v = 0 \ \ \text{on} \ \ \partial \Omega_i \backslash \Gamma \\
+\mathcal{A}(v) = f \ \ \text{in} \ \ \Omega^c\\
+v = 0 \ \ \text{on} \ \ \partial \Omega \backslash \Gamma \\
 v = \alpha \ \ \text{on} \ \ \Gamma
 \end{cases}
 \end{equation*}
 
 \indent Ainsi, on peut interpréter interpréter l'opérateur D2N comme une imposition de continuité de la dérivée de la solution dans la direction normale à l'interface. Par ailleurs, comme son nom indique, cet opérateur construit une dérivée (une condition de Neumann) à partir de la solution dans $\Omega_i^c$ (une condition de Dirichlet).
 
-\indent Présentons d'abord un example simple, avec de solution y TBCs analytiques connues. On va considérer le problème 1D suivant :
+
+
+%%%%%%%%%%%% REVISE jUSQU'ICI
+\indent Présentons d'abord un example simple, dont la solution y la TBC analytiques sont connues. On va considérer le problème 1D suivant :
 
 \begin{equation*}
 \begin{cases}
