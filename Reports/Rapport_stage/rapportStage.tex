@@ -12,7 +12,7 @@
 \usepackage{indentfirst} % indent first line after section title
 \usepackage{breqn} %break inline equation
 \usepackage{tikz}
-\usepackage{refcheck}
+%\usepackage{refcheck}
 \usepackage{cases} %numcases and subnumcases
 \usepackage{mvmsh} % Bordeaux
 
@@ -50,6 +50,8 @@
 \tableofcontents
 \newpage
 
+\input{intro_general}
+
 \newpage
 \vspace*{\fill}
 \part{Inria Bordeaux - Modèles d'adaptation de maillages}
@@ -61,6 +63,7 @@
  \input{Bordeaux/applicationLS}
  \input{Bordeaux/applicationPhys}
  \input{Bordeaux/nonstationnaire}
+ \input{Bordeaux/conclusionBordeaux}
 
 \newpage
 \vspace*{\fill}
@@ -71,6 +74,11 @@
 \input{FRkdv}
 \input{FRserre}
 \input{FRBCstudy}
+\input{FRTBCDispersion}
 \input{FRDDM}
+\input{FRconclusion}
+
+\newpage
+\input{bilan}
 \bibliography{../may/biblio}
 \end{document}

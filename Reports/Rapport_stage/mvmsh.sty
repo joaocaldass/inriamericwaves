@@ -1,0 +1,38 @@
+\ProvidesPackage{mvmsh}[25/09/2015 mvmsh Package]
+
+\newcommand{\vecx}{\boldsymbol{x}}
+\newcommand{\vecxi}{\boldsymbol{\xi}}
+\newcommand{\vecdelta}{\boldsymbol{\delta}}
+\newcommand{\vecg}{\boldsymbol{g}}
+\newcommand{\vecn}{\boldsymbol{n}}
+\newcommand{\vecb}{\boldsymbol{b}}
+\newcommand{\vecr}{\boldsymbol{r}}
+
+\newcommand{\normT}[1]{\vecn_#1^T}
+
+\newcommand{\nabref}{\nabla_{\xi\eta}}
+\newcommand{\pxi}{\partial \xi}
+\newcommand{\peta}{\partial \eta}
+
+\newcommand{\phii}{\varphi_i}
+\newcommand{\phij}{\varphi_j}
+
+\newcommand{\dom}{\Omega}
+\newcommand{\domRef}{\Omega_{\vecxi}}
+\newcommand{\bordRef}{\partial \domRef}
+
+\newcommand{\iDom}[1]{\int_{\domRef}{#1 d\vecxi}}
+\newcommand{\iDomh}[1]{\int_{\domRef^h}{#1 d\vecxi}}
+\newcommand{\iBord}[1]{\int_{\bordRef}{#1 ds}}
+\newcommand{\iT}[1]{\int_{T}{#1 d\vecxi}}
+
+\newcommand{\Ks}{\tilde{K}}
+\newcommand{\Tt}{\tilde{T}}
+\newcommand{\To}{\overline{T}}
+\newcommand{\Nn}{N_{neig}}
+
+\newcommand{\hdes}{h_{des}}
+\newcommand{\hm}{h_{min}}
+\newcommand{\hM}{h_{max}}
+
+\newcommand{\met}{\mathcal{M}}
