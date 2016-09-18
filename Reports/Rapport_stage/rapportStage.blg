@@ -3,50 +3,50 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: rapportStage.aux
 The style file: abbrv.bst
 Database file #1: ../may/biblio.bib
-Repeated entry---line 374 of file ../may/biblio.bib
+Repeated entry---line 388 of file ../may/biblio.bib
  : %@article{leo
  :              ,
 I'm skipping whatever remains of this entry
 Warning--empty note in leo
-You've used 25 entries,
+You've used 26 entries,
             2118 wiz_defined-function locations,
-            658 strings with 8643 characters,
-and the built_in function-call counts, 7676 in all, are:
-= -- 742
-> -- 364
+            662 strings with 8830 characters,
+and the built_in function-call counts, 7950 in all, are:
+= -- 768
+> -- 387
 < -- 4
-+ -- 140
-- -- 115
-* -- 481
-:= -- 1320
-add.period$ -- 79
-call.type$ -- 25
-change.case$ -- 126
++ -- 149
+- -- 123
+* -- 502
+:= -- 1375
+add.period$ -- 82
+call.type$ -- 26
+change.case$ -- 133
 chr.to.int$ -- 0
-cite$ -- 26
-duplicate$ -- 297
-empty$ -- 599
-format.name$ -- 115
-if$ -- 1619
+cite$ -- 27
+duplicate$ -- 303
+empty$ -- 610
+format.name$ -- 123
+if$ -- 1669
 int.to.chr$ -- 0
-int.to.str$ -- 25
+int.to.str$ -- 26
 missing$ -- 18
-newline$ -- 130
-num.names$ -- 58
-pop$ -- 130
+newline$ -- 135
+num.names$ -- 60
+pop$ -- 134
 preamble$ -- 1
-purify$ -- 102
+purify$ -- 108
 quote$ -- 0
-skip$ -- 226
+skip$ -- 231
 stack$ -- 0
-substring$ -- 398
+substring$ -- 403
 swap$ -- 65
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 98
+type$ -- 102
 warning$ -- 1
-while$ -- 71
-width$ -- 27
-write$ -- 270
+while$ -- 73
+width$ -- 28
+write$ -- 280
 (There was 1 error message)

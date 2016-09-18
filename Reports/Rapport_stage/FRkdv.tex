@@ -20,7 +20,7 @@
 \begin{cases}
     u_t + u_x + (u^2)_x + u_{xxx} = 0 \ , \ \ x \in [x_{min},x_{max}], \ \ t \in [0, t_{max}] \\
     u(x,0) = \Phi(x) \\
-    \text{+ boundary conditions}
+    \text{+ conditions aux limites}
 \end{cases}
 \end{equation*}
 
@@ -152,27 +152,27 @@ v^+ \ ,\ \ f'(v^+) < 0
 
 \indent Cette discrétisation ramène à la résolution d'un système linéaire, pour lequel on fait les modifications appropriées pour prendre en compte les conditions aux bords.
 
-\subsubsection{Choix de la taille de maille}
-
-\indent On a implémenté les méthodes décrites ci-dessus avec un pas de temps variable, choisi en se basant sur le premier pas du schéma de \emph{splitting}. Dans la forme non conservative, l'équation \eqref{eq:conservationLaw} peut être écrite comme
-
-\begin{equation*}
-v_t +  (1+2v)v_x = 0
-\end{equation*}
-
-\noindent ce qui s'agit d'un problème d'advection avec une vitesse $1+2v$.
-
-\indent Les pas spatial et temporal doivent vérifier la condition CFL :
-
-\begin{equation*}
-(1+2v)\frac{\Delta t}{\Delta x} \leq 1
-\end{equation*}
-
-\noindent pour éviter des comportements non physiques (e.g. création de masse). Alors, dans chaque pas de temps, on choisit, pour un $\epsilon$ petit :
-
-\begin{equation*}
-\Delta t = \frac{\Delta x}{1+2\max\limits_{x}|v|} - \epsilon
-\end{equation*}
+%\subsubsection{Choix de la taille de maille}
+%
+%\indent On a implémenté les méthodes décrites ci-dessus avec un pas de temps variable, choisi en se basant sur le premier pas du schéma de \emph{splitting}. Dans la forme non conservative, l'équation \eqref{eq:conservationLaw} peut être écrite comme
+%
+%\begin{equation*}
+%v_t +  (1+2v)v_x = 0
+%\end{equation*}
+%
+%\noindent ce qui s'agit d'un problème d'advection avec une vitesse $1+2v$.
+%
+%\indent Les pas spatial et temporal doivent vérifier la condition CFL :
+%
+%\begin{equation*}
+%(1+2v)\frac{\Delta t}{\Delta x} \leq 1
+%\end{equation*}
+%
+%\noindent pour éviter des comportements non physiques (e.g. création de masse). Alors, dans chaque pas de temps, on choisit, pour un $\epsilon$ petit :
+%
+%\begin{equation*}
+%\Delta t = \frac{\Delta x}{1+2\max\limits_{x}|v|} - \epsilon
+%\end{equation*}
 
 \subsection{Analyse d'échelle}
 

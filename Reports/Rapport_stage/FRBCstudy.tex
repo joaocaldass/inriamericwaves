@@ -191,10 +191,7 @@ $$B(u_1) = \frac{\partial}{\partial x}u_1 + D2N(u_1) = \frac{\partial}{\partial 
 \indent Afin de trouver les coefficients optimaux, on va tester plusieurs paires $(1,\beta/\alpha)$ (y compris les limites $\beta/\alpha \rightarrow 0$ et $\beta/\alpha \rightarrow \infty$, correspondant respectivement aux conditions de Dirichlet et de Neumann) et calculer l'erreur par rapport à la solution de référence $u_{ref}$, calculée dans le domaine $[-2L,2L]$. Deux erreurs seront calculées, pour chaque pas de temps $t_n$ :
 
 \begin{equation*}
-e_1^n = \sqrt{\sum_{i=0}^N{\left( u^n_i - (u_{ref})^n_i\right)^2}} 
-\end{equation*}
-
-\begin{equation*}
+e_1^n = \sqrt{\sum_{i=0}^N{\left( u^n_i - (u_{ref})^n_i\right)^2}} \qquad
 e_2^n =  u^n_N - (u_{ref})^n_N
 \end{equation*}
 

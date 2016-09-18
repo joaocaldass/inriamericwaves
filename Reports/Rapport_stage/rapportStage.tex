@@ -16,6 +16,7 @@
 \usepackage{cases} %numcases and subnumcases
 \usepackage{mvmsh} % Bordeaux
 
+
 \author{Joao Guilherme Caldas Steinstraesser}
 
 \captionsetup[subfigure]{labelformat=parens,labelsep=space,font = scriptsize}
@@ -47,15 +48,30 @@
 
 \begin{document}
 
-\tableofcontents
-\newpage
+\pagenumbering{gobble}
 
+\input{couverture}
+\newpage
+\input{synthese}
+
+\newpage
+\pagenumbering{arabic}% Arabic page numbers (and reset to 1)
+\setcounter{page}{4}
+\tableofcontents
+
+
+\newpage
+\input{remerciements}
+\newpage
+\input{resume}
+\newpage
 \input{intro_general}
 
 \newpage
 \vspace*{\fill}
 \part{Inria Bordeaux - Modèles d'adaptation de maillages}
 \vspace*{\fill}
+
 \newpage
 \input{Bordeaux/inria}
 \input{Bordeaux/introduction}
@@ -69,6 +85,7 @@
 \vspace*{\fill}
 \part{Meric / Inria Chile - Méthodes de Décomposition de Domaine}
 \vspace*{\fill}
+
 \input{FRinriameric}
 \input{FRintro}
 \input{FRkdv}
@@ -80,5 +97,6 @@
 
 \newpage
 \input{bilan}
+\newpage
 \bibliography{../may/biblio}
 \end{document}

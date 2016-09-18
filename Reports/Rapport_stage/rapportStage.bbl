@@ -15,7 +15,7 @@ L.~Arpaia and M.~Ricchiuto.
 \newblock RR-8666, <hal-01102124>.
 
 \bibitem{askes}
-H.~ASKES, L.~J. SLUYS, and B.~C.~C. JONG.
+H.~Askes, L.~J. Sluys, and B.~B.~C. Jong.
 \newblock {Remeshing techniques for R-adaptives and combined H/R-adaptive
   analysis with application to 2D/3D crack propagation}.
 \newblock {\em {European Congress on Computational Methods in Applied Sciences
@@ -43,6 +43,11 @@ P.~Bonneton, F.~Chazel, D.~Lannes, F.~Marche, and M.~Tissier.
 \newblock {A Splitting approach for the fully nonlinear and weakly dispersive
   Green-Naghdi model}.
 \newblock {\em J. Comput. Phys.}, 230:1479--1498, 2011.
+
+\bibitem{joao2016}
+J.~G. Caldas~Steinstraesser, R.~Cienfuegos, J.~D. Galaz~Mora, and A.~Rousseau.
+\newblock {Optimized Schwarz method for the linearized KdV equation}.
+\newblock working paper or preprint, Aug. 2016.
 
 \bibitem{CarterCienfuegos2011}
 J.~D. Carter and R.~Cienfuegos.
