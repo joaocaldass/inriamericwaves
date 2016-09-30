@@ -3,7 +3,7 @@
 
 \subsection{Description du problème}
 
-\indent On va faire la distinction entre deux domaines : 
+\indent On fait la distinction entre deux domaines : 
 
 \begin{itemize}
   \item \textbf{Domaine physique ou réel } (\(\vecx =(x,y)\)) : domaine déformable, noté \(\dom\);
@@ -16,7 +16,7 @@
   \vecx = \vecx(\vecxi)
 \end{equation*}
 
-\indent Dans le modèle utilisé, on va considérer que la position \(\vecx\) des noeuds du maillage est régie par l'équation
+\indent Dans le modèle utilisé, on considère que la position \(\vecx\) des noeuds du maillage est régie par l'équation
 
 \begin{equation*}
   %\label{eq:laplacien}
@@ -26,13 +26,13 @@
 \noindent où \(\nabref\) est le gradient par rapport aux coordonnées de référence et \(\omega\) est une fonction de \(\vecx\) qui contient l'information qui déterminera le mouvement des noeuds. Dans le travail développé au cours du stage, on a implémenté deux modèles différents pour le calcul de cette fonction : 
 
 \begin{enumerate}
-	\item Dans un première moment, on a implémenté utilisé dans \cite{arpaia} : en supposant qu'on fait l'adaptation par rapport à une fonction \(u\), \(\omega\) est donné par l'expression
+	\item Dans un première moment, on a implémenté le modèle utilisé dans \cite{arpaia} : en supposant qu'on fait l'adaptation par rapport à une fonction \(u\), \(\omega\) est donné par l'expression
 
 	\begin{equation*}
   		\omega(\vecx) = \sqrt{1 + \alpha ||\nabref u(\vecx)|| + \beta ||H(u)(\vecx)||}
 	\end{equation*}
 
-	\indent \(H(u)\) est le hessien de \(u\), et \(\alpha\) et \(\beta\) sont des paramètres choisis par l'utilisateur. Pour que ce choix soit moins dépendant du problème, on va toujours considérer les gradients et le hessiens normalisés.
+	\indent $\nabref u(\vecx)$ et \(H(u)\) sont respectivement le gradient et le hessien de \(u\) par rapport aux variables spatiales de référence, et \(\alpha\) et \(\beta\) sont des paramètres choisis par l'utilisateur. Pour que ce choix soit moins dépendant du problème, on considère les gradients et les hessiens normalisés.
 	
 	\item On a ensuite utilisé un modèle où on fournit directement à chaque noeud \(i\) la taille de maille \(\hdes\) qu'on désire, selon la formulation présentée par \cite{askes} : 
 	
@@ -57,9 +57,9 @@
 	\end{cases}
 \end{equation}
 
-\indent Ainsi, les conditions aux limites utilisées sont de deux types, de Dirichlet et de Neumann, définies sur des parties disjointes du bord, (\(\bordRef^D\) et \(\bordRef^N\), respectivement). Pour les conditions de Dirichlet, on impose \(\vecg = \vecxi\), indiquant que les points de \(\bordRef^D\) ne doivent pas bouger (ce qu'on impose, par exemple, dans les coins d'un domaine rectangulaire). En revanche, les conditions de Neumann (imposées par exemple dans les côtés du domaine), indiquent que les points de \(\bordRef^N\) doivent glisser sur le bord, i.e., bouger parallèlement  au bord (de façon que, dans notre exemple, le domaine reste toujours rectangulaire).
+\indent Ainsi, les conditions aux limites utilisées sont de deux types, de Dirichlet et de Neumann, définies sur des parties disjointes du bord, (\(\bordRef^D\) et \(\bordRef^N\), respectivement). Pour les conditions de Dirichlet, on impose \(\vecg = \vecxi\), indiquant que les points de \(\bordRef^D\) ne doivent pas bouger (ce qu'on impose, par exemple, dans les coins d'un domaine rectangulaire). En revanche, les conditions de Neumann (imposées par exemple dans les côtés du domaine rectangulaire), indiquent que les points de \(\bordRef^N\) doivent glisser sur le bord, i.e., bouger parallèlement à lui (de façon que, dans notre exemple, le domaine reste toujours rectangulaire).
 
-\indent La formulation faible du problème, avec une fonction test  \(v \in H_1^0(\domRef)\), s'écrit comme
+\indent La formulation faible du problème, avec une fonction test  \(v \in H_0^1(\domRef)\), s'écrit comme
 
 \begin{equation}
 	\label{eq:faible}
@@ -77,7 +77,7 @@
 
 \subsection{Discrétisation en éléments finis}
 
-\indent On utilise une discrétisation en élément finis P1, avec une base de fonctions \(\{\phii\}\) définis pour chacun des \(N\) noeuds du maillage. Ainsi, \(\vecx\) et la fonction test \(v \in H_0^1(\dom)\) se discrétisent sous la forme
+\indent On utilise une discrétisation en élément finis P1, avec une base de fonctions linéaires par morceaux \(\{\phii\}\) telles que $\phii(\vecx_i) = 1$ et $\phii(\vecx_j) = 0,\ \ i \neq j$, pour tous les $N$ noeuds du maillage. Ainsi, \(\vecx\) et la fonction test \(v \in H_0^1(\dom)\) se discrétisent sous la forme
 
 \begin{equation}
   \label{eq:u_disc}
@@ -86,6 +86,8 @@
   v_h = \sum_{i=1}^N{v_i\phii} 
   \end{gathered}
 \end{equation}
+
+\noindent où $x_i$, $y_i$ et $v_i$ sont les valeurs des coordonnées spatiales et de la fonction test sur le noeud $i$. 
 
 \indent En utilisant \eqref{eq:u_disc} dans \eqref{eq:faible}, on arrive à
 
@@ -103,12 +105,13 @@
 	\end{cases}
 \end{equation}
 
-\indent Les éléments de la matrice \(K\) ont la forme
+\noindent où les éléments de la matrice \(K\) ont la forme
 
 \begin{equation}
   k_{ij} = \iDomh{ \omega \nabref \phii \cdot \nabref \phij }
 \end{equation}
 
+\indent On propose une méthode itérative pour la résolution de ces systèmes linéaires, comme est décrit dans la sous-section \ref{subsec:jacobi}. 
 
 \subsection{Quelques éléments pour le calcul de \(K\)}
 \label{subsec:calculK}
@@ -116,9 +119,8 @@
 \indent Le calcul des éléments de K est fait de la manière usuelle, par assemblage des contributions des éléments pour les coefficients \(k_{ij}\). On précise dans la liste suivante quelques détails de l'implémentation de ce calcul : 
 
 \begin{itemize}
-	\item Le gradient de \(\phii\) sur l'élément \(T\) sera donnée par \((\nabref \phii)^T = \frac{\normT{i}}{d!|T|}\), où \(|T|\) est l'aire de \(T\), \(d=2\) est le nombre de dimensions spatiales et \(\normT{i}\) est le vecteur entrant à \(T\), dans le côté opposé à \(i\) et de norme égale à la longueur de ce côté \cite{vecNormal}.
-	\item La fonction \(\omega\) sera considérée constante dans chaque élément \(T\) et égale à la moyenne \(\omega^T\) de sa valeur sur les noeuds de \(T\).
-	\item Comme l'intégrale est calculée dans le domaine de référence, on utilisera toujours les vecteurs normaux et les aires du maillage initial. La fonction \(\omega\), en revanche, sera actualisée pour exprimer l'évolution du maillage, et son calcul sera faite en utilisant la solution interpolée à la fin de chaque itération.
+	\item Le gradient de \(\phii\) sur l'élément \(T\) est donnée par \((\nabref \phii)^T = \frac{\normT{i}}{d\text{!}|T|}\), où \(|T|\) est l'aire de \(T\), \(d=2\) est le nombre de dimensions spatiales et \(\normT{i}\) est le vecteur entrant à \(T\), dans le côté opposé à \(i\) et de norme égale à la longueur de ce côté \cite{vecNormal}.
+	\item La fonction \(\omega\) est considérée constante dans chaque élément \(T\) et égale à la moyenne \(\omega^T\) de sa valeur sur les noeuds de \(T\).
 \end{itemize}
 
 \indent On a, ainsi : 
@@ -142,7 +144,7 @@
 \end{gathered}
 \end{equation}
 
-\indent \textbf{Remarque 1} : comme montre le développement du modèle fait ci-dessus, le calcul de l'intégrale qui donne les éléments de la matrice \(K\) est faite \textbf{toujours sur le maillage de référence}, ce qui implique que, dans \eqref{eq:calculK_2d}, on utilisera toujours les mêmes vecteurs normaux et les mêmes aires pour le calcul discret. Néanmoins, \textbf{la fonction \(\omega\) est actualisée à chaque itération dans le maillage physique}, afin de bien indiquer que, dans ses nouvelles positions, les nœuds sont dans des régions de raffinement ou pas.
+\indent \textbf{Remarque 1} : comme montre le développement du modèle fait ci-dessus, le calcul de l'intégrale qui donne les éléments de la matrice \(K\) est fait \textbf{toujours sur le maillage de référence}, ce qui implique que, dans \eqref{eq:calculK_2d}, on utilise toujours les vecteurs normaux et les aires du maillage initial. Néanmoins, \textbf{la fonction \(\omega\) est actualisée à chaque itération dans le maillage physique}, afin de bien exprimer l'évolution du maillage au cours des itérations, indiquant si, dans ses nouvelles positions, les nœuds sont dans des régions de raffinement ou pas.
 
 \indent
 
@@ -160,7 +162,7 @@
 	Kx = K(x-\delta+\delta) = 0 \longrightarrow K\delta = -K\xi
 \end{equation*}
 
-\indent où \(\vecdelta = \vecx - \vecxi\) est le déplacement des points. Ainsi, \(\forall i \in \{1,...,N\} \) :
+\indent Ainsi, \(\forall i \in \{1,...,N\} \) :
 
 \begin{equation*}
 	k_{ii}\delta_i^{[n+1]} = -\sum_{j=1,j \neq i}^N k_{ij}\delta_{j}^{[n]} - \sum_{j=1}^N k_{ij}\xi_{j} = -\sum_{j=1}^N k_{ij}(\xi_j + \delta_{j}^{[n]}) + k_{ii}\delta_i^{[n]}
@@ -172,7 +174,7 @@
 	\delta_i^{[n+1]} =  \delta_i^{[n]} -\frac{1}{k_{ii}} \sum_{j=1}^N k_{ij}(x_j^{[n]})
 \end{equation*}
 
-\indent \textbf{Remarque} : avant d'actualiser la position des points, il faut vérifier si le déplacement calculé ne conduit pas à un croisement des noeuds. Pour faire cette vérification, on calculé les aires signés des éléments (i.e., en considérant l'ordre des noeuds). Si nécessaire, on relaxe le déplacement : 
+\indent \textbf{Remarque} : avant d'actualiser la position des points, il faut vérifier si le déplacement calculé ne conduit pas à un croisement des noeuds. Pour faire cette vérification, on calcule les aires signées des éléments (i.e., en considérant l'ordre des noeuds). Si nécessaire (\emph{i.e.}, si un des éléments a une aire négative), on relaxe le déplacement global: 
 
 %\begin{equation}
 %	x_i^{[n+1]} = \xi_i + \theta \delta_i^{[n+1]}

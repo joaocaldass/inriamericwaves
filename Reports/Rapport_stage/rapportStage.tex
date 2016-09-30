@@ -1,11 +1,9 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[12pt,a4paper,twoside]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage[font=footnotesize]{caption}
-\usepackage{subcaption}  % for subfigure
 \usepackage{numprint} % round numbers
 \usepackage{siunitx} % round numbers
 \usepackage{booktabs}  % nice looking tables
@@ -15,7 +13,10 @@
 %\usepackage{refcheck}
 \usepackage{cases} %numcases and subnumcases
 \usepackage{mvmsh} % Bordeaux
-
+\usepackage[hmarginratio=1:1]{geometry}
+\usepackage[french]{babel}
+\usepackage[font=footnotesize]{caption}
+\usepackage{subcaption}  % for subfigure
 
 \author{Joao Guilherme Caldas Steinstraesser}
 
@@ -48,31 +49,35 @@
 
 \begin{document}
 
-\pagenumbering{gobble}
+%\pagenumbering{gobble}
 
+\thispagestyle{empty}
 \input{couverture}
-\newpage
+
+\cleardoublepage
 \input{synthese}
 
-\newpage
-\pagenumbering{arabic}% Arabic page numbers (and reset to 1)
-\setcounter{page}{4}
+\cleardoublepage
+%\pagenumbering{arabic}% Arabic page numbers (and reset to 1)
+%\setcounter{page}{7}
 \tableofcontents
 
 
-\newpage
+\cleardoublepage
 \input{remerciements}
-\newpage
+\cleardoublepage
 \input{resume}
-\newpage
+\cleardoublepage
+\input{abstract}
+\cleardoublepage
 \input{intro_general}
 
-\newpage
+\cleardoublepage
 \vspace*{\fill}
-\part{Inria Bordeaux - Modèles d'adaptation de maillages}
+\part{Inria Bordeaux\\Modèle d'adaptation de maillage à des surfaces et variables physiques appliqué à des problèmes de la mécanique des fluides}
 \vspace*{\fill}
 
-\newpage
+\cleardoublepage
 \input{Bordeaux/inria}
 \input{Bordeaux/introduction}
  \input{Bordeaux/modele}
@@ -81,11 +86,12 @@
  \input{Bordeaux/nonstationnaire}
  \input{Bordeaux/conclusionBordeaux}
 
-\newpage
+\cleardoublepage
 \vspace*{\fill}
-\part{Meric / Inria Chile - Méthodes de Décomposition de Domaine}
+\part{MERIC / Inria Chile\\Méthode de décomposition de domaine appliquée à la résolution de modèles non linéaires et/ou dispersifs pour la propagation des ondes}
 \vspace*{\fill}
 
+\cleardoublepage
 \input{FRinriameric}
 \input{FRintro}
 \input{FRkdv}
@@ -95,8 +101,8 @@
 \input{FRDDM}
 \input{FRconclusion}
 
-\newpage
+\cleardoublepage
 \input{bilan}
-\newpage
+\cleardoublepage
 \bibliography{../may/biblio}
 \end{document}

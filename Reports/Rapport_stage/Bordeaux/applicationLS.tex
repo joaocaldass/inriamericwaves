@@ -3,7 +3,9 @@
 
 \label{sec:application}
 
-\indent Le modèle décrit dans la section précédente sera utilisé pour adapter le maillage par rapport à une fonction Level Set (LS). Cette fonction définit une distance signée entre chaque point du maillage et la surface qu'on représente: si le point \(\vecx\) est à l'extérieur de la surface, \(LS(\vecx) > 0\); s'il est à l'intérieur, \(LS(\vecx) < 0\); et si il est sur l'interface, \(LS(\vecx) = 0\).  On cherche alors à bouger les points pour avoir une meilleure représentation de la ligne de niveau 0 de la fonction Level Set, i.e., de la surface de l'objet \cite{ducrot}. Pour illustrer notre objectif, on présente dans la figure \ref{fig:exLS} un exemple d'adaptation à une fonction Level Set :
+\indent Le modèle décrit dans la section précédente a été utilisé initialement pour adapter le maillage par rapport à une fonction Level Set (LS). Cette fonction définit une distance signée entre chaque point du maillage et la surface qu'on représente: si le point \(\vecx\) est à l'extérieur de la surface, \(LS(\vecx) > 0\); s'il est à l'intérieur, \(LS(\vecx) < 0\); et si il est sur l'interface, \(LS(\vecx) = 0\).  On cherche alors à bouger les points pour avoir une meilleure représentation de la ligne de niveau 0 de la fonction Level Set, \emph{i.e.}, de la surface de l'objet \cite{ducrot}. Pour illustrer notre objectif, on présente dans la figure \ref{fig:exLS} un exemple d'adaptation à une fonction Level Set :
+
+\indent
 
 \begingroup
 	\begin{minipage}[t]{.5\linewidth}
@@ -22,17 +24,21 @@
 
 \subsection{Construction de la fonction à adapter (avec \(\omega\) donné par l'expression \eqref{eq:omega2})}
 
-\indent Le calcul de \(\omega\) à partir de l'expression \eqref{eq:omega2} est fait en utilisant le gradient et le hessien de la fonction à adapter. Pourtant, dans le cas de la fonction Level Set, l'adaptation ne sera pas faite en considérant \(u=LS\), parce qu'on n'aurait pas de forts gradients, en tenant compte de la lisseté de cette fonction. Ainsi, \(\omega\) ne serait pas capable d'exprimer le raffinement désiré dans chaque partie du maillage. De cette façon, à partir de la fonction Level Set, on va construire une nouvelle fonction qui ait un très fort gradient sur les bords de l'objet.
+\indent Le calcul de \(\omega\) à partir de l'expression \eqref{eq:omega2} est fait en utilisant le gradient et le hessien de la fonction à adapter. Pourtant, dans le cas de la fonction Level Set, l'adaptation n'est pas faite en considérant \(u=LS\), parce qu'on n'a pas de forts gradients, en tenant compte de la lisseté de cette fonction. Ainsi, \(\omega\) ne serait pas capable d'exprimer le raffinement désiré dans chaque partie du maillage. De cette façon, à partir de la fonction Level Set, on a construit une nouvelle fonction qui ait un très fort gradient sur les bords de l'objet.
 
-\indent Idéalement, on construirait une fonction avec un saut, valant \(1\) à l'extérieur et \(-1\) à l'extérieur de l'objet, ce que fournit des très bons raffinements sur la ligne de niveau 0 de la fonction Level Set. Néanmoins, dans la résolution numérique de problèmes de la mécanique des fluides, il est intéressant d'avoir aussi un bon raffinement du maillage sur une couche autour de la surface (la couche limite de l'écoulement), où l'interaction fluide-objet n'est pas négligeable. En effet, pour avoir un calcul précis, un maillage approprié sur la couche limite est requis par la plupart des schémas numériques et logiciels pour les problèmes de fluides \cite{loseille}. Ainsi, on a cherché une fonction plus lisse.
+\indent Idéalement, on construirait une fonction avec un saut, valant \(1\) à l'extérieur et \(-1\) à l'intérieur de l'objet, ce que fournit des très bons raffinements sur la ligne de niveau 0 de la fonction Level Set. Néanmoins, dans la résolution numérique de problèmes de la mécanique des fluides, il est intéressant d'avoir aussi un bon raffinement du maillage sur une couche autour de la surface (la couche limite de l'écoulement), où l'interaction fluide-objet n'est pas négligeable. En effet, pour avoir un calcul précis, un maillage approprié sur la couche limite est requis par la plupart des schémas numériques et logiciels pour les problèmes de fluides \cite{loseille}. Ainsi, on cherche une fonction plus lisse.
 
-\indent Dans un premier moment, on a défini une fonction avec une variation linéaire entre les deux étages (figure \ref{fig:atan}). Néanmoins, les tests réalisées ont fourni des résultats de mauvaise qualité : étant le gradient constant à l'intérieur de la pente, les points dans cette région (y compris les points les proches du bord de l'objet) n'avaient pas la tendance de bouger, au contraire des points proches des bordes de la pente, dû à la discontinuité du gradient de \(u\). Par conséquent, l'adaptation produisait une maillage avec deux petites couches raffinées, qui ne représentaient pas la surface de l'objet (figure \ref{fig:LSlin}).
+\indent Dans un premier moment, on a défini une fonction avec une variation linéaire entre les deux étages (figure \ref{fig:atan}). Néanmoins, les tests réalisés ont fourni des résultats de mauvaise qualité : étant le gradient constant à l'intérieur de la pente, les points dans cette région (y compris les points les proches du bord de l'objet) n'ont pas la tendance de bouger, au contraire des points proches des bordes de la pente, dû à la discontinuité du gradient de \(u\). Par conséquent, l'adaptation produit une maillage avec deux petites couches raffinées, qui ne représentaient pas la surface de l'objet (figure \ref{fig:LSlin}).
+
+\indent
 
 \begingroup
   \centering
-  \includegraphics[clip=true, trim = 10cm 0 10cm 0, scale=.25]{Bordeaux/figures/LSlin.png}
+  \includegraphics[clip=true, trim = 10cm 0 10cm 0, scale=.22]{Bordeaux/figures/LSlin.png}
   \captionof{figure}{Adaptation à une fonction Level Set modifié avec une variation linéaire \label{fig:LSlin}}
 \endgroup
+
+\indent
 
 \indent On a ainsi cherché une fonction dont le gradient est plus variable et continue afin de réduire cet effet. On a obtenu des bons résultats en utilisant
 
@@ -43,13 +49,17 @@
 
 \noindent étant \(2\delta\) la taille de la couche, choisie par l'utilisateur. Cette fonction est représentée dans la figure \ref{fig:atan}.
 
+\indent
+
 \begingroup
   \centering
   \includegraphics[scale=.4]{Bordeaux/figures/atan.png}
   \captionof{figure}{Comparaison des options pour la lissage de la fonction à adapter   \label{fig:atan}}
 \endgroup
 
-\indent On peut jouer aussi avec le paramètre multiplicateur de \(LS(\vecx)/\delta\) à l'intérieur de la fonction tangent. Avec 1, par exemple, on obtient un résultat plus proche de la pente linéaire; avec 5 ou 10, la fonction devient plus discontinue et la couche de raffinement est plus petite. On restera ainsi avec l'option donnée par \eqref{eq:atan}.
+\indent
+
+\indent On peut jouer aussi avec le paramètre multiplicateur de \(LS(\vecx)/\delta\) à l'intérieur de la fonction tangent. Avec 1, par exemple, on obtient un résultat plus proche de la pente linéaire; avec 5 ou 10, la fonction devient plus discontinue et la couche de raffinement est plus petite. On reste ainsi avec l'option donnée par \eqref{eq:atan}.
 
 
 
@@ -92,7 +102,7 @@
 		\includegraphics[clip=true, trim = 10cm 0 10cm 0, scale=.25]{Bordeaux/figures/alphabeta1.png}
 		\captionof{subfigure}{\(\alpha = 0, \beta = 1000\)}
 	\end{minipage}
-	\captionof{figure}{Influence des paramètres \(\alpha\) et \(\beta\) sur l'adaptation du maillage (les deux cas ave \(\delta = 0.02\)) \label{fig:alphabeta}}
+	\captionof{figure}{Influence des paramètres \(\alpha\) et \(\beta\) sur l'adaptation du maillage (\(\delta = 0.02\)) \label{fig:alphabeta}}
 \endgroup
 
 \begingroup
@@ -100,6 +110,8 @@
 	\includegraphics[scale=.25]{Bordeaux/figures/anisoNormal.png}
 	\captionof{figure}{Détail d'un maillage obtenu avec \(\delta = 0.005\) \label{fig:anisoNormal}}
 \endgroup
+
+\indent
 
 \indent En tenant compte de ces conclusions, on recommande l'utilisation des paramètres suivants (on rappelle qu'on utilise toujours les normes du gradient et du hessien normalisés entre 0 et 1) : 
 
@@ -130,10 +142,9 @@
 
 \subsection{Calcul des tailles désirées}
 
-\indent Le calcul des tailles désirées est basée sur la définition d'une métrique pour chaque point du maillage. Il s'agit d'une matrice \(2 \times 2\) (dans le cas bidimensionnel) définie positive symétrique, construite de façon a contrôler l'erreur de la représentation de la solution sur le maillage modifiée \cite{leo}.
+\indent Le calcul des tailles désirées est basée sur la définition d'une métrique pour chaque point du maillage. Elle s'agit d'une matrice \(2 \times 2\) (dans le cas bidimensionnel) définie positive symétrique, construite de façon a contrôler l'erreur de la représentation de la solution sur le maillage modifié \cite{leo}.
 
-
-\indent La description détaillé de la définition, calcul et interprétation géométrique de la métrique seront faites dans la section \ref{sec:adapPhysique}, pour l'adaptation à une solution physique. Dans le cas de l'adaptation Level Set, on a implémenté un calcul simple des tailles désirées, en se basant sur la méthode utilisée par \cite{ducrot}, qui permet de contrôler la distance de Hausdorff entre la surface de l'objet et sa représentation. En faisant attention toujours à l'importance, pour une bonne adaptation,  de créer une fonction \(\omega\) qui soit au même temps assez lisse et qui présente des variations qui permettent le mouvement des noeuds, on définit, avec le paramètre \(\delta\), des couches pour l'imposition des tailles : 
+\indent La description détaillée de la définition, calcul et interprétation géométrique de la métrique seront faites dans la section \ref{sec:adapPhysique}, pour l'adaptation à une solution physique. Dans le cas de l'adaptation Level Set, on a implémenté un calcul simple des tailles désirées, en se basant sur la méthode utilisée par \cite{ducrot}, qui permet de contrôler la distance de Hausdorff entre la surface de l'objet et sa représentation. En faisant attention toujours à l'importance, pour une bonne adaptation,  de créer une fonction \(\omega\) qui soit au même temps assez lisse et qui présente des variations qui permettent le mouvement des noeuds, on définit, avec le paramètre \(\delta\), des couches pour l'imposition des tailles : 
 
 \begin{equation*}
 	\hdes (\vecx_i) =
@@ -170,10 +181,14 @@
 	\captionof{figure}{Adaptation à une fonction Level Set à partir de l'imposition des tailles désirées \label{fig:adaptMet}}
 \endgroup
 
+\indent
+
+\indent En réalisant des tests comme ceux présentés dans la figure \ref{fig:adaptMet}, on a bien validé la procédure d'adaptation utilisant les tailles désirées pour définir la fonction $\omega$. Ainsi, à partir de cette validation, on n'a utilisé que ce nouveaux modèle dans notre procédure, parce qu'il est plus simple et beaucoup plus accessible à l'utilisateur final de la bibliothèque, qui n'est pas forcement habitué aus détails concernant l'adaptation de maillage. Pour cet utilisateur, c'est plus naturel définir des tailles $h_{min}$ et $h_{max}$ (qui ont une interprétation physique évidente et indépendante du problème considéré) que définir des coefficients $\alpha$ et $\beta$ (que en plus dépendent du problème). 
+
 
 \subsection{Relaxation et qualité du maillage}
 
-\indent Pendant la résolution du système linéaire, on fait, si nécessaire, une relaxation des déplacements calculés afin d'éviter le croisement des noeuds et la conséquente occurrence d'aires négatives. Néanmoins, en dépendant du maillage de départ (par exemple, un maillage déjà raffiné), la relaxation est trop contraignant et impose l'arrêt de l'algorithme lors des premières itérations. Parfois cela est provoqué par un petit nombre d'éléments.
+\indent Pendant la résolution du système linéaire, on fait, si nécessaire, une relaxation des déplacements calculés afin d'éviter le croisement des noeuds et la conséquente occurrence d'aires négatives. Néanmoins, en dépendant du maillage de départ (par exemple, un maillage déjà raffiné), la relaxation est trop contraignante et impose l'arrêt de l'algorithme lors des premières itérations, ce qui peut être provoqué par un petit nombre d'éléments.
 
 \indent On a ainsi implémenté, dans les premières itérations, un prétraitement d'optimisation, selon le schéma suivant :
 
@@ -190,6 +205,8 @@
 
 \indent La figure \ref{fig:optim} montre le résultat de son application sur un élément : 
 
+\indent
+
 \begingroup
 	\begin{minipage}[t]{.5\linewidth}
     		\centering
@@ -205,7 +222,9 @@
   	\captionof{figure}{Résultat de l'optimisation d'un élément \label{fig:optim}}
 \endgroup
 
-\indent Pour que le prétraitement ne soit pas très coûteux, on a choisi \(n_{optim} = 10\) e \(iter_{optim} = 2\). Les tests réalisés montrent des très bons résultats quand l'algorithme s'arrête au début de l'exécution, et avec l'optimisation on arrive à tourner tous les itérations. Néanmoins, si appliqué sur un maillage de bonne qualité et qui ne demande pas une forte relaxation, les gains sont en général petits (ou même on perd un peu de la qualité du résultat final).
+\indent
+
+\indent Pour que le prétraitement ne soit pas très coûteux, on a choisi \(n_{optim} = 10\) e \(iter_{optim} = 2\). Les tests réalisés montrent des très bons résultats quand l'adaptation s'arrête au début de l'exécution, dû à la présence d'éléments très anisotropes au début, et avec l'optimisation on arrive à tourner toutes les itérations. Néanmoins, si appliqué sur un maillage de bonne qualité et qui ne demande pas une forte relaxation, les gains sont en général petits (ou même on perd un peu de la qualité du résultat final).
 
 
 \subsection{Adaptation 3D}
@@ -220,7 +239,7 @@
 	\end{cases}
 \end{equation*}
 
-\indent Comme ces systèmes sont indépendants et ont la même forme, l'extension du cas 2D au 3D a été également simple du point de vue de l'implémentation. En effet, parmi les calculs décrits en détail dans les sous-sections \ref{subsec:calculK} et \ref{subsec:jacobi}, l'unique modification concerne le calcul des vecteurs normaux (\((\nabref \phii)^T = \frac{\normT{i}}{d!|T|}\), avec \(d=3\)). Ainsi, les éléments de la matrice \(K\) sont donnés par
+\indent Comme ces systèmes sont indépendants et ont la même forme, l'extension du cas 2D au 3D a été également simple du point de vue de l'implémentation. En effet, parmi les calculs décrits en détail dans les sous-sections \ref{subsec:calculK} et \ref{subsec:jacobi}, l'unique modification concerne le calcul des vecteurs normaux (\((\nabref \phii)^T = \frac{\normT{i}}{d\text{!}|T|}\), avec \(d=3\)). Ainsi, les éléments de la matrice \(K\) sont donnés par
 
 
 \begin{equation*}
@@ -229,7 +248,7 @@
 	k_{ij} & = \iDomh{ \omega \nabref \phii  \cdot \nabref \phij } = \sum_{T \ni i} {\iT{ \omega \nabref \phii \cdot \nabref \phij }} = \\
 	       &  = \sum_{T \ni i}
 	              { 
-	                     { |T|\omega^T \frac{\normT{i}\cdot \normT{j}}{(3!|T|)^2}
+	                     { |T|\omega^T \frac{\normT{i}\cdot \normT{j}}{(3\text{!}|T|)^2}
 	                     }
 	              }
 	          = \sum_{T \ni i}
@@ -244,6 +263,8 @@
 \indent On présente dans les figures \ref{fig:adaptSphere} à \ref{fig:adaptHole} quelques résultats de l'adaptation Level Set tridimensionnelle, à partir de l'imposition des tailles désirées. Les fonctions Level Set utilisées sont celles de la figure \ref{fig:LS}. Malgré les résultats analogues au cas 2D et cohérents avec les objectifs ici proposés, l'adaptation 3D a des limitations plus fortes concernant le nombre de points du maillage, qui peut devenir très grande pour qu'on ait un maillage suffisamment fine pour la bonne représentation de la fonction Level Set, et la relaxation de l'adaptation, puisque le dégrée de liberté additionnel peut conduire plus rapidement au croisement des noeuds.
 
 \indent Les domaines de départ sont plus raffinées dans les régions où se trouve l'objet, afin de minimiser l'influence des bords sur l'adaptation. Le logiciel \emph{MMG} a été utilisé pour les générer, en imposant une taille minimale \(hmin =  0.05\) et une gradation de \(hgrad = 1.1\) de la variation de las tailles. Les adaptations ont été faites avec \(\delta\) entre 0.05 et 0.07.
+
+\indent
 
 \begingroup
 	\begin{minipage}{.3\linewidth}
@@ -266,6 +287,10 @@
 	\captionof{figure}{Fonctions Level Set utilisées \label{fig:LS}}
 \endgroup
 
+\indent
+
+\indent
+
 \begingroup
 	\begin{minipage}[t]{.5\linewidth}
 		\centering
@@ -280,6 +305,10 @@
 	\end{minipage}
 	\captionof{figure}{Adaptation du maillage à la sphère (environ 34000 noeuds) \label{fig:adaptSphere}}
 \endgroup
+
+\indent
+
+\indent
 
 \begingroup
 	\begin{minipage}[t]{.5\linewidth}
@@ -306,6 +335,10 @@
 	\end{minipage}
 	\captionof{figure}{Adaptation du maillage au tore (environ 25000 noeuds) \label{fig:adaptTorus}}
 \endgroup
+
+\indent
+
+\indent
 
 \begingroup
 	\begin{minipage}[t]{.5\linewidth}

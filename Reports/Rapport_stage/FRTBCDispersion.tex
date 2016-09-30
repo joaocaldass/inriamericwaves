@@ -1,4 +1,5 @@
 \section{Conditions aux limites transparentes approximées pour l'équation de dispersion}
+\label{sec:TBCKdV}
 
 \indent Dans  \cite{besse2015}, des conditions aux limites transparents exactes sont dérivées pour l'équation de KdV linéarisée (ou équation de Airy) :
 
@@ -32,7 +33,7 @@
 
 \noindent où $\laplinv$ dénote la transformée inverse de Laplace, $s \in \mathbb{C},\ Re(s)>0$ est la fréquence de Laplace et $\lambda_1$ est, parmi les trois racines du polynôme caractéristique cubique obtenu en résolvant \eqref{eq:LKdV} dans l'espace de Laplace, la seule avec partie réelle négative. \cite{zheng2008}
 
-\indent On va concentrer nos efforts dans le cas $U_1 = 0, U_2 = 1$, qui fournit l'équation de KdV linéarisée avec seulement la partie dispersive (qu'on appellera \emph{équation de dispersion}) :
+\indent On a concentré nos efforts dans le cas $U_1 = 0, U_2 = 1$, qui fournit l'équation de KdV linéarisée avec seulement la partie dispersive (qu'on appelle \emph{équation de dispersion}) :
 
 \begin{equation}
 	\label{eq:DKdV}
@@ -46,11 +47,11 @@
 			\lambda(s) = \lambda_1(s) =  -\sqrt[3]{s} 
 \end{equation}
 
-\indent Cependant, le calcul des TBCs \eqref{eq:continuousTBC} n'est pas simple en raison de les transformées inverses de Laplace, qui donnent à ces conditions un caractère nonlocal en temps. Ainsi, on va proposer des approximations pour la racine \eqref{eq:lambda} qui évitent les intégrations en temps, en générant des TBC considérablement plus simples.
+\indent Cependant, le calcul des TBCs \eqref{eq:continuousTBC} n'est pas simple en raison des transformées inverses de Laplace, qui donnent à ces conditions un caractère nonlocal en temps. Ainsi, on propose ici des approximations pour la racine \eqref{eq:lambda} qui évitent les intégrations en temps, en générant des TBC considérablement plus simples.
 
 %%%%%%%%%%%%%%%%%% 09/09/2016
 
-\indent Évidemment, comme on va à vérifier dans les résultats présentés dans cette section, les TBCs approximées ne sont pas si précises comme les TBCs proposées par \cite{besse2015} (qui les dérive pour la version discrète de l'équation de KdV linéarisée). Néanmoins, nos objectifs sont très différents de ceux de \cite{besse2015} : tandis qu'ils cherchent à minimiser l'erreur de la solution calculée (comparée avec la solution analytique) due aux conditions aux bords, on cherche ici à utiliser les TBCs approximées comme conditions aux limites à l'interface (IBCs), dans le contexte d'une méthode de décomposition de domaine (DDM). Ainsi, notre objectif s'appuie sur la convergence de la solution fournie par la DDM à la solution du même problème résolu dans le monodomaine,  indépendamment des erreurs dans les bords extérieurs. 
+\indent Évidemment, comme on va vérifier dans les résultats présentés dans cette section, les TBCs approximées ne sont pas si précises comme les TBCs proposées par \cite{besse2015} (qui les dérive pour la version discrète de l'équation de KdV linéarisée). Néanmoins, en rappelant la discussion initiée dans l'introduction, nos objectifs sont très différents de ceux de \cite{besse2015} : tandis qu'ils cherchent à minimiser l'erreur de la solution calculée (comparée avec la solution analytique) due aux conditions aux bords, on cherche ici à utiliser les TBCs approximées comme conditions aux limites à l'interface (IBCs) dans le contexte d'une méthode de décomposition de domaine (DDM). Ainsi, notre objectif s'appuie sur la convergence de la solution fournie par la DDM à la solution du même problème résolu dans le monodomaine,  indépendamment des erreurs sur les bords extérieurs. 
 
 %\indent Pour dériver nos approximations, on rappele les propriétés suivantes \cite{laplaceTransform} de la transformée de Laplace:
 %
@@ -82,11 +83,11 @@
 %
 %\noindent où $\delta (t)$ est la fonction delta de Dirac et $*$ dénote l'opérateur de convolution.
 
-\indent La linéarité et les propriétés de convolution et des dérivées de la transformée de Laplace  \cite{laplaceTransform} nous motivent à approximer les opérandes des transformées inverses de Laplace dans \eqref{eq:continuousTBC} par des polynômes dans $s$. Dans les paragraphes suivants, on implémente et test des approximations avec des polynômes constants et des polynômes linéaires.
+\indent La linéarité et les propriétés de convolution et des dérivées de la transformée de Laplace  \cite{laplaceTransform} nous motivent à approximer les opérandes des transformées inverses dans \eqref{eq:continuousTBC} par des polynômes dans $s$. Dans les paragraphes suivants, on implémente et test des approximations avec des polynômes constants et des polynômes linéaires.
 
 \subsection{Approximation des TBCs utilisant des polynômes constants}
 
-\indent On va utiliser le polynôme constant $P_0(s) = c$  pour approximer $\lambda^2/s$. Par ailleurs, en raison de \eqref{eq:lambda}, on peut approximer les autres opérandes des transformées inverses de Laplace dans \eqref{eq:continuousTBC} uniquement en fonction de $c$ :
+\indent On utilise le polynôme constant $P_0(s) = c$  pour approximer $\lambda^2/s$. Par ailleurs, en raison de l'expression \eqref{eq:lambda}, on peut approximer les autres opérandes des transformées inverses de Laplace dans \eqref{eq:continuousTBC} uniquement en fonction de $c$ :
 
 \begin{equation}
 	\label{eq:appP0}
@@ -107,7 +108,7 @@
     \end{gathered}
 \end{equation}
 
-\indent En considérant un domaine discret avec une taille de maille $\Delta x$ et des points $x_0, ..., x_N$ , et en utilisant des approximations par différences finies, les TBC approximées \eqref{eq:appTBCP0} sont discrétisées comme
+\indent En considérant un domaine discret avec une taille de maille $\Delta x$ et des points $x_0, ..., x_N$ , et en utilisant des approximations par différences finies, les TBCs approximées \eqref{eq:appTBCP0} sont discrétisées comme
 
 \begin{equation*}
     \begin{gathered}
@@ -155,6 +156,7 @@ $$e^n = \frac{\left\Vert u_{exact}^n - u_{computed}^n\right\Vert_2}{\left\Vert u
 \indent Afin de vérifier l'influence de $c_L$ et $c_R$ sur les solutions calculées (et, possiblement, identifier des intervalles de valeurs qui donnent les meilleures approximations pour les TBCs), on a fait des tests avec tous les paires possibles $(c_L,c_R) \in \{-10,-1,-0.1,0,0.1,1,10\}^2$. Les résultats ont été classifiées selon leurs erreurs $e_{L2}$ (un critère basé sur l'erreur $e_{Tm}$ fournit un résultat similaire). La figure \ref{fig:firstTestsP0} montre, pour quelques instants, une comparaison entre la solution exacte et les solutions avec la plus grande et la plus petite erreur. Pour nommer la pire solution, on n'a pas considéré les solutions qui n'ont pas convergé (selon le critère arbitraire $e_{L2} > 10$).
 
 \begingroup
+\noindent
 \begin{minipage}{.5\linewidth}
 \includegraphics[scale=.5]{figures/BessefirstTestsP0Snap2.png}
 \end{minipage}
@@ -170,7 +172,9 @@ $$e^n = \frac{\left\Vert u_{exact}^n - u_{computed}^n\right\Vert_2}{\left\Vert u
 \captionof{figure}{Meilleur et pire solutions comparées à la solution analytique, dans le cas de l'approximation par un polynôme constant \label{fig:firstTestsP0}}
 \endgroup
 
-\indent Le tableau \ref{tab:firstTestsP0} présente les dix tests qui ont présenté les erreurs $e_{L2}$ les plus petites :
+\indent
+
+\indent Le tableau \ref{tab:firstTestsP0} présente les dix tests avec les erreurs $e_{L2}$ les plus petites :
 
 \sisetup{round-mode=places}
 \begin{center}
@@ -188,10 +192,10 @@ $$e^n = \frac{\left\Vert u_{exact}^n - u_{computed}^n\right\Vert_2}{\left\Vert u
 	10.0 & 0.1 & 0.347379492262 \\
 	10.0 & 0.0 & 0.347487945035
 \end{tabular}
-\captionof{table}{Meilleures résultats (les erreurs $e_{L2}$ les plus petites) pour l'approximation par un polynôme constant \label{tab:firstTestsP0}}
+\captionof{table}{Meilleurs résultats (les erreurs $e_{L2}$ les plus petites) pour l'approximation par un polynôme constant \label{tab:firstTestsP0}}
 \end{center}
 
-\indent On remarque que les résultats sont beaucoup plus sensitives au coefficient pour le bord à gauche : pour un $c_L$ fixé, l'erreur est très similaire pour tout $c_R$. Cela est une conséquence du fait que la solution de ce problème est pratiquement constante et égale à zéro aux voisinages de $x = 6$, mais présente des fortes variations dans la région proche de  $x = -6$. Le meilleur résultat, comme montre la figure \ref{fig:firstTestsP0}, est capable d'imposer ce condition dans le bord à droite, tandis que la pire solution n'en peut pas. Dans le cas du bord à gauche, malgré une erreur plus évidente, les meilleures solutions suivent approximativement bien le comportement de la solution exacte.
+\indent On remarque que les résultats sont beaucoup plus sensitives au coefficient pour le bord à gauche : pour un $c_L$ fixé, l'erreur est très similaire pour tout $c_R$. Cela est une conséquence du fait que la solution de ce problème est pratiquement constante et égale à zéro aux voisinages de $x = 6$, mais présente des fortes variations dans la région proche de  $x = -6$. Le meilleur résultat, comme montre la figure \ref{fig:firstTestsP0}, est capable d'imposer ce condition dans le bord à droite, tandis que la pire solution n'en peut pas. Dans le cas du bord à gauche, malgré une erreur plus évidente par rapport à l'autre bord, les meilleures solutions suivent approximativement bien le comportement de la solution exacte.
 
 \subsection{Approximation des TBCs utilisant un polynôme linéaire}
 
@@ -215,6 +219,8 @@ $$e^n = \frac{\left\Vert u_{exact}^n - u_{computed}^n\right\Vert_2}{\left\Vert u
 
 \indent En utilisant des différences finies pour les dérivées en temps, et en considérant que la solution initiale est nulle sur les bords (ce qui est le cas de l'exemple testé ici), on obtient les TBC approximées discrètes : 
 
+\begingroup
+\footnotesize
 \begin{itemize}
  \item \begin{equation*}
 \label{eq:appDiscTBCP1}
@@ -238,6 +244,8 @@ $$e^n = \frac{\left\Vert u_{exact}^n - u_{computed}^n\right\Vert_2}{\left\Vert u
 \end{equation*}
 
 \end{itemize}
+
+\endgroup
 
 \subsubsection{Tests de validation de l'approximation}
 
@@ -267,11 +275,11 @@ $$e^n = \frac{\left\Vert u_{exact}^n - u_{computed}^n\right\Vert_2}{\left\Vert u
 
 \subsection{Conclusion partiale}
 
-\indent Il faut être claire que notre approximation ne fournit pas des meilleures TBCs que celles proposées par \cite{besse2015} (et cela n'est pas l' objectif du travail développé ici, comme il a été discuté dans la introduction de ce rapport). En fait, \cite{besse2015} dérive des TBCs pour deux schémas discrets, et le pire résultat parmi eux, en utilisant les mêmes $\Delta t$ et $\Delta x$ utilisés ici, présente une erreur $e_{L2} \approx 0.005$ pour $t = 4$, tandis que notre mieux résultat fournit $e_{L2} \approx 0.1$ pour le même instant. Néanmoins, en considérant qu'on souhaite appliquer les TBCs à une méthode de décomposition de domaine, on veut plutôt minimiser l'erreur due à les conditions limites à l'interface, mais pas l'erreur liée aux conditions aux limites extérieures.
+\indent Il faut être claire que notre approximation ne fournit pas des meilleures TBCs que celles proposées par \cite{besse2015} (et cela n'est pas l' objectif du travail développé ici, comme il a été discuté dans la introduction de ce rapport). En fait, \cite{besse2015} dérive des TBCs pour deux schémas discrets, et le pire résultat parmi eux, en utilisant les mêmes $\Delta t$ et $\Delta x$ utilisés ici, présente une erreur $e_{L2} \approx 0.005$ pour $t = 4$, tandis que notre mieux résultat fournit $e_{L2} \approx 0.1$ pour le même instant. Néanmoins, en considérant qu'on souhaite appliquer les TBCs à une méthode de décomposition de domaine, on veut plutôt minimiser l'erreur due aux conditions limites à l'interface, mais pas l'erreur liée aux conditions aux limites extérieures.
 
-\indent Cependant, en considérant les résultats présentés jusqu'ici, on peut dire que les conditions aux limites proposées simulent relativement bien des TBCs, avec une implémentation assez simple, en comparaison avec celles proposées par \cite{besse2015} (qui demandent par exemple le calcul de $\mathcal{Z}$-transformées, dans le rôle de versions discrètes des transformées de Laplace). Par ailleurs, on remarque que l'approximation qu'on a fait avec le polynôme linéaire, malgré l'augmentation de la complexité du schéma (où il faut garder la solution des itérations précédentes), ne fournit pas des meilleures résultats par rapport au cas du polynôme constant.
+\indent Cependant, en considérant les résultats présentés jusqu'ici, on peut dire que les conditions aux limites proposées simulent relativement bien des TBCs, avec une implémentation assez simple, en comparaison avec celles proposées par \cite{besse2015} (qui demandent par exemple le calcul de $\mathcal{Z}$-transformées, dans le rôle de versions discrètes des transformées de Laplace). Par ailleurs, on remarque que l'approximation qu'on a fait avec le polynôme linéaire, malgré l'augmentation de la complexité du schéma (où il faut garder la solution deux pas précédentes en plus), ne fournit pas des meilleures résultats par rapport au cas du polynôme constant.
 
-\indent Ainsi, dans la suite, on va utiliser toujours l'approximation avec $P_0$. On notera les TBCs correspondantes avec les opérateurs $\theta_i^c, \ i=1,2,3$, définis dans \eqref{eq:appTBCP0}.
+\indent Ainsi, dans la suite de notre travail, on a utilisé toujours l'approximation avec $P_0$. On note les TBCs correspondantes avec les opérateurs $\theta_i^c, \ i=1,2,3$, définis dans \eqref{eq:appTBCP0}.
 
 \begin{equation*}
     \begin{gathered}

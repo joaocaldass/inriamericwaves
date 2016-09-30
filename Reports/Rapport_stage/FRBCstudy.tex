@@ -1,9 +1,9 @@
-\section{Premier étude des conditions aux limites transparentes}
+\section{Première étude des conditions aux limites transparentes}
 \label{sec:TBC}
 
 \subsection{Introduction et quelques exemples de motivation}
 
-\indent Le contenu présenté dans cette section est une introduction aux objectifs qu'on envisage dans ce stage, concernant l'étude des conditions aux limites transparentes (en anglais, \emph{transparent boundary conditions} - TBCs) afin de les appliquer à des méthodes de décomposition de domaine (en anglais, \emph{domain decomposition methods} - DDMs) . Cet étude a été développé sur l'équation de KdV, parce que c'était, parmi les modèles étudiés et implémentés jusqu'au moment où on a commencé cette partie du projet, celui pour lequel on a obtenu la meilleure et plus fiable implémentation numérique. En plus, la linéarisation de l'équation de KdV est plus évidente que pour les équations de Serre - comme on discutera plus tard, l'étude des TBCs pour des équations linéaires est beaucoup plus développé que pour les non linéaires.
+\indent Le contenu présenté dans cette section est une introduction aux objectifs principaux envisagés dans ce stage, concernant l'étude des conditions aux limites transparentes (en anglais, \emph{transparent boundary conditions} - TBCs) afin de les appliquer à des méthodes de décomposition de domaine (en anglais, \emph{domain decomposition methods} - DDMs) . Cet étude a été développé sur l'équation de KdV, parce que c'était, parmi les modèles étudiés et implémentés jusqu'au moment où on a commencé cette partie du projet, celui pour lequel on a obtenu la meilleure et plus fiable implémentation numérique. En plus, la linéarisation de l'équation de KdV est plus évidente que pour les équations de Serre - en fait, l'étude des TBCs pour des équations linéaires est beaucoup plus développée que pour les non linéaires.
 
 \indent Les TBCs sons construites de façon que la solution calculée dans le domaine computationnel fini $\Omega$ coïncide avec la solution du problème dans tout l'espace, restreinte à $\Omega$. En général, ces conditions aux bords son non locales en temps, alors elles doivent être approximées pour permettre une implémentation numérique efficiente \cite{Xavieretal2008}.
 
@@ -11,8 +11,8 @@
 
 \begin{equation*}
 \begin{cases}
-\mathcal{A}(u) = f \ \ \text{in} \ \ \Omega\\
-u = 0 \ \ \text{on} \ \ \partial\Omega\\
+\mathcal{A}(u) = f \ \ \text{dans} \ \ \Omega\\
+u = 0 \ \ \text{sur} \ \ \partial\Omega\\
 \end{cases}
 \end{equation*}
 
@@ -25,21 +25,19 @@ B(u) = \frac{\partial}{\partial n}u + D2N(u) = 0
 
 \noindent où $\partial n$ est le vecteur normal sortant à $\Omega$ sur $\Gamma$ , et l'opérateur D2N (\emph{Dirichlet to Neumann}) est défini par
 
-$$\left. D2N : \alpha(x) \mapsto \frac{\partial}{\partial n^c}v \right\rvert_{\Gamma}$$
+$$\left. D2N \text{: } \alpha(x) \mapsto \frac{\partial}{\partial n^c}v \right\rvert_{\Gamma}$$
 
 \noindent avec $\alpha$ défini sur $\Gamma$ et $\partial n^c$ étant le vecteur normal sortant au complémentaire de $\Omega$, dénoté $\Omega^c$. $v$ est solution du problème suivant, résolu dans $\Omega^c$ : 
 
 \begin{equation*}
 \begin{cases}
-\mathcal{A}(v) = f \ \ \text{in} \ \ \Omega^c\\
-v = 0 \ \ \text{on} \ \ \partial \Omega^c \backslash \Gamma \\
-v = \alpha \ \ \text{on} \ \ \Gamma
+\mathcal{A}(v) = f \ \ \text{fans} \ \ \Omega^c\\
+v = 0 \ \ \text{sur} \ \ \partial \Omega^c \backslash \Gamma \\
+v = \alpha \ \ \text{sur} \ \ \Gamma
 \end{cases}
 \end{equation*}
 
 \indent Ainsi, on peut interpréter interpréter l'opérateur D2N comme une imposition de continuité de la dérivée de la solution dans la direction normale à l'interface. Par ailleurs, comme son nom indique, cet opérateur construit une dérivée (une condition de Neumann) à partir de la solution dans $\Omega^c$ (une condition de Dirichlet).
-
-
 
 \indent Présentons d'abord un example simple, dont la solution y la TBC analytiques sont connues. On va considérer le problème 1D suivant :
 
@@ -96,7 +94,7 @@ $$B(u_1) = \frac{\partial}{\partial x}u_1 + D2N(u_1) = \frac{\partial}{\partial 
 	\captionof{figure}{Solutions pour l'équation de Laplace avec TBC \label{fig:TBClaplace}}
 \end{center}
 
-\indent En retournant aux modèles d'ondes, on rappelle que, dans les premières simulations avec la méthode de \emph{splitting} adoptée pour la résolution de l'équation de KdV, on n'a pas utilisé une application rigoureuse  de conditions aux bords appropriées. En fait, notre objectif principal était la validation de la méthode; alors, en imposant des conditions périodiques ou des conditions de Dirichlet ou Neumann homogènes, on a analysé l'évolution de la solution seulement avant son arrivée aux bords.
+\indent En retournant aux modèles de propagation des ondes, on rappelle que, dans les premières simulations avec la méthode de \emph{splitting} adoptée pour la résolution de l'équation de KdV, on n'a pas appliqué rigoureusement les conditions aux bords. En fait, notre objectif principal était la validation de la méthode; alors, en imposant des conditions périodiques ou des conditions de Dirichlet ou Neumann homogènes, on a analysé l'évolution de la solution seulement avant son arrivée aux bords.
 
 \indent Avant de commencer l'étude des TBCs pour l'équation de KdV, on va présenter deux examples de motivation à ce travail. Le premier exemple montre très clairement l'influence de conditions aux bords inappropriées sur la solution. On a résolu deux fois le mème problème, avec la même solution initiale, conditions aux bords et discrétisations spatiales et temporales :
 
@@ -111,6 +109,8 @@ $$B(u_1) = \frac{\partial}{\partial x}u_1 + D2N(u_1) = \frac{\partial}{\partial 
 \end{equation*}
 
 \indent La seule différence entre les deux problèmes est la taille de ses domaines: ils ont été choisis de façon que l'onde arrive aux bords (dans le temps de simulation) dans le première problème, mais pas dans le deuxième. La figure \ref{fig:motivational1} montre comme la différence entre les deux solutions augmente avec le temps, en partant du bord et se propageant pour tout le domaine:
+
+\indent
 
 \begingroup
 	\noindent
@@ -127,6 +127,8 @@ $$B(u_1) = \frac{\partial}{\partial x}u_1 + D2N(u_1) = \frac{\partial}{\partial 
 	\end{minipage}
 	\captionof{figure}{Premier exemple de motivation : comparaison entre les solutions dans un petit domaine (en bleu) et un large domaine (en vert) \label{fig:motivational1}}
 \endgroup
+
+\indent
 
 \indent Alors, on cherche des conditions aux bords qui puissent bien simuler les TBCs, c'est-à-dire, de façon que la solution calculé dans $\Omega$ soit le même que la solution de tout le domaine restreinte à $\Omega$. Par conséquent, on veut des bords qui n'ont pas d'influence sur la solution, permettant qu'elle puisse simplement "sortir" du domaine.
 
@@ -154,29 +156,31 @@ $$B(u_1) = \frac{\partial}{\partial x}u_1 + D2N(u_1) = \frac{\partial}{\partial 
     \end{cases}
 \end{equation*}
 
-\noindent (\emph{i.e.}, la même équation résolue dans un domaine plus grand) et on impose $g(t) = u_2(t)$, où $u_2$ est la solution de $(P_2)$. Afin d'obtenir des résultats plus précis, les deux calculs sont réalisés avec les mêmes pas de temps et taille du maillage.
+\noindent (\emph{i.e.}, la même équation résolue dans un domaine plus grand) et on impose $g(t) = u_2(L,t)$ pour tout $t$, où $u_2$ est la solution de $(P_2)$. Afin d'obtenir des résultats plus précis, les deux calculs sont réalisés avec les mêmes pas de temps et taille du maillage.
 
-\indent Supposons qu'il y a une unique solution $u_1$ pour $(P_1)$. On peut facilement voir que $u_2|_{\Omega_1}$ est également solution de $(P_1)$. Alors, $u_1 = u_2|_{\Omega_1}$. Ce fait justifie pourquoi notre procédure marche comme une TBC, en fournissant la solution "exacte", comme montre la figure \ref{fig:motivation2}  (détail sur la région proche du bord droit).
+\indent Supposons qu'il y a une unique solution $u_1$ pour $(P_1)$. On peut facilement voir que $u_2|_{\Omega_1}$ est également solution de $(P_1)$. Alors, $u_1 = u_2|_{\Omega_1}$. Ce fait justifie pourquoi notre procédure marche correctement comme une TBC, en fournissant la solution "exacte", comme montre la figure \ref{fig:motivation2}  (détail sur la région proche du bord droit).
+
+\indent 
 
 \begingroup
 \noindent
 	\begin{minipage}{.45\linewidth}
-		\includegraphics[scale=.5]{figures/motivational2A.png}	
+		\includegraphics[scale=.4]{figures/motivational2A.png}	
 	\end{minipage}
 	\hfill
 	\begin{minipage}{.45\linewidth}
-		\includegraphics[scale=.5]{figures/motivational2B.png}	
+		\includegraphics[scale=.4]{figures/motivational2B.png}	
 	\end{minipage}
 	\captionof{figure}{Deuxième exemple de motivation : solution avec une condition de Dirichlet "exacte" sur le bord à droite \label{fig:motivation2}}
 \endgroup
 
 \subsection{Optimisation de conditions aux limites de Robin pour simuler des TBCs}
 
-\indent La procédure présentée dans le dernier example ne peut pas être appliquée en pratique. En fait, calculer la solution dans un domaine plus grand et l'utiliser comme solution exacte pour construire les conditions aux bords n'est qu'une "triche". Alors, on veut plutôt déterminer des approximations pour les TBCs sans avoir une solution de référence. Ces conditions approximées seront des conditions de Robin, en utilisant la valeur de la solution et de ses dérivées au bord.
+\indent La procédure présentée dans le dernier example ne peut pas être appliquée en pratique. En fait, calculer la solution dans un domaine plus grand et l'utiliser comme solution exacte pour construire les conditions aux bords n'est qu'une "triche". Alors, on veut plutôt déterminer des approximations pour les TBCs sans avoir une solution de référence. Dans cette étude introductoire, ces conditions approximées sont des conditions de Robin, en utilisant la valeur de la solution et de ses dérivées au bord.
 
 \subsubsection{Conditions aux limites de Robin jusqu'à la dérivée première}
 
-\indent Dans un approche initial, l'équation de KdV sera résolue dans le domaine $[-L,L]$ avec les conditions aux bords suivants (imposés dans la résolution du deuxième pas de la méthode de \emph{splitting}):
+\indent Dans une approche initiale, l'équation de KdV a été résolue dans le domaine $[-L,L]$ avec les conditions aux bords suivants (imposées dans la résolution du deuxième pas de la méthode de \emph{splitting}):
 
 \begin{equation*}
 \begin{cases}
@@ -186,9 +190,9 @@ $$B(u_1) = \frac{\partial}{\partial x}u_1 + D2N(u_1) = \frac{\partial}{\partial 
 \end{cases}
 \end{equation*}
 
-\indent La troisième condition aux bords consiste en des conditions de Robin, avec des paramètres $\alpha$ et $\beta$ (ou, de façon équivalente, le paramètre  $\beta/\alpha$) qui seront optimisés afin de simuler une TBC sur le bord à droite. Dans un premier moment, on va considérer des conditions de Robin contenant jusqu'à la première dérivée de la solution.
+\indent La troisième condition aux bords consiste en des conditions de Robin, avec des paramètres $\alpha$ et $\beta$ (ou, de façon équivalente, le paramètre  $\beta/\alpha$) qui on a optimisés afin de simuler une TBC sur le bord à droite. Dans un premier moment, on a considéré des conditions de Robin contenant jusqu'à la première dérivée de la solution.
 
-\indent Afin de trouver les coefficients optimaux, on va tester plusieurs paires $(1,\beta/\alpha)$ (y compris les limites $\beta/\alpha \rightarrow 0$ et $\beta/\alpha \rightarrow \infty$, correspondant respectivement aux conditions de Dirichlet et de Neumann) et calculer l'erreur par rapport à la solution de référence $u_{ref}$, calculée dans le domaine $[-2L,2L]$. Deux erreurs seront calculées, pour chaque pas de temps $t_n$ :
+\indent Afin de trouver les coefficients optimaux, on a testé plusieurs paires $(1,\beta/\alpha)$ (y compris les limites $\beta/\alpha \rightarrow 0$ et $\beta/\alpha \rightarrow \infty$, correspondant respectivement aux conditions de Dirichlet et de Neumann) et computé l'erreur par rapport à la solution de référence $u_{ref}$, calculée dans le domaine $[-2L,2L]$. On a défini deux erreurs pour chaque pas de temps $t_n$ :
 
 \begin{equation*}
 e_1^n = \sqrt{\sum_{i=0}^N{\left( u^n_i - (u_{ref})^n_i\right)^2}} \qquad
@@ -197,7 +201,9 @@ e_2^n =  u^n_N - (u_{ref})^n_N
 
 \indent $e_2^n$ est calculé pour montrer que la plus grande partie de l'erreur $e_1^n$ de tout le domaine est due aux bords.
  
-\indent Les figures \ref{fig:robin1} à \ref{fig:robinErrorsExample} montrent la solution dans quelques instants et l'évolution de $e_1$ et $e_2$ pour certains valeurs de $\beta/\alpha$. La figure \ref{fig:robinErrorsAll} compare $e_2$  pour plusieurs autres valeurs, y compris le cas de pure Dirichlet  (avec $\alpha = 1, \beta = 0$, alors $log(\beta/\alpha) = -\infty$) et pure Neumann (avec $\alpha = 0, \beta = 1$).
+\indent Les figures \ref{fig:robin1} à \ref{fig:robinErrorsExample} montrent la solution dans quelques instants et l'évolution de $e_1$ et $e_2$ pour certains valeurs de $\beta/\alpha$. La figure \ref{fig:robinErrorsAll} compare $e_2$  pour plusieurs autres valeurs, y compris le cas de pure Dirichlet  (avec $\alpha = 1, \beta = 0$, alors $log(\beta/\alpha) = -\infty$) et pure Neumann (avec $\alpha = 0, \beta = 1$, alors $log(\beta/\alpha) = \infty$).
+
+\indent
 
 \begingroup
 	\noindent
@@ -211,6 +217,10 @@ e_2^n =  u^n_N - (u_{ref})^n_N
 	\captionof{figure}{Solution de référence et solution approximée pour  $\beta/\alpha = 1$ \label{fig:robin1}}
 \endgroup
 
+\indent
+
+\indent
+
 \begingroup
 \noindent
 	\begin{minipage}{.45\textwidth} 
@@ -223,6 +233,10 @@ e_2^n =  u^n_N - (u_{ref})^n_N
 	\captionof{figure}{Solution de référence et solution approximée pour  $\beta/\alpha = 10$ \label{fig:robin10}}
 \endgroup
 
+\indent
+
+\indent
+
 \begingroup
 \noindent 
 	\begin{minipage}{.45\textwidth} 
@@ -234,6 +248,10 @@ e_2^n =  u^n_N - (u_{ref})^n_N
 	\end{minipage}
 	\captionof{figure}{Solution de référence et solution approximée pour  $\beta/\alpha = 100$ \label{fig:robin100}}
 \endgroup
+
+\indent
+
+\indent
 
 \begingroup
 \noindent
@@ -257,11 +275,11 @@ e_2^n =  u^n_N - (u_{ref})^n_N
 \begingroup
 \begin{center}
 		\includegraphics[scale=.6]{figures/robinErrors1.png}
-	     \captionof{figure}{Erreur $||e_1| = \sum_{n=0}^{n_{max}}(e^n_1)^2$ entre la solution approximée et la solution de référence pour des plusieurs valeurs de $\beta/\alpha$, avec des conditions aux limits de Robin jusqu'à la dérivée première \label{fig:robinErrorsAll}}
+	     \captionof{figure}{Erreur $||e_1| = \sum_{n=0}^{n_{max}}(e^n_1)^2$ entre la solution approximée et la solution de référence pour plusieurs valeurs de $\beta/\alpha$, avec des conditions aux limits de Robin jusqu'à la dérivée première \label{fig:robinErrorsAll}}
 \end{center}
 \endgroup
 
-\indent Les résultats présentés dans les figures \ref{fig:robin1} jusqu'à \ref{fig:robinErrorsAll} montrent que des conditions aux bord avec un caractère de Neumann plus fort produisent des meilleures approximations pour la TBC, en comparaison à des conditions plus proches du pure Dirichlet. Les résultats pour le pure Neumann et pour le Neumann avec un petit mais pas nul Dirichlet terme sont très proches, comme présenté dans le tableau \ref{tab:robinErrorsZoom} pour un étude plus raffiné autour des meilleures valeurs de $\beta/\alpha$. En fait, imposer la solution nulle aux bord est une condition trop forte, et la condition de Neumann peut capturer de façon plus satisfaisant la lisseté de la solution.
+\indent Les résultats présentés dans les figures \ref{fig:robin1} jusqu'à \ref{fig:robinErrorsAll} montrent que des conditions aux bords avec un caractère de Neumann plus fort produisent des meilleures approximations pour la TBC, en comparaison à des conditions plus proches du pure Dirichlet. En fait, imposer la solution nulle aux bord est une condition trop forte, et la condition de Neumann peut capturer de façon plus satisfaisant la lisseté de la solution. Les résultats pour le pure Neumann et pour le Neumann avec un petit mais pas nul terme de Dirichlet sont très proches, comme présenté dans le tableau \ref{tab:robinErrorsZoom} pour un étude plus raffiné autour des meilleures valeurs de $\beta/\alpha$.
 
 \begingroup
 \begin{center}
@@ -276,7 +294,7 @@ e_2^n =  u^n_N - (u_{ref})^n_N
 			5.0 & 8.99\\
 			$\infty$ & 8.99	
 		\end{tabular}
-		\captionof{table}{Erreur $||e_1| = \sum_{n=0}^{n_{max}}(e^n_1)^2$ pour quelques valeurs de $\beta/\alpha$ autour des meilleurs résultats \label{tab:robinErrorsZoom}}
+		\captionof{table}{Erreur $||e_1|| = \sum_{n=0}^{n_{max}}(e^n_1)^2$ pour quelques valeurs de $\beta/\alpha$ autour des meilleurs résultats \label{tab:robinErrorsZoom}}
 \end{center}
 \endgroup
 
@@ -289,7 +307,7 @@ e_2^n =  u^n_N - (u_{ref})^n_N
 \begingroup
 \begin{center}
 		\includegraphics[scale=.6]{figures/robinErrors2.png}
-	     \captionof{figure}{Erreur $||e_1| = \sum_{n=0}^{n_{max}}(e^n_1)^2$ entre la solution approximée et la solution de réference pour des plusieurs valeurs de $\gamma/\beta$, avec des conditions aux limits de Robin jusqu'à la dérivée seconde  \label{fig:robinErrorsAll2}}
+	     \captionof{figure}{Erreur $||e_1| = \sum_{n=0}^{n_{max}}(e^n_1)^2$ entre la solution approximée et la solution de réference pour plusieurs valeurs de $\gamma/\beta$, avec des conditions aux limits de Robin jusqu'à la dérivée seconde  \label{fig:robinErrorsAll2}}
 \end{center}
 \endgroup
 
@@ -312,7 +330,7 @@ e_2^n =  u^n_N - (u_{ref})^n_N
 
 \subsubsection{Conclusion partiale} 
 
-\indent Pour résumer cet étude initial des conditions transparentes, on a cherché à les approximer par des conditions aux bords de Robin, écrites en fonction de coefficients ajustables afin d'attribuer différentes importances à chacun des termes (correspondant à la solution et à ses dérivées). L'idée était de tester plusieurs combinaisons de ces coefficients afin de les optimiser (au sens de minimiser l'erreur entre la solution calculée dans $[-L,L]$ et la solution de référence, calculée dans $[-2L,2L]$). Comme on a décrit ci-dessus, les conditions de Robin qui prennent en compte la continuité de la solution testée (i.e., avec des coefficients plus grands pour les termes des dérivées) ont produit des meilleurs résultats. Alors, la TBC basée sur la première dérivée a été plus efficiente que celle basée seulement sur la solution; et la TBC basée sur la seconde dérivée a été encore meilleure. Finalement, on a observé que l'amélioration de la solution est négligeable au-dessus une certaine relation entre les coefficients.
+\indent Pour résumer cette étude initiale des conditions transparentes, on a cherché à les approximer par des conditions aux bords de Robin, écrites en fonction de coefficients ajustables afin d'attribuer différentes importances à chacun des termes (correspondant à la solution et à ses dérivées). L'idée était de tester plusieurs combinaisons de ces coefficients afin de les optimiser (au sens de minimiser l'erreur entre la solution calculée dans $[-L,L]$ et la solution de référence, calculée dans $[-2L,2L]$). Comme on a décrit ci-dessus, les conditions de Robin qui prennent en compte la continuité de la solution testée (i.e., avec des coefficients plus grands pour les termes des dérivées) ont produit des meilleurs résultats. Alors, la TBC basée sur la première dérivée a été plus efficiente que celle basée seulement sur la solution; et la TBC basée sur la deuxième dérivée a été encore meilleure. Finalement, on a observé que l'amélioration de la solution est négligeable au-dessus une certaine relation entre les coefficients.
 
 
 

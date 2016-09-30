@@ -1,0 +1,109 @@
+\documentclass[12pt,a4paper,twoside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[font=footnotesize]{caption}
+\usepackage{subcaption}  % for subfigure
+\usepackage{numprint} % round numbers
+\usepackage{siunitx} % round numbers
+\usepackage{booktabs}  % nice looking tables
+\usepackage{indentfirst} % indent first line after section title
+\usepackage{breqn} %break inline equation
+\usepackage{tikz}
+%\usepackage{refcheck}
+\usepackage{cases} %numcases and subnumcases
+\usepackage{mvmsh} % Bordeaux
+\usepackage[hmarginratio=1:1]{geometry}
+\usepackage[french]{babel}
+
+\author{Joao Guilherme Caldas Steinstraesser}
+
+\captionsetup[subfigure]{labelformat=parens,labelsep=space,font = scriptsize}
+
+\newcommand{\der}[1]{\partial_{#1}}
+\renewcommand{\epsilon}{\varepsilon}
+
+\renewcommand{\th}{\tilde{h}}
+\newcommand{\tu}{\tilde{u}}
+
+\newcommand{\lh}{\overline{h}}
+\newcommand{\lu}{\overline{u}}
+
+\newcommand{\opT}{\mathcal{T}}
+\newcommand{\opQ}{\mathcal{Q}}
+\newcommand{\opIT}{I + \opT}
+\newcommand{\opIhT}{I + h\opT\frac{1}{h}}
+
+\newcommand{\Atwo}[2]{\left( \begin{array}{c} #1 \\ #2  \end{array} \right)}
+
+\newcommand{\laplinv}{\mathcal{L}^{-1}}
+
+
+\bibliographystyle{abbrv}
+
+\makeatletter
+\@addtoreset{section}{part}
+\makeatother
+
+\begin{document}
+
+%\pagenumbering{gobble}
+exclamation $\text{!}$
+\thispagestyle{empty}
+\input{couverture}
+
+\cleardoublepage
+\input{synthese}
+
+\cleardoublepage
+%\pagenumbering{arabic}% Arabic page numbers (and reset to 1)
+%\setcounter{page}{7}
+\tableofcontents
+
+
+\cleardoublepage
+\input{remerciements}
+\cleardoublepage
+\input{resume}
+\cleardoublepage
+\input{abstract}
+\cleardoublepage
+\input{intro_general}
+%
+%\cleardoublepage
+%\vspace*{\fill}
+%\part{Inria Bordeaux\\Modèle d'adaptation de maillage à des surfaces et variables physiques appliqué à des problèmes de la mécanique des fluides}
+%\vspace*{\fill}
+%
+%\cleardoublepage
+%\input{Bordeaux/inria}
+%\input{Bordeaux/introduction}
+% \input{Bordeaux/modele}
+% \input{Bordeaux/applicationLS}
+% \input{Bordeaux/applicationPhys}
+% \input{Bordeaux/nonstationnaire}
+% \input{Bordeaux/conclusionBordeaux}
+%
+%\cleardoublepage
+%\vspace*{\fill}
+%\part{MERIC / Inria Chile\\Méthode de décomposition de domaine appliquée à la résolution de modèles non linéaires et/ou dispersifs pour la propagation des ondes}
+%\vspace*{\fill}
+%
+%\cleardoublepage
+%\input{FRinriameric}
+%\input{FRintro}
+%\input{FRkdv}
+%\input{FRserre}
+%\input{FRBCstudy}
+%\input{FRTBCDispersion}
+%\input{FRDDM}
+%\input{FRconclusion}
+%
+%\cleardoublepage
+%\input{bilan}
+%\cleardoublepage
+%\bibliography{../may/biblio}
+\end{document}

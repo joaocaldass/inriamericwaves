@@ -1,0 +1,18 @@
+\section*{Abstract}
+
+\indent This report is divided in two parts, corresponding to the two half-year internships realized in 2015-2016.
+
+\indent The content of the first stage, made in Inria Bordeaux, consists in the study and implementation of mesh adaptation methods, looking for its application to the resolution of fluid mechanics problems.
+
+\indent The mesh adaptation method considered here is based exclusively in the mouvement of mesh points, without adding or suppressing any nodes neither modifying their connectivity (their neighbourhood relationships). The objective of such adaptation is to concentrate the nodes in the regions where a higher refinement is necessary (for example, around an object or in the regions where the fluid's velocity has strong gradients), allowing more precise computations with the same computational cost. 
+
+\indent We start by presenting the theoretical aspects of the model and then we implement it, using a finite element method. A C library was developed during the internship, in order to allow the incorporation of the model to fluid mechanics codes, in two and three dimensions. We present many tests performed to validate the model and the library, and also to validate the coupling between the adaptation to surfaces and the adaptation to physical variables.
+
+\indent The second internship, which took place in Chile, (MERIC/Inria Chile), had as main objective the study and implementation of domain decomposition methods (DDMs), applied to wave propagation models.
+
+\indent We firstly present the study of two among these models, the KdV equation and the Serre equations, which consider nonlinear and dispersive phenomena. For both models, we propose and validate a numerical resolution with a splitting method, separating the advection terms from the dispersion terms.
+
+\indent Then, we present the content concerning the domain decomposition methods, applied to a dispersive equation (the linearized KdV equation without the advection term). We present initially a study of the transparent boundary conditions for this equation, and we propose and validate simple approximations for these conditions, which are used as interface conditions in the implementation of a DDM. An optimization process is performed in order to obtain the method with the fastest convergence toward the solution of the monodomain problem.
+
+
+\indent \textbf{Keywords:} mesh adaptation, finite elements method, domain decomposition method, transparent boundary conditions, KdV equation, Serre equations

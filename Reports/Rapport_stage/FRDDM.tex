@@ -1,14 +1,15 @@
-\section{Application des TBCs approximées à une Méthode de Décomposition de Domaine}
+\section{Application des TBCs approximées à une méthode de décomposition de domaine}
+\label{sec:DDM}
 
-\indent L'approximation des conditions aux limites transparentes (TBCs) utilisant un polynôme constant sera appliquée dans une méthode de décomposition de domaine (\emph{Domain Decomposition Method} - DDM). Dans cette section, on décrit d'abord la DDM implémentée, et ensuite on décrit l'incorporation des TBCs et les tests réalisés.
+\indent L'approximation des conditions aux limites transparentes (TBCs) utilisant un polynôme constant a été appliquée dans une méthode de décomposition de domaine (\emph{Domain Decomposition Method} - DDM). Dans cette section, on décrit d'abord la DDM implémentée, et ensuite on décrit l'incorporation des TBCs et les tests réalisés.
 
 \subsection{Les méthodes de Schwarz}
 
-\indent La description suivante s’appuie sur \cite{Japhet2003}. Les méthodes de décomposition de domaines, comme indique son nom, permettent de décomposer un domaine $\Omega$ en plusieurs subdomaines $\Omega_i$ (superposés ou pas) et de résoudre le problème dans chacun d'eux. Ainsi, il faut trouver des fonctions qui satisfassent la PDE dans chacun des subdomaines et que soient égaux dans les interfaces.
+\indent La description suivante s’appuie sur \cite{Japhet2003}. Les méthodes de décomposition de domaine, comme indique son nom, permettent de décomposer un domaine $\Omega$ en plusieurs subdomaines $\Omega_i$ (superposés ou non) et de résoudre le problème dans chacun d'eux. Ainsi, il faut trouver des fonctions qui satisfassent la PDE dans chacun des subdomaines et que soient égaux dans les interfaces.
 
 \indent La première DDM développée a été la méthode de Schwarz \cite{Japhet2003,Gander2008}, qui consiste en une méthode itérative : dans le cas d'un problème d'évolution, la solution $u_i^{n,\infty}$, dans chaque pas de temps $t_n$ et chaque subdomaine $\Omega_i$, est calculée comme étant la convergence de la solution obtenue dans chaque itération, $u_i^{n,k}, \ \ k\geq 0$. On peut nommer deux types de méthodes de Schwarz, en dépendant de la manière avec laquelle las conditions aux interfaces sont construites pour calculer $u_i^{n,k}$.
 
-\indent Dans la méthode de Schwarz additive (\emph{Additive Schwarz Method - ASM}), les conditions aux interfaces sont toujours calculées en utilisant la solution $u_j^{n,k-1}, \ \ j \neq i$ de la dernière itération. Ainsi, dans l'interface entre les domaines $\Omega_i$ et $\Omega_j$, les conditions à l'interface pour le problème $\Omega_i$ s'écrit comme
+\indent Dans la méthode de Schwarz additive (\emph{Additive Schwarz Method - ASM}), les conditions aux interfaces sont toujours calculées en utilisant la solution $u_j^{n,k-1}, \ \ j \neq i$ de la dernière itération. Ainsi, dans l'interface entre les domaines $\Omega_i$ et $\Omega_j$, les conditions à l'interface pour le problème dans $\Omega_i$ s'écrit comme
 
 $$\mathcal{B}_i(u_i^{n,k+1}) = \mathcal{B}_i(u_j^{n,k})$$
 
@@ -26,16 +27,16 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
 
 \begin{itemize}
    	\item Il y a une unique solution $\Omega_i$ dans chaque subdomaine $\Omega_i$.
-	\item La solution $u_i$ dans chaque subdomaine $\Omega_i$ converge vers $u|_{\Omega_1}$, i.e, la solution $u$ du monodomaine $\Omega$ restreinte à $\Omega_1$
+	\item La solution $u_i$ dans chaque subdomaine $\Omega_i$ converge vers $u|_{\Omega_1}$, i.e, la solution $u$ du monodomaine $\Omega$ restreinte à $\Omega_i$.
 \end{itemize}
 
 \indent Par ailleurs, on veut une convergence rapide de la méthode.
 
-\indent Selon \cite{Japhet2003}, l'ASM optimale est celle qui utilise les exactes TBCs \eqref{eq:exactTBC} comme conditions aux interfaces : dans ce cas, la méthode converge dans deux itérations, et aucune autre ASM ne peut converger plus rapidement. Néanmoins, comme discuté avant dans ce rapport, la dérivation analytique et l'implémentation numérique des TBCs exactes sont, en général, impraticables, en raison de son caractère non local en temps. Ainsi, on propose ici l'implémentation des TBCs approximées \eqref{eq:appTBCP0} dans la DDM.
+\indent Selon \cite{Japhet2003}, l'ASM optimale est celle qui utilise les TBCs exactes \eqref{eq:exactTBC} comme conditions aux interfaces : dans ce cas, la méthode converge dans deux itérations, et aucune autre ASM ne peut converger plus rapidement. Néanmoins, comme discuté avant dans ce rapport, la dérivation analytique et l'implémentation numérique des TBCs exactes sont, en général, impraticables, en raison de son caractère non local en temps. Ainsi, on propose ici l'implémentation des nos TBCs approximées \eqref{eq:appTBCP0} dans la DDM.
 
 \subsection{ASM avec des TBCs approximées pour l'équation de dispersion}
 
-\indent La résolution de l'équation de dispersion avec la Méthode de Schwarz Additive, en utilisant l'approximation des TBCs construite à partir d'un polynôme constant, s'écrit comme
+\indent La résolution de l'équation de dispersion avec la méthode de Schwarz additive, en utilisant les approximations des TBCs construites à partir d'un polynôme constant, s'écrit comme
 
 \begin{equation}
     \label{eq:problemDDM1}
@@ -43,8 +44,8 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
         (u_1^{n,k+1})_t + (u_1^{n,k+1})_{xxx} = 0 , \ \ x \in \Omega_1, \ \ t \geq 0\\
         u_1^{n,0} = u_1^{n-1,\infty} , \ \ x \in \Omega_1 \\
         \Upsilon_1^{c_L}(u_1^{n+1,k+1},-L) = 0, \\ 
-        \Theta_2^{c_R}(u_1^{n+1,k+1},0) = \Theta_2^{c_R}(u_2^{n,k},0) , \\
-        \Theta_3^{c_R}(u_1^{n+1,k+1},0) = \Theta_3^{c_R}(u_2^{n,k},0)
+        \Theta_2^{c_R}(u_1^{n+1,k+1},0) = \Theta_2^{c_R}(u_2^{n+1,k},0) , \\
+        \Theta_3^{c_R}(u_1^{n+1,k+1},0) = \Theta_3^{c_R}(u_2^{n+1,k},0)
      \end{cases}
 \end{equation}
 
@@ -53,13 +54,13 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
     \begin{cases}
         (u_2^{n,k+1})_t + (u_2^{n,k+1})_{xxx} = 0 , \ \ x \in \Omega_2, \ \ t \geq 0\\
         u_2^{n,0} = u_2^{n-1,\infty} , \ \ x \in \Omega_2 \\
-        \Theta_1^{c_L}(u_2^{n+1,k+1},0) = \Theta_1^{c_L}(u_1^{n,k},0) \\
+        \Theta_1^{c_L}(u_2^{n+1,k+1},0) = \Theta_1^{c_L}(u_1^{n+1,k},0) \\
         \Upsilon_2^{c_R}(u_2^{n+1,k+1},L) = 0 \\
         \Upsilon_3^{c_R}(u_2^{n+1,k+1},L) = 0
      \end{cases}
 \end{equation}
 
-\noindent où $ \Upsilon_i, \ \ i=1,2,3$,  sont les conditions aux limites sur les bords extérieurs (i.e., définies sur $\partial \Omega_i \backslash \Gamma$). Ces conditions externes sont indépendantes des conditions à l'interface. On a considéré ici $\Upsilon_1 = \Theta_1^{1.0}$, $\Upsilon_2 = \Theta_2^{0.0}$ and $\Upsilon_3 = \Theta_3^{0.0}$, ce qui donne 
+\noindent où $ \Upsilon_i, \ \ i=1,2,3$,  sont les conditions aux limites sur les bords extérieurs (i.e., définies sur $\partial \Omega_i \backslash \Gamma$, où $\Gamma = \Omega_1 \cap \Omega_2$). Ces conditions externes sont indépendantes des conditions à l'interface. On a considéré ici $\Upsilon_1 = \Theta_1^{1.0}$, $\Upsilon_2 = \Theta_2^{0.0}$ and $\Upsilon_3 = \Theta_3^{0.0}$, ce qui donne 
 
 \begin{equation}
 \label{eq:externalBCsDDM}
@@ -70,9 +71,9 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
 \end{gathered}
 \end{equation}
 
-\indent Ce choix a été fait en se basant sur son implémentation simple et sur les bons résultats fournis par les coefficients $c_L = 1.0$ et $c_R = 0.0$ lors de l'approximation de la solution analytique dans $\Omega$ (comme montre le tableau \ref{tab:firstTestsP0}). Néanmoins, cela n'a pas une vraie importance dans l'étude qu'on propose ici, parce qu'on compare les résultats de la DDM avec une solution numérique de référence calculée  dans le monodomaine. La seule exigence pour que cet étude soit cohérent est que les conditions aux limites externes pour le calcul de $u^{ref}$ soient les mêmes $\Upsilon_i, \ \ i=1,2,3$ utilisées dans la DDM.
+\indent Ce choix a été fait en se basant sur son implémentation simple et sur les bons résultats fournis par les coefficients $c_L = 1.0$ et $c_R = 0.0$ lors de l'approximation de la solution analytique dans $\Omega$ (comme montre le tableau \ref{tab:firstTestsP0}). Néanmoins, cela n'a pas une vraie importance dans l'étude qu'on propose ici, parce qu'on compare les résultats de la DDM avec une solution numérique de référence calculée  dans le monodomaine. La seule exigence pour que cette étude soit cohérente est que les conditions aux limites externes pour le calcul de $u^{ref}$ soient les mêmes $\Upsilon_i, \ \ i=1,2,3$, utilisées dans la DDM.
 
-\indent Ainsi, la solution de référence utilisé dans cet étude est la solution du problème
+\indent Ainsi, la solution de référence utilisée dans cette étude est la solution du problème
 
 \begin{equation}
 	\label{eq:problemMonodomain}
@@ -90,14 +91,14 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
 
 \indent Toujours en considérant les objectifs de ce travail, on remarque qu'on compare les solutions calculées seulement dans un pas de temps. Cela est nécessaire pour que l'erreur due à la DDM soit étudiée séparément (sans influence, para exemple, de l'erreur accumulée au long des pas de temps, due à la discrétisation temporale).
 
-\indent Par conséquent, on peut alléger la notation. À parti d'ici jusqu'à la fin de ce rapport, on notera par $u_j^i$ la solution du DDM, où $i$ indique le subdomaine $\Omega_i$ (ou, dans le cas de la solution de référence, $i=ref$, et à convergence de la méthode, $i=*$) et $j$ indique la position spatiale discrète. Dans les cas où le processus itérative doit être considéré, on ajoutera le superindice $k$ pour indique l'itération.
+\indent Par conséquent, on peut alléger la notation. À parti d'ici jusqu'à la fin de ce rapport, on dénote par $u_j^i$ la solution de la DDM, où $i$ indique le subdomaine $\Omega_i$ (ou, dans le cas de la solution de référence, $i=ref$, et dans la convergence de la méthode, $i=*$) et $j$ indique la position spatiale discrète. Dans les cas où le processus itérative doit être considéré, on ajoute le superindice $k$ pour indique l'itération.
 
-\indent En ce qui concerne la discrétisation spatiale, le monodomain $\Omega$ est divisé en $2N+1$ points distribués de façon homogène, numérotés de $0$ jusqu'à $2N$. Dans les descriptions suivantes, on va considérer toujours que les deux subdomaines $\Omega_1$ et $\Omega_2$ ont le même nombre de points, respectivement  $x_0,...,x_N$ et $x_N,...,x_{2N}$. Le point à l'interface, $x_N$, est commun aux deux subdomains, ayant des solutions différentes dans chacun d'eux : $u_N^1$ et $u_N^2$. Évidemment, on espère que, à convergence, $u_N^1 = u_N^2 = u_N^*$.
+\indent En ce qui concerne la discrétisation spatiale, le monodomain $\Omega$ est divisé en $2N+1$ points distribués de façon homogène, numérotés de $0$ jusqu'à $2N$. Dans les descriptions suivantes, on considère toujours que les deux subdomaines $\Omega_1$ et $\Omega_2$ ont le même nombre de points, respectivement  $x_0,...,x_N$ et $x_N,...,x_{2N}$. Le point à l'interface, $x_N$, est commun aux deux subdomains, ayant des solutions différentes dans chacun d'eux : $u_N^1$ et $u_N^2$. Évidemment, on espère que, à convergence, $u_N^1 = u_N^2 = u_N^*$.
 
 
 \subsection{Discrétisation du problème et erreur dans la solution convergée}
 
-\indent Lors de l'application de TBCs approximés dans une ASM, on doit assurer que la solution convergée $u^*$ satisfait la même équation discrète que la solution $u^{ref}$ du problème dans le monodomaine. Dans les paragraphes suivants, on montre que cette propriété n'est pas vérifiée par la méthode  \eqref{eq:problemDDM1} - \eqref{eq:problemDDM2} proposée ici, et, en se basant sur cette démonstration, on propose des corrections pour ce problème.
+\indent Lors de l'application des TBCs approximées dans une ASM, on doit assurer que la solution convergée $u^*$ satisfait la même équation discrète que la solution $u^{ref}$ du problème dans le monodomaine. Dans les paragraphes suivants, on montre que cette propriété n'est pas vérifiée par la méthode  \eqref{eq:problemDDM1} - \eqref{eq:problemDDM2} proposée ici, et, en se basant sur cette démonstration, on propose des corrections pour ce problème.
 
 \indent Pour les points intérieurs de chacun des domaines, on utilise une discrétisation spatiale de seconde ordre pour l'équation \eqref{eq:DKdV} :
 
@@ -106,7 +107,7 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
     \frac{u_j^i - \alpha_j^i}{\Delta t} + \frac{-\frac{1}{2}u_{j-2}^i + u_{j-1}^i - u_{j+1}^i + \frac{1}{2}u_{j+2}^i }{\Delta x ^3} = 0
 \end{equation}
 
-\noindent ce qui est valide pour $j=2,...,N-2$ dans le cas $i=1$; pour $j=N+2,...,2N-2$ dans le cas $i=2$; et pour $j=2,...,2N-2$ dans le cas $i=ref$. Dans \eqref{eq:FDdiscretization}, $\alpha_j^i$ est une donnée (par exemple, la solution convergé du pas de temps précédent).
+\noindent ce qui est valable pour $j=2,...,N-2$ dans le cas $i=1$; pour $j=N+2,...,2N-2$ dans le cas $i=2$; et pour $j=2,...,2N-2$ dans le cas $i=ref$. Dans \eqref{eq:FDdiscretization}, $\alpha_j^i$ est une donnée (par exemple, la solution convergée du pas de temps précédent).
 
 \indent Pour les points proches aux bords, on utilise une discrétisation décentrée ou les TBCs appropriées. En fait, en considérant qu'une TBC est écrite pour le bord à gauche et deux pour le bord à droite, on doit imposer une discrétisation décentrée seulement pour le deuxième point le plus proche du bord à gauche. Par exemple, pour le point $x_1$ : 
 
@@ -114,7 +115,7 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
     \frac{u_{1}^2 - \alpha_{1}^2}{\Delta t} + \frac{-\frac{5}{2}u_{1}^2 + 9u_{2}^2 - 12 u_{3}^2 + 7\frac{1}{2}u_{4}^2 -\frac{3}{2}u_{5}^2}{\Delta x ^3} = 0
 \end{equation*}
 
-\noindent et de façon similaire pour les autres points proches des bords.
+\noindent et de façon similaire pour les autres points proches des bords (\emph{e.g.} le point $N+2$ dans $\Omega_2$).
 
 \indent Pour résoudre le problème dans $\Omega_1$, deux IBCs sont imposées (correspondant respectivement à $\Theta_2$ et $\Theta_3$) dans les équations discrètes des points $x_{N-1}$ et $x_N$ : 
 
@@ -178,7 +179,7 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
 
 \paragraph{Remarque : modification de la solution de référence :}
 
-\indent Même si la DDM fournissait une solution compatible avec celle du problème dans le monodomain (ce qu'on assure avec des corrections proposées dans la suite de ce rapport), la solution de la DDM ne convergerait exactement vers $u^{ref}$, pour une raison qui ne dépendent pas de l'expression des IBCs, mais si du fait qu'on écrit deux IBCs pour le bord à gauche et une pour le droit. Comme on utilise une discrétisation centrée (expression \ref{eq:FDdiscretization}) pour la troisième dérivative dans l'espace (ce qui demande un stencil de deux points de chaque côté du point au milieu), il faut écrire une discrétisation décentrée pour le point $x_{N+1}$  lors de la résolution du problème dans $\Omega_2$. Ainsi, ce point ne satisfait pas la même équation discrète que dans le problème de référence. Afin d'éviter cette incompatibilité et de nous permettre de bien étudier le comportement de la DDM, on va modifier la discrétisation du point  $x_{N+1}$ dans problème du monodomain, en utilisant la même discrétisation décentrée de seconde ordre :
+\indent Même si la DDM fournissait une solution compatible avec celle du problème dans le monodomain (ce qu'on assure avec des corrections proposées dans la suite de ce rapport), la solution de la DDM ne convergerait exactement vers $u^{ref}$, pour une raison qui ne dépendent pas de l'expression des IBCs, mais si du fait qu'on écrit deux IBCs pour le bord à gauche et une pour le droit. Comme on utilise une discrétisation centrée (expression \ref{eq:FDdiscretization}) pour la troisième dérivative dans l'espace (ce qui demande un stencil de deux points de chaque côté du point au milieu), il faut écrire une discrétisation décentrée pour le point $x_{N+1}$  lors de la résolution du problème dans $\Omega_2$ (et cette discrétisation n'est pas remplacée par une IBC). Ainsi, ce point ne satisfait pas la même équation discrète que dans le problème de référence. Afin d'éviter cette incompatibilité et de nous permettre de bien étudier le comportement de la DDM, on va modifier la discrétisation du point  $x_{N+1}$ dans le problème du monodomain, en utilisant la même discrétisation décentrée de seconde ordre :
 
 \begin{equation*}
     \label{eq:uncenteredFDdiscretizationN}
@@ -281,7 +282,7 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
 \endgroup
 
 
-\subsubsection{Vérification numérique de l'erreur}
+\subsubsection{Vérification numérique de l'erreur due aux TBCs approximées}
 
 \indent Le problème \eqref{eq:problemDDM1} - \eqref{eq:problemDDM2} a été résolu jusqu'à convergence avec cinq discrétisations spatiales uniformes différentes, au long d'un pas de temps (dans l'intervale $[0,\Delta t]$). Dans chaque cas, la solution de référence $u^{ref}$ était la solution du problème du monodomain \eqref{eq:problemMonodomain}, résolu avec la même taille de maille. Deux erreurs ont été calculées :
 
@@ -296,7 +297,7 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
 
 \noindent correspondant respectivement à l'erreur sur l'interface et à l'erreur dans tout le domain.
 
-\indent On s'intéresse au comportement de ces erreurs en fonction de la taille de maille. Comme montré la figure \ref{fig:orderVerification}, on vérifie que la DDM proposée par nous produit une erreur d'ordre $O(\Delta x)$  :
+\indent On s'intéresse au comportement de ces erreurs en fonction de la taille de maille. Comme montré la figure \ref{fig:orderVerification}, on vérifie que la DDM proposée par nous, utilisant les TBCs approximées \eqref{eq:appTBCP0}, produit une erreur d'ordre $\mathcal{O}(\Delta x)$  :
 
 \begingroup
 \begin{center}
@@ -312,9 +313,9 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
 \begin{equation}
 	\label{eq:TBCs_corriges}
     \begin{gathered}
-        \Theta_1^{c_L}(u_2^{n+1,k+1}) + \theta_1 = \Theta_1^{c_L}(u_1^{n,k}) + \theta_1' \\
-        \Theta_2^{c_R}(u_1^{n+1,k+1}) + \theta_2 = \Theta_2^{c_R}(u_2^{n,k}) + \theta_2' \\
-        \Theta_3^{c_R}(u_1^{n+1,k+1}) + \theta_3 = \Theta_3^{c_R}(u_2^{n,k}) + \theta_3'
+        \Theta_1^{c_L}(u_2^{n+1,k+1}) + \theta_1 = \Theta_1^{c_L}(u_1^{n+1,k}) + \theta_1' \\
+        \Theta_2^{c_R}(u_1^{n+1,k+1}) + \theta_2 = \Theta_2^{c_R}(u_2^{n+1,k}) + \theta_2' \\
+        \Theta_3^{c_R}(u_1^{n+1,k+1}) + \theta_3 = \Theta_3^{c_R}(u_2^{n+1,k}) + \theta_3'
     \end{gathered}
 \end{equation}
 
@@ -397,7 +398,7 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
 % 12/09/2016
 \subsection{Optimisation des IBCs (vitesse de convergence)}
 
-\indent Notre objectif maintenant est d'optimiser les IBCs, dans le sens de minimiser le nombre de itérations de l'ASM pour arriver à la convergence.   Ainsi, on a fait un très large ensemble de tests, afin de trouver les coefficients $c_L$ et $c_R$ qui fournissent la convergence la plus rapide. Dans un premier moment, on a fait cet étude avec un pas de temps et un pas de espace fixés, afin d'analyser exclusivement l'influence du coefficient; en suite, on a introduit ces deux paramètres dans l'étude.
+\indent Après la proposition et validation de la DDM avec des IBCs corrigées, notre nouveau objectif maintenant était d'optimiser ces IBCs, dans le sens de minimiser le nombre de itérations de l'ASM pour arriver à la convergence. Ainsi, on a fait un très large ensemble de tests, afin de trouver les coefficients $c_L$ et $c_R$ qui fournissent la convergence la plus rapide. Dans un premier moment, on a fait cette étude avec un pas de temps et un pas de espace fixés, afin d'analyser exclusivement l'influence du coefficient; en suite, on a introduit ces deux paramètres dans l'étude.
 
 \indent Comme on connaît une solution de référence, le critère de convergence utilisé est
 
@@ -408,7 +409,7 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
 
 \noindent avec $\epsilon = 10^{-9}$ et  l'erreur $e^{\Omega,k}$, pour chaque itération $k$, définie comme dans \eqref{eq:errorDDM}.
 
-\indent Afin de simplifier les tests et d'éviter des coûts de calcul trop élevés,  on a considéré toujours $c_L = c_R = c$  dans le procès d'optimisation. Le range des coefficients testés est $[-10.0, 20.0]$ (choisi après des tests initiaux pour identifier un intervalle approprié), avec un pas égal à  $0.1$ entre eux (ou encore plus petit, jusqu'à $0.005$, dans les régions proches des coefficients optimaux, afin de raffines la recherche). Le nombre maximal d'itérations est 100.
+\indent Afin de simplifier les tests et d'éviter des coûts de calcul trop élevés,  on a considéré toujours $c_L = c_R = c$  dans le procès d'optimisation. Le range des coefficients testés est $[-10.0, 20.0]$ (choisi après des tests initiaux pour identifier un intervalle approprié), avec un pas égal à  $0.1$ entre eux (ou encore plus petit, jusqu'à $0.005$, dans les régions les plus proches des coefficients optimaux, afin de raffiner la recherche). Le nombre maximal d'itérations est 100.
 
 \indent Comme une dernière remarque, on rappelle que tous les tests ont été réalisées au long d'un seul pas de temps.
 
@@ -489,20 +490,22 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
 	\captionof{figure}{Nombre d'itérations jusqu'à convergence en fonction du coefficient des TBCs, pour $t_0$ fixé et des différentes positions de l'interface \label{fig:optimVarInterface}}
 \endgroup
 
-\indent La figure \ref{fig:errorEvolution} montre l'évolution de l'erreur, en fonction des itérations, pour cinq coefficients $c$ qui ont fournit les convergences les plus rapides, pour un temps initial et une position de l'interface fixés. Pour des autres valeurs de $t_0$ et $\alpha$, le graph est similaire, en ce qui concerne le nombre d'itérations et le fait que la convergence est plus régulière pour les coefficients les plus proches de zéro, en comparaison aux autres coefficients optimaux.
+\indent
 
-\begingroup
+\indent La figure \ref{fig:errorEvolution} montre l'évolution de l'erreur, en fonction des itérations, pour les cinq coefficients $c$ qui ont fournit les convergences les plus rapides, pour un temps initial et une position de l'interface fixés. Pour des autres valeurs de $t_0$ et $\alpha$, le graphe est similaire, en ce qui concerne le nombre d'itérations et le fait que la convergence est plus régulière pour les coefficients les plus proches de zéro, en comparaison aux autres coefficients optimaux.
+
+\begin{figure}
 \begin{center}
 \includegraphics[scale=.5]{figures/FinalFigures/errorEvolutionFixedT0BFinalVersion.png}
-\captionof{figure}{Évolution de l'erreur, en fonction des itérations, pour les tests les plus rapides \label{fig:errorEvolution}}
+\caption{Évolution de l'erreur, en fonction des itérations, pour les tests les plus rapides \label{fig:errorEvolution}}
 \end{center}
-\endgroup
+\end{figure}
 
 \subsubsection{Tests variant $\Delta t$ and $\Delta x$}
 
 \indent Après vérifier que la méthode se comporte de façon similaire pour toute condition initiale (i.e., pour tout $t_0$) et toute position de l'interface, on a fixé ces paramètres ($t_0 = 0$ and $\alpha = 0.5$) et on a fait des nouveaux tests avec des différentes valeurs de $\Delta t$ (avec $\Delta x = 12/250$ fixé) et des différentes valeurs de $\Delta x$ (avec $\Delta t = 0.02$ fixé).
 
-\indent Le nombre d'itérations en fonction des coefficients, pour quelques tests, est montré dans les figures \ref{fig:niterxCoefVarDt} et \ref{fig:niterxCoefVarDx}. La figure \ref{fig:optimalCoefVarDxDtCorrectN} présente le coefficient optimal pour chaque $\Delta t$ ou $\Delta x$. En considérant la remarque qu'on a fait concernant les résultats similaires (i.e., le nombre d'itérations jusqu'à convergence) pour les quatre coefficients optimaux, on a tenu en compte, pour la construction des courbes de la figure \ref{fig:optimalCoefVarDxDtCorrectN}, seulement les minima les plus lointains de zéro: ceci a été fait parce que, comme montre les figures \ref{fig:niterxCoefVarDt} et \ref{fig:niterxCoefVarDx}, ces minima ont une forte dépendance de $\Delta t$ et $\Delta x$, et on cherche à étudier cette relation.
+\indent Le nombre d'itérations en fonction des coefficients, pour quelques tests, est montré dans les figures \ref{fig:niterxCoefVarDt} et \ref{fig:niterxCoefVarDx}. La figure \ref{fig:optimalCoefVarDxDtCorrectN} présente le coefficient optimal pour chaque $\Delta t$ ou $\Delta x$. En considérant la remarque qu'on a fait concernant les résultats similaires (i.e., le nombre d'itérations jusqu'à convergence) pour les quatre coefficients optimaux, on a tenu en compte, pour la construction des courbes de la figure \ref{fig:optimalCoefVarDxDtCorrectN}, seulement les minima les plus lointains de zéro: ceci a été fait parce que, comme montre les figures \ref{fig:niterxCoefVarDt} et \ref{fig:niterxCoefVarDx}, ces minima ont une forte dépendance de $\Delta t$ et $\Delta x$, et on cherchait à étudier cette relation.
 
 \begingroup
 \noindent
@@ -553,7 +556,7 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
 
 \noindent respectivement pour les coefficients optimaux positifs et négatifs. Les coefficients de détermination de chaque régression son $R^{2,+} = 0.9999894$ et $R^{2,-} = 0.9998993$, ce qui indique une bonne représentation.
 
-\indent Afin de valider les expressions \eqref{eq:regression2DPos} and \eqref{eq:regression2DNeg}, elles ont été utilisées pour calculer le coefficient optimaux pour des plusieurs points $(\Delta t, \Delta x)$, avec $\Delta t \in [0.0005,0.3]$ et $\Delta x \in \left[12/5000,12/50 \right]$. Comme montre la figure \ref{fig:regressionValidation}, pour la plupart des points dans le domaine considéré, le coefficient optimal calculé fournit une convergence rapide vers la solution du monodomaine, avec moins de 20 itérations (ou encore moins que 12 itérations), sur une grand région du domaine).
+\indent Afin de valider les expressions \eqref{eq:regression2DPos} and \eqref{eq:regression2DNeg}, elles ont été utilisées pour calculer le coefficient optimal pour plusieurs points $(\Delta t, \Delta x)$, avec $\Delta t \in [0.0005,0.3]$ et $\Delta x \in \left[12/5000,12/50 \right]$, et ces coefficients ont été utilisées dans la résolution du problème avec la DDM. Comme montre la figure \ref{fig:regressionValidation}, pour la plupart des points dans le domaine considéré, le coefficient optimal calculé fournit une convergence rapide vers la solution du monodomaine, avec moins de 20 itérations (ou encore moins que 12 itérations), sur une large région du domaine).
 
 \begingroup
 \noindent
@@ -569,10 +572,10 @@ $$\mathcal{B}_1(u_1^{n,k+1}) = \mathcal{B}_1(u_2^{n,k}) \qquad \mathcal{B}_2(u_2
 \captionof{figure}{Lignes de contour du nombre d'itérations jusqu'à convergence, en utilisant les coefficients optimaux $c_{opt}^+(\Delta t, \Delta x)$ obtenus à partir des régressions. \label{fig:regressionValidation}}.
 \endgroup
 
-\indent Les nombres d'itérations montrées dans la figure \ref{fig:regressionValidation} ne sont pas les plus petites qu'on est capable de trouver (cf. les figures \ref{fig:optimVarT0} jusqu'à \ref{fig:niterxCoefVarDx}), parce que les expressions \eqref{eq:regression2DPos} et \eqref{eq:regression2DNeg} sont des régressions construites à partir de coefficients optimaux obtenus parmi un ensemble discret de valeurs possibles. Néanmoins, elles donnent des très bonnes approximations pour le $c$ optimal pour chaque $(\Delta t, \Delta x)$, et ainsi on peut chercher dans une petite région autour du $c_{opt}$ calculé pour obtenir une convergence encore plus rapide.
+\indent Les nombres d'itérations montrés dans la figure \ref{fig:regressionValidation} ne sont pas les plus petits qu'on est capable de trouver (cf. les figures \ref{fig:optimVarT0} jusqu'à \ref{fig:niterxCoefVarDx}), parce que les expressions \eqref{eq:regression2DPos} et \eqref{eq:regression2DNeg} sont des régressions construites à partir de coefficients optimaux obtenus parmi un ensemble discret de valeurs possibles. Néanmoins, elles donnent des très bonnes approximations pour le $c$ optimal pour chaque $(\Delta t, \Delta x)$, et ainsi on peut chercher dans une petite région autour du $c_{opt}$ calculé pour obtenir une convergence encore plus rapide.
 
 \subsection{Conclusion partiale}
  
-\indent Les résultats présentés dans cette section montrent que la méthode de décomposition de domaine proposée ici, consistant en une méthode de Schwarz additive avec nos TBCs approximées, est capable de fournir une convergence rapide vers la solution du problème résolu dans le monodomaine. Alors, on atteint notre objectif de résoudre l'équation de dispersion dans un do,aine fini divisé en deux subdomaines.
+\indent Les résultats présentés dans cette section montrent que la méthode de décomposition de domaine proposée ici, consistant en une méthode de Schwarz additive avec nos TBCs approximées, est capable de fournir une convergence rapide vers la solution du problème résolu dans le monodomaine. Alors, on a atteint notre objectif de résoudre l'équation de dispersion dans un domaine fini divisé en deux subdomaines.
 
-\indent Par ailleurs, les résultats des tests d'optimisation sont très satisfaisantes en ce qui concerne une application plus générale de notre méthode. Premièrement, pour des discrétisations spatiales et temporales fixés, on a trouvé des coefficients optimales indépendants de la solution initale et de la taille des subdomaines (\emph{i.e.}, indépendamment de l'instant initial et de la position de l'interface).  Deuxièmement, on a obtenu des très bonnes courbes et surfaces de régression pour les coefficients optimaux en fonction de   $\Delta t$ et/ou $\Delta x$, ce qui nous permet d'appliquer le modèle, aussi avec une convergence rapide, dans des autres cadres numériques que ceux testés dans cet étude.
+\indent Par ailleurs, les résultats des tests d'optimisation sont très satisfaisantes en ce qui concerne une application plus générale de notre méthode. Premièrement, pour des discrétisations spatiales et temporales fixées, on a trouvé des coefficients optimaux indépendants de la solution initiale et de la taille des subdomaines (\emph{i.e.}, indépendamment de l'instant initial et de la position de l'interface).  Deuxièmement, on a obtenu des très bonnes courbes et surfaces de régression pour les coefficients optimaux en fonction de $\Delta t$ et $\Delta x$, ce qui nous permet d'appliquer le modèle, aussi avec une convergence rapide, dans des autres cadres numériques que ceux testés dans cette étude.

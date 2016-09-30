@@ -1,0 +1,56 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[font=footnotesize]{caption}
+\usepackage{subcaption}  % for subfigure
+\usepackage{numprint} % round numbers
+\usepackage{siunitx} % round numbers
+\usepackage{booktabs}  % nice looking tables
+\usepackage{indentfirst} % indent first line after section title
+\usepackage{breqn} %break inline equation
+\usepackage{tikz}
+%\usepackage{refcheck}
+\usepackage{cases} %numcases and subnumcases
+\usepackage{mvmsh} % Bordeaux
+
+
+\author{Joao Guilherme Caldas Steinstraesser}
+
+\captionsetup[subfigure]{labelformat=parens,labelsep=space,font = scriptsize}
+
+\newcommand{\der}[1]{\partial_{#1}}
+\renewcommand{\epsilon}{\varepsilon}
+
+\renewcommand{\th}{\tilde{h}}
+\newcommand{\tu}{\tilde{u}}
+
+\newcommand{\lh}{\overline{h}}
+\newcommand{\lu}{\overline{u}}
+
+\newcommand{\opT}{\mathcal{T}}
+\newcommand{\opQ}{\mathcal{Q}}
+\newcommand{\opIT}{I + \opT}
+\newcommand{\opIhT}{I + h\opT\frac{1}{h}}
+
+\newcommand{\Atwo}[2]{\left( \begin{array}{c} #1 \\ #2  \end{array} \right)}
+
+\newcommand{\laplinv}{\mathcal{L}^{-1}}
+
+
+\bibliographystyle{abbrv}
+
+\makeatletter
+\@addtoreset{section}{part}
+\makeatother
+
+\begin{document}
+
+\pagenumbering{gobble}
+
+\newpage
+\input{ENmeric}
+
+\end{document}

@@ -12,9 +12,11 @@
 
 \indent L'objectif de cette procédure est de faire chaque adaptation à partir du dernier maillage adapté, au lieu de partir du maillage non adapté à chaque pas du mouvement. Ainsi, on peut éviter de garder en mémoire toute la structure du maillage de référence et du maillage adapté. Il faut pourtant garder au moins les aires et les vecteurs normaux du maillage, parce que, en raison du modèle adopté, toutes les adaptations doivent utiliser le même maillage de référence.
 
-\indent Les figures \ref{fig:circleLSAdv} et \ref{fig:nacaLSAdv} présentent deux exemples de cette procédure, le premier pour l'advection d'un cercle et le deuxième pour l'oscillation de l'aile Naca. Les mouvements on été discrétisées en 20 pas, et chaque itération a été réalisée avec 20 ou 30 itérations, respectivement.
+\indent Les figures \ref{fig:circleLSAdv} et \ref{fig:nacaLSAdv} présentent deux exemples de cette procédure, le premier pour l'advection d'un cercle et le deuxième pour l'oscillation de l'aile Naca. Les mouvements on été discrétisées en 20 pas de temps, et chaque itération a été réalisée avec 20 ou 30 itérations, respectivement.
 
-\indent On peut observer qu'on obtient à chaque pas une bonne adaptation à la position actuelle de la fonction Level Set, mais que les positions précédentes ne sont pas complètement "désadaptées", même que son trace soit faible. En effet, les tests montrent que le passage d'une adaptation à la prochaine se fait de deux manières, soit par le mouvement des points d'une région adaptée à l'autre, soit par le "dérafinement" d'une région. On a observé que le deuxième est plus lente que le premier, et ainsi on aurait besoin d'un plus grand nombre d'itérations. Néanmoins, pour justifier l'application de cette procédure, il faut trouver un équilibre entre le temps d'exécution et la qualité des résultats.
+\indent On peut observer qu'on obtient à chaque pas de temps une bonne adaptation à la position actuelle de la fonction Level Set, mais que les positions précédentes ne sont pas complètement ``désadaptées", même que son trace soit faible. En effet, les tests montrent que le passage d'une adaptation à la prochaine se fait de deux manières (en dépendant de la position des points adaptés pour la position précédente) : soit par le mouvement des points d'une région adaptée à l'autre (ce qui est possible quand le point est relativement proche de la nouvelle position de l'objet), soit par le ``dérafinement" d'une région (ce qui est le cas des points en amont du mouvement de l'objet). On a observé que le deuxième cas est plus lente que le premier, et ainsi on aurait besoin d'un plus grand nombre d'itérations. Néanmoins, pour justifier l'application de cette procédure, il faut trouver un équilibre entre le temps d'exécution et la qualité des résultats.
+
+\indent
 
 \begingroup
 	\begin{minipage}[t]{.5\linewidth}
@@ -34,6 +36,10 @@
 	\end{minipage}
 	\captionof{figure}{Advection d'un cercle \label{fig:circleLSAdv}}
 \endgroup
+
+\indent
+
+\indent
 
 \begingroup
 	\begin{minipage}[t]{.5\linewidth}

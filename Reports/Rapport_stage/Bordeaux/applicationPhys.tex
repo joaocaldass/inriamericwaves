@@ -1,10 +1,9 @@
-
 \section{Application à l'adaptation physique}
 \label{sec:adapPhysique}
 
-\indent De la même façon que l'adaptation Level Set, l'adaptation physique (i.e., à une variable physique calculée sur le maillage, comme le champs de vitesse de l'écoulement) peut être faite avec les deux formulations de \(\omega\). Pour la première, basée sur la variation de la fonction, on n'a pas de remarques supplémentaires à faire : au contraire de la fonction Level Set, qui est toujours lisse, les variables physiques dans les problèmes de mécanique de fluides qui nous intéressent présentent en général des discontinuités, ayant ainsi des fortes gradients et hessiens qui permettent une bonne adaptation. Alors, il ne faut pas construire une autre fonction à adapter. 
+\indent De la même façon que l'adaptation Level Set, l'adaptation physique (\emph{i.e.}, à une variable physique calculée sur le maillage, comme le champs de vitesse de l'écoulement) peut être faite avec les deux formulations de \(\omega\). Pour la première, basée sur la variation de la fonction, on n'a pas de remarques supplémentaires à faire : au contraire de la fonction Level Set, qui est toujours lisse, les variables physiques dans les problèmes de mécanique de fluides qui nous intéressent présentent en général des discontinuités, ayant ainsi des fortes gradients et hessiens qui permettent une bonne adaptation. Alors, il ne faut pas construire une autre fonction à adapter. 
 
-\indent On va ainsi détailler seulement le deuxième calcul de \(\omega\) :
+\indent Ainsi, on détaille seulement le deuxième calcul de \(\omega\) :
 
 \subsection{Calcul des tailles désirées}
 
@@ -17,7 +16,7 @@
 	||u-\Pi_hu||_{\infty,K} \leq c_d \max_{x \in K}{\max_{\vec{e} \in E_K}{\langle \vec{e}, |H_u(\vecx)| \vec{e} \rangle}}
 \end{equation}
 
-\noindent où \(c_d = \frac{2}{9}\) est obtenu avec un développement de Taylor de \eqref{eq:erreur_interp} dans son point de maximum. On veut imposer une  limite \(\epsilon\) à cette erreur : 
+\noindent où \(c_d = 2/9 \) est obtenu avec un développement de Taylor de \eqref{eq:erreur_interp} dans son point de maximum, et $E_K$ est l'ensemble des arêtes de $K$. On veut imposer une  limite \(\epsilon\) à cette erreur : 
 
 \begin{equation*}
 	||u-\Pi_hu||_{\infty,K} = \epsilon
@@ -38,9 +37,9 @@
 
 \noindent c'est à dire, la métrique qui assure l'erreur d'interpolation désirée est celle telle que le maillage soit unitaire \cite{cecile_these,frey_alauzet}.
 
-\indent Étant la métrique une matrice positive définie symétrique, elle est toujours diagonalisable es ses valeurs propres \(\tilde{\lambda}_i^j, j=1,2\), sont toujours réelles. En effet, la métrique peut être représentée par une ellipse (ou un ellipsoïde, en 3D), dont les vecteurs propres donnent la direction des axes et les valeurs propres sa taille, selon la relation \(h_j =  \frac{1}{\sqrt{\tilde{\lambda}_i^j}}\) \cite{leo}. Ainsi, las caractéristiques géométriques des éléments (taille, forme et orientation) est contenue dans la métrique, et comme on a plus d'un valeur propre, on en définit ainsi des éléments anisotropes.
+\indent Étant la métrique une matrice positive définie symétrique, elle est toujours diagonalisable es ses valeurs propres \(\tilde{\lambda}_i^j, j=1,2\), sont toujours réelles. En effet, la métrique peut être représentée par une ellipse (ou un ellipsoïde, en 3D), dont les vecteurs propres donnent la direction des axes et les valeurs propres sa taille, selon la relation \(h_j =  \frac{1}{\sqrt{\tilde{\lambda}_i^j}}\) \cite{leo}. Ainsi, les caractéristiques géométriques des éléments (taille, forme et orientation) sont contenues dans la métrique, et comme on a plus d'un valeur propre, on en définit ainsi des éléments anisotropes.
 
-\indent Néanmoins, on va considérer un cas isotrope, en prenant la plus grande valeur propre de la métrique, ce qui donne la plus petite taille de chaque élément. Enfin, en établissant des seuils minimal et maximal pour la taille désirée (\(\hm\) et \(\hM\)), et en tenant compte de l'équation \eqref{eq:def_metrique}, les tailles désirées sont calculées à partir de
+\indent Néanmoins, on considère ici un cas isotrope, en ne prenant que la plus grande valeur propre de la métrique, ce qui donne la plus petite taille de chaque élément. Enfin, en établissant des seuils minimal et maximal pour la taille désirée (\(\hm\) et \(\hM\)), et en tenant compte de l'équation \eqref{eq:def_metrique}, les tailles désirées sont calculées à partir de
 
 \begin{equation*}
 	h_i = \frac{1}{\sqrt{\min\left(\max\left(\frac{c_d}{\epsilon}\lambda_i,\hM^{-2}\right),\hm^{-2}\right)}}
@@ -51,6 +50,8 @@
 \indent Également au cas de l'adaptation Level Set, les tailles définies sur le maillage sont lissées avec une gradation de 10\%.
 
 \indent La figure \ref{fig:metPhys} présente un exemple de métrique calculée à partir d'une variable physique .
+
+\indent
 
 \begingroup
 	\begin{minipage}[t]{.5\linewidth}
@@ -65,11 +66,15 @@
 	\captionof{figure}{Écoulement autour d'un triangle - calcul des tailles désirées à partir d'une variable physique \label{fig:metPhys}}
 \endgroup
 
+\indent
+
+\indent Aussi comme dans le cas de l'adaptation à des fonctions Level Set, on a plutôt utilisé dans l'adaptation physique le calcul des tailles désirées pour déterminer le mouvement des points du maillage. Les raisons sont les mêmes que celles présentées précédemment : du point de vue de l'utilisateur final, cette procédure, qui demande la définition des seuils pour la taille désirée, a un sens physique intuitif, étant ainsi plus accessible.
+
 \subsection{Couplage entre adaptation Level Set et adaptation physique}
 
 \indent L'objectif principal de l'ensemble du travail réalisée dans ce projet est l'application du modèle et de la bibliothèque développés à la résolution de problèmes de la mécanique de fluides, afin d'améliorer la précision des résultats. Ainsi, un bon maillage serait adapté au même temps à la surface de l'objet dans le domaine et au profil de la variable physique calculée (la vitesse, par exemple), et par conséquent les deux types de adaptation présentées ci-dessus doivent être considérées.
 
-\indent Pour coupler les deux adaptations, on va intersecter ses respectives métriques : en notant \(h_i^{LS}\) et \(h_i^{phys}\) la taille calculée pour le noeud \(i\) à partir des métriques, respectivement, de la fonction Level Set et de la variable physique (avant le lissage), on choisit le taille
+\indent Pour coupler les deux adaptations, on intersecte ses respectives métriques: en notant \(h_i^{LS}\) et \(h_i^{phys}\) la taille calculée pour le noeud \(i\) à partir des métriques, respectivement, de la fonction Level Set et de la variable physique (avant le lissage), on choisit le taille
 
 \begin{equation*}
 	h_i = \min(h_i^{LS},h_i^{phys})
@@ -77,15 +82,15 @@
 
 \indent Ensuite, on applique le même lissage avec une gradation de 10\%.
 
-\indent Pour le couplage des deux adaptation, on a proposé la procédure itérative suivante :  
+\indent Pour le couplage des deux adaptations, on propose la procédure itérative suivante :  
 
 \begin{enumerate}
 	\item Calcul de la métrique associée à la fonction Level Set;
 	\item Adaptation du maillage à cette métrique;
 	\item \label{item:resolution} Résolution du problème physique sur le maillage adapté;
-	\item Calcul de la métrique associée à la variable physique et intersection avec la métrique de la fonction Level Set 
+	\item Calcul de la métrique associée à la variable physique et intersection avec la métrique de la fonction Level Set;
 	\item Adaptation du maillage à cette métrique, en partant du dernier maillage obtenu, mais toujours avec le même maillage de référence (le maillage de départ, non adapté);
-	\item Retour au pas \ref{item:resolution}
+	\item Retour au pas \ref{item:resolution}.
 \end{enumerate}
 
 \subsection{Résultats}
@@ -96,9 +101,11 @@
 
 \indent La solution physique utilisée pour les adaptations suivantes est la composante horizontale de la vitesse. 
 
-\indent Les tests ont été réalisées avec l'objectif de vérifier l'évolution de la qualité du résultat dans chaque itération de la procédure. Cette vérification sera faite de façon qualitative et quantitative. Pour la première, on regardera par exemple la régularité du profil de la vitesse et de ses lignes de niveau et la résolution autour des coins du triangle. Pour la deuxième, on adoptera le même critère utilisé par \cite{leo}, en calculant l'angle entre le choc et l'axe \(y=0\), en utilisant un point du choc proche à cet axe, et identifiée par la proximité des lignes de niveau de la vitesse. La résolution analytique du problème fournit un angle \(\beta=53.33^o\), qu'on utilisera pour la comparaison.
+\indent Les tests ont été réalisées avec l'objectif de vérifier l'évolution de la qualité du résultat dans chaque itération de la procédure. Cette vérification a été faite de façon qualitative et quantitative. Pour la première, on a regardé par exemple la régularité du profil de la vitesse et de ses lignes de niveau et la résolution autour des coins du triangle. Pour la deuxième, on a adopté le même critère utilisé par \cite{leo}, en calculant l'angle entre le choc et l'axe \(y=0\), en utilisant un point du choc proche à cet axe, et identifiée par la proximité des lignes de niveau de la vitesse. La résolution analytique du problème fournit un angle \(\beta=53.33^o\), qu'on a utilisé pour la comparaison.
 
 \indent Le résultat présenté dans les figures \ref{fig:adapPhysDoms} à \ref{fig:adapPhysPlotB} a été fait sur un domaine circulaire, de rayon vingt fois plus grand que la taille du triangle, afin de représenter un domaine infini, qui minimise l'influence des bords. Afin d'éviter un nombre trop grand de points, mais encore avec un bon raffinement dans les régions les plus proches des bords pour bien capturer le choc, les tailles des éléments ont été définies en fonction de la distance au centre du domaine, augmentant linéairement entre 0.002 et 1. Le résultat est un maillage avec 12664 noeuds et 25200 éléments.
+
+\indent
 
 \begingroup
 	\begin{minipage}[t]{.5\linewidth}
@@ -120,6 +127,8 @@
 	\captionof{figure}{Séquence de maillages adaptés obtenus \label{fig:adapPhysDoms}}
 \endgroup
 
+\newpage
+
 \begingroup
 	\begin{minipage}[t]{.5\linewidth}
 		\centering
@@ -139,6 +148,8 @@
 	\end{minipage}
 	\captionof{figure}{Composante horizontale de la vitesse \label{fig:adapPhysPlotA}}
 \endgroup
+
+\newpage
 
 \begingroup
 	\begin{minipage}[t]{.5\linewidth}
@@ -160,6 +171,8 @@
 	\captionof{figure}{Lignes de niveau de la composante horizontale de la vitesse \label{fig:adapPhysContour}}
 \endgroup
 
+\newpage
+
 \begingroup
 	\begin{minipage}[t]{.5\linewidth}
 		\centering
@@ -178,6 +191,8 @@
 	\end{minipage}
 	\captionof{figure}{Détail - Composante horizontale de la vitesse \label{fig:adapPhysPlotB}}
 \endgroup
+
+\indent
 
 \indent L'angle \(\beta\) a évolué selon les valeurs présentées dans le tableau \ref{tab:beta}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.20)  18 SEP 2016 21:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.20)  30 SEP 2016 18:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -340,42 +340,21 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
 )
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
-
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 57.
-\captionmargin=\dimen114
-\captionmargin@=\dimen115
-\captionwidth=\dimen116
-\caption@tempdima=\dimen117
-\caption@indent=\dimen118
-\caption@parindent=\dimen119
-\caption@hangindent=\dimen120
-)
-\c@ContinuedFloat=\count100
-)
-(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
-Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
-\c@subfigure=\count101
-\c@subtable=\count102
-)
 (/usr/share/texlive/texmf-dist/tex/latex/numprint/numprint.sty
 Package: numprint 2012/08/20 v1.39 Print numbers (HH)
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
 Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
-\col@sep=\dimen121
-\extrarowheight=\dimen122
+\col@sep=\dimen114
+\extrarowheight=\dimen115
 \NC@list=\toks22
 \extratabsurround=\skip46
 \backup@length=\skip47
 )
-\c@nprt@mantissa@digitsbefore=\count103
-\c@nprt@mantissa@digitsafter=\count104
-\c@nprt@exponent@digitsbefore=\count105
-\c@nprt@exponent@digitsafter=\count106
+\c@nprt@mantissa@digitsbefore=\count100
+\c@nprt@mantissa@digitsafter=\count101
+\c@nprt@exponent@digitsbefore=\count102
+\c@nprt@exponent@digitsafter=\count103
 \nprt@digitwidth=\skip48
 \nprt@sepwidth=\skip49
 \nprt@decimalwidth=\skip50
@@ -383,12 +362,12 @@ Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 \nprt@digittoks=\toks23
 \nprt@pretoks=\toks24
 \nprt@posttoks=\toks25
-\nprt@thisdigit=\count107
-\nprt@curpos=\count108
-\nprt@rndpos=\count109
-\c@nprt@digitsfirstblock=\count110
-\c@nprt@blockcnt=\count111
-\c@nprt@cntprint=\count112
+\nprt@thisdigit=\count104
+\nprt@curpos=\count105
+\nprt@rndpos=\count106
+\c@nprt@digitsfirstblock=\count107
+\c@nprt@blockcnt=\count108
+\c@nprt@cntprint=\count109
 
 No configuration file `numprint.cfg' found.)
 (/usr/share/texlive/texmf-dist/tex/latex/siunitx/siunitx.sty
@@ -405,31 +384,31 @@ L3 Module: l3tl 2015/01/27 v5500 L3 Token lists
 L3 Module: l3str 2015/03/01 v5545 L3 Strings
 L3 Module: l3seq 2014/08/23 v5354 L3 Sequences and stacks
 L3 Module: l3int 2015/02/21 v5529 L3 Integers
-\c_max_int=\count113
-\l_tmpa_int=\count114
-\l_tmpb_int=\count115
-\g_tmpa_int=\count116
-\g_tmpb_int=\count117
+\c_max_int=\count110
+\l_tmpa_int=\count111
+\l_tmpb_int=\count112
+\g_tmpa_int=\count113
+\g_tmpb_int=\count114
 L3 Module: l3quark 2014/08/23 v5354 L3 Quarks
 L3 Module: l3prg 2015/04/13 v5566 L3 Control structures
-\g__prg_map_int=\count118
+\g__prg_map_int=\count115
 L3 Module: l3clist 2014/08/23 v5354 L3 Comma separated lists
 L3 Module: l3token 2014/09/15 v5422 L3 Experimental token manipulation
 L3 Module: l3prop 2014/08/23 v5354 L3 Property lists
 L3 Module: l3msg 2015/02/26 v5537 L3 Messages
 L3 Module: l3file 2015/06/07 v5627 L3 File and I/O operations
-\l_iow_line_count_int=\count119
-\l__iow_target_count_int=\count120
-\l__iow_current_line_int=\count121
-\l__iow_current_word_int=\count122
-\l__iow_current_indentation_int=\count123
+\l_iow_line_count_int=\count116
+\l__iow_target_count_int=\count117
+\l__iow_current_line_int=\count118
+\l__iow_current_word_int=\count119
+\l__iow_current_indentation_int=\count120
 L3 Module: l3skip 2015/05/18 v5607 L3 Dimensions and skips
-\c_zero_dim=\dimen123
-\c_max_dim=\dimen124
-\l_tmpa_dim=\dimen125
-\l_tmpb_dim=\dimen126
-\g_tmpa_dim=\dimen127
-\g_tmpb_dim=\dimen128
+\c_zero_dim=\dimen116
+\c_max_dim=\dimen117
+\l_tmpa_dim=\dimen118
+\l_tmpb_dim=\dimen119
+\g_tmpa_dim=\dimen120
+\g_tmpb_dim=\dimen121
 \c_zero_skip=\skip52
 \c_max_skip=\skip53
 \l_tmpa_skip=\skip54
@@ -443,18 +422,18 @@ L3 Module: l3skip 2015/05/18 v5607 L3 Dimensions and skips
 \g_tmpa_muskip=\muskip15
 \g_tmpb_muskip=\muskip16
 L3 Module: l3keys 2015/06/14 v5629 L3 Key-value interfaces
-\g__keyval_level_int=\count124
-\l_keys_choice_int=\count125
+\g__keyval_level_int=\count121
+\l_keys_choice_int=\count122
 L3 Module: l3fp 2014/08/22 v5336 L3 Floating points
-\c__fp_leading_shift_int=\count126
-\c__fp_middle_shift_int=\count127
-\c__fp_trailing_shift_int=\count128
-\c__fp_big_leading_shift_int=\count129
-\c__fp_big_middle_shift_int=\count130
-\c__fp_big_trailing_shift_int=\count131
-\c__fp_Bigg_leading_shift_int=\count132
-\c__fp_Bigg_middle_shift_int=\count133
-\c__fp_Bigg_trailing_shift_int=\count134
+\c__fp_leading_shift_int=\count123
+\c__fp_middle_shift_int=\count124
+\c__fp_trailing_shift_int=\count125
+\c__fp_big_leading_shift_int=\count126
+\c__fp_big_middle_shift_int=\count127
+\c__fp_big_trailing_shift_int=\count128
+\c__fp_Bigg_leading_shift_int=\count129
+\c__fp_Bigg_middle_shift_int=\count130
+\c__fp_Bigg_trailing_shift_int=\count131
 L3 Module: l3box 2014/08/23 v5354 L3 Experimental boxes
 \c_empty_box=\box28
 \l_tmpa_box=\box29
@@ -463,13 +442,13 @@ L3 Module: l3box 2014/08/23 v5354 L3 Experimental boxes
 \g_tmpb_box=\box32
 L3 Module: l3coffins 2014/08/23 v5354 L3 Coffin code layer
 \l__coffin_internal_box=\box33
-\l__coffin_internal_dim=\dimen129
-\l__coffin_offset_x_dim=\dimen130
-\l__coffin_offset_y_dim=\dimen131
-\l__coffin_x_dim=\dimen132
-\l__coffin_y_dim=\dimen133
-\l__coffin_x_prime_dim=\dimen134
-\l__coffin_y_prime_dim=\dimen135
+\l__coffin_internal_dim=\dimen122
+\l__coffin_offset_x_dim=\dimen123
+\l__coffin_offset_y_dim=\dimen124
+\l__coffin_x_dim=\dimen125
+\l__coffin_y_dim=\dimen126
+\l__coffin_x_prime_dim=\dimen127
+\l__coffin_y_prime_dim=\dimen128
 \c_empty_coffin=\box34
 \l__coffin_aligned_coffin=\box35
 \l__coffin_aligned_internal_coffin=\box36
@@ -478,42 +457,42 @@ L3 Module: l3coffins 2014/08/23 v5354 L3 Coffin code layer
 \l__coffin_display_coffin=\box39
 \l__coffin_display_coord_coffin=\box40
 \l__coffin_display_pole_coffin=\box41
-\l__coffin_display_offset_dim=\dimen136
-\l__coffin_display_x_dim=\dimen137
-\l__coffin_display_y_dim=\dimen138
+\l__coffin_display_offset_dim=\dimen129
+\l__coffin_display_x_dim=\dimen130
+\l__coffin_display_y_dim=\dimen131
 L3 Module: l3color 2014/08/23 v5354 L3 Experimental color support
 L3 Module: l3candidates 2015/05/21 v5613 L3 Experimental additions to l3kernel
-\l__box_top_dim=\dimen139
-\l__box_bottom_dim=\dimen140
-\l__box_left_dim=\dimen141
-\l__box_right_dim=\dimen142
-\l__box_top_new_dim=\dimen143
-\l__box_bottom_new_dim=\dimen144
-\l__box_left_new_dim=\dimen145
-\l__box_right_new_dim=\dimen146
+\l__box_top_dim=\dimen132
+\l__box_bottom_dim=\dimen133
+\l__box_left_dim=\dimen134
+\l__box_right_dim=\dimen135
+\l__box_top_new_dim=\dimen136
+\l__box_bottom_new_dim=\dimen137
+\l__box_left_new_dim=\dimen138
+\l__box_right_new_dim=\dimen139
 \l__box_internal_box=\box42
-\l__coffin_bounding_shift_dim=\dimen147
-\l__coffin_left_corner_dim=\dimen148
-\l__coffin_right_corner_dim=\dimen149
-\l__coffin_bottom_corner_dim=\dimen150
-\l__coffin_top_corner_dim=\dimen151
-\l__coffin_scaled_total_height_dim=\dimen152
-\l__coffin_scaled_width_dim=\dimen153
+\l__coffin_bounding_shift_dim=\dimen140
+\l__coffin_left_corner_dim=\dimen141
+\l__coffin_right_corner_dim=\dimen142
+\l__coffin_bottom_corner_dim=\dimen143
+\l__coffin_top_corner_dim=\dimen144
+\l__coffin_scaled_total_height_dim=\dimen145
+\l__coffin_scaled_width_dim=\dimen146
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3unicode-data.def
 File: l3unicode-data.def 2015/03/01 v5544 L3 Unicode data
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
 File: l3pdfmode.def 2015/05/21 v5613 L3 Experimental driver: PDF mode
-\l__driver_color_stack_int=\count135
+\l__driver_color_stack_int=\count132
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2015/06/15 v5630 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count136
-\l__xparse_m_args_int=\count137
-\l__xparse_mandatory_args_int=\count138
-\l__xparse_processor_int=\count139
-\l__xparse_v_nesting_int=\count140
+\l__xparse_current_arg_int=\count133
+\l__xparse_m_args_int=\count134
+\l__xparse_mandatory_args_int=\count135
+\l__xparse_processor_int=\count136
+\l__xparse_v_nesting_int=\count137
 )
 Package: siunitx 2015/07/17 v2.6h A comprehensive (SI) units package
 
@@ -522,42 +501,42 @@ Package: l3keys2e 2015/06/15 v5630 LaTeX2e option processing using LaTeX3 keys
 )
 Variant \tl_if_blank:VTF already defined; not changing it on line 50
 \l__siunitx_tmp_box=\box43
-\l__siunitx_tmp_dim=\dimen154
-\l__siunitx_tmp_int=\count141
+\l__siunitx_tmp_dim=\dimen147
+\l__siunitx_tmp_int=\count138
 Variant \prop_get:NVNT already defined; not changing it on line 380
 Variant \prop_get:NVNF already defined; not changing it on line 381
 Variant \prop_get:NVNTF already defined; not changing it on line 382
-\l__siunitx_number_mantissa_length_int=\count142
-\l__siunitx_number_uncert_length_int=\count143
-\l__siunitx_round_int=\count144
-\l__siunitx_process_decimal_int=\count145
-\l__siunitx_process_uncertainty_int=\count146
-\l__siunitx_process_fixed_int=\count147
-\l__siunitx_process_integer_min_int=\count148
-\l__siunitx_process_precision_int=\count149
-\l__siunitx_group_min_int=\count150
+\l__siunitx_number_mantissa_length_int=\count139
+\l__siunitx_number_uncert_length_int=\count140
+\l__siunitx_round_int=\count141
+\l__siunitx_process_decimal_int=\count142
+\l__siunitx_process_uncertainty_int=\count143
+\l__siunitx_process_fixed_int=\count144
+\l__siunitx_process_integer_min_int=\count145
+\l__siunitx_process_precision_int=\count146
+\l__siunitx_group_min_int=\count147
 \l__siunitx_angle_marker_box=\box44
 \l__siunitx_angle_unit_box=\box45
-\l__siunitx_angle_marker_dim=\dimen155
-\l__siunitx_angle_unit_dim=\dimen156
-\l__siunitx_unit_int=\count151
-\l__siunitx_unit_denominator_int=\count152
-\l__siunitx_unit_numerator_int=\count153
-\l__siunitx_unit_prefix_int=\count154
-\l__siunitx_unit_prefix_base_int=\count155
-\l__siunitx_unit_prefix_gram_int=\count156
-\l__siunitx_number_product_int=\count157
+\l__siunitx_angle_marker_dim=\dimen148
+\l__siunitx_angle_unit_dim=\dimen149
+\l__siunitx_unit_int=\count148
+\l__siunitx_unit_denominator_int=\count149
+\l__siunitx_unit_numerator_int=\count150
+\l__siunitx_unit_prefix_int=\count151
+\l__siunitx_unit_prefix_base_int=\count152
+\l__siunitx_unit_prefix_gram_int=\count153
+\l__siunitx_number_product_int=\count154
 \c__siunitx_one_fill_skip=\skip58
 \l__siunitx_table_unit_align_skip=\skip59
-\l__siunitx_table_exponent_dim=\dimen157
-\l__siunitx_table_integer_dim=\dimen158
-\l__siunitx_table_mantissa_dim=\dimen159
-\l__siunitx_table_marker_dim=\dimen160
-\l__siunitx_table_result_dim=\dimen161
-\l__siunitx_table_uncert_dim=\dimen162
-\l__siunitx_table_fill_pre_dim=\dimen163
-\l__siunitx_table_fill_post_dim=\dimen164
-\l__siunitx_table_fill_mid_dim=\dimen165
+\l__siunitx_table_exponent_dim=\dimen150
+\l__siunitx_table_integer_dim=\dimen151
+\l__siunitx_table_mantissa_dim=\dimen152
+\l__siunitx_table_marker_dim=\dimen153
+\l__siunitx_table_result_dim=\dimen154
+\l__siunitx_table_uncert_dim=\dimen155
+\l__siunitx_table_fill_pre_dim=\dimen156
+\l__siunitx_table_fill_post_dim=\dimen157
+\l__siunitx_table_fill_mid_dim=\dimen158
 \l__siunitx_table_pre_box=\box46
 \l__siunitx_table_post_box=\box47
 \l__siunitx_table_mantissa_box=\box48
@@ -689,23 +668,23 @@ Package: translator 2010/06/12 ver 1.10
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/translator/translator-language-
 mappings.tex))) (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
-\heavyrulewidth=\dimen166
-\lightrulewidth=\dimen167
-\cmidrulewidth=\dimen168
-\belowrulesep=\dimen169
-\belowbottomsep=\dimen170
-\aboverulesep=\dimen171
-\abovetopsep=\dimen172
-\cmidrulesep=\dimen173
-\cmidrulekern=\dimen174
-\defaultaddspace=\dimen175
-\@cmidla=\count158
-\@cmidlb=\count159
-\@aboverulesep=\dimen176
-\@belowrulesep=\dimen177
-\@thisruleclass=\count160
-\@lastruleclass=\count161
-\@thisrulewidth=\dimen178
+\heavyrulewidth=\dimen159
+\lightrulewidth=\dimen160
+\cmidrulewidth=\dimen161
+\belowrulesep=\dimen162
+\belowbottomsep=\dimen163
+\aboverulesep=\dimen164
+\abovetopsep=\dimen165
+\cmidrulesep=\dimen166
+\cmidrulekern=\dimen167
+\defaultaddspace=\dimen168
+\@cmidla=\count155
+\@cmidlb=\count156
+\@aboverulesep=\dimen169
+\@belowrulesep=\dimen170
+\@thisruleclass=\count157
+\@lastruleclass=\count158
+\@thisrulewidth=\dimen171
 ) (/usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 )
@@ -753,35 +732,35 @@ LaTeX Info: Redefining \genfrac on input line 122.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count162
-\calc@Bcount=\count163
-\calc@Adimen=\dimen179
-\calc@Bdimen=\dimen180
+\calc@Acount=\count159
+\calc@Bcount=\count160
+\calc@Adimen=\dimen172
+\calc@Bdimen=\dimen173
 \calc@Askip=\skip62
 \calc@Bskip=\skip63
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count164
+\calc@Ccount=\count161
 \calc@Cskip=\skip64
 )
-\inf@bad=\count165
-\maxint=\count166
-\listwidth=\dimen181
-\eqnumsep=\dimen182
-\eqmargin=\dimen183
+\inf@bad=\count162
+\maxint=\count163
+\listwidth=\dimen174
+\eqnumsep=\dimen175
+\eqmargin=\dimen176
 \eqlinespacing=\skip65
 \eqlineskip=\skip66
-\eqlineskiplimit=\dimen184
+\eqlineskiplimit=\dimen177
 \eqbinoffset=\muskip17
 \eqdelimoffset=\muskip18
-\eqindentstep=\dimen185
+\eqindentstep=\dimen178
 \eqstyle=\toks26
-\eqbreakdepth=\count167
-\eqinterlinepenalty=\count168
-\intereqpenalty=\count169
+\eqbreakdepth=\count164
+\eqinterlinepenalty=\count165
+\intereqpenalty=\count166
 \intereqskip=\skip67
-\prerelpenalty=\count170
-\prebinoppenalty=\count171
+\prerelpenalty=\count167
+\prebinoppenalty=\count168
 \Dmedmuskip=\muskip19
 \Dthickmuskip=\muskip20
 \eqleftskip=\skip68
@@ -791,39 +770,39 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \EQ@box=\box50
 \EQ@copy=\box51
 \EQ@numbox=\box52
-\eq@wdNum=\dimen186
+\eq@wdNum=\dimen179
 \GRP@numbox=\box53
-\grp@wdNum=\dimen187
-\eq@lines=\count172
-\eq@curline=\count173
-\eq@badness=\count174
-\EQ@vims=\count175
-\eq@dp=\dimen188
-\eq@wdL=\dimen189
-\eq@wdT=\dimen190
-\eq@wdMin=\dimen191
-\grp@wdL=\dimen192
-\grp@wdR=\dimen193
-\grp@wdT=\dimen194
-\eq@wdRmax=\dimen195
-\eq@firstht=\dimen196
-\eq@wdCond=\dimen197
-\eq@indentstep=\dimen198
-\eq@linewidth=\dimen199
-\grp@linewidth=\dimen200
-\eq@hshift=\dimen201
-\eq@given@sidespace=\dimen202
-\mathindent=\dimen203
-\eq@final@linecount=\count176
-\eq@wdR=\dimen204
+\grp@wdNum=\dimen180
+\eq@lines=\count169
+\eq@curline=\count170
+\eq@badness=\count171
+\EQ@vims=\count172
+\eq@dp=\dimen181
+\eq@wdL=\dimen182
+\eq@wdT=\dimen183
+\eq@wdMin=\dimen184
+\grp@wdL=\dimen185
+\grp@wdR=\dimen186
+\grp@wdT=\dimen187
+\eq@wdRmax=\dimen188
+\eq@firstht=\dimen189
+\eq@wdCond=\dimen190
+\eq@indentstep=\dimen191
+\eq@linewidth=\dimen192
+\grp@linewidth=\dimen193
+\eq@hshift=\dimen194
+\eq@given@sidespace=\dimen195
+\mathindent=\dimen196
+\eq@final@linecount=\count173
+\eq@wdR=\dimen197
 \EQ@continue=\toks27
-\lr@level=\count177
+\lr@level=\count174
 \GRP@queue=\toks28
 \GRP@box=\box54
 \GRP@wholebox=\box55
 \darraycolsep=\skip71
-\cur@row=\count178
-\cur@col=\count179
+\cur@row=\count175
+\cur@col=\count176
 \conditionsep=\skip72
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
@@ -831,8 +810,8 @@ LaTeX Info: Redefining \addtolength on input line 81.
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks29
-\pgfutil@tempdima=\dimen205
-\pgfutil@tempdimb=\dimen206
+\pgfutil@tempdima=\dimen198
+\pgfutil@tempdimb=\dimen199
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
 ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
@@ -858,20 +837,20 @@ Package: pgfsys 2013/11/30 v3.0.0 (rcs-revision 1.47)
 ex
 \pgfkeys@tmptoks=\toks32
 ))
-\pgf@x=\dimen207
-\pgf@y=\dimen208
-\pgf@xa=\dimen209
-\pgf@ya=\dimen210
-\pgf@xb=\dimen211
-\pgf@yb=\dimen212
-\pgf@xc=\dimen213
-\pgf@yc=\dimen214
+\pgf@x=\dimen200
+\pgf@y=\dimen201
+\pgf@xa=\dimen202
+\pgf@ya=\dimen203
+\pgf@xb=\dimen204
+\pgf@yb=\dimen205
+\pgf@xc=\dimen206
+\pgf@yc=\dimen207
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count180
-\c@pgf@countb=\count181
-\c@pgf@countc=\count182
-\c@pgf@countd=\count183
+\c@pgf@counta=\count177
+\c@pgf@countb=\count178
+\c@pgf@countc=\count179
+\c@pgf@countd=\count180
 \t@pgf@toka=\toks33
 \t@pgf@tokb=\toks34
 \t@pgf@tokc=\toks35
@@ -890,8 +869,8 @@ File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
 tex
 File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count184
-\pgfsyssoftpath@bigbuffer@items=\count185
+\pgfsyssoftpath@smallbuffer@items=\count181
+\pgfsyssoftpath@bigbuffer@items=\count182
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
 tex
@@ -920,8 +899,8 @@ Package: pgfcore 2010/04/11 v3.0.0 (rcs-revision 1.7)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen215
-\pgfmath@count=\count186
+\pgfmath@dimen=\dimen208
+\pgfmath@count=\count183
 \pgfmath@box=\box57
 \pgfmath@toks=\toks36
 \pgfmath@stack@operand=\toks37
@@ -945,37 +924,37 @@ tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
 thmetics.code.tex)))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count187
+\c@pgfmathroundto@lastzeros=\count184
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
 x
 File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
-\pgf@picminx=\dimen216
-\pgf@picmaxx=\dimen217
-\pgf@picminy=\dimen218
-\pgf@picmaxy=\dimen219
-\pgf@pathminx=\dimen220
-\pgf@pathmaxx=\dimen221
-\pgf@pathminy=\dimen222
-\pgf@pathmaxy=\dimen223
-\pgf@xx=\dimen224
-\pgf@xy=\dimen225
-\pgf@yx=\dimen226
-\pgf@yy=\dimen227
-\pgf@zx=\dimen228
-\pgf@zy=\dimen229
+\pgf@picminx=\dimen209
+\pgf@picmaxx=\dimen210
+\pgf@picminy=\dimen211
+\pgf@picmaxy=\dimen212
+\pgf@pathminx=\dimen213
+\pgf@pathmaxx=\dimen214
+\pgf@pathminy=\dimen215
+\pgf@pathmaxy=\dimen216
+\pgf@xx=\dimen217
+\pgf@xy=\dimen218
+\pgf@yx=\dimen219
+\pgf@yy=\dimen220
+\pgf@zx=\dimen221
+\pgf@zy=\dimen222
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
 code.tex
 File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
-\pgf@path@lastx=\dimen230
-\pgf@path@lasty=\dimen231
+\pgf@path@lastx=\dimen223
+\pgf@path@lasty=\dimen224
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
 .tex
 File: pgfcorepathusage.code.tex 2013/12/13  (rcs-revision 1.23)
-\pgf@shorten@end@additional=\dimen232
-\pgf@shorten@start@additional=\dimen233
+\pgf@shorten@end@additional=\dimen225
+\pgf@shorten@start@additional=\dimen226
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
 x
@@ -983,19 +962,19 @@ File: pgfcorescopes.code.tex 2013/10/09  (rcs-revision 1.44)
 \pgfpic=\box58
 \pgf@hbox=\box59
 \pgf@layerbox@main=\box60
-\pgf@picture@serial@count=\count188
+\pgf@picture@serial@count=\count185
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
 ode.tex
 File: pgfcoregraphicstate.code.tex 2013/09/19  (rcs-revision 1.11)
-\pgflinewidth=\dimen256
+\pgflinewidth=\dimen227
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
 s.code.tex
 File: pgfcoretransformations.code.tex 2013/10/10  (rcs-revision 1.17)
-\pgf@pt@x=\dimen257
-\pgf@pt@y=\dimen258
-\pgf@pt@temp=\dimen259
+\pgf@pt@x=\dimen228
+\pgf@pt@y=\dimen229
+\pgf@pt@temp=\dimen230
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
@@ -1011,12 +990,12 @@ File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
 x
 File: pgfcorearrows.code.tex 2013/11/07  (rcs-revision 1.40)
-\pgfarrowsep=\dimen260
+\pgfarrowsep=\dimen231
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
-\pgf@max=\dimen261
-\pgf@sys@shading@range@num=\count189
+\pgf@max=\dimen232
+\pgf@sys@shading@range@num=\count186
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
@@ -1047,8 +1026,8 @@ File: pgfmoduleplot.code.tex 2013/07/31  (rcs-revision 1.12)
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
 .sty
 Package: pgfcomp-version-0-65 2007/07/03 v3.0.0 (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen262
-\pgf@nodesepend=\dimen263
+\pgf@nodesepstart=\dimen233
+\pgf@nodesepend=\dimen256
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
 .sty
@@ -1062,8 +1041,8 @@ Package: pgfcomp-version-1-18 2007/07/23 v3.0.0 (rcs-revision 1.1)
 Package: pgffor 2013/12/13 v3.0.0 (rcs-revision 1.25)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
-\pgffor@iter=\dimen264
-\pgffor@skip=\dimen265
+\pgffor@iter=\dimen257
+\pgffor@skip=\dimen258
 \pgffor@stack=\toks39
 \pgffor@toks=\toks40
 ))
@@ -1073,31 +1052,31 @@ Package: tikz 2013/12/13 v3.0.0 (rcs-revision 1.142)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
 .code.tex
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.0 (rcs-revision 1.20)
-\pgf@plot@mark@count=\count190
-\pgfplotmarksize=\dimen266
+\pgf@plot@mark@count=\count187
+\pgfplotmarksize=\dimen259
 )
-\tikz@lastx=\dimen267
-\tikz@lasty=\dimen268
-\tikz@lastxsaved=\dimen269
-\tikz@lastysaved=\dimen270
-\tikzleveldistance=\dimen271
-\tikzsiblingdistance=\dimen272
+\tikz@lastx=\dimen260
+\tikz@lasty=\dimen261
+\tikz@lastxsaved=\dimen262
+\tikz@lastysaved=\dimen263
+\tikzleveldistance=\dimen264
+\tikzsiblingdistance=\dimen265
 \tikz@figbox=\box63
 \tikz@figbox@bg=\box64
 \tikz@tempbox=\box65
 \tikz@tempbox@bg=\box66
-\tikztreelevel=\count191
-\tikznumberofchildren=\count192
-\tikznumberofcurrentchild=\count193
-\tikz@fig@count=\count194
+\tikztreelevel=\count188
+\tikznumberofchildren=\count189
+\tikznumberofcurrentchild=\count190
+\tikz@fig@count=\count191
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count195
-\pgfmatrixcurrentcolumn=\count196
-\pgf@matrix@numberofcolumns=\count197
+\pgfmatrixcurrentrow=\count192
+\pgfmatrixcurrentcolumn=\count193
+\pgf@matrix@numberofcolumns=\count194
 )
-\tikz@expandcount=\count198
+\tikz@expandcount=\count195
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytopaths.code.tex
@@ -1108,35 +1087,114 @@ Package: cases 2002/05/02 ver 2.5
 ) (./mvmsh.sty
 Package: mvmsh 25/09/2015 mvmsh Package
 )
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count196
+\Gm@cntv=\count197
+\c@Gm@tempcnt=\count198
+\Gm@bindingoffset=\dimen266
+\Gm@wd@mp=\dimen267
+\Gm@odd@mp=\dimen268
+\Gm@even@mp=\dimen269
+\Gm@layoutwidth=\dimen270
+\Gm@layoutheight=\dimen271
+\Gm@layouthoffset=\dimen272
+\Gm@layoutvoffset=\dimen273
+\Gm@dimlist=\toks41
+)
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2014/09/25 3.9l The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-french/frenchb.ldf
+Language: frenchb 2015/06/26 v3.1g French support from the babel system
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2014/09/25 3.9l Babel common definitions
+\babel@savecnt=\count199
+\U@D=\dimen274
+)
+\l@acadian = a dialect from \language\l@french 
+\l@canadien = a dialect from \language\l@french 
+\FBcolonskip=\skip73
+\FBthinskip=\skip74
+\FB@interchartokenstateORI=\count200
+Package babel Info: Making : an active character on input line 353.
+Package babel Info: Making ; an active character on input line 354.
+Package babel Info: Making ! an active character on input line 355.
+Package babel Info: Making ? an active character on input line 356.
+\FBguillskip=\skip75
+\FBguill@level=\count201
+\FB@Mht=\dimen275
+\std@mcc=\count202
+\dec@mcc=\count203
+\listindentFB=\skip76
+\labelwidthFB=\skip77
+\leftmarginFB=\skip78
+\parindentFFN=\dimen276
+))
+(/usr/share/texlive/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen277
+\captionmargin@=\dimen278
+\captionwidth=\dimen279
+\caption@tempdima=\dimen280
+\caption@indent=\dimen281
+\caption@parindent=\dimen282
+\caption@hangindent=\dimen283
+)
+\c@ContinuedFloat=\count204
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+\c@subfigure=\count205
+\c@subtable=\count206
+)
 (./rapportStage.aux)
 \openout1 = `rapportStage.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count199
-\scratchdimen=\dimen273
+\scratchcounter=\count207
+\scratchdimen=\dimen284
 \scratchbox=\box67
-\nofMPsegments=\count200
-\nofMParguments=\count201
-\everyMPshowfont=\toks41
-\MPscratchCnt=\count202
-\MPscratchDim=\dimen274
-\MPnumerator=\count203
-\makeMPintoPDFobject=\count204
-\everyMPtoPDFconversion=\toks42
+\nofMPsegments=\count208
+\nofMParguments=\count209
+\everyMPshowfont=\toks42
+\MPscratchCnt=\count210
+\MPscratchDim=\dimen285
+\MPnumerator=\count211
+\makeMPintoPDFobject=\count212
+\everyMPtoPDFconversion=\toks43
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -1144,10 +1202,6 @@ Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -1185,8 +1239,6 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: End \AtBeginDocument code.
 Now handling font encoding TS1 ...
 ... processing UTF-8 mapping file for font encoding TS1
 
@@ -1270,18 +1322,62 @@ Dictionary: translator-basic-dictionary, Language: English
 File: siunitx-abbreviations.cfg 2015/07/17 v2.6h siunitx: Abbreviated units
 )
 ABD: EveryShipout initializing macros
-\c__siunitx_mathsf_int=\count205
-LaTeX Font Info:    Try loading font information for U+msa on input line 49.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* hratio: 1:1
+* modes: twoside 
+* h-part:(L,W,R)=(89.62709pt, 418.25368pt, 89.6271pt)
+* v-part:(T,H,B)=(101.40665pt, 591.5302pt, 152.11pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=418.25368pt
+* \textheight=591.5302pt
+* \oddsidemargin=17.3571pt
+* \evensidemargin=17.35712pt
+* \topmargin=-7.86334pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=85.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+LaTeX Info: Redefining \degres on input line 50.
+LaTeX Info: Redefining \dots on input line 50.
+LaTeX Info: Redefining \up on input line 50.
+
+Package frenchb.ldf Warning: OT1 encoding should not be used for French.
+(frenchb.ldf)                Add \usepackage[T1]{fontenc} to the preamble
+(frenchb.ldf)                of your document, on input line 50.
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+\c__siunitx_mathsf_int=\count213
+LaTeX Font Info:    Try loading font information for U+msa on input line 50.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 49.
+LaTeX Font Info:    Try loading font information for U+msb on input line 50.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-\c__siunitx_mathtt_int=\count206
+\c__siunitx_mathtt_int=\count214
  (./couverture.tex
 <figures/logos/enpc.png, id=4, 1061.9675pt x 1390.19376pt>
 File: figures/logos/enpc.png Graphic file (type png)
@@ -1292,887 +1388,686 @@ Package pdftex.def Info: figures/logos/enpc.png used on input line 4.
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/logos/enpc.png>]
- (./synthese.tex
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 5.
+ [2
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 5.
- [2]) [3]
+] (./synthese.tex [3] [4
+
+]) [5] [6
+
+]
 (./rapportStage.toc
-Overfull \hbox (25.79434pt too wide) in paragraph at lines 14--14
- [][] []\OT1/cmr/m/n/12 Construction de la fonc-tion ^^Ra adapter (avec $\OML/c
-mm/m/it/12 !$ \OT1/cmr/m/n/12 donn^^Se par l'expression 
+Overfull \hbox (8.89159pt too wide) in paragraph at lines 3--3
+\OT1/cmr/bx/n/14.4 riables phy-siques ap-pliqu^^Se ^^Ra des probl^^Remes de la 
+m^^Secanique 
  []
 
-[4]
-Overfull \hbox (8.482pt too wide) in paragraph at lines 57--57
- [][] []\OT1/cmr/m/n/12 Conditions aux lim-ites de Robin jusqu'^^Ra la d^^Seriv
-^^See premi^^Rere [][]  
- []
-
-
-Overfull \hbox (26.7886pt too wide) in paragraph at lines 60--60
- [] []\OT1/cmr/bx/n/12 Conditions aux lim-ites trans-par-entes ap-proxim^^Sees 
-pour l'^^Sequation 
- []
-
-[5]
-Overfull \hbox (45.94966pt too wide) in paragraph at lines 66--66
- [] []\OT1/cmr/bx/n/12 Application des TBCs ap-proxim^^Sees ^^Ra une M^^Sethode
- de D^^Secomposition 
+[7] [8]
+Overfull \hbox (13.29318pt too wide) in paragraph at lines 68--68
+ [] []\OT1/cmr/bx/n/12 Application des TBCs ap-proxim^^Sees ^^Ra une m^^Sethode
+ de d^^Secomposition 
  []
 
 )
 \tf@toc=\write4
 \openout4 = `rapportStage.toc'.
 
- [6] (./remerciements.tex) [7] (./resume.tex
-Overfull \hbox (11.84453pt too wide) in paragraph at lines 9--10
-\OT1/cmr/m/n/12 lioth^^Reque en C a ^^Set^^Se d^^Sevelopp^^Se au long du stage 
-afin de per-me-t-tre l'incorporation
+ [9] [10
+
+] (./remerciements.tex)
+Overfull \hbox (0.17647pt too wide) in paragraph at lines 7--68
+\OT1/cmr/m/n/12 thou-siasme, le tra-vail au quo-ti-dien, les conver-sa-tions au
+ m^^Setro de San-tiago, l'amiti^^Se.
  []
 
+[11] [12
 
-Overfull \hbox (3.80711pt too wide) in paragraph at lines 15--16
-\OT1/cmr/m/n/12 de mail-lage, ap-pliqu^^Sees ^^Ra une ^^Sequation dis-per-sive 
-(l'^^Sequation de KdV lin^^Searis^^See
- []
+] (./resume.tex) [13] [14
 
-) [8] [9] (./intro_general.tex
-Overfull \hbox (9.18706pt too wide) in paragraph at lines 4--5
-\OT1/cmr/m/n/12 stages qui ont com-pos^^Se mon ann^^See de c^^Sesure. Malgr^^Se
- les diff^^Serentes th^^Sematiques
- []
+] (./abstract.tex) [15] [16
 
+]
+(./intro_general.tex) [17] [18
 
-Overfull \hbox (15.55367pt too wide) in paragraph at lines 6--7
-\OT1/cmr/m/n/12 pliqu^^Sees. Plusieurs mo-ti-va-tions m'ont guid^^Se vers cette
- di-rec-tion : des exp^^Seriences
- []
+] [19] [20
 
-) [10] [11] (./Bordeaux/inria.tex
-<figures/logos/Inria.jpg, id=48, 472.4049pt x 197.0562pt>
+] (./Bordeaux/inria.tex
+<figures/logos/Inria.jpg, id=76, 472.4049pt x 197.0562pt>
 File: figures/logos/Inria.jpg Graphic file (type jpg)
 
 <use figures/logos/Inria.jpg>
 Package pdftex.def Info: figures/logos/Inria.jpg used on input line 11.
 (pdftex.def)             Requested size: 141.72256pt x 59.11731pt.
 
-Overfull \hbox (7.60281pt too wide) in paragraph at lines 15--16
-\OT1/cmr/m/n/12 d'^^Sequipes-projet, avec en-v-i-ron vingt per-son-nes cha-cune
-, com-prenant un "leader
- []
+Underfull \vbox (badness 2368) has occurred while \output is active []
 
-[12 <./figures/logos/Inria.jpg>]) (./Bordeaux/introduction.tex [13])
-(./Bordeaux/modele.tex [14]
-Overfull \hbox (5.07686pt too wide) in paragraph at lines 37--38
-\OT1/cmr/m/n/12 noeud $\OML/cmm/m/it/12 i$ \OT1/cmr/m/n/12 la taille de maille 
-$\OML/cmm/m/it/12 h[]$ \OT1/cmr/m/n/12 qu'on d^^Sesire, selon la for-mu-la-tion
- pr^^Sesent^^See
- []
-
-
-Overfull \hbox (4.04314pt too wide) in paragraph at lines 44--45
-[]\OT1/cmr/m/n/12 La fa^^Xcon dont on cal-cule les tailles d^^Sesir^^Sees d^^Se
-pende du type d'adaptation
- []
-
-[15]
-Overfull \hbox (4.73062pt too wide) in paragraph at lines 96--97
-[]\OT1/cmr/m/n/12 On voit ainsi que la discr^^Setisation en ^^Sel^^Sements fi-n
-is se ram^^Rene ^^Ra la r^^Sesolution
- []
-
-[16] [17] (./Bordeaux/matriceCreuse.tex
-Overfull \hbox (1.95915pt too wide) in paragraph at lines 17--18
-\OT1/cmr/m/n/12 voisins de $\OML/cmm/m/it/12 i$ \OT1/cmr/m/n/12 (pour com-modit
-^^Se, on garde tou-jours $\OML/cmm/m/it/12 A[] \OT1/cmr/m/n/12 =
- []
-
-[18])) (./Bordeaux/applicationLS.tex [19]
-<Bordeaux/figures/LSinit.png, id=83, 1300.86pt x 746.79pt>
+ [21 <./figures/logos/Inria.jpg>]) (./Bordeaux/introduction.tex [22])
+(./Bordeaux/modele.tex [23] [24] [25] (./Bordeaux/matriceCreuse.tex [26])
+[27]) (./Bordeaux/applicationLS.tex
+<Bordeaux/figures/LSinit.png, id=109, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/LSinit.png Graphic file (type png)
 
 <use Bordeaux/figures/LSinit.png>
-Package pdftex.def Info: Bordeaux/figures/LSinit.png used on input line 11.
+Package pdftex.def Info: Bordeaux/figures/LSinit.png used on input line 13.
 (pdftex.def)             Requested size: 182.95078pt x 186.69704pt.
 
-<Bordeaux/figures/LSadapt.png, id=85, 1300.86pt x 746.79pt>
+<Bordeaux/figures/LSadapt.png, id=111, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/LSadapt.png Graphic file (type png)
 
 <use Bordeaux/figures/LSadapt.png>
-Package pdftex.def Info: Bordeaux/figures/LSadapt.png used on input line 17.
+Package pdftex.def Info: Bordeaux/figures/LSadapt.png used on input line 19.
 (pdftex.def)             Requested size: 182.95078pt x 186.69704pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 9--20
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 11--22
 [][]  [] 
  []
 
-
-Overfull \hbox (3.96109pt too wide) in paragraph at lines 23--23
-[]\OT1/cmr/bx/n/14.4 Construction de la fonc-tion ^^Ra adapter (avec $\OML/cmm/
-m/it/14.4 !$ \OT1/cmr/bx/n/14.4 donn^^Se
- []
-
-
-Overfull \hbox (2.63759pt too wide) in paragraph at lines 27--28
-[]\OT1/cmr/m/n/12 Id^^Sealement, on con-stru-irait une fonc-tion avec un saut, 
-valant $1$ ^^Ra l'ext^^Serieur
- []
-
-[20 <./Bordeaux/figures/LSinit.png> <./Bordeaux/figures/LSadapt.png>]
-Overfull \hbox (6.88477pt too wide) in paragraph at lines 29--30
-\OT1/cmr/m/n/12 fourni des r^^Sesultats de mau-vaise qualit^^Se : ^^Setant le g
-ra-di-ent con-stant ^^Ra l'int^^Serieur
- []
-
-<Bordeaux/figures/LSlin.png, id=92, 1300.86pt x 746.79pt>
+[28 <./Bordeaux/figures/LSinit.png> <./Bordeaux/figures/LSadapt.png>]
+<Bordeaux/figures/LSlin.png, id=118, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/LSlin.png Graphic file (type png)
 
 <use Bordeaux/figures/LSlin.png>
-Package pdftex.def Info: Bordeaux/figures/LSlin.png used on input line 33.
-(pdftex.def)             Requested size: 182.95078pt x 186.69704pt.
+Package pdftex.def Info: Bordeaux/figures/LSlin.png used on input line 37.
+(pdftex.def)             Requested size: 160.99757pt x 164.2943pt.
+ [29 <./Bordeaux/figures/LSlin.png>]
+Overfull \hbox (0.54826pt too wide) in paragraph at lines 50--51
+\OT1/cmr/m/n/12 ^^Setant $2\OML/cmm/m/it/12 ^^N$ \OT1/cmr/m/n/12 la taille de l
+a couche, choi-sie par l'uti-li-sa-teur. Cette fonc-tion est repr^^Sesent^^See
+ []
 
-<Bordeaux/figures/atan.png, id=94, 481.8pt x 361.35pt>
+<Bordeaux/figures/atan.png, id=124, 481.8pt x 361.35pt>
 File: Bordeaux/figures/atan.png Graphic file (type png)
 
 <use Bordeaux/figures/atan.png>
-Package pdftex.def Info: Bordeaux/figures/atan.png used on input line 48.
+Package pdftex.def Info: Bordeaux/figures/atan.png used on input line 56.
 (pdftex.def)             Requested size: 192.71658pt x 144.53743pt.
- [21 <./Bordeaux/figures/LSlin.png>]
-Overfull \hbox (12.67087pt too wide) in paragraph at lines 52--53
-[]\OT1/cmr/m/n/12 On peut jouer aussi avec le param^^Retre mul-ti-pli-ca-teur d
-e $\OML/cmm/m/it/12 LS\OT1/cmr/m/n/12 ([])\OML/cmm/m/it/12 =^^N$ \OT1/cmr/m/n/1
-2 ^^Ra l'int^^Serieur
+ [30 <./Bordeaux/figures/atan.png>]
+Overfull \hbox (5.46129pt too wide) in paragraph at lines 89--90
+\OT1/cmr/m/n/12 proche de la pente lin^^Seaire, et on n'ob-tient pas un bon raf
+-fi-ne-ment ^^Ra l'int^^Serieur
  []
 
-[22 <./Bordeaux/figures/atan.png>]
-<Bordeaux/figures/alphabeta0.png, id=103, 1300.86pt x 746.79pt>
+<Bordeaux/figures/alphabeta0.png, id=129, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/alphabeta0.png Graphic file (type png)
 
 <use Bordeaux/figures/alphabeta0.png>
-Package pdftex.def Info: Bordeaux/figures/alphabeta0.png used on input line 86.
+Package pdftex.def Info: Bordeaux/figures/alphabeta0.png used on input line 96.
 
 (pdftex.def)             Requested size: 182.95078pt x 186.69704pt.
 
-<Bordeaux/figures/alphabeta1.png, id=105, 1300.86pt x 746.79pt>
+<Bordeaux/figures/alphabeta1.png, id=131, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/alphabeta1.png Graphic file (type png)
 
 <use Bordeaux/figures/alphabeta1.png>
-Package pdftex.def Info: Bordeaux/figures/alphabeta1.png used on input line 92.
-
+Package pdftex.def Info: Bordeaux/figures/alphabeta1.png used on input line 102
+.
 (pdftex.def)             Requested size: 182.95078pt x 186.69704pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 84--95
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 94--105
 [][]  [] 
  []
 
-<Bordeaux/figures/anisoNormal.png, id=107, 602.25pt x 602.25pt>
+<Bordeaux/figures/anisoNormal.png, id=133, 602.25pt x 602.25pt>
 File: Bordeaux/figures/anisoNormal.png Graphic file (type png)
 
 <use Bordeaux/figures/anisoNormal.png>
-Package pdftex.def Info: Bordeaux/figures/anisoNormal.png used on input line 10
+Package pdftex.def Info: Bordeaux/figures/anisoNormal.png used on input line 11
 0.
 (pdftex.def)             Requested size: 150.56212pt x 150.56212pt.
- [23 <./Bordeaux/figures/alphabeta0.png> <./Bordeaux/figures/alphabeta1.png> <.
+ [31 <./Bordeaux/figures/alphabeta0.png> <./Bordeaux/figures/alphabeta1.png> <.
 /Bordeaux/figures/anisoNormal.png>]
-<Bordeaux/figures/example1.png, id=114, 1300.86pt x 746.79pt>
+<Bordeaux/figures/example1.png, id=141, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/example1.png Graphic file (type png)
 
 <use Bordeaux/figures/example1.png>
-Package pdftex.def Info: Bordeaux/figures/example1.png used on input line 119.
+Package pdftex.def Info: Bordeaux/figures/example1.png used on input line 131.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-<Bordeaux/figures/example2.png, id=115, 1300.86pt x 746.79pt>
+<Bordeaux/figures/example2.png, id=142, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/example2.png Graphic file (type png)
 
 <use Bordeaux/figures/example2.png>
-Package pdftex.def Info: Bordeaux/figures/example2.png used on input line 124.
+Package pdftex.def Info: Bordeaux/figures/example2.png used on input line 136.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 117--127
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 129--139
 [][] [] 
  []
 
-
-Overfull \hbox (2.80287pt too wide) in paragraph at lines 136--137
-[]\OT1/cmr/m/n/12 La de-scrip-tion d^^Setaill^^Se de la d^^Sefinition, cal-cul 
-et in-terpr^^Setation g^^Seom^^Setrique
- []
-
-[24 <./Bordeaux/figures/example1.png> <./Bordeaux/figures/example2.png>]
-<Bordeaux/figures/metLSNacaLS.png, id=119, 1300.86pt x 746.79pt>
+[32 <./Bordeaux/figures/example1.png> <./Bordeaux/figures/example2.png>]
+<Bordeaux/figures/metLSNacaLS.png, id=146, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/metLSNacaLS.png Graphic file (type png)
 
 <use Bordeaux/figures/metLSNacaLS.png>
-Package pdftex.def Info: Bordeaux/figures/metLSNacaLS.png used on input line 15
-6.
+Package pdftex.def Info: Bordeaux/figures/metLSNacaLS.png used on input line 16
+7.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-<Bordeaux/figures/metLSNacaMet.png, id=120, 1300.86pt x 746.79pt>
+<Bordeaux/figures/metLSNacaMet.png, id=147, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/metLSNacaMet.png Graphic file (type png)
 
 <use Bordeaux/figures/metLSNacaMet.png>
 Package pdftex.def Info: Bordeaux/figures/metLSNacaMet.png used on input line 1
-62.
+73.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-<Bordeaux/figures/metLSNacaAdapt.png, id=121, 1300.86pt x 746.79pt>
+<Bordeaux/figures/metLSNacaAdapt.png, id=148, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/metLSNacaAdapt.png Graphic file (type png)
 
 <use Bordeaux/figures/metLSNacaAdapt.png>
 Package pdftex.def Info: Bordeaux/figures/metLSNacaAdapt.png used on input line
- 167.
+ 178.
 (pdftex.def)             Requested size: 260.16739pt x 149.35535pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 154--170
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 165--181
 [][]  []
  []
 
-[25 <./Bordeaux/figures/metLSNacaLS.png> <./Bordeaux/figures/metLSNacaMet.png> 
+[33 <./Bordeaux/figures/metLSNacaLS.png> <./Bordeaux/figures/metLSNacaMet.png> 
 <./Bordeaux/figures/metLSNacaAdapt.png>]
-Overfull \hbox (37.76079pt too wide) in paragraph at lines 184--185
-[]\OT1/cmr/m/n/12 Classifier ces ^^Sel^^Sements selon un crit^^Rere de qualit^^
-Se (mesure de l'anisotropie); 
- []
-
-
-Overfull \hbox (1.95427pt too wide) in paragraph at lines 189--190
-[]\OT1/cmr/m/n/12 L'optimisation r^^Sealis^^See con-siste en, it^^Serativement,
- ap-procher chaque noeud
- []
-
-<Bordeaux/figures/optim_avant.png, id=126, 602.25pt x 602.25pt>
+<Bordeaux/figures/optim_avant.png, id=152, 602.25pt x 602.25pt>
 File: Bordeaux/figures/optim_avant.png Graphic file (type png)
 
 <use Bordeaux/figures/optim_avant.png>
-Package pdftex.def Info: Bordeaux/figures/optim_avant.png used on input line 19
-6.
+Package pdftex.def Info: Bordeaux/figures/optim_avant.png used on input line 21
+3.
 (pdftex.def)             Requested size: 150.56212pt x 150.56212pt.
 
-<Bordeaux/figures/optim_apres.png, id=127, 602.25pt x 602.25pt>
+<Bordeaux/figures/optim_apres.png, id=153, 602.25pt x 602.25pt>
 File: Bordeaux/figures/optim_apres.png Graphic file (type png)
 
 <use Bordeaux/figures/optim_apres.png>
-Package pdftex.def Info: Bordeaux/figures/optim_apres.png used on input line 20
-2.
+Package pdftex.def Info: Bordeaux/figures/optim_apres.png used on input line 21
+9.
 (pdftex.def)             Requested size: 150.56212pt x 150.56212pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 194--205
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 211--222
 [][]  [] 
  []
 
-[26 <./Bordeaux/figures/optim_avant.png> <./Bordeaux/figures/optim_apres.png>]
-<Bordeaux/figures/3D/sphereLS.png, id=133, 602.25pt x 602.25pt>
+[34 <./Bordeaux/figures/optim_avant.png> <./Bordeaux/figures/optim_apres.png>]
+[35] <Bordeaux/figures/3D/sphereLS.png, id=162, 602.25pt x 602.25pt>
 File: Bordeaux/figures/3D/sphereLS.png Graphic file (type png)
 
 <use Bordeaux/figures/3D/sphereLS.png>
-Package pdftex.def Info: Bordeaux/figures/3D/sphereLS.png used on input line 25
-1.
+Package pdftex.def Info: Bordeaux/figures/3D/sphereLS.png used on input line 27
+2.
 (pdftex.def)             Requested size: 120.44786pt x 120.44786pt.
 
-Overfull \hbox (3.44667pt too wide) in paragraph at lines 251--252
- [][] 
- []
-
-<Bordeaux/figures/3D/torusLS.png, id=134, 602.25pt x 602.25pt>
+<Bordeaux/figures/3D/torusLS.png, id=163, 602.25pt x 602.25pt>
 File: Bordeaux/figures/3D/torusLS.png Graphic file (type png)
 
 <use Bordeaux/figures/3D/torusLS.png>
-Package pdftex.def Info: Bordeaux/figures/3D/torusLS.png used on input line 257
+Package pdftex.def Info: Bordeaux/figures/3D/torusLS.png used on input line 278
 .
 (pdftex.def)             Requested size: 120.44786pt x 120.44786pt.
 
-Overfull \hbox (3.44667pt too wide) in paragraph at lines 257--258
- [][] 
- []
-
-<Bordeaux/figures/3D/holeLS.png, id=135, 602.25pt x 602.25pt>
+<Bordeaux/figures/3D/holeLS.png, id=164, 602.25pt x 602.25pt>
 File: Bordeaux/figures/3D/holeLS.png Graphic file (type png)
 
 <use Bordeaux/figures/3D/holeLS.png>
-Package pdftex.def Info: Bordeaux/figures/3D/holeLS.png used on input line 263.
+Package pdftex.def Info: Bordeaux/figures/3D/holeLS.png used on input line 284.
 
 (pdftex.def)             Requested size: 120.44786pt x 120.44786pt.
 
-Overfull \hbox (3.44667pt too wide) in paragraph at lines 263--264
- [][] 
- []
-
-[27] <Bordeaux/figures/3D/sphereDomLS.png, id=139, 1300.86pt x 746.79pt>
+<Bordeaux/figures/3D/sphereDomLS.png, id=165, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/3D/sphereDomLS.png Graphic file (type png)
 
 <use Bordeaux/figures/3D/sphereDomLS.png>
 Package pdftex.def Info: Bordeaux/figures/3D/sphereDomLS.png used on input line
- 272.
+ 297.
 (pdftex.def)             Requested size: 220.33424pt x 149.35535pt.
 
-Overfull \hbox (25.33424pt too wide) in paragraph at lines 272--273
+Overfull \hbox (11.20741pt too wide) in paragraph at lines 297--298
  [][] 
  []
 
-<Bordeaux/figures/3D/sphereAdapt.png, id=141, 1300.86pt x 746.79pt>
+<Bordeaux/figures/3D/sphereAdapt.png, id=167, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/3D/sphereAdapt.png Graphic file (type png)
 
 <use Bordeaux/figures/3D/sphereAdapt.png>
 Package pdftex.def Info: Bordeaux/figures/3D/sphereAdapt.png used on input line
- 278.
+ 303.
 (pdftex.def)             Requested size: 203.2629pt x 149.35535pt.
 
-Overfull \hbox (8.2629pt too wide) in paragraph at lines 278--279
- [][] 
- []
-
-
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 270--281
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 295--306
 [][]  [] 
  []
 
-<Bordeaux/figures/3D/torusDomLS1.png, id=143, 1300.86pt x 746.79pt>
+<Bordeaux/figures/3D/torusDomLS1.png, id=169, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/3D/torusDomLS1.png Graphic file (type png)
 
 <use Bordeaux/figures/3D/torusDomLS1.png>
 Package pdftex.def Info: Bordeaux/figures/3D/torusDomLS1.png used on input line
- 287.
+ 316.
 (pdftex.def)             Requested size: 220.33424pt x 149.35535pt.
 
-Overfull \hbox (25.33424pt too wide) in paragraph at lines 287--288
+Overfull \hbox (11.20741pt too wide) in paragraph at lines 316--317
  [][] 
  []
 
-<Bordeaux/figures/3D/torusDomLS2.png, id=145, 1300.86pt x 746.79pt>
+<Bordeaux/figures/3D/torusDomLS2.png, id=171, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/3D/torusDomLS2.png Graphic file (type png)
 
 <use Bordeaux/figures/3D/torusDomLS2.png>
 Package pdftex.def Info: Bordeaux/figures/3D/torusDomLS2.png used on input line
- 293.
+ 322.
 (pdftex.def)             Requested size: 220.33424pt x 149.35535pt.
 
-Overfull \hbox (25.33424pt too wide) in paragraph at lines 293--294
+Overfull \hbox (11.20741pt too wide) in paragraph at lines 322--323
  [][] 
  []
 
-<Bordeaux/figures/3D/torusAdapt2.png, id=147, 1300.86pt x 746.79pt>
+<Bordeaux/figures/3D/torusAdapt2.png, id=173, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/3D/torusAdapt2.png Graphic file (type png)
 
 <use Bordeaux/figures/3D/torusAdapt2.png>
 Package pdftex.def Info: Bordeaux/figures/3D/torusAdapt2.png used on input line
- 298.
+ 327.
 (pdftex.def)             Requested size: 220.33424pt x 149.35535pt.
 
-Overfull \hbox (25.33424pt too wide) in paragraph at lines 298--299
+Overfull \hbox (11.20741pt too wide) in paragraph at lines 327--328
  [][] 
  []
 
-<Bordeaux/figures/3D/torusAdapt1.png, id=149, 1300.86pt x 746.79pt>
+<Bordeaux/figures/3D/torusAdapt1.png, id=175, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/3D/torusAdapt1.png Graphic file (type png)
 
 <use Bordeaux/figures/3D/torusAdapt1.png>
 Package pdftex.def Info: Bordeaux/figures/3D/torusAdapt1.png used on input line
- 304.
+ 333.
 (pdftex.def)             Requested size: 220.33424pt x 149.35535pt.
 
-Overfull \hbox (25.33424pt too wide) in paragraph at lines 304--305
+Overfull \hbox (11.20741pt too wide) in paragraph at lines 333--334
  [][] 
  []
 
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 285--307
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 314--336
 [][]  []
  []
 
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 285--307
+Overfull \hbox (2.61107pt too wide) in paragraph at lines 314--336
 []  [] 
  []
 
-[28 <./Bordeaux/figures/3D/sphereDomLS.png> <./Bordeaux/figures/3D/sphereAdapt.
-png> <./Bordeaux/figures/3D/torusDomLS1.png> <./Bordeaux/figures/3D/torusDomLS2
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [36 <./Bordeaux/figures/3D/sphereDomLS.png> <./Bordeaux/figures/3D/sphereAdapt
 .png> <./Bordeaux/figures/3D/sphereLS.png> <./Bordeaux/figures/3D/torusLS.png> 
 <./Bordeaux/figures/3D/holeLS.png>]
-<Bordeaux/figures/3D/holeDomLS1.png, id=158, 1300.86pt x 746.79pt>
+<Bordeaux/figures/3D/holeDomLS1.png, id=182, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/3D/holeDomLS1.png Graphic file (type png)
 
 <use Bordeaux/figures/3D/holeDomLS1.png>
 Package pdftex.def Info: Bordeaux/figures/3D/holeDomLS1.png used on input line 
-313.
+346.
 (pdftex.def)             Requested size: 220.33424pt x 149.35535pt.
 
-Overfull \hbox (25.33424pt too wide) in paragraph at lines 313--314
+Overfull \hbox (11.20741pt too wide) in paragraph at lines 346--347
  [][] 
  []
 
-<Bordeaux/figures/3D/holeDomLS2.png, id=160, 1300.86pt x 746.79pt>
+<Bordeaux/figures/3D/holeDomLS2.png, id=184, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/3D/holeDomLS2.png Graphic file (type png)
 
 <use Bordeaux/figures/3D/holeDomLS2.png>
 Package pdftex.def Info: Bordeaux/figures/3D/holeDomLS2.png used on input line 
-318.
+351.
 (pdftex.def)             Requested size: 220.33424pt x 149.35535pt.
 
-Overfull \hbox (25.33424pt too wide) in paragraph at lines 318--319
+Overfull \hbox (11.20741pt too wide) in paragraph at lines 351--352
  [][] 
  []
 
-<Bordeaux/figures/3D/holeAdapt1.png, id=162, 1300.86pt x 746.79pt>
+<Bordeaux/figures/3D/holeAdapt1.png, id=186, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/3D/holeAdapt1.png Graphic file (type png)
 
 <use Bordeaux/figures/3D/holeAdapt1.png>
 Package pdftex.def Info: Bordeaux/figures/3D/holeAdapt1.png used on input line 
-323.
+356.
 (pdftex.def)             Requested size: 220.33424pt x 149.35535pt.
 
-Overfull \hbox (25.33424pt too wide) in paragraph at lines 323--324
+Overfull \hbox (11.20741pt too wide) in paragraph at lines 356--357
  [][] 
  []
 
-<Bordeaux/figures/3D/holeAdapt2.png, id=164, 1300.86pt x 746.79pt>
+<Bordeaux/figures/3D/holeAdapt2.png, id=188, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/3D/holeAdapt2.png Graphic file (type png)
 
 <use Bordeaux/figures/3D/holeAdapt2.png>
 Package pdftex.def Info: Bordeaux/figures/3D/holeAdapt2.png used on input line 
-328.
+361.
 (pdftex.def)             Requested size: 220.33424pt x 149.35535pt.
 
-Overfull \hbox (25.33424pt too wide) in paragraph at lines 328--329
+Overfull \hbox (11.20741pt too wide) in paragraph at lines 361--362
  [][] 
  []
 
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 311--331
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 344--364
 [][] []
  []
 
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 311--331
+Overfull \hbox (2.61107pt too wide) in paragraph at lines 344--364
 [] [] 
  []
 
-[29 <./Bordeaux/figures/3D/torusAdapt2.png> <./Bordeaux/figures/3D/torusAdapt1.
-png> <./Bordeaux/figures/3D/holeDomLS1.png> <./Bordeaux/figures/3D/holeDomLS2.p
-ng> <./Bordeaux/figures/3D/holeAdapt1.png> <./Bordeaux/figures/3D/holeAdapt2.pn
-g>]) (./Bordeaux/applicationPhys.tex [30]
-<Bordeaux/figures/AdapPhysique/u.png, id=178, 1300.86pt x 746.79pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [37 <./Bordeaux/figures/3D/torusDomLS1.png> <./Bordeaux/figures/3D/torusDomLS2
+.png> <./Bordeaux/figures/3D/torusAdapt2.png> <./Bordeaux/figures/3D/torusAdapt
+1.png>])
+(./Bordeaux/applicationPhys.tex [38 <./Bordeaux/figures/3D/holeDomLS1.png> <./B
+ordeaux/figures/3D/holeDomLS2.png> <./Bordeaux/figures/3D/holeAdapt1.png> <./Bo
+rdeaux/figures/3D/holeAdapt2.png>] [39]
+<Bordeaux/figures/AdapPhysique/u.png, id=208, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/AdapPhysique/u.png Graphic file (type png)
 
 <use Bordeaux/figures/AdapPhysique/u.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/u.png used on input line
- 57.
+ 58.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--58
-
- []
-
-<Bordeaux/figures/AdapPhysique/met.png, id=179, 1300.86pt x 746.79pt>
+<Bordeaux/figures/AdapPhysique/met.png, id=209, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/AdapPhysique/met.png Graphic file (type png)
 
 <use Bordeaux/figures/AdapPhysique/met.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/met.png used on input li
-ne 62.
+ne 63.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--63
-
- []
-
-
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 56--65
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 57--66
 [][]  [] 
  []
 
-[31 <./Bordeaux/figures/AdapPhysique/u.png> <./Bordeaux/figures/AdapPhysique/me
-t.png>]
-Overfull \hbox (13.70415pt too wide) in paragraph at lines 72--73
-[]\OT1/cmr/m/n/12 Pour cou-pler les deux adap-ta-tions, on va in-ter-secter ses
- re-spec-tives m^^Setriques
+
+Overfull \hbox (2.41238pt too wide) in paragraph at lines 73--73
+[]\OT1/cmr/bx/n/14.4 Couplage entre adap-ta-tion Le-vel Set et adap-ta-tion phy
+-
  []
 
-[32]
-Overfull \hbox (2.72462pt too wide) in paragraph at lines 101--102
-\OT1/cmr/m/n/12 repr^^Sesenter un do-maine in-fini, qui min-imise l'influence d
-es bords. Afin d'^^Seviter
- []
-
-<Bordeaux/figures/AdapPhysique/dom4bI0.png, id=187, 1300.86pt x 746.79pt>
+[40 <./Bordeaux/figures/AdapPhysique/u.png> <./Bordeaux/figures/AdapPhysique/me
+t.png>] [41]
+<Bordeaux/figures/AdapPhysique/dom4bI0.png, id=216, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/AdapPhysique/dom4bI0.png Graphic file (type png)
 
 <use Bordeaux/figures/AdapPhysique/dom4bI0.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/dom4bI0.png used on inpu
-t line 106.
+t line 113.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-<Bordeaux/figures/AdapPhysique/dom4bI1.png, id=188, 1300.86pt x 746.79pt>
+<Bordeaux/figures/AdapPhysique/dom4bI1.png, id=217, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/AdapPhysique/dom4bI1.png Graphic file (type png)
 
 <use Bordeaux/figures/AdapPhysique/dom4bI1.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/dom4bI1.png used on inpu
-t line 112.
+t line 119.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-<Bordeaux/figures/AdapPhysique/dom4bI2.png, id=189, 1300.86pt x 746.79pt>
+<Bordeaux/figures/AdapPhysique/dom4bI2.png, id=218, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/AdapPhysique/dom4bI2.png Graphic file (type png)
 
 <use Bordeaux/figures/AdapPhysique/dom4bI2.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/dom4bI2.png used on inpu
-t line 117.
+t line 124.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 104--120
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 111--127
 [][]  []
  []
 
-[33 <./Bordeaux/figures/AdapPhysique/dom4bI0.png> <./Bordeaux/figures/AdapPhysi
-que/dom4bI1.png>]
-<Bordeaux/figures/AdapPhysique/Plot4bI0A.png, id=193, 1027.84pt x 894.34125pt>
+[42 <./Bordeaux/figures/AdapPhysique/dom4bI0.png> <./Bordeaux/figures/AdapPhysi
+que/dom4bI1.png> <./Bordeaux/figures/AdapPhysique/dom4bI2.png>]
+<Bordeaux/figures/AdapPhysique/Plot4bI0A.png, id=222, 1027.84pt x 894.34125pt>
 File: Bordeaux/figures/AdapPhysique/Plot4bI0A.png Graphic file (type png)
 
 <use Bordeaux/figures/AdapPhysique/Plot4bI0A.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/Plot4bI0A.png used on in
-put line 126.
+put line 135.
 (pdftex.def)             Requested size: 205.56436pt x 178.86508pt.
 
-Overfull \hbox (10.56436pt too wide) in paragraph at lines 126--127
- [][] 
- []
-
-
-<Bordeaux/figures/AdapPhysique/Plot4bI1A.png, id=194, 1027.84pt x 894.34125pt>
+<Bordeaux/figures/AdapPhysique/Plot4bI1A.png, id=223, 1027.84pt x 894.34125pt>
 File: Bordeaux/figures/AdapPhysique/Plot4bI1A.png Graphic file (type png)
 
 <use Bordeaux/figures/AdapPhysique/Plot4bI1A.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/Plot4bI1A.png used on in
-put line 132.
+put line 141.
 (pdftex.def)             Requested size: 205.56436pt x 178.86508pt.
 
-Overfull \hbox (10.56436pt too wide) in paragraph at lines 132--133
- [][] 
- []
-
-
-<Bordeaux/figures/AdapPhysique/Plot4bI2A.png, id=195, 1027.84pt x 894.34125pt>
+<Bordeaux/figures/AdapPhysique/Plot4bI2A.png, id=224, 1027.84pt x 894.34125pt>
 File: Bordeaux/figures/AdapPhysique/Plot4bI2A.png Graphic file (type png)
 
 <use Bordeaux/figures/AdapPhysique/Plot4bI2A.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/Plot4bI2A.png used on in
-put line 137.
+put line 146.
 (pdftex.def)             Requested size: 205.56436pt x 178.86508pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 124--140
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 133--149
 [][]  []
  []
 
-
-<Bordeaux/figures/AdapPhysique/Contour4bI0.png, id=196, 1027.84pt x 894.34125pt
+[43 <./Bordeaux/figures/AdapPhysique/Plot4bI0A.png (PNG copy)> <./Bordeaux/figu
+res/AdapPhysique/Plot4bI1A.png (PNG copy)> <./Bordeaux/figures/AdapPhysique/Plo
+t4bI2A.png (PNG copy)>]
+<Bordeaux/figures/AdapPhysique/Contour4bI0.png, id=230, 1027.84pt x 894.34125pt
 >
 File: Bordeaux/figures/AdapPhysique/Contour4bI0.png Graphic file (type png)
  <use Bordeaux/figures/AdapPhysique/Contour4bI0.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/Contour4bI0.png used on 
-input line 146.
+input line 157.
 (pdftex.def)             Requested size: 205.56436pt x 178.86508pt.
 
-Overfull \hbox (10.56436pt too wide) in paragraph at lines 146--147
- [][] 
- []
-
-
-<Bordeaux/figures/AdapPhysique/Contour4bI1.png, id=197, 1027.84pt x 894.34125pt
+<Bordeaux/figures/AdapPhysique/Contour4bI1.png, id=231, 1027.84pt x 894.34125pt
 >
 File: Bordeaux/figures/AdapPhysique/Contour4bI1.png Graphic file (type png)
  <use Bordeaux/figures/AdapPhysique/Contour4bI1.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/Contour4bI1.png used on 
-input line 152.
+input line 163.
 (pdftex.def)             Requested size: 205.56436pt x 178.86508pt.
 
-Overfull \hbox (10.56436pt too wide) in paragraph at lines 152--153
- [][] 
- []
-
-
-<Bordeaux/figures/AdapPhysique/Contour4bI2.png, id=198, 1027.84pt x 894.34125pt
+<Bordeaux/figures/AdapPhysique/Contour4bI2.png, id=232, 1027.84pt x 894.34125pt
 >
 File: Bordeaux/figures/AdapPhysique/Contour4bI2.png Graphic file (type png)
  <use Bordeaux/figures/AdapPhysique/Contour4bI2.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/Contour4bI2.png used on 
-input line 157.
+input line 168.
 (pdftex.def)             Requested size: 205.56436pt x 178.86508pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 144--160
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 155--171
 [][]  []
  []
 
-[34 <./Bordeaux/figures/AdapPhysique/dom4bI2.png> <./Bordeaux/figures/AdapPhysi
-que/Plot4bI0A.png (PNG copy)> <./Bordeaux/figures/AdapPhysique/Plot4bI1A.png (P
-NG copy)> <./Bordeaux/figures/AdapPhysique/Plot4bI2A.png (PNG copy)>]
-<Bordeaux/figures/AdapPhysique/Plot4bI0B.png, id=202, 1027.84pt x 894.34125pt>
+[44 <./Bordeaux/figures/AdapPhysique/Contour4bI0.png (PNG copy)> <./Bordeaux/fi
+gures/AdapPhysique/Contour4bI1.png (PNG copy)> <./Bordeaux/figures/AdapPhysique
+/Contour4bI2.png (PNG copy)>]
+<Bordeaux/figures/AdapPhysique/Plot4bI0B.png, id=236, 1027.84pt x 894.34125pt>
 File: Bordeaux/figures/AdapPhysique/Plot4bI0B.png Graphic file (type png)
 
 <use Bordeaux/figures/AdapPhysique/Plot4bI0B.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/Plot4bI0B.png used on in
-put line 166.
+put line 179.
 (pdftex.def)             Requested size: 205.56436pt x 178.86508pt.
 
-Overfull \hbox (10.56436pt too wide) in paragraph at lines 166--167
- [][] 
- []
-
-
-<Bordeaux/figures/AdapPhysique/Plot4bI1B.png, id=203, 1027.84pt x 894.34125pt>
+<Bordeaux/figures/AdapPhysique/Plot4bI1B.png, id=237, 1027.84pt x 894.34125pt>
 File: Bordeaux/figures/AdapPhysique/Plot4bI1B.png Graphic file (type png)
 
 <use Bordeaux/figures/AdapPhysique/Plot4bI1B.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/Plot4bI1B.png used on in
-put line 171.
+put line 184.
 (pdftex.def)             Requested size: 205.56436pt x 178.86508pt.
 
-Overfull \hbox (10.56436pt too wide) in paragraph at lines 171--172
- [][] 
- []
-
-
-<Bordeaux/figures/AdapPhysique/Plot4bI2B.png, id=204, 1027.84pt x 894.34125pt>
+<Bordeaux/figures/AdapPhysique/Plot4bI2B.png, id=238, 1027.84pt x 894.34125pt>
 File: Bordeaux/figures/AdapPhysique/Plot4bI2B.png Graphic file (type png)
 
 <use Bordeaux/figures/AdapPhysique/Plot4bI2B.png>
 Package pdftex.def Info: Bordeaux/figures/AdapPhysique/Plot4bI2B.png used on in
-put line 176.
+put line 189.
 (pdftex.def)             Requested size: 205.56436pt x 178.86508pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 164--179
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 177--192
 [][] []
  []
 
-[35 <./Bordeaux/figures/AdapPhysique/Contour4bI0.png (PNG copy)> <./Bordeaux/fi
-gures/AdapPhysique/Contour4bI1.png (PNG copy)> <./Bordeaux/figures/AdapPhysique
-/Contour4bI2.png (PNG copy)>]) (./Bordeaux/nonstationnaire.tex
-Overfull \hbox (12.69443pt too wide) in paragraph at lines 196--1
-[]\OT1/cmr/m/n/12 Ces r^^Sesultats mon-trent que la proc^^Sedure pro-pos^^See p
-er-met en ef-fet d'am^^Seliorer
- []
-
-[36 <./Bordeaux/figures/AdapPhysique/Plot4bI0B.png (PNG copy)> <./Bordeaux/figu
-res/AdapPhysique/Plot4bI1B.png (PNG copy)> <./Bordeaux/figures/AdapPhysique/Plo
-t4bI2B.png (PNG copy)>] [37]
-<Bordeaux/figures/LSAdvection/CircleAdvNew0.png, id=215, 1300.86pt x 746.79pt>
+) (./Bordeaux/nonstationnaire.tex [45 <./Bordeaux/figures/AdapPhysique/Plot4bI0
+B.png (PNG copy)> <./Bordeaux/figures/AdapPhysique/Plot4bI1B.png (PNG copy)> <.
+/Bordeaux/figures/AdapPhysique/Plot4bI2B.png (PNG copy)>] [46]
+<Bordeaux/figures/LSAdvection/CircleAdvNew0.png, id=245, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/LSAdvection/CircleAdvNew0.png Graphic file (type png)
 
 <use Bordeaux/figures/LSAdvection/CircleAdvNew0.png>
 Package pdftex.def Info: Bordeaux/figures/LSAdvection/CircleAdvNew0.png used on
- input line 22.
+ input line 24.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-<Bordeaux/figures/LSAdvection/CircleAdvNew10.png, id=216, 1300.86pt x 746.79pt>
+<Bordeaux/figures/LSAdvection/CircleAdvNew10.png, id=246, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/LSAdvection/CircleAdvNew10.png Graphic file (type png)
 <use Bordeaux/figures/LSAdvection/CircleAdvNew10.png>
 Package pdftex.def Info: Bordeaux/figures/LSAdvection/CircleAdvNew10.png used o
-n input line 27.
+n input line 29.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-<Bordeaux/figures/LSAdvection/CircleAdvNew20.png, id=217, 1300.86pt x 746.79pt>
+<Bordeaux/figures/LSAdvection/CircleAdvNew20.png, id=247, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/LSAdvection/CircleAdvNew20.png Graphic file (type png)
 <use Bordeaux/figures/LSAdvection/CircleAdvNew20.png>
 Package pdftex.def Info: Bordeaux/figures/LSAdvection/CircleAdvNew20.png used o
-n input line 32.
+n input line 34.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 20--35
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 22--37
 [][] []
  []
 
-<Bordeaux/figures/LSAdvection/NacaAdvNew0.png, id=218, 1300.86pt x 746.79pt>
+<Bordeaux/figures/LSAdvection/NacaAdvNew0.png, id=248, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/LSAdvection/NacaAdvNew0.png Graphic file (type png)
 
 <use Bordeaux/figures/LSAdvection/NacaAdvNew0.png>
 Package pdftex.def Info: Bordeaux/figures/LSAdvection/NacaAdvNew0.png used on i
-nput line 41.
+nput line 47.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-<Bordeaux/figures/LSAdvection/NacaAdvNew10.png, id=219, 1300.86pt x 746.79pt>
+<Bordeaux/figures/LSAdvection/NacaAdvNew10.png, id=249, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/LSAdvection/NacaAdvNew10.png Graphic file (type png)
 
 <use Bordeaux/figures/LSAdvection/NacaAdvNew10.png>
 Package pdftex.def Info: Bordeaux/figures/LSAdvection/NacaAdvNew10.png used on 
-input line 46.
+input line 52.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-<Bordeaux/figures/LSAdvection/NacaAdvNew20.png, id=220, 1300.86pt x 746.79pt>
+<Bordeaux/figures/LSAdvection/NacaAdvNew20.png, id=250, 1300.86pt x 746.79pt>
 File: Bordeaux/figures/LSAdvection/NacaAdvNew20.png Graphic file (type png)
 
 <use Bordeaux/figures/LSAdvection/NacaAdvNew20.png>
 Package pdftex.def Info: Bordeaux/figures/LSAdvection/NacaAdvNew20.png used on 
-input line 51.
+input line 57.
 (pdftex.def)             Requested size: 195.12057pt x 112.01366pt.
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 39--54
+Overfull \hbox (20.23589pt too wide) in paragraph at lines 45--60
 [][] []
  []
 
-[38 <./Bordeaux/figures/LSAdvection/CircleAdvNew0.png> <./Bordeaux/figures/LSAd
-vection/CircleAdvNew10.png> <./Bordeaux/figures/LSAdvection/CircleAdvNew20.png>
- <./Bordeaux/figures/LSAdvection/NacaAdvNew0.png> <./Bordeaux/figures/LSAdvecti
-on/NacaAdvNew10.png>]) (./Bordeaux/conclusionBordeaux.tex
-Overfull \hbox (8.38045pt too wide) in paragraph at lines 7--8
-\OT1/cmr/m/n/12 ^^Ra des sur-faces dans le do-maine (\OT1/cmr/m/it/12 i.e.\OT1/
-cmr/m/n/12 , ^^Ra des fonc-tions \OT1/cmr/m/it/12 Level Set\OT1/cmr/m/n/12 ) et
- de l'adaptation
- []
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Overfull \hbox (1.00983pt too wide) in paragraph at lines 7--8
-\OT1/cmr/m/n/12 sis-tant des suc-ces-sives adap-ta-tions et r^^Sesolutions du p
-robl^^Reme de la m^^Secanique
- []
+ [47 <./Bordeaux/figures/LSAdvection/CircleAdvNew0.png> <./Bordeaux/figures/LSA
+dvection/CircleAdvNew10.png> <./Bordeaux/figures/LSAdvection/CircleAdvNew20.png
+> <./Bordeaux/figures/LSAdvection/NacaAdvNew0.png> <./Bordeaux/figures/LSAdvect
+ion/NacaAdvNew10.png>]) (./Bordeaux/conclusionBordeaux.tex [48 <./Bordeaux/figu
+res/LSAdvection/NacaAdvNew20.png>]) [49] [50
 
-[39 <./Bordeaux/figures/LSAdvection/NacaAdvNew20.png>]) [40]
-(./FRinriameric.tex
-<figures/logos/Inria-Chile.png, id=230, 496.85625pt x 200.75pt>
+] [51] [52
+
+] (./FRinriameric.tex
+<figures/logos/Inria-Chile.png, id=270, 496.85625pt x 200.75pt>
 File: figures/logos/Inria-Chile.png Graphic file (type png)
 
 <use figures/logos/Inria-Chile.png>
-Package pdftex.def Info: figures/logos/Inria-Chile.png used on input line 12.
+Package pdftex.def Info: figures/logos/Inria-Chile.png used on input line 13.
 (pdftex.def)             Requested size: 149.05801pt x 60.22545pt.
- [41 <./figures/logos/Inria-Chile.png>]
-<figures/logos/meric.png, id=236, 903.375pt x 190.7125pt>
+ [53 <./figures/logos/Inria-Chile.png>]
+<figures/logos/meric.png, id=276, 903.375pt x 190.7125pt>
 File: figures/logos/meric.png Graphic file (type png)
 
 <use figures/logos/meric.png>
-Package pdftex.def Info: figures/logos/meric.png used on input line 28.
+Package pdftex.def Info: figures/logos/meric.png used on input line 31.
 (pdftex.def)             Requested size: 271.01459pt x 57.21419pt.
 
-Overfull \hbox (3.62091pt too wide) in paragraph at lines 34--35
-\OT1/cmr/m/n/12 re-nou-ve-lable, est une des pro-tag-o-nistes dans la con-struc
--tion du d^^Seveloppement
+Overfull \hbox (19.69038pt too wide) in paragraph at lines 43--44
+\OT1/cmr/m/n/12 l'^^Sevaluation des im-pacts so-ciaux et en-vi-ron-ne-men-taux 
+et la mod^^Selisation math^^Sematique
  []
 
-[42 <./figures/logos/meric.png>]
-Overfull \hbox (5.31812pt too wide) in paragraph at lines 38--39
-\OT1/cmr/m/n/12 vi-ron-nemen-taux et la mod^^Selisation math^^Sematique pour la
- pro-duc-tion d'^^Senergie
+[54 <./figures/logos/meric.png>]) (./FRintro.tex
+Overfull \hbox (17.42508pt too wide) in paragraph at lines 51--1
+\OT1/cmr/m/n/12 avanc^^See pour l'en^^Sergie ma-rine" de ME-RIC. Par ailleurs, 
+deux membres du d^^Separtement
  []
 
-
-Overfull \hbox (8.25142pt too wide) in paragraph at lines 42--43
-[]\OT1/cmr/m/n/12 Mon tra-vail r^^Sealis^^Se dans ce stage s'ins^^Rere dans la 
-premi^^Rere ligne de recherche,
- []
-
-) (./FRintro.tex
-Overfull \hbox (10.09596pt too wide) in paragraph at lines 3--4
-[]\OT1/cmr/m/n/12 La ligne d'investigation de MERIC dans laque-lle j'ai tra-vai
-ll^^Se, ``Mod^^Selisation
- []
-
-[43]
-Overfull \hbox (0.32234pt too wide) in paragraph at lines 5--6
-[]\OT1/cmr/m/n/12 Les su-jets ^^Setudi^^Ses dans ce stage con-stituent une in-t
-ro-duc-tion ^^Ra la recherche
- []
-
-[44]
-Overfull \hbox (8.51254pt too wide) in paragraph at lines 15--16
-[]\OT1/cmr/m/n/12 Etant non lo-caux en temps, ces TBCs ex-actes ne peu-vent pas
- ^etre impl^^Sement^^Sees
+[55]
+Overfull \hbox (16.1973pt too wide) in paragraph at lines 19--20
+[]\OT1/cmr/m/n/12 De fa^^Xcon g^^Sen^^Serale, ces er-reurs peuvent ^etre clas-s
+ifi^^Sees en des er-reurs de mod^^Selisation
  []
 
 
-Overfull \hbox (4.86118pt too wide) in paragraph at lines 19--20
-\OT1/cmr/m/n/12 groupe, il y a les as-somp-tions de mod^^Selisation con-ceptuel
-le (pour le ph^^Senom^^Rene
- []
+Underfull \vbox (badness 2205) has occurred while \output is active []
 
-) (./FRkdv.tex [45]
-Overfull \hbox (5.74034pt too wide) in paragraph at lines 9--10
-[]\OT1/cmr/m/n/12 Plusieurs formes de cette ^^Sequation peu-vent ^etre trouv^^S
-ees dans la litt^^Serature,
- []
+ [56])
+(./FRkdv.tex
+Underfull \vbox (badness 2205) has occurred while \output is active []
 
-[46] [47]
-Overfull \hbox (14.03053pt too wide) in paragraph at lines 114--115
-[]\OT1/cmr/m/n/12 Deux sch^^Semas sont pro-pos^^Ses pour la r^^Sesolution du de
-uxi^^Reme pas de l'^^Sequation
- []
-
-
-Overfull \hbox (40.7602pt too wide) detected at line 151
+ [57]
+[58] [59]
+Overfull \hbox (28.17302pt too wide) detected at line 152
 [] []
  []
 
-[48]
-Overfull \hbox (3.52092pt too wide) in paragraph at lines 179--180
-[]\OT1/cmr/m/n/12 En en-vis-ageant la cor-recte sim-u-la-tion des ph^^Senom^^Re
-nes physiques qui jouent
+[60]
+Overfull \hbox (4.8404pt too wide) in paragraph at lines 227--228
+[]\OT1/cmr/m/n/12 La ca-ract^^Serisation de la dis-per-sion, ^^Ra son tour, vie
+nt de la d^^Serivation de l'^^Sequation
  []
 
-[49] [50] [51] [52] <figures/criteria6.png, id=278, 433.62pt x 289.08pt>
+[61] [62] [63] [64] <figures/criteria6.png, id=316, 433.62pt x 289.08pt>
 File: figures/criteria6.png Graphic file (type png)
 
 <use figures/criteria6.png>
-Package pdftex.def Info: figures/criteria6.png used on input line 359.
+Package pdftex.def Info: figures/criteria6.png used on input line 360.
 (pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-Overfull \hbox (19.62839pt too wide) in paragraph at lines 359--360
+Overfull \hbox (6.91432pt too wide) in paragraph at lines 360--361
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 359--360
+Underfull \hbox (badness 10000) in paragraph at lines 360--361
 
  []
 
-<figures/criteria5.png, id=279, 433.62pt x 289.08pt>
+<figures/criteria5.png, id=317, 433.62pt x 289.08pt>
 File: figures/criteria5.png Graphic file (type png)
 
 <use figures/criteria5.png>
-Package pdftex.def Info: figures/criteria5.png used on input line 366.
+Package pdftex.def Info: figures/criteria5.png used on input line 367.
 (pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 366--367
-
- []
-
-
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 356--374
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 357--375
 [][] 
  []
 
-[53 <./figures/criteria6.png> <./figures/criteria5.png>]) (./FRserre.tex
-[54]
-Overfull \hbox (26.36913pt too wide) in paragraph at lines 67--67
-[] 
- []
+) (./FRserre.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
+ [65 <./figures/criteria6.png> <./figures/criteria5.png>] [66]
 
 Package amsmath Warning: Cannot use `split' here;
 (amsmath)                trying to recover with `aligned' on input line 98.
 
-[55]
-Overfull \hbox (20.72574pt too wide) in paragraph at lines 105--106
-\OT1/cmr/m/n/12 de KdV, on met en oeu-vre une m^^Sethode de \OT1/cmr/m/it/12 sp
-lit-ting \OT1/cmr/m/n/12 pour r^^Sesoudre num^^Seriquement
- []
-
-
-Overfull \hbox (13.09665pt too wide) in paragraph at lines 137--138
-[]\OT1/cmr/m/n/12 Quelques vari-a-tions de ce sch^^Sema de \OT1/cmr/m/it/12 spl
-it-ting \OT1/cmr/m/n/12 ont ^^Set^^Se ^^Segalement impl^^Sement^^Ses.
- []
-
-[56]
-Overfull \hbox (5.2834pt too wide) in paragraph at lines 190--191
-[]\OT1/cmr/m/n/12 En util-isant des diff^^Serences finies d'ordre qua-tre pour 
-discr^^Setiser les d^^Seriv^^Sees
- []
-
-[57]
-Overfull \hbox (8.43916pt too wide) detected at line 221
-\OML/cmm/m/it/12 ^^T \OT1/cmr/m/n/12 = []\OML/cmm/m/it/12 ;  c \OT1/cmr/m/n/12 
-= []
- []
-
-[58] <figures/Serre/4x4cnoidal1h.png, id=301, 433.62pt x 289.08pt>
+[67] [68] [69] [70]
+<figures/Serre/4x4cnoidal1h.png, id=339, 433.62pt x 289.08pt>
 File: figures/Serre/4x4cnoidal1h.png Graphic file (type png)
 
 <use figures/Serre/4x4cnoidal1h.png>
@@ -2180,11 +2075,11 @@ Package pdftex.def Info: figures/Serre/4x4cnoidal1h.png used on input line 249.
 
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 249--250
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 249--250
 [][] 
  []
 
-<figures/Serre/4x4cnoidal2h.png, id=302, 433.62pt x 289.08pt>
+<figures/Serre/4x4cnoidal2h.png, id=340, 433.62pt x 289.08pt>
 File: figures/Serre/4x4cnoidal2h.png Graphic file (type png)
 
 <use figures/Serre/4x4cnoidal2h.png>
@@ -2192,11 +2087,11 @@ Package pdftex.def Info: figures/Serre/4x4cnoidal2h.png used on input line 252.
 
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 252--253
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 252--253
 [][] 
  []
 
-<figures/Serre/4x4cnoidal3h.png, id=303, 433.62pt x 289.08pt>
+<figures/Serre/4x4cnoidal3h.png, id=341, 433.62pt x 289.08pt>
 File: figures/Serre/4x4cnoidal3h.png Graphic file (type png)
 
 <use figures/Serre/4x4cnoidal3h.png>
@@ -2204,11 +2099,11 @@ Package pdftex.def Info: figures/Serre/4x4cnoidal3h.png used on input line 255.
 
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 255--256
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 255--256
 [][] 
  []
 
-<figures/Serre/4x4cnoidal1u.png, id=304, 433.62pt x 289.08pt>
+<figures/Serre/4x4cnoidal1u.png, id=342, 433.62pt x 289.08pt>
 File: figures/Serre/4x4cnoidal1u.png Graphic file (type png)
 
 <use figures/Serre/4x4cnoidal1u.png>
@@ -2216,11 +2111,11 @@ Package pdftex.def Info: figures/Serre/4x4cnoidal1u.png used on input line 262.
 
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 262--263
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 262--263
 [][] 
  []
 
-<figures/Serre/4x4cnoidal2u.png, id=305, 433.62pt x 289.08pt>
+<figures/Serre/4x4cnoidal2u.png, id=343, 433.62pt x 289.08pt>
 File: figures/Serre/4x4cnoidal2u.png Graphic file (type png)
 
 <use figures/Serre/4x4cnoidal2u.png>
@@ -2228,11 +2123,11 @@ Package pdftex.def Info: figures/Serre/4x4cnoidal2u.png used on input line 265.
 
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 265--266
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 265--266
 [][] 
  []
 
-<figures/Serre/4x4cnoidal3u.png, id=306, 433.62pt x 289.08pt>
+<figures/Serre/4x4cnoidal3u.png, id=344, 433.62pt x 289.08pt>
 File: figures/Serre/4x4cnoidal3u.png Graphic file (type png)
 
 <use figures/Serre/4x4cnoidal3u.png>
@@ -2240,14 +2135,11 @@ Package pdftex.def Info: figures/Serre/4x4cnoidal3u.png used on input line 268.
 
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 268--269
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 268--269
 [][] 
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<figures/Serre/4x4solitary1h.png, id=307, 433.62pt x 289.08pt>
+<figures/Serre/4x4solitary1h.png, id=345, 433.62pt x 289.08pt>
 File: figures/Serre/4x4solitary1h.png Graphic file (type png)
 
 <use figures/Serre/4x4solitary1h.png>
@@ -2255,11 +2147,11 @@ Package pdftex.def Info: figures/Serre/4x4solitary1h.png used on input line 275
 .
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 275--276
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 275--276
 [][] 
  []
 
-<figures/Serre/4x4solitary2h.png, id=308, 433.62pt x 289.08pt>
+<figures/Serre/4x4solitary2h.png, id=346, 433.62pt x 289.08pt>
 File: figures/Serre/4x4solitary2h.png Graphic file (type png)
 
 <use figures/Serre/4x4solitary2h.png>
@@ -2267,11 +2159,11 @@ Package pdftex.def Info: figures/Serre/4x4solitary2h.png used on input line 278
 .
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 278--279
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 278--279
 [][] 
  []
 
-<figures/Serre/4x4solitary3h.png, id=309, 433.62pt x 289.08pt>
+<figures/Serre/4x4solitary3h.png, id=347, 433.62pt x 289.08pt>
 File: figures/Serre/4x4solitary3h.png Graphic file (type png)
 
 <use figures/Serre/4x4solitary3h.png>
@@ -2279,14 +2171,11 @@ Package pdftex.def Info: figures/Serre/4x4solitary3h.png used on input line 281
 .
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 281--282
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 281--282
 [][] 
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<figures/Serre/4x4solitary1u.png, id=310, 433.62pt x 289.08pt>
+<figures/Serre/4x4solitary1u.png, id=348, 433.62pt x 289.08pt>
 File: figures/Serre/4x4solitary1u.png Graphic file (type png)
 
 <use figures/Serre/4x4solitary1u.png>
@@ -2294,11 +2183,11 @@ Package pdftex.def Info: figures/Serre/4x4solitary1u.png used on input line 288
 .
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 288--289
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 288--289
 [][] 
  []
 
-<figures/Serre/4x4solitary2u.png, id=311, 433.62pt x 289.08pt>
+<figures/Serre/4x4solitary2u.png, id=349, 433.62pt x 289.08pt>
 File: figures/Serre/4x4solitary2u.png Graphic file (type png)
 
 <use figures/Serre/4x4solitary2u.png>
@@ -2306,11 +2195,11 @@ Package pdftex.def Info: figures/Serre/4x4solitary2u.png used on input line 291
 .
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 291--292
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 291--292
 [][] 
  []
 
-<figures/Serre/4x4solitary3u.png, id=312, 433.62pt x 289.08pt>
+<figures/Serre/4x4solitary3u.png, id=350, 433.62pt x 289.08pt>
 File: figures/Serre/4x4solitary3u.png Graphic file (type png)
 
 <use figures/Serre/4x4solitary3u.png>
@@ -2318,347 +2207,317 @@ Package pdftex.def Info: figures/Serre/4x4solitary3u.png used on input line 294
 .
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 294--295
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 294--295
 [][] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[59 <./figures/Serre/4x4cnoidal1h.png> <./figures/Serre/4x4cnoidal2h.png> <./fi
-gures/Serre/4x4cnoidal3h.png>]
-Overfull \hbox (10.14445pt too wide) in paragraph at lines 301--302
-[]\OT1/cmr/m/n/12 Ainsi, ces ex-em-ples num^^Seriques vali-dent notre impl^^Sem
-entation des ^^Sequations
- []
-
-<figures/Serre/cnoidal1h.png, id=319, 433.62pt x 289.08pt>
+[71 <./figures/Serre/4x4cnoidal1h.png> <./figures/Serre/4x4cnoidal2h.png> <./fi
+gures/Serre/4x4cnoidal3h.png> <./figures/Serre/4x4cnoidal1u.png> <./figures/Ser
+re/4x4cnoidal2u.png> <./figures/Serre/4x4cnoidal3u.png> <./figures/Serre/4x4sol
+itary1h.png> <./figures/Serre/4x4solitary2h.png> <./figures/Serre/4x4solitary3h
+.png>] <figures/Serre/cnoidal1h.png, id=363, 433.62pt x 289.08pt>
 File: figures/Serre/cnoidal1h.png Graphic file (type png)
 
 <use figures/Serre/cnoidal1h.png>
 Package pdftex.def Info: figures/Serre/cnoidal1h.png used on input line 305.
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 305--306
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 305--306
 [][] 
  []
 
-<figures/Serre/cnoidal2h.png, id=320, 433.62pt x 289.08pt>
+<figures/Serre/cnoidal2h.png, id=364, 433.62pt x 289.08pt>
 File: figures/Serre/cnoidal2h.png Graphic file (type png)
 
 <use figures/Serre/cnoidal2h.png>
 Package pdftex.def Info: figures/Serre/cnoidal2h.png used on input line 308.
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 308--309
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 308--309
 [][] 
  []
 
-<figures/Serre/cnoidal3h.png, id=321, 433.62pt x 289.08pt>
+<figures/Serre/cnoidal3h.png, id=365, 433.62pt x 289.08pt>
 File: figures/Serre/cnoidal3h.png Graphic file (type png)
 
 <use figures/Serre/cnoidal3h.png>
 Package pdftex.def Info: figures/Serre/cnoidal3h.png used on input line 311.
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 311--312
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 311--312
 [][] 
  []
 
+) (./FRBCstudy.tex
+Overfull \hbox (11.84819pt too wide) in paragraph at lines 1--1
+[]\OT1/cmr/bx/n/17.28 Premi^^Rere ^^Setude des condi-tions aux li-mites trans-
+ []
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) (./FRBCstudy.tex [60 <./figures/Serre/4x4cnoidal1u.png> <./figures/Serre/4x4c
-noidal2u.png> <./figures/Serre/4x4cnoidal3u.png> <./figures/Serre/4x4solitary1h
-.png> <./figures/Serre/4x4solitary2h.png> <./figures/Serre/4x4solitary3h.png> <
-./figures/Serre/4x4solitary1u.png> <./figures/Serre/4x4solitary2u.png> <./figur
-es/Serre/4x4solitary3u.png>] [61 <./figures/Serre/cnoidal1h.png> <./figures/Ser
-re/cnoidal2h.png> <./figures/Serre/cnoidal3h.png>] [62]
-<figures/TBClaplace.png, id=344, 433.62pt x 289.08pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [72 <./figures/Serre/4x4solitary1u.png> <./figures/Serre/4x4solitary2u.png> <.
+/figures/Serre/4x4solitary3u.png> <./figures/Serre/cnoidal1h.png> <./figures/Se
+rre/cnoidal2h.png> <./figures/Serre/cnoidal3h.png>] [73] [74]
+<figures/TBClaplace.png, id=382, 433.62pt x 289.08pt>
 File: figures/TBClaplace.png Graphic file (type png)
 
 <use figures/TBClaplace.png>
-Package pdftex.def Info: figures/TBClaplace.png used on input line 95.
+Package pdftex.def Info: figures/TBClaplace.png used on input line 93.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (10.74667pt too wide) in paragraph at lines 99--100
-\OT1/cmr/m/n/12 sim-u-la-tions avec la m^^Sethode de \OT1/cmr/m/it/12 split-tin
-g \OT1/cmr/m/n/12 adopt^^See pour la r^^Sesolution de l'^^Sequation
- []
-
-[63 <./figures/TBClaplace.png>]
-<figures/motivational1A.png, id=349, 433.62pt x 289.08pt>
+ [75 <./figures/TBClaplace.png>]
+<figures/motivational1A.png, id=387, 433.62pt x 289.08pt>
 File: figures/motivational1A.png Graphic file (type png)
 
 <use figures/motivational1A.png>
 Package pdftex.def Info: figures/motivational1A.png used on input line 118.
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 118--119
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 118--119
 [][] 
  []
 
-<figures/motivational1B.png, id=350, 433.62pt x 289.08pt>
+<figures/motivational1B.png, id=388, 433.62pt x 289.08pt>
 File: figures/motivational1B.png Graphic file (type png)
 
 <use figures/motivational1B.png>
 Package pdftex.def Info: figures/motivational1B.png used on input line 122.
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 122--123
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 122--123
 [][] 
  []
 
-<figures/motivational1C.png, id=351, 433.62pt x 289.08pt>
+<figures/motivational1C.png, id=389, 433.62pt x 289.08pt>
 File: figures/motivational1C.png Graphic file (type png)
 
 <use figures/motivational1C.png>
 Package pdftex.def Info: figures/motivational1C.png used on input line 126.
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 126--127
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 126--127
 [][] 
  []
 
-[64 <./figures/motivational1A.png> <./figures/motivational1B.png> <./figures/mo
-tivational1C.png>] <figures/motivational2A.png, id=358, 433.62pt x 289.08pt>
+[76 <./figures/motivational1A.png> <./figures/motivational1B.png> <./figures/mo
+tivational1C.png>] <figures/motivational2A.png, id=396, 433.62pt x 289.08pt>
 File: figures/motivational2A.png Graphic file (type png)
 
 <use figures/motivational2A.png>
-Package pdftex.def Info: figures/motivational2A.png used on input line 164.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+Package pdftex.def Info: figures/motivational2A.png used on input line 168.
+(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Overfull \hbox (41.31065pt too wide) in paragraph at lines 164--165
-[][] 
- []
-
-<figures/motivational2B.png, id=359, 433.62pt x 289.08pt>
+<figures/motivational2B.png, id=397, 433.62pt x 289.08pt>
 File: figures/motivational2B.png Graphic file (type png)
 
 <use figures/motivational2B.png>
-Package pdftex.def Info: figures/motivational2B.png used on input line 168.
-(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (41.31065pt too wide) in paragraph at lines 168--169
-[][] 
- []
-
-[65 <./figures/motivational2A.png> <./figures/motivational2B.png>]
-Overfull \hbox (6.52367pt too wide) in paragraph at lines 200--201
-[]\OT1/cmr/m/n/12 Les fig-ures 32[] ^^Ra 35[] mon-trent la so-lu-tion dans quel
-ques in-stants et l'^^Sevolution
- []
-
-<figures/robin1A.png, id=365, 433.62pt x 289.08pt>
+Package pdftex.def Info: figures/motivational2B.png used on input line 172.
+(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
+ [77 <./figures/motivational2A.png> <./figures/motivational2B.png>] <figures/ro
+bin1A.png, id=403, 433.62pt x 289.08pt>
 File: figures/robin1A.png Graphic file (type png)
- <use figures/robin1A.png>
-Package pdftex.def Info: figures/robin1A.png used on input line 205.
+
+<use figures/robin1A.png>
+Package pdftex.def Info: figures/robin1A.png used on input line 211.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-Overfull \hbox (41.31065pt too wide) in paragraph at lines 205--206
+Overfull \hbox (28.59659pt too wide) in paragraph at lines 211--212
 [][] 
  []
 
-<figures/robin1B.png, id=366, 433.62pt x 289.08pt>
+<figures/robin1B.png, id=404, 433.62pt x 289.08pt>
 File: figures/robin1B.png Graphic file (type png)
  <use figures/robin1B.png>
-Package pdftex.def Info: figures/robin1B.png used on input line 209.
+Package pdftex.def Info: figures/robin1B.png used on input line 215.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-Overfull \hbox (41.31065pt too wide) in paragraph at lines 209--210
+Overfull \hbox (28.59659pt too wide) in paragraph at lines 215--216
 [][] 
  []
 
-[66] <figures/robin10A.png, id=370, 433.62pt x 289.08pt>
+<figures/robin10A.png, id=405, 433.62pt x 289.08pt>
 File: figures/robin10A.png Graphic file (type png)
-
-<use figures/robin10A.png>
-Package pdftex.def Info: figures/robin10A.png used on input line 217.
+ <use figures/robin10A.png>
+Package pdftex.def Info: figures/robin10A.png used on input line 227.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-Overfull \hbox (41.31065pt too wide) in paragraph at lines 217--218
+Overfull \hbox (28.59659pt too wide) in paragraph at lines 227--228
 [][] 
  []
 
-<figures/robin10B.png, id=371, 433.62pt x 289.08pt>
+<figures/robin10B.png, id=406, 433.62pt x 289.08pt>
 File: figures/robin10B.png Graphic file (type png)
  <use figures/robin10B.png>
-Package pdftex.def Info: figures/robin10B.png used on input line 221.
+Package pdftex.def Info: figures/robin10B.png used on input line 231.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-Overfull \hbox (41.31065pt too wide) in paragraph at lines 221--222
+Overfull \hbox (28.59659pt too wide) in paragraph at lines 231--232
 [][] 
  []
 
-<figures/robin100A.png, id=372, 433.62pt x 289.08pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [78 <./figures/robin1A.png> <./figures/robin1B.png>]
+<figures/robin100A.png, id=412, 433.62pt x 289.08pt>
 File: figures/robin100A.png Graphic file (type png)
 
 <use figures/robin100A.png>
-Package pdftex.def Info: figures/robin100A.png used on input line 229.
+Package pdftex.def Info: figures/robin100A.png used on input line 243.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-Overfull \hbox (41.31065pt too wide) in paragraph at lines 229--230
+Overfull \hbox (28.59659pt too wide) in paragraph at lines 243--244
 [][] 
  []
 
-<figures/robin100B.png, id=373, 433.62pt x 289.08pt>
+<figures/robin100B.png, id=413, 433.62pt x 289.08pt>
 File: figures/robin100B.png Graphic file (type png)
 
 <use figures/robin100B.png>
-Package pdftex.def Info: figures/robin100B.png used on input line 233.
+Package pdftex.def Info: figures/robin100B.png used on input line 247.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-Overfull \hbox (41.31065pt too wide) in paragraph at lines 233--234
+Overfull \hbox (28.59659pt too wide) in paragraph at lines 247--248
 [][] 
  []
 
-<figures/robin1Error.png, id=374, 433.62pt x 289.08pt>
+<figures/robin1Error.png, id=414, 433.62pt x 289.08pt>
 File: figures/robin1Error.png Graphic file (type png)
 
 <use figures/robin1Error.png>
-Package pdftex.def Info: figures/robin1Error.png used on input line 241.
+Package pdftex.def Info: figures/robin1Error.png used on input line 259.
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 241--242
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 259--260
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 241--242
+Underfull \hbox (badness 10000) in paragraph at lines 259--260
 
  []
 
-<figures/robin10Error.png, id=375, 433.62pt x 289.08pt>
+<figures/robin10Error.png, id=415, 433.62pt x 289.08pt>
 File: figures/robin10Error.png Graphic file (type png)
 
 <use figures/robin10Error.png>
-Package pdftex.def Info: figures/robin10Error.png used on input line 246.
+Package pdftex.def Info: figures/robin10Error.png used on input line 264.
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 246--247
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 264--265
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--247
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
 
  []
 
-<figures/robin100Error.png, id=376, 433.62pt x 289.08pt>
+<figures/robin100Error.png, id=416, 433.62pt x 289.08pt>
 File: figures/robin100Error.png Graphic file (type png)
 
 <use figures/robin100Error.png>
-Package pdftex.def Info: figures/robin100Error.png used on input line 251.
+Package pdftex.def Info: figures/robin100Error.png used on input line 269.
 (pdftex.def)             Requested size: 130.087pt x 86.72466pt.
 
-Overfull \hbox (13.08582pt too wide) in paragraph at lines 251--252
+Overfull \hbox (4.60963pt too wide) in paragraph at lines 269--270
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--252
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
 
  []
 
-[67 <./figures/robin1A.png> <./figures/robin1B.png> <./figures/robin10A.png> <.
-/figures/robin10B.png> <./figures/robin100A.png> <./figures/robin100B.png>]
-<figures/robinErrors1.png, id=387, 433.62pt x 289.08pt>
+<figures/robinErrors1.png, id=417, 433.62pt x 289.08pt>
 File: figures/robinErrors1.png Graphic file (type png)
 
 <use figures/robinErrors1.png>
-Package pdftex.def Info: figures/robinErrors1.png used on input line 259.
+Package pdftex.def Info: figures/robinErrors1.png used on input line 277.
 (pdftex.def)             Requested size: 260.17401pt x 173.44933pt.
- [68 <./figures/robin1Error.png> <./figures/robin10Error.png> <./figures/robin1
-00Error.png> <./figures/robinErrors1.png>]
-<figures/robinErrors2.png, id=397, 433.62pt x 289.08pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [79 <./figures/robin10A.png> <./figures/robin10B.png> <./figures/robin100A.png
+> <./figures/robin100B.png> <./figures/robin1Error.png> <./figures/robin10Error
+.png> <./figures/robin100Error.png>] [80 <./figures/robinErrors1.png>]
+<figures/robinErrors2.png, id=436, 433.62pt x 289.08pt>
 File: figures/robinErrors2.png Graphic file (type png)
 
 <use figures/robinErrors2.png>
-Package pdftex.def Info: figures/robinErrors2.png used on input line 291.
+Package pdftex.def Info: figures/robinErrors2.png used on input line 309.
 (pdftex.def)             Requested size: 260.17401pt x 173.44933pt.
- [69 <./figures/robinErrors2.png>])
-(./FRTBCDispersion.tex [70] [71]
-Overfull \hbox (18.46938pt too wide) in paragraph at lines 99--100
-[]\OT1/cmr/m/n/12 En rem-pla^^Xcant [] dans [] et en con-sid^^Serant des ap-pro
-x-i-ma-tions diff^^Serentes
+ [81 <./figures/robinErrors2.png>])
+(./FRTBCDispersion.tex
+Overfull \hbox (27.37613pt too wide) in paragraph at lines 1--1
+[]\OT1/cmr/bx/n/17.28 Conditions aux li-mites trans-pa-rentes ap-proxim^^Sees
  []
 
-[72] <figures/BessefirstTestsP0Snap2.png, id=412, 433.62pt x 289.08pt>
+[82]
+Overfull \hbox (32.50919pt too wide) in paragraph at lines 88--88
+[]\OT1/cmr/bx/n/14.4 Approximation des TBCs uti-li-sant des po-lyn^omes constan
+ts 
+ []
+
+[83] [84] <figures/BessefirstTestsP0Snap2.png, id=451, 433.62pt x 289.08pt>
 File: figures/BessefirstTestsP0Snap2.png Graphic file (type png)
 
 <use figures/BessefirstTestsP0Snap2.png>
 Package pdftex.def Info: figures/BessefirstTestsP0Snap2.png used on input line 
-159.
+161.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 159--160
+Overfull \hbox (7.68263pt too wide) in paragraph at lines 161--162
 [][] 
  []
 
-<figures/BessefirstTestsP0Snap3.png, id=413, 433.62pt x 289.08pt>
+<figures/BessefirstTestsP0Snap3.png, id=452, 433.62pt x 289.08pt>
 File: figures/BessefirstTestsP0Snap3.png Graphic file (type png)
 
 <use figures/BessefirstTestsP0Snap3.png>
 Package pdftex.def Info: figures/BessefirstTestsP0Snap3.png used on input line 
-162.
+164.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 162--163
+Overfull \hbox (7.68263pt too wide) in paragraph at lines 164--165
 [][] 
  []
 
-<figures/BessefirstTestsP0Snap4.png, id=414, 433.62pt x 289.08pt>
+<figures/BessefirstTestsP0Snap4.png, id=453, 433.62pt x 289.08pt>
 File: figures/BessefirstTestsP0Snap4.png Graphic file (type png)
 
 <use figures/BessefirstTestsP0Snap4.png>
 Package pdftex.def Info: figures/BessefirstTestsP0Snap4.png used on input line 
-165.
+167.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 165--166
+Overfull \hbox (7.68263pt too wide) in paragraph at lines 167--168
 [][] 
  []
 
-<figures/BessefirstTestsP0Snap5.png, id=415, 433.62pt x 289.08pt>
+<figures/BessefirstTestsP0Snap5.png, id=454, 433.62pt x 289.08pt>
 File: figures/BessefirstTestsP0Snap5.png Graphic file (type png)
 
 <use figures/BessefirstTestsP0Snap5.png>
 Package pdftex.def Info: figures/BessefirstTestsP0Snap5.png used on input line 
-168.
+170.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-Overfull \hbox (21.80946pt too wide) in paragraph at lines 168--169
+Overfull \hbox (7.68263pt too wide) in paragraph at lines 170--171
 [][] 
  []
 
 
-Overfull \hbox (20.2359pt too wide) in paragraph at lines 158--170
-[]$[]$ $[]$
+Overfull \hbox (2.61107pt too wide) in paragraph at lines 159--172
+$[]$ $[]$
  []
 
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 158--170
+Overfull \hbox (2.61107pt too wide) in paragraph at lines 159--172
 []$ $[]$ 
- []
-
-[73]
-Overfull \hbox (11.74988pt too wide) detected at line 180
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 181
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 182
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 183
- 
  []
 
 
@@ -2687,69 +2546,53 @@ Overfull \hbox (11.74988pt too wide) detected at line 188
  []
 
 
+Overfull \hbox (11.74988pt too wide) detected at line 189
+ 
+ []
+
+
 Overfull \hbox (11.74988pt too wide) detected at line 190
  
  []
 
-[74 <./figures/BessefirstTestsP0Snap2.png> <./figures/BessefirstTestsP0Snap3.pn
+
+Overfull \hbox (11.74988pt too wide) detected at line 191
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 192
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 194
+ 
+ []
+
+[85 <./figures/BessefirstTestsP0Snap2.png> <./figures/BessefirstTestsP0Snap3.pn
 g> <./figures/BessefirstTestsP0Snap4.png> <./figures/BessefirstTestsP0Snap5.png
 >]
-Overfull \hbox (90.89972pt too wide) detected at line 225
+Overfull \hbox (7.00746pt too wide) in paragraph at lines 200--200
+[]\OT1/cmr/bx/n/14.4 Approximation des TBCs uti-li-sant un po-lyn^ome lin^^Seai
+re 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [86]
+Overfull \hbox (11.26863pt too wide) detected at line 231
 [] [][]
  []
 
-[75]
-Overfull \hbox (35.64569pt too wide) detected at line 232
-[] []
- []
-
-
-Overfull \hbox (69.33092pt too wide) detected at line 238
-[] []
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 254
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 255
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 256
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 257
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 258
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 259
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 260
- 
- []
-
-
-Overfull \hbox (11.74988pt too wide) detected at line 261
- 
- []
-
-
+[87]
 Overfull \hbox (11.74988pt too wide) detected at line 262
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 263
  
  []
 
@@ -2758,519 +2601,424 @@ Overfull \hbox (11.74988pt too wide) detected at line 264
  
  []
 
-[76]) (./FRDDM.tex
-Overfull \hbox (6.88477pt too wide) in paragraph at lines 3--4
-\OT1/cmr/m/n/12 isant un polyn^ome con-stant sera ap-pliqu^^See dans une m^^Set
-hode de d^^Secomposition
- []
 
-[77]
-Overfull \hbox (3.05513pt too wide) in paragraph at lines 17--18
-[]\OT1/cmr/m/n/12 En re-vanche, la m^^Sethode de Schwarz mul-ti-plica-tive (\OT
-1/cmr/m/it/12 Mul-ti-plica-tive Schwarz
- []
-
-[78] [79] [80]
-Overfull \hbox (17.94716pt too wide) in paragraph at lines 102--103
-[]\OT1/cmr/m/n/12 Pour les points int^^Serieurs de cha-cun des do-maines, on ut
-ilise une discr^^Setisation
+Overfull \hbox (11.74988pt too wide) detected at line 265
+ 
  []
 
 
-Overfull \hbox (38.56067pt too wide) detected at line 135
+Overfull \hbox (11.74988pt too wide) detected at line 266
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 267
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 268
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 269
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 270
+ 
+ []
+
+
+Overfull \hbox (11.74988pt too wide) detected at line 272
+ 
+ []
+
+[88]) (./FRDDM.tex
+Overfull \hbox (30.58011pt too wide) in paragraph at lines 1--1
+[]\OT1/cmr/bx/n/17.28 Application des TBCs ap-proxim^^Sees ^^Ra une m^^Sethode
+ []
+
+[89]
+Overfull \hbox (7.0585pt too wide) in paragraph at lines 26--27
+[]\OT1/cmr/m/n/12 Lors de l'impl^^Sementation d'une m^^Sethode de Schwarz, il f
+aut d^^Sefinir des op^^Serateurs
+ []
+
+
+Underfull \vbox (badness 4543) has occurred while \output is active []
+
+ [90]
+[91] [92]
+Overfull \hbox (10.30699pt too wide) detected at line 136
 [] []
  []
 
-[81]
-Overfull \hbox (12.1603pt too wide) detected at line 157
+
+Overfull \hbox (3.14857pt too wide) detected at line 176
 [] [][]
  []
 
+[93]
+Underfull \vbox (badness 2027) has occurred while \output is active []
 
-Overfull \hbox (20.93013pt too wide) detected at line 166
-[] [][]
- []
-
-
-Overfull \hbox (31.40225pt too wide) detected at line 175
-[] [][]
- []
-
-[82]
-Overfull \hbox (28.58733pt too wide) in paragraph at lines 286--287
-[]\OT1/cmr/m/n/12 Le probl^^Reme [] - [] a ^^Set^^Se r^^Sesolu jusqu'^^Ra con-v
+ [94]
+Overfull \hbox (0.33365pt too wide) in paragraph at lines 287--288
+[]\OT1/cmr/m/n/12 Le probl^^Reme [] - [] a ^^Set^^Se r^^Sesolu jus-qu'^^Ra conv
 er-gence avec cinq discr^^Setisations
  []
 
-[83]
-<figures/convergenceVerificationCorrectN.png, id=455, 433.62pt x 289.08pt>
+<figures/convergenceVerificationCorrectN.png, id=493, 433.62pt x 289.08pt>
 File: figures/convergenceVerificationCorrectN.png Graphic file (type png)
 
 <use figures/convergenceVerificationCorrectN.png>
 Package pdftex.def Info: figures/convergenceVerificationCorrectN.png used on in
-put line 303.
+put line 304.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (2.59785pt too wide) detected at line 340
-[] []
+ [95 <./figures/convergenceVerificationCorrectN.png>]
+Overfull \hbox (2.49042pt too wide) in paragraph at lines 343--344
+[]\OT1/cmr/m/n/12 On peut fa-ci-le-ment v^^Serifier que, ^^Ra conver-gence, les
+ TBCs cor-rig^^Sees [] ram^^Renent
  []
 
-[84 <./figures/convergenceVerificationCorrectN.png>] [85]
-<figures/FinalFigures/NiterxCoefVarT0FinalVersionN.png, id=464, 433.62pt x 289.
+[96]
+<figures/FinalFigures/NiterxCoefVarT0FinalVersionN.png, id=501, 433.62pt x 289.
 08pt>
 File: figures/FinalFigures/NiterxCoefVarT0FinalVersionN.png Graphic file (type 
 png)
  <use figures/FinalFigures/NiterxCoefVarT0FinalVersionN.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionN.png 
-used on input line 431.
+used on input line 432.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 431--432
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 431--432
-
- []
-
-
-<figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png, id=465, 433.62pt x 289.
+<figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png, id=502, 433.62pt x 289.
 08pt>
 File: figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png Graphic file (type 
 png)
  <use figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionP.png 
-used on input line 436.
+used on input line 437.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 436--437
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 436--437
-
- []
-
-
-<figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail.png, id=466, 433.62pt 
+<figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail.png, id=503, 433.62pt 
 x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail.png Graphic file 
 (type png)
  <use figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetai
-l.png used on input line 440.
+l.png used on input line 441.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 440--441
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 440--441
-
- []
-
-
-<figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail2.png, id=467, 433.62pt
+<figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail2.png, id=504, 433.62pt
  x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail2.png Graphic file
  (type png)
 
 <use figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail2.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetai
-l2.png used on input line 445.
+l2.png used on input line 446.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 445--446
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 445--446
-
- []
-
-
-<figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png, id=468, 433.62pt 
+<figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png, id=505, 433.62pt 
 x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png Graphic file 
 (type png)
  <use figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetai
-l.png used on input line 449.
+l.png used on input line 450.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 449--450
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 449--450
-
- []
-
-
-<figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png, id=469, 433.62pt
+<figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png, id=506, 433.62pt
  x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png Graphic file
  (type png)
 
 <use figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetai
-l2.png used on input line 454.
+l2.png used on input line 455.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 454--455
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 454--455
-
- []
-
-[86 <./figures/FinalFigures/NiterxCoefVarT0FinalVersionN.png> <./figures/FinalF
-igures/NiterxCoefVarT0FinalVersionP.png>]
-<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionN.png, id=475, 433.62pt
+ [97]
+<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionN.png, id=511, 433.62pt
  x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionN.png Graphic file
  (type png)
 
 <use figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionN.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersio
-nN.png used on input line 463.
+nN.png used on input line 464.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 463--464
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 463--464
-
- []
-
-
-<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionP.png, id=476, 433.62pt
+<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionP.png, id=512, 433.62pt
  x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionP.png Graphic file
  (type png)
 
 <use figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionP.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersio
-nP.png used on input line 468.
+nP.png used on input line 469.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 468--469
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 468--469
-
- []
-
-
-<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail.png, id=477, 43
+<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail.png, id=513, 43
 3.62pt x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail.png Graphi
 c file (type png)
 
 <use figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersio
-nNDetail.png used on input line 472.
+nNDetail.png used on input line 473.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 472--473
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 472--473
-
- []
-
-
-<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail2.png, id=478, 4
+<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail2.png, id=514, 4
 33.62pt x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail2.png Graph
 ic file (type png)
 
 <use figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail2.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersio
-nNDetail2.png used on input line 477.
+nNDetail2.png used on input line 478.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 477--478
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 477--478
-
- []
-
-
-<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png, id=479, 43
+<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png, id=515, 43
 3.62pt x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png Graphi
 c file (type png)
 
 <use figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersio
-nPDetail.png used on input line 481.
+nPDetail.png used on input line 482.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 481--482
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 481--482
-
- []
-
-
-<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.png, id=480, 4
+<figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.png, id=516, 4
 33.62pt x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.png Graph
 ic file (type png)
 
 <use figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail2.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarInterfaceFinalVersio
-nPDetail2.png used on input line 486.
+nPDetail2.png used on input line 487.
 (pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 486--487
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 486--487
-
- []
-
-[87 <./figures/FinalFigures/NiterxCoefVarT0FinalVersionNDetail.png> <./figures/
-FinalFigures/NiterxCoefVarT0FinalVersionNDetail2.png> <./figures/FinalFigures/N
-iterxCoefVarT0FinalVersionPDetail.png> <./figures/FinalFigures/NiterxCoefVarT0F
-inalVersionPDetail2.png> <./figures/FinalFigures/NiterxCoefVarInterfaceFinalVer
-sionN.png> <./figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionP.png>]
-<figures/FinalFigures/errorEvolutionFixedT0BFinalVersion.png, id=490, 433.62pt 
+[98 <./figures/FinalFigures/NiterxCoefVarT0FinalVersionN.png> <./figures/FinalF
+igures/NiterxCoefVarT0FinalVersionP.png> <./figures/FinalFigures/NiterxCoefVarT
+0FinalVersionNDetail.png> <./figures/FinalFigures/NiterxCoefVarT0FinalVersionND
+etail2.png> <./figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail.png> <./
+figures/FinalFigures/NiterxCoefVarT0FinalVersionPDetail2.png> <./figures/FinalF
+igures/NiterxCoefVarInterfaceFinalVersionN.png> <./figures/FinalFigures/NiterxC
+oefVarInterfaceFinalVersionP.png>]
+<figures/FinalFigures/errorEvolutionFixedT0BFinalVersion.png, id=528, 433.62pt 
 x 289.08pt>
 File: figures/FinalFigures/errorEvolutionFixedT0BFinalVersion.png Graphic file 
 (type png)
  <use figures/FinalFigures/errorEvolutionFixedT0BFinalVersion.png>
 Package pdftex.def Info: figures/FinalFigures/errorEvolutionFixedT0BFinalVersio
-n.png used on input line 496.
+n.png used on input line 499.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
 
-[88 <./figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail.png> <./f
+[99 <./figures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail.png> <./f
 igures/FinalFigures/NiterxCoefVarInterfaceFinalVersionNDetail2.png> <./figures/
 FinalFigures/NiterxCoefVarInterfaceFinalVersionPDetail.png> <./figures/FinalFig
-ures/NiterxCoefVarInterfaceFinalVersionPDetail2.png> <./figures/FinalFigures/er
-rorEvolutionFixedT0BFinalVersion.png>]
-<figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionNMarshal.png, id=499, 433
+ures/NiterxCoefVarInterfaceFinalVersionPDetail2.png>]
+<figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionNMarshal.png, id=536, 433
 .62pt x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionNMarshal.png Graphic
  file (type png)
 
 <use figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionNMarshal.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionN
-Marshal.png used on input line 510.
+Marshal.png used on input line 513.
 (pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-Overfull \hbox (19.62839pt too wide) in paragraph at lines 510--511
+Overfull \hbox (6.91432pt too wide) in paragraph at lines 513--514
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 510--511
+Underfull \hbox (badness 10000) in paragraph at lines 513--514
 
  []
 
 
-<figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png, id=500, 433
+<figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png, id=537, 433
 .62pt x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png Graphic
  file (type png)
 
 <use figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionP
-Marshal.png used on input line 515.
+Marshal.png used on input line 518.
 (pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-Overfull \hbox (19.62839pt too wide) in paragraph at lines 515--516
+Overfull \hbox (6.91432pt too wide) in paragraph at lines 518--519
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 515--516
+Underfull \hbox (badness 10000) in paragraph at lines 518--519
 
  []
 
 
-<figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionN.png, id=501, 433.62pt 
+<figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionN.png, id=538, 433.62pt 
 x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionN.png Graphic file 
 (type png)
  <use figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionN.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersion
-N.png used on input line 523.
+N.png used on input line 526.
 (pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-Overfull \hbox (19.62839pt too wide) in paragraph at lines 523--524
+Overfull \hbox (6.91432pt too wide) in paragraph at lines 526--527
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 523--524
+Underfull \hbox (badness 10000) in paragraph at lines 526--527
 
  []
 
 
-<figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png, id=502, 433.62pt 
+<figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png, id=539, 433.62pt 
 x 289.08pt>
 File: figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png Graphic file 
 (type png)
  <use figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png>
 Package pdftex.def Info: figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersion
-P.png used on input line 528.
+P.png used on input line 531.
 (pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-Overfull \hbox (19.62839pt too wide) in paragraph at lines 528--529
+Overfull \hbox (6.91432pt too wide) in paragraph at lines 531--532
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 528--529
+Underfull \hbox (badness 10000) in paragraph at lines 531--532
 
  []
 
-[89 <./figures/FinalFigures/NiterxCoefVarDtdx250FinalVersionNMarshal.png> <./fi
-gures/FinalFigures/NiterxCoefVarDtdx250FinalVersionPMarshal.png>]
-<figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal.png, id=508, 433.62
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [100 <./figures/FinalFigures/errorEvolutionFixedT0BFinalVersion.png> <./figure
+s/FinalFigures/NiterxCoefVarDtdx250FinalVersionNMarshal.png> <./figures/FinalFi
+gures/NiterxCoefVarDtdx250FinalVersionPMarshal.png>]
+<figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal.png, id=546, 433.62
 pt x 289.08pt>
 File: figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal.png Graphic fi
 le (type png)
 
 <use figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMarshal.png>
 Package pdftex.def Info: figures/FinalFigures/OptimalCoefVarDxDtFinalVersionMar
-shal.png used on input line 536.
+shal.png used on input line 539.
 (pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
-
-Overfull \hbox (8.13763pt too wide) in paragraph at lines 547--548
-[]\OT1/cmr/m/n/12 Une r^^Segression util-isant les coins du rect-an-gle $[0\OML
-/cmm/m/it/12 :\OT1/cmr/m/n/12 001\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/m
-/it/12 :\OT1/cmr/m/n/12 1] \OMS/cmsy/m/n/12 ^^B \OT1/cmr/m/n/12 [12\OML/cmm/m/i
-t/12 =\OT1/cmr/m/n/12 100\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 12\OML/cmm/m/it/12 
-=\OT1/cmr/m/n/12 1000]$
- []
-
-[90 <./figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionN.png> <./figures/
-FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png> <./figures/FinalFigures/Op
-timalCoefVarDxDtFinalVersionMarshal.png>]
-<figures/FinalFigures/contourValidationN.png, id=515, 433.62pt x 289.08pt>
+ [101 <./figures/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionN.png> <./figure
+s/FinalFigures/NiterxCoefVarDxdt2em2FinalVersionP.png> <./figures/FinalFigures/
+OptimalCoefVarDxDtFinalVersionMarshal.png>]
+<figures/FinalFigures/contourValidationN.png, id=553, 433.62pt x 289.08pt>
 File: figures/FinalFigures/contourValidationN.png Graphic file (type png)
 
 <use figures/FinalFigures/contourValidationN.png>
 Package pdftex.def Info: figures/FinalFigures/contourValidationN.png used on in
-put line 561.
+put line 564.
 (pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-Overfull \hbox (19.62839pt too wide) in paragraph at lines 561--562
+Overfull \hbox (6.91432pt too wide) in paragraph at lines 564--565
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 561--562
+Underfull \hbox (badness 10000) in paragraph at lines 564--565
 
  []
 
-<figures/FinalFigures/contourValidationP.png, id=516, 433.62pt x 289.08pt>
+<figures/FinalFigures/contourValidationP.png, id=554, 433.62pt x 289.08pt>
 File: figures/FinalFigures/contourValidationP.png Graphic file (type png)
 
 <use figures/FinalFigures/contourValidationP.png>
 Package pdftex.def Info: figures/FinalFigures/contourValidationP.png used on in
-put line 566.
+put line 569.
 (pdftex.def)             Requested size: 195.1272pt x 130.0848pt.
 
-Overfull \hbox (19.62839pt too wide) in paragraph at lines 566--567
+Overfull \hbox (6.91432pt too wide) in paragraph at lines 569--570
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 566--567
+Underfull \hbox (badness 10000) in paragraph at lines 569--570
 
  []
 
 
-Overfull \hbox (3.16397pt too wide) in paragraph at lines 576--577
-\OT1/cmr/m/n/12 d^^Secomposition de do-maine pro-pos^^See ici, con-sis-tant en 
-une m^^Sethode de Schwarz
- []
-
-[91 <./figures/FinalFigures/contourValidationN.png> <./figures/FinalFigures/con
-tourValidationP.png>]) (./FRconclusion.tex
-Overfull \hbox (22.0161pt too wide) in paragraph at lines 578--1
-\OT1/cmr/m/n/12 en ce qui con-cerne une ap-pli-ca-tion plus g^^Sen^^Serale de n
-otre m^^Sethode. Premi^^Rerement,
+Overfull \hbox (23.05008pt too wide) in paragraph at lines 579--580
+[]\OT1/cmr/m/n/12 Les r^^Sesultats pr^^Sesent^^Ses dans cette sec-tion montrent
+ que la m^^Sethode de d^^Secomposition
  []
 
 
-Overfull \hbox (2.3363pt too wide) in paragraph at lines 5--6
-[]\OT1/cmr/m/n/12 Dans la premi^^Rere ligne, on a tra-vaill^^Se sur l'^^Sequati
-on de KdV et les ^^Sequations
+Underfull \vbox (badness 6575) has occurred while \output is active []
+
+ [102 <./figures/FinalFigures/contourValidationN.png> <./figures/FinalFigures/c
+ontourValidationP.png>]) (./FRconclusion.tex [103]
+Underfull \vbox (badness 1275) has occurred while \output is active []
+
+ [104])
+[105] [106
+
+] (./bilan.tex [107])
+Underfull \vbox (badness 2205) has occurred while \output is active []
+
+ [108]
+[109] [110
+
+] (./rapportStage.bbl
+Underfull \hbox (badness 2828) in paragraph at lines 59--64
+[]\OT1/cmr/m/n/12 L. Chen.  Pro-gram-mim of fi-nite ele-ments in mat-lab.  Note
+s du
  []
 
-[92] [93]) [94] (./bilan.tex [95]
-Overfull \hbox (5.97089pt too wide) in paragraph at lines 20--21
-[]\OT1/cmr/m/n/12 Toujours con-cer-nant les comp^^Setences ac-quises, je fais u
-ne re-mar-que sp^^Seciale
+[111]
+Underfull \hbox (badness 3250) in paragraph at lines 94--98
+[]\OT1/cmr/m/n/12 C. Ja-phet and F. Na-taf.  The best in-ter-face condi-tions f
+or Do-
  []
 
 
-Overfull \hbox (19.44853pt too wide) in paragraph at lines 22--23
-[]\OT1/cmr/m/n/12 D'un point de vue moins tech-nique, mais ^^Segalement im-por-
-tant, le d^^Seroulement
+Underfull \hbox (badness 10000) in paragraph at lines 94--98
+\OT1/cmr/m/n/12 main De-com-pos-tion me-thods : Ab-sor-bing Boun-dary Condi-tio
+ns.
  []
 
-) [96] [97] (./rapportStage.bbl [98]
-Underfull \hbox (badness 1565) in paragraph at lines 94--98
-\OT1/cmr/m/n/12 main De-com-pos-tion meth-ods : Ab-sorb-ing Bound-ary Con-di-ti
-ons.
- []
 
-[99]
 Underfull \hbox (badness 10000) in paragraph at lines 149--154
-[]\OT1/cmr/m/n/12 University of Stan-ford.  Par-tial dif-fer-en-tial equa-tions
+[]\OT1/cmr/m/n/12 University of Stan-ford.  Par-tial dif-fe-ren-tial equa-tions
  of
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 149--154
-\OT1/cmr/m/n/12 ap-plied math-e-mat-ics - lec-ture 3 : Con-ser-va-tion laws.
+\OT1/cmr/m/n/12 ap-plied ma-the-ma-tics - lec-ture 3 : Conser-va-tion laws.
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 149--154
-\OT1/cmr/m/n/12 http://web.stanford.edu/class/math220a/handouts/conservation.pd
-f,
+\OT1/cmr/m/n/12 http ://web.stanford.edu/class/math220a/handouts/conservation.p
+df,
  []
 
-) [100] (./rapportStage.aux) ) 
+[112]) [113] (./rapportStage.aux) ) 
 Here is how much of TeX's memory you used:
- 24394 strings out of 493085
- 507188 string characters out of 6136917
- 477839 words of memory out of 5000000
- 27332 multiletter control sequences out of 15000+600000
- 19820 words of font info for 76 fonts, out of 8000000 for 9000
+ 25867 strings out of 493085
+ 528492 string characters out of 6136917
+ 520929 words of memory out of 5000000
+ 28777 multiletter control sequences out of 15000+600000
+ 20422 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,19n,54p,10423b,576s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+ 55i,19n,54p,10423b,580s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
 i10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr
@@ -3286,13 +3034,14 @@ fonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on rapportStage.pdf (100 pages, 7193900 bytes).
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on rapportStage.pdf (113 pages, 7336364 bytes).
 PDF statistics:
- 625 PDF objects out of 1000 (max. 8388607)
- 307 compressed objects within 4 object streams
+ 675 PDF objects out of 1000 (max. 8388607)
+ 342 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
  653 words of extra memory for PDF output out of 10000 (max. 10000000)
 
