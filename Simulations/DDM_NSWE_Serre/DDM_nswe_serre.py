@@ -333,7 +333,7 @@ def DDM(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
                     ## define boundary conditions
                 
                 if dirichletIBC :  ## Dirichlet condition
-                    dispersiveBC = np.array([[0,"Robin",0.,1.,0.], 
+                    dispersiveBC = np.array([[0,"Robin",u1[0],1.,0.], ##dispersiveBC = np.array([[0,"Robin",0.,1.,0.]
                                      [-2,"Robin",u1[-5],1.,0.], ## external boundaries
                                      [-1,"Robin",u1[-4],1.,0.]]) ## interface : Dirichlet 
                 u1aux = serreTBC.EFDSolverFM4(h1[3:-3],u1[3:-3],dx,dt,FDorder,dispersiveBC)
