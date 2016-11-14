@@ -153,6 +153,27 @@ def saveSnapshotNsolutions(N,n,x,u,t,lbl,xlbl,ylbl,path,ext="png",
     plt.legend(loc=legloc)
     plt.title(r't = %.3f'%t[n])
     plt.savefig(path+"."+ext)
+# save plot of N solutions in the instant t_n to an image file
+def saveSnapshotNsolutionsDiffDomain(N,n,x,u,t,lbl,xlbl,ylbl,path,
+                           xmin,xmax,ymin,ymax,ext="png",legloc=0) :
+    plt.figure()
+    ##if xmin == None:
+    ##    xmin = x[0]
+    ##if xmax == None:
+    ##    xmax = x[-1]
+    ##if ymin == None :
+    ##    ymin = np.amin(u)
+    ##if ymax == None : 
+    ##    ymax = np.amax(u)
+    plt.xlim((xmin,xmax))
+    plt.ylim((ymin,ymax))
+    for i in range(N) :
+        plt.plot(x[i],u[i][:,n],label=lbl[i])
+    plt.xlabel(xlbl)
+    plt.ylabel(ylbl)
+    lgd = plt.legend(loc=legloc)
+    plt.title(r't = %.3f'%t[n])
+    plt.savefig(path+"."+ext,bbox_extra_artists=(lgd,),bbox_inches='tight')
 # save plot of one solution in instants t_n, n in ns, to an image file
 def saveSnapshots(ns,x,u,t,xlbl,ylbl,title,path,ext="png") :
     plt.figure()
