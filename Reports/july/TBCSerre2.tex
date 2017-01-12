@@ -1,0 +1,92 @@
+\subsection{Linearization with $u_0 \neq 0$ (for the complete equation)}
+
+\indent Following the approach of \cite{besse2015}, we will derive TBCs for the linearized equation :
+
+\begin{equation}
+\label{eq:linearizedSerre3} 
+\begin{cases}
+h_t + u_0h_x + h_0u_x = 0 \\
+u_t +  + u_0u_x + gh_x - \frac{h_0^2}{3}(u_{xxt}+u_0u_{xxx}) = 0
+\end{cases}
+\end{equation} 
+
+\indent We will solve this equation in the complementary of the domain of interest, $\Omega=[a,b]$ :
+
+\indent In the Laplace space, \eqref{eq:linearizedSerre3} is written as
+
+\begin{equation}
+\label{eq:linearizedSerre3Laplace} 
+\begin{cases}
+s\hat{h} + u_0\hat{h}_x + h_0\hat{u}_x = 0 \\
+s\hat{u} +  u_0u_x + g\hat{h}_x - \frac{h_0^2}{3}(s\hat{u}_{xxt}+u_0\hat{u}_{xxx})  = 0
+\end{cases}
+\end{equation} 
+
+\indent Considering a solution in the form $\hat{U}(s,x) = \overline{U}(s)e^{\lambda(s)x}$, and replacing in \eqref{eq:linearizedSerre3Laplace}, we get the linear system $M\overline{U} = 0$, with
+
+\begin{equation*}
+M = \left( \begin{array}{c c}
+						s + \lambda u_0 & \lambda h_0 \\
+						g\lambda & s + u_0\lambda - \frac{h0^2}{3}(\lambda^2 s + \lambda^3 u_0)
+				\end{array}
+	\right)
+\end{equation*}
+
+\indent We have nontrivial solution if and only if $detM = 0$, i.e.,
+
+\begin{equation}
+\label{eq:pol4}
+s^2 + 2su_0 \lambda + \left( -gh_0 - \frac{h_0^2 s^2}{3} + u_0^2 \right)\lambda^2 - \frac{2}{3}h_0^2u_0s\lambda^3 - \frac{1}{3}h_0^2u_0^2\lambda^4 = 0 
+\end{equation}
+
+\indent The roots of \eqref{eq:pol4} (and even their expansions around $s = 0$) have a quite complicated form, but them can be written in the form
+
+\begin{gather*}
+	\label{eq:rootsPol4}
+	\lambda_1(s) = -\frac{1}{2}(A_1 + A_2) + s \left(-\frac{1}{2u_0} - A_3 - A_4 \right) + O(s^2)  \\
+	\lambda_2(s) = \frac{1}{2}(A_1 - A_2) + s \left(-\frac{1}{2u_0} - A_3 + A_4\right) + O(s^2)  \\
+	\lambda_3(s) =  -\frac{1}{2}(A_1 - A_2) + s \left(-\frac{1}{2u_0} + A_3 - A_4 \right) + O(s^2) \\
+	\lambda_4(s) =  \frac{1}{2}(A_1 + A_2) + s \left(-\frac{1}{2u_0} + A_3 +A_4 \right) + O(s^2) 
+\end{gather*} 
+
+\indent Truncating these expressions to order 0, we can see that two of the roots have negative real part, and the other two have positive real part. Let them be named $\lambda^-_1,\lambda^-_2\lambda^+_1,\lambda^+_2$ respectively.
+
+\indent Moreover, from the polynomial \eqref{eq:pol4}, we get the relations
+
+\begin{gather}
+	\label{eq:girardPol4A}
+	\lambda^-_1 + \lambda^-_2 + \lambda^+_1 + \lambda^+_2 = \frac{\frac{2}{3} h_0^2u_0s}{-\frac{1}{3} h_0^2u_0^2} = \frac{-2s}{u_0} \\
+	\label{eq:girardPol4B}
+	\lambda^-_1 \lambda^-_2 \lambda^+_1 \lambda^+_2 = \frac{s^2}{-\frac{1}{3} h_0^2u_0^2} = \frac{-3s^2}{h_0^2u_0^2}
+\end{gather}
+
+\indent The solutions of \eqref{eq:linearizedSerre3} in the complementary of $[a,b]$ are
+
+\begin{gather*}
+	\hat{U}(s,x) = \overline{U}^+_1e^{\lambda^+_1(s)x} + \overline{U}^+_2e^{\lambda^+_2(s)x}, x < a, \\
+	\hat{U}(s,x) = \overline{U}^-_1e^{\lambda^-_1(s)x} + \overline{U}^-_2e^{\lambda^-_2(s)x}, x > b
+\end{gather*}
+
+\indent from which we can derive the TBCs
+
+\begin{gather*}
+\hat{u}(s,a) - (\lambda^+_1(s) + \lambda^+_2(s))\hat{u}_x(s,a) + \lambda^+_1(s) \lambda^+_2(s)\hat{u}_{xx}(s,a) = 0 \\
+\hat{u}(s,b) - (\lambda^-_1(s) + \lambda^-_2(s))\hat{u}_x(s,b) + \lambda^-_1(s) \lambda^-_2(s)\hat{u}_{xx}(s,b) = 0 \\
+\end{gather*}
+
+\indent respectively for the left and the right boundaries of $[a,b]$. Using the relations \eqref{eq:girardPol4A}  and \eqref{eq:girardPol4B} We propose to approximate the TBCs using three constants, $c_1,c_2,c_3$, such that : 
+
+\begin{gather*}
+	\lambda^-_1 + \lambda^-_2 = c_1 \\
+	\lambda^-_1 \lambda^-_2 = c_2  \\
+	 \lambda^+_1 + \lambda^+_2 = -2 c_3 - c_1 \\
+	 \lambda^+_1 \lambda^+_2 = -\frac{3c_3^2}{c_2h_0}
+\end{gather*} 
+
+\noindent giving the IBC operators
+
+\begin{equation}
+	B_1(U) = U  - c_1U_x + c_2 U_{xx}, \qquad B_2(U) = U + (2 c_3 + c_1)U_x - \frac{3c_3^2}{c_2h_0} U_{xx}
+\end{equation}
+
+\noindent applied respectively in the right and the left boundaries.

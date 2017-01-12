@@ -1,0 +1,103 @@
+\subsection{Linearization with $u_0 \neq 0$ (only for the dispersive equation)}
+
+\indent Considering that we solve the Serre equations with a splitting method, we will derive IBCs for each one of the splitting steps. In the following paragraphs, we will consider the dispersive equation :
+
+\begin{equation}
+ \label{eq:dispersiveSerre}
+	\begin{cases}
+		h_t = 0 \\
+		u_t - \frac{1}{3h} \left( h^3 \left( u_{xt} + uu_{xx} - (u_x)^2\right) \right)_x = 0
+	\end{cases}
+\end{equation}
+
+\indent We can work only with the second equation of \eqref{eq:dispersiveSerre}. Linearizing it around $h0$ and $u_0$, we obtain
+
+\begin{equation}
+	\label{eq:linearizedSerre4}
+	u_t - \frac{h_0^2}{3}(u_{xxt}+u_0u_{xxx}) = 0
+\end{equation}
+
+\indent We will solve this equation in the complementary of $[a,b]$ in order to compute its TBcs. In the Laplace space, \eqref{eq:linearizedSerre4} reads
+
+\begin{equation}
+	\label{eq:linearizedSerre4Laplace}
+	s \hat{u} - \frac{h_0^2}{3}(s\hat{u}_{xx}+u_0\hat{u}_{xxx}) = 0
+\end{equation}
+
+\noindent which admits a solution in the general form $\hat{u}(s,x) = \overline{u}(\lambda)e^{\lambda(s)x}$. Replacing in \eqref{eq:linearizedSerre4Laplace}, we obtain the characteristic polynomial
+
+\begin{equation}
+\label{eq:pol3}
+3s - h_0^2s\lambda^2 - h0^2u_0\lambda^3 = 0
+\end{equation}
+
+\indent The roots of \eqref{eq:pol3} verifies, for $u_0 > 0$ (??????)
+
+\begin{equation*}
+	Re(\lambda_1) > 0, \qquad Re(\lambda_2) < 0, \qquad Re(\lambda_3) < 0 
+\end{equation*}
+
+\noindent and the relations
+
+\begin{gather}
+	\label{eq:girardPol3A}
+		\lambda_1 + \lambda_2 + \lambda_3 = \frac{h_0^2s}{- h0^2u_0} = -\frac{s}{u_0} \\
+	\label{eq:girardPol3B}
+		\lambda_1 \lambda_2 \lambda_3 = \frac{3s}{h0^2u_0}
+\end{gather}
+
+\noindent so the solution of \eqref{eq:linearizedSerre4Laplace} has the form
+
+\begin{gather*}
+	\hat{u}(s,x) = \overline{u}_1(s)e^{\lambda_1(s)x}, x < a, \\
+	\hat{u}(s,x) = \overline{u}_2(s)e^{\lambda_2(s)x} + \overline{u}_3(s)e^{\lambda_3(s)x}, x > b
+\end{gather*}
+
+\noindent from which we can derive the TBCs
+
+\begin{gather*}
+\frac{1}{\lambda_1(s)}\hat{u}_{x}(s,a) - u(s,a) = 0 \qquad \frac{1}{\lambda_1^2(s)}\hat{u}_{xx}(s,a) - u(s,a) = 0 \\
+\hat{u}(s,b) - (\lambda_2(s) + \lambda_3(s))\hat{u}_x(s,b) + \lambda_2(s) \lambda_3(s)\hat{u}_{xx}(s,b) = 0 \\
+\end{gather*}
+
+\indent Taking into account the relations \eqref{eq:girardPol3A} and \eqref{eq:girardPol3B}, we propose to approximate the TBCs using two constants, $c_1$ and $c_2$, such that
+
+\begin{gather*}
+	\lambda_1 = c_1 \\
+	\lambda_2 + \lambda_3 = - c_2 - c_1 \\
+	\lambda_2 \lambda_3 = \frac{3c_2}{h_0^2c_1}
+\end{gather*}
+
+\noindent giving the IBC operators
+
+\begin{equation}
+	B_1(u) = u - \frac{1}{c_1}u_{x}, \qquad B_2(u) = u - \frac{1}{c_1^2}u_{xx}, \qquad B_3(u) = u + (c_2+c_1)u_x + \frac{3c_2}{h_0^2c_1} u_{xx}
+\end{equation}
+
+\indent In the DDM, $B_1$ and $B_2$ should be applied as IBC in the left boundary of right domain, and $B_3$ as IBC in the right boundary of left domain.
+
+
+\subsubsection{Tests with the approximate TBCs}
+
+\indent In order to study this proposed approximations and find the coefficients that provide the best TBCs (and possibly some dependence on the linearization parameter $u_0$), we solved the linearized equation \eqref{eq:linearizedSerre4}, with $0 \leq t \leq 10$ for different pairs $(c_1,c_2) \in [-10,10]^2$ and computed for each case the error
+
+\begin{equation*}
+e(c_1,c_2) = ||u^{c1,c2}-u^{ref}|| = \sqrt{\Delta t \Delta x \sum_{n=0}^T {\sum_{i=0}^N{(u_i^{n,c_1,c_2} - u_i^{n,ref})^2} }}
+\end{equation*}
+
+\indent Two problems were solved, the first one with a wave moving to the right, and the second one with a wave moving to both directions. The initial solution $u_0$ in both cases is the solitary cnoidal solution, and the movement is forced by the respective $h$ solution of the Serre equations ($h$ is not modified in the dispersive part of the system).
+
+\indent For both tests, we obtained the following conclusions:
+
+\begin{itemize}
+\item For $c_2 \neq 0$, the error  $e(c_1,c_2)$ is independent of $c_2$.
+\item $c_2 = 0$ provides much better results than $c_2 = 0$, especially in the first problem.
+\item The best results are provided by $c_1 \in [-1,1]$ 
+\end{itemize}
+
+\indent With $c_2 = 0$, the TBCs are written as
+
+\begin{gather*}
+\frac{1}{c_1}u_{x}(t,a) -  u(t,a) = 0 \qquad \frac{1}{c_1^2}u _{xx}(t,a) - u(t,a) = 0 \\
+u(t,b) + c_1 u_x(t,b)  = 0 \\
+\end{gather*}

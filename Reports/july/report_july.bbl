@@ -1,0 +1,23 @@
+\begin{thebibliography}{1}
+
+\bibitem{besse2015}
+C.~Besse, M.~Ehrhardt, and I.~Lacroix-Violet.
+\newblock {Discrete Artificial Boundary Conditions for the Korteweg-de Vries
+  Equation}.
+\newblock working paper or preprint, Jan. 2015.
+
+\bibitem{Gander2001B}
+M.~J. Gander, L.~Halpern, and F.~Nataf.
+\newblock {Optimal Schwarz methods}.
+\newblock In T.~Chan, T.~Kako, H.~Kawarada, and O.~Pironneau, editors, {\em
+  {12th International Conference on Domain Decomposition Methods}}, pages
+  15--27, 2001.
+
+\bibitem{Szeftel2006}
+J.~Szeftel.
+\newblock {Absorbing boundary conditions for nonlinear partial differential
+  equations}.
+\newblock {\em {Computer Methods in Applied Mechanics and Engineering}},
+  195:3760–3775, 2006.
+
+\end{thebibliography}

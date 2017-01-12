@@ -1,0 +1,199 @@
+\section{Domain decomposition method for the Serre equations}
+
+\indent Considering that the study and derivation of transparent boundary conditions is much more developed and known for linear partial differential equations \cite{Szeftel2006}, we will consider in the section linearized versions of the Serre equations. The linearization will be performed around constant average water height and velocity, denoted respectively by $h_0$ and $u_0$. Thus, the Serre equations can be written as
+
+\begin{equation}
+\label{eq:linearizedSerre}
+\begin{cases}
+h_t + u_0h_x + h_0u_x = 0 \\
+u_t + u_0u_x + gh_x - \frac{h_0^2}{3}(u_{xxt}+u_0u_{xxx}) = 0
+\end{cases}
+\end{equation} 
+
+
+\subsection{Linearization with $u_0 = 0$ (for the complete equation)}
+
+\indent Firstly, we will consider the case $u_0 = 0$, which gives, from \eqref{eq:linearizedSerre},
+
+\begin{equation}
+\label{eq:linearizedSerre2}
+\begin{cases}
+h_t + h_0u_x = 0 \\
+u_t +  gh_x - \frac{h_0^2}{3}u_{xxt} = 0
+\end{cases}
+\end{equation} 
+
+\subsubsection{Derivation of the IBCs following \cite{Gander2001B} (rate of convergence of the ASM)}
+
+\indent The derivation of the IBCs will be made analogously as in \cite{Gander2001B}. We will consider the domain $\Omega = \mathcal{R}$ divided in two (possibly overlapped) subdomains, 
+
+\begin{equation*}
+\Omega_1 = ]-\infty,L], \qquad \Omega_2 = [0,\infty[
+\end{equation*}
+
+\noindent so $L$ denotes the size of the overlap.
+
+\indent We will consider that only one interface boundary condition is imposed, denoted by the operator 
+
+\begin{equation}
+	\mathcal{B}_i U(t,x) = \alpha U_x(t,x) + \Lambda_i(U(t,x)) 
+\end{equation}
+
+\indent where $U=(h,u)^T$, $i$ indicates the subdomain and $\Lambda_i$ is an linear operator of symbol $\psi_i(s)$ in the Laplace domain.
+
+\indent Thus, the additive Schwarz method is written as
+
+ \begin{equation}
+ \label{eq:DDMSerre1}
+ \begin{cases}
+ h_t^{1,n+1} + h_0 u_x^{1,n+1} = 0, \ t \geq 0, \ x \in \Omega_1 \\
+ u_t^{1,n+1} + gh_x^{1,n+1} - \frac{h_0^2}{3}u_{xxt}^{1,n+1} = 0, \ t \geq 0, \ x \in \Omega_1 \\
+ \alpha U_x^{1,n+1}(t,L) + \Lambda_1(U_1^{n+1}(t,L)) =   \alpha U_2^{n}(t,L) + \Lambda_1(U_2^{n}(t,L)), \ t\geq 0
+ \end{cases}
+ \end{equation}
+ 
+  \begin{equation}
+   \label{eq:DDMSerre2}
+ \begin{cases}
+ h_t^{2,n+1} + h_0 u_x^{2,n+1} = 0, \ t \geq 0, \ x \in \Omega_2 \\
+ u_t^{2,n+1} + gh_x^{2,n+1} - \frac{h_0^2}{3}u_{xxt}^{2,n+1} = 0, \ t \geq 0, \ x \in \Omega_2 \\
+ \alpha U_x^{2,n+1}(t,0) + \Lambda_2(U_2^{n+1}(t,0)) =   \alpha U_1^{n}(t,0) + \Lambda_2(U_1^{n}(t,0)), \ t\geq 0
+ \end{cases}
+ \end{equation}
+ 
+ \indent Performing the Laplace transform of \eqref{eq:DDMSerre1} and \eqref{eq:DDMSerre2}, one obtains
+ 
+ \begin{equation}
+ \label{eq:DDMSerreLaplace1}
+ \begin{cases}
+ s\hat{h}^{1,n+1} + h_0\hat{u}_x^{1,n+1} = 0, \ s \in \mathcal{C}, \ s > 0, \ x \in \Omega_1 \\
+ s\hat{u}^{1,n+1} + g \hat{h}_x^{1,n+1} - s\frac{h_0^2}{3}\hat{u}^{1,n+1}_{xx} = 0, \ s \in \mathcal{C}, \ s > 0, \ x \in \Omega_1  \\
+ \alpha \hat{U}_x^{1,n+1}(s,L) + \psi_1\hat{U}^{1,n+1}(s,L) = \alpha \hat{U}_x^{2,n}(s,L) + \psi_1\hat{U}^{2,n}(s,L), \ s \in \mathcal{C} 
+ \end{cases}
+ \end{equation}
+ 
+  \begin{equation}
+ \label{eq:DDMSerreLaplace2}
+ \begin{cases}
+ s\hat{h}^{2,n+1} + h_0\hat{u}_x^{2,n+1} = 0, \ s \in \mathcal{C}, \ s > 0, \ x \in \Omega_1 \\
+ s\hat{u}^{2,n+1} + g \hat{h}_x^{2,n+1} - s\frac{h_0^2}{3}\hat{u}^{2,n+1}_{xx} = 0, \ s \in \mathcal{C}, \ s > 0, \ x \in \Omega_1  \\
+ \alpha \hat{U}_x^{1,n+1}(s,0) + \psi_2\hat{U}^{2,n+1}(s,0) = \alpha \hat{U}_x^{1,n}(s,0) + \psi_2\hat{U}^{1,n}(s,0), \ s \in \mathcal{C}
+ \end{cases}
+ \end{equation}
+ 
+ \indent The solutions of \eqref{eq:DDMSerreLaplace1} and \eqref{eq:DDMSerreLaplace2} have the form
+ 
+ \begin{equation}
+ \label{eq:generalSolution}
+ \hat{U}^{i,n+1}(s,x) = \overline{U}^{i,n+1}(s)e^{\lambda x}
+ \end{equation}
+ 
+ \indent Replacing in \eqref{eq:DDMSerreLaplace1} and \eqref{eq:DDMSerreLaplace2} gives $M\overline{U}^{i,n+1} = 0$, where
+ 
+ \begin{equation}
+ M = \left( \begin{array}{c c}
+ 						s & \lambda h_0 \\
+ 						\lambda g & s \left(1- \frac{h_0^2\lambda^2}{3} \right) 
+ 				\end{array} \right)
+ \end{equation}
+ 
+ \indent We have nontrivial solutions $\overline{U}^{i,n+1}$ only if $detM = 0$, i.e,
+ 
+ \begin{equation}
+ \label{eq:lambda} 
+ 	\lambda = \pm \sqrt{\frac{s^2}{h_0\left(g+\frac{s^2h_0}{3}\right)}}
+ \end{equation}
+ 
+ \indent Considering that the solutions $\hat{U}^{i,n+1}$ must vanish on $\pm \infty$, we have
+ 
+ \begin{equation}
+ \hat{U}^{1,n+1} = \overline{U}^{1,n+1}e^{|\lambda|x} \qquad \hat{U}^{2,n+1} = \overline{U}^{2,n+1}e^{-|\lambda|x}
+ \end{equation}
+ 
+ \indent The coefficients $\overline{U}^{i,n+1}$ are determined using the boundary conditions in \eqref{eq:DDMSerreLaplace1} and \eqref{eq:DDMSerreLaplace2}. We firstly solve \eqref{eq:DDMSerreLaplace2}, and we get
+ 
+ \begin{equation*}
+ \alpha \hat{U}_x^{2,n+1}(s,0) + \psi_2 \hat{U}^{2,n+1}(s,0) = \overline{U}^{2,n+1}(-\alpha|\lambda| + \psi_2) = \alpha \hat{U}_x^{1,n}(s,0) + \psi_2 \hat{U}^{1,n}(s,0)
+ \end{equation*}
+ 
+ \noindent so
+ 
+ \begin{equation}
+ \label{eq:sol2}
+ 	\hat{U}^{2,n+1}(s,x) = \frac{\alpha \hat{U}_x^{1,n}(s,0) + \psi_2 \hat{U}^{1,n}(s,0)}{-\alpha|\lambda| + \psi_2} e^{-|\lambda|x} = \frac{\alpha|\lambda| + \psi_2}{-\alpha|\lambda| + \psi_2} \hat{U}^{1,n}(s,0) e^{-|\lambda|x}
+ \end{equation}
+ 
+ \indent Similarly, solving \eqref{eq:DDMSerreLaplace1}, we obtain
+ 
+  \begin{equation}
+  \label{eq:sol1}
+ 	\hat{U}^{1,n+1}(s,x) = \frac{\alpha \hat{U}_x^{2,n}(s,L) + \psi_1 \hat{U}^{2,n}(s,L)}{\alpha|\lambda| + \psi_1} e^{|\lambda|(x-L)} = \frac{-\alpha |\lambda| + \psi_1 }{\alpha|\lambda| + \psi_1}\hat{U}^{2,n}(s,L) e^{|\lambda|(x-L)}
+ \end{equation}
+ 
+ \noindent and, using \eqref{eq:sol2} in \eqref{eq:sol1}, we get
+ 
+\begin{equation}
+ 	\hat{U}^{1,n+1}(s,0) = \frac{-\alpha |\lambda| + \psi_1 }{\alpha|\lambda| + \psi_1} \frac{\alpha|\lambda| + \psi_2}{-\alpha|\lambda| + \psi_2} e^{-2|\lambda|L}\hat{U}^{1,n-1}(s,0) 
+ \end{equation}
+ 
+ \indent Similarly, using \eqref{eq:sol1} in \eqref{eq:sol2}, 
+ 
+ \begin{equation}
+ 	\hat{U}^{2,n+1}(s,L) = \frac{-\alpha |\lambda| + \psi_1 }{\alpha|\lambda| + \psi_1} \frac{\alpha|\lambda| + \psi_2}{-\alpha|\lambda| + \psi_2}  e^{-2|\lambda|L}\hat{U}^{2,n-1}(s,L)
+ \end{equation}
+ 
+ \indent We can thus define the rate of convergence of the Schwarz method as
+ 
+ \begin{equation}
+ \label{eq:rateCV}
+ \rho(s,L) = \frac{-\alpha |\lambda| + \psi_1 }{\alpha|\lambda| + \psi_1} \frac{\alpha|\lambda| + \psi_2}{-\alpha|\lambda| + \psi_2}  e^{-2|\lambda|L}
+ \end{equation}
+ 
+ \indent In the case $\alpha = 0,\ \psi_1 = \psi_2 = 1$, we recover the classical ASM (with Dirichlet interface boundary condition), and the rate of convergence is 
+ 
+  \begin{equation}
+ \rho(s,L)_{classical} = e^{-2|\lambda|L}
+ \end{equation}
+ 
+ \indent We can see that, in this case, the ASM converges only if there is an overlapping $L>0$.
+ 
+ \indent The overlapping is not necessary in the general case \eqref{eq:rateCV}. Indeed, choosing $\psi_1 =\alpha |\lambda|$ and $\psi_2 =- \alpha|\lambda|$, the rate of convergence is $ \rho(s,L) \equiv 0$, and the Schwarz method converges after two iterations \cite{Gander2001b}. In this case, the operators for the TBCs, applied respectively in the right boundary of $\Omega_1$ and in the left boundary of $\Omega_2$, are
+ 
+ \begin{equation*}
+ 	B_1(U) = U_x + |\lambda|U, \qquad B_2(U) = U_x - |\lambda|U
+ \end{equation*}
+ 
+ \subsubsection{Derivation of the IBCs following \cite{besse2015} (via the derivation of TBCs)}
+ 
+ \indent In an alternative way, we will follow the approach proposed by \cite{besse2015} to derive the IBCs for the linearized Serre equation \eqref{eq:linearizedSerre2}, and use them as IBCs for the ASM. Being a simpler approach, we will use it in the derivation of IBCs considering other linearizations of the Serre equations.
+ 
+ \indent If we want to solve the problem \eqref{eq:linearizedSerre2} in the finite domain $[a,b]$, the TBCs are constructed by solving it in the complementary of $\Omega$. Thus, we will solve
+ 
+ \begin{equation}
+\label{eq:linearizedSerre2Complementary}
+\begin{cases}
+h_t + u_0h_x + h_0u_x = 0, \ t>0, x<a \ \text{or} \ x >b \\
+u_t +  gh_x - \frac{h_0^2}{3}u_{xxt} = 0, \ t>0, x<a \ \text{or} \ x >b  \\
+u \longrightarrow 0, \ x \longrightarrow \pm \infty
+\end{cases}
+\end{equation} 
+
+\indent The approach follows the same arguments as done above. We solve \eqref{eq:linearizedSerre2Complementary} in the Laplace domain, which gives a solution in the form \eqref{eq:generalSolution}, with the two roots $\lambda_i$ of the respective characteristic polynomial given by \eqref{eq:lambda}. To force the solution to vanish in $\pm \infty$, we have the solutions
+
+\begin{gather*}
+\hat{U}(s,x) = \overline{U}_-e^{|\lambda(s)|x}, x < a, \\
+\hat{U}(s,x) = \overline{U}_+e^{-|\lambda(s)|x}, x > b
+\end{gather*}
+
+\indent Thus, from these two solutions we can obtain the following TBCs for solving \eqref{eq:linearizedSerre2} in $\Omega=[a,b]$ :
+
+\begin{gather*}
+\hat{U}_x(s,a) - |\lambda(s)|\hat{U}(s,a) = 0 \\
+\hat{U}_x(s,b) + |\lambda(s)|\hat{U}(s,b) = 0
+\end{gather*}
+
+\noindent respectively for the left and the right boundary of $\Omega$. Approximating $|\lambda(s)|$ by a constant $c>0$  and using these TBCs as IBCs for the ASM, we obtain the operators
+
+ \begin{equation*}
+ 	B_1(U) = U_x + |c|U, \qquad B_2(U) = U_x - |c|U
+ \end{equation*}

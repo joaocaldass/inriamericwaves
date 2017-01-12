@@ -1,0 +1,23 @@
+\section{Comments on the errors}
+\label{sec:errors}
+
+\indent Different sources of errors and uncertainties affect the numerical simulations of physical models. In a general way, we can group them in conceptual modeling errors and numerical errors \cite{roache1997}. In the first group, we can mention conceptual modeling assumptions and uncertainties in the geometry, in the initial and boundary data (missing informations or erros in the measuring method) and in the parameters that play a role in the model \cite{roache1997,balagurusamy2008}. Concerning the numerical errors, we can divide them \cite{karniadakis1995} (although these errors are not independent \cite{roache1997}) in errors related to the boundary conditions, the computational domain size, the temporal errors and the spatial errors.
+
+\indent The total error of the numerical simulation is a contribution of each one of these sources of errors and uncertainties. Knowing and quantifying them is essential to improve the implementation of the physical of model, and, in this context, the separate study of each one of these contributions has a great importance.
+
+\indent The study proposed in this paper will be developed on the problem
+
+\begin{equation}
+ \label{eq:problemDKdV}
+\begin{gathered}
+	u_t + u_{xxx} = 0, \ \ t \in \mathbb{R}^+, \ \ x \in \mathbb{R} \\
+	u(0,x) = u_0(x), \ \ x \in \mathbb{R} \\
+	u \longrightarrow 0, \ \ x \longrightarrow \infty
+\end{gathered}
+\end{equation}
+
+\indent The numerical resolution of this problem in a finite computation domain was studied by \cite{zheng2008} and \cite{besse2015}. Both attempted to reduce one of the numerical errors mentioned above: the error related to boundary conditions. In fact, "in the case when a PDE is employed to model waves on unbounded domain and the numerical simulation is performed, it is a common practice to truncate the unbounded domain by introducing artificial boundaries, which necessitates additional boundary conditions to be designed. A proper choice of these boundary conditions should ensure both stability and accuracy of the truncated initial-boundary value problem." \cite{zheng2008}. Although using different approaches, both authors sought to construct Absorbing Boundary Conditions (ABCs) (which simulate the absorption of a wave quitting the computational domain) or Transparent Boundary Conditions (TBCs) (which makes the approximate solution on the computational domain coincides with solution of the whole domain).
+
+\indent In this paper, we will propose a Domain Decomposition Method (DDM), i.e., we will decompose the computational domain in subdomains and solve the problem \eqref{eq:problemDKdV} in each one of them. This requires the formulation of appropriate conditions on the interface between the subdomains, in order to minimize the error due to the DDM (which we include in the list of numerical errors in the simulation of a physical model). Following the principle of studying each type of numerical error separately, we do not attempt here to minimize the errors due to the introduction of external boundaries of the computational domain (although we also make use of TBCs), but only due to the decomposition of the domain and the introduction of an interface boundary.
+
+\noindent As a consequence, our work shall not use the same reference solution as the one used by \cite{zheng2008} and \cite{besse2015} : for validating their approaches,  they compare their approximate solution with the solution of the whole domain. In the other hand, our reference solution will be the solution computed on the computational monodomain, which we will construct with approximate formulations for the TBCs proposed in the mentioned works.
