@@ -641,25 +641,25 @@
 %%
 %% --------------- Define frontend command: \note
 %%                 usage: \note[Editor]{note text}
-\newcommand{\note}[2][]{%
-  \if@trackchanges%
-    \trackingstart{#1}%
-    \if@trackinmargins%
-      \textsuperscript{\thefootnote}%
-      \marginText{#1}{\userco{#2}}%
-    \else%
-      \if@trackinline%
-        {\footnotesize\textsuperscript{\UserLabel}}%
-        {\footnotesize\usertext{~[#2]}}%
-      \else%
-        \footnote{\UserLabel~\userco{#2}}%
-      \fi%
-    \fi%
-    \trackingend%
-  \else%
-    %% if trackchanges is false ... do not print notes
-  \fi%
-}
+%%%%\newcommand{\note}[2][]{%
+%%%%  \if@trackchanges%
+%%%%    \trackingstart{#1}%
+%%%%    \if@trackinmargins%
+%%%%      \textsuperscript{\thefootnote}%
+%%%%      \marginText{#1}{\userco{#2}}%
+%%%%    \else%
+%%%%      \if@trackinline%
+%%%%        {\footnotesize\textsuperscript{\UserLabel}}%
+%%%%        {\footnotesize\usertext{~[#2]}}%
+%%%%      \else%
+%%%%        \footnote{\UserLabel~\userco{#2}}%
+%%%%      \fi%
+%%%%    \fi%
+%%%%    \trackingend%
+%%%%  \else%
+%%%%    %% if trackchanges is false ... do not print notes
+%%%%  \fi%
+%%%%}
 
 
 %%

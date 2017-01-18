@@ -1,10 +1,11 @@
-\documentclass[final,smallcondensed]{svjour3}
+\documentclass[draft,smallcondensed]{svjour3}
 %\documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{changes}
 \usepackage[font=footnotesize]{caption}
 \usepackage{subcaption}  % for subfigure
 \usepackage{numprint} % round numbers
@@ -17,6 +18,12 @@
 \usepackage{cases} %numcases and subnumcases
 \usepackage[symbol]{footmisc}
 \usepackage[normalem]{ulem} %sout
+
+\providecolor{added}{rgb}{0,0,1}
+\providecolor{deleted}{rgb}{1,0,0}
+%% Change tracking with ulem
+\renewcommand{\added}[1]{{\color{added}{}#1}}
+\renewcommand{\deleted}[1]{{\color{deleted}\sout{#1}}}
 
 \title{Optimized Schwarz method for the linearized KdV equation}
 \date{Received: date / Accepted: date}

@@ -1,7 +1,7 @@
 \section{Application to a domain decomposition method}
 \label{sec:DDM}
 
-\indent The discrete approximations \eqref{eq:appDiscTBCP0} for the transparent boundary conditions for the equation \eqref{eq:DKdV} will be applied as interface boundary conditions (IBC) in a domain decomposition method (DDM). Firstly, following \cite{Japhet2003}, we will briefly describe the DDM that we will consider here, and after we will describe and test the incorporation of the proposed IBCs.
+\indent The \deleted{discrete approximations \eqref{eq:appDiscTBCP0} for the transparent boundary conditions for the equation \eqref{eq:DKdV} } \added{operators  \eqref{eq:appDiscTBCP0} derived in the previous section} will be applied as interface boundary conditions (IBC) in a domain decomposition method (DDM). Firstly, following \cite{Japhet2003}, we will briefly describe the DDM that we will consider here, and after we will describe and test the incorporation of the proposed IBCs.
 
 \subsection{The Schwarz Method}
 
@@ -58,11 +58,11 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \end{cases}
 \end{equation*}
 
-\indent The ASM using such exact TBCs is optimal in the sense that it converges in two iterations, and no other ASM can converge faster \cite{Japhet2003}. Nevertheless, these TBC, in general, are not simple to compute both analtically and numerically. More specifically, they are nonlocal in time, so they must be approximated for an efficient numerical implementation \cite{Xavieretal2008}. It is in this context that we propose the implementation of our approximate TBCs as interface boundary conditions for the ASM.
+\indent The ASM using such exact TBCs is optimal in the sense that it converges in two iterations, and no other ASM can converge faster \cite{Japhet2003}. Nevertheless, these TBC, in general, are not simple to compute both analtically and numerically. More specifically, they are nonlocal in time, so they must be approximated for an efficient numerical implementation \cite{Xavieretal2008}. \deleted{It is in this context that we propose the implementation of our approximate TBCs as interface boundary conditions for the ASM.} \added{These facts motivate us to implement the operators \eqref{eq:appDiscTBCP0} as interface boundary conditions for the ASM : they were derived based on the exact TBCs for the equation \eqref{eq:DKdV}, but, on the other hand, they are very simple to compute.}
 
-\subsection{ASM with the approximate TBCs for the dispersion equation}
+\subsection{ASM with the \deleted{approximate TBCs for the dispersion equation}\added{proposed IBCs}}
 
-\indent The resolution of the dispersion equation \eqref{eq:DKdV} with the Additive Schwarz method, using the constant polynomial approximation for the TBCs, is written as
+\indent The resolution of the dispersion equation \eqref{eq:DKdV} with the Additive Schwarz method, using the \deleted{constant polynomial approximation for the TBCs} \added{IBCs \eqref{eq:appDiscTBCP0}}, is written as
 
 \begin{equation}
     \label{eq:problemDDM1}
@@ -86,7 +86,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
      \end{cases}
 \end{equation}
 
-\noindent where $ \Upsilon_i, \ \ i=1,2,3$, are the external boundary conditions (\emph{i.e.}, defined on $\partial \Omega_i \backslash \Gamma$). \begingroup \color{red}The method given by is \eqref{eq:problemDDM1}-\eqref{eq:problemDDM2} is also known as Schwarz Waveform Relaxation method \cite{Blayo2007}. \endgroup
+\noindent where $ \Upsilon_i, \ \ i=1,2,3$, are the external boundary conditions (\emph{i.e.}, defined on $\partial \Omega_i \backslash \Gamma$). \added{The method given by is \eqref{eq:problemDDM1}-\eqref{eq:problemDDM2} is also known as Schwarz Waveform Relaxation method \cite{Blayo2007}.}
 
 \indent Considering that we want to analyze and minimize the error due to the application of a domain decomposition method, the reference solution $u^{ref}$ in our study will be the solution of the monodomain problem
 
@@ -137,7 +137,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \noindent which is valid for $j=2,...,N-2$ in the case $i=1$; for $j=N+2,...,2N-2$ in the case $i=2$; and for $j=2,...,2N-2$ in the case $i=ref$. In the above expression, $\alpha_j^i$ is a given data (for example, the converged solution in the previous time step).
 
-\indent For the points near the boundaries, we use second order uncentered discretizations or an approximate TBC. Considering that one TBC is written for the left boundary and two for the right one, we have to impose an uncentered discretization only for the second leftmost point of the domain. For example, for the point $x_1$ : 
+\indent For the points near the boundaries, we use second order uncentered discretizations or \deleted{an approximate TBC} \added{the appropriate boundary condition}. Considering that one \deleted{TBC} \added{boundary condition} is written for the left boundary and two for the right one, we have to impose an uncentered discretization only for the second leftmost point of the domain. For example, for the point $x_1$ : 
 
 \begin{equation*}
     %\label{eq:uncenteredFDdiscretization0}
@@ -255,9 +255,9 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \subsection{Corrections for the approximate IBCs}
 
-\indent When using approximate TBCs in the ASM, one should guarantee that the converged solutions $u^*$ satisfy the same equation as the solution $u_{ref}$ of the monodomain problem. Nevertheless, one can easily see that, in the convergence, the solution $u^*$ does not satisfy the discrete equation \eqref{eq:FDdiscretization} on the points where the IBCs are imposed (the poins $x_{N-1},x_N \in \Omega_1$ and $x_N \in \Omega_2$). 
+\indent When using approximate \deleted{TBCs} \added{IBCs} in the ASM, one should guarantee that the converged solutions $u^*$ satisfy the same equation as the solution $u_{ref}$ of the monodomain problem. Nevertheless, one can easily see that, in the convergence, the solution $u^*$ does not satisfy the discrete equation \eqref{eq:FDdiscretization} on the points where the IBCs are imposed (the poins $x_{N-1},x_N \in \Omega_1$ and $x_N \in \Omega_2$). 
 
-\indent As pointed out by \cite{Gander2001}, a finite difference discretization of the IBCs requires a special treatment to be consistent with the monodomain discretization. Therefore, we will formulate modified TBCs for the ASM in order to avoid this problem:
+\indent As pointed out by \cite{Gander2001}, a finite difference discretization of the IBCs requires a special treatment to be consistent with the monodomain discretization. Therefore, we will formulate modified \deleted{TBCs} \added{IBCs} for the ASM in order to avoid this problem:
 
 \begin{equation}
 	\label{eq:correctedTBC}
@@ -289,13 +289,13 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \end{gathered}
 \end{equation*}
 
-\indent It is straightforward to verify that the DDM problem with these modifications in the TBCs insure that the converged solution $u^*$ satisfies, in every point, the same discrete equations as the solution $u^{ref}$ of the monodomain problem \eqref{eq:problemMonodomain}.
+\indent It is straightforward to verify that the DDM problem with these modifications in the \deleted{TBCs} \added{IBCs} insure that the converged solution $u^*$ satisfies, in every point, the same discrete equations as the solution $u^{ref}$ of the monodomain problem \eqref{eq:problemMonodomain}.
 
-\indent In addition, we notice that all the modification terms $\theta_i,\theta_i', \ i = 1,2,3$, are of order $O(\Delta x)$ (they are composed of discrete versions of time derivatives and second spatial derivatives multiplied by $\Delta x$). It is essential to insure that these terms are small, for the consistency with the approximate TBCs $\Theta_i$ to be fulfilled.
+\indent In addition, we notice that all the modification terms $\theta_i,\theta_i', \ i = 1,2,3$, are of order $O(\Delta x)$ (they are composed of discrete versions of time derivatives and second spatial derivatives multiplied by $\Delta x$). It is essential to insure that these terms are small, for the consistency with the approximate \deleted{TBCs} \added{IBCs} $\Theta_i$ to be fulfilled.
 
 \subsection{Optimization of the IBCs (speed of convergence)}
 
-\indent Our objective now is to optimize the IBCs in the sense of minimizing the number of iterations of the ASM until the convergence. We will make a very large set of tests in order to find the coefficients $c_L$ and $c_R$ (\emph{i.e.}, the constant polynomial approximation for the TBC) that provide the fastest convergence. To start with, we will make this study with fixed time step and space step, in order to analyze exclusively the influence of the coefficient.
+\indent Our objective now is to optimize the IBCs in the sense of minimizing the number of iterations of the ASM until the convergence. We will make a very large set of tests in order to find the coefficients $c_L$ and $c_R$ (\deleted{\emph{i.e.}, the constant polynomial approximation for the TBC} \added{which define the operators based a constant polynomial approximation for the TBCs}) that provide the fastest convergence. To start with, we will make this study with fixed time step and space step, in order to analyze exclusively the influence of the coefficient.
 
 \indent As we are interested in the speed with which the solution of the DDM method converges to the reference solution, the criteria of convergence used is
 
@@ -442,7 +442,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \subsection{Partial conclusion}
  
-\indent The results presented in this section show that the domain decomposition method proposed here, consisting in the additive Schwarz method with our approximate TBCs, is able to provide a fast convergence toward the solution of the monodomain problem. Furthermore, using the corrected TBCs \eqref{eq:correctedTBC}, this convergence is exact. Therefore, we reached our goals of solving the dispersion equation in a finite domain divided in two subdomains.
+\indent The results presented in this section show that the domain decomposition method proposed here, consisting in the additive Schwarz method with our \deleted{approximate TBCs} \added{proposed interface conditions}, is able to provide a fast convergence toward the solution of the monodomain problem. Furthermore, using the corrected \deleted{TBCs} \added{IBCs} \eqref{eq:correctedTBC}, this convergence is exact. Therefore, we reached our goals of solving the dispersion equation in a finite domain divided in two subdomains.
 
 \indent Moreover, the results of the optimization tests are very satisfying regarding a more general application of our method. Firstly, for fixed spatial and temporal discretizations, we obtained optimal coefficients for the method independently of the initial solution and the size of the subdomains (\emph{i.e.}, independently of the initial instant and the position of the interface). Secondly, we obtained good regression expressions for the optimal coefficient as function of $\Delta t$ and $\Delta x$, which could allow the application of the model, with fast convergence, in other computational frameworks.
 
