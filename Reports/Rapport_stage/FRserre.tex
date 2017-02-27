@@ -14,11 +14,11 @@ u_t + uu_x + gh_x - \frac{1}{3h}\left(h^3 \left( u_{xt} + uu_{xx} - (u_x)^2  \ri
 \end{cases}
 \end{equation}
 
-\noindent où $u = u(x,t)$, $h = h(x,t)$ et $g$ sont, respectivement, la vitesse horizontal moyennée au long de la profondeur, la profondeur de l'eau et l'accélération de la gravité. Cette formulation s'est basée sur \cite{CarterCienfuegos2011}.
+\noindent où $u = u(x,t)$, $h = h(x,t)$ et $g$ sont, respectivement, la vitesse horizontale moyennée au long de la profondeur, la profondeur de l'eau et l'accélération de la gravité. Cette formulation s'est basée sur \cite{CarterCienfuegos2011}.
 
 \subsubsection{Les équations de Serre dans les variables $(h,hu)$}
 
-\indent Afin de mettre en œuvre une méthode de \emph{splitting} pour la résolution numérique des équations de Serre (ainsi comme il est fait dans \cite{Bonneton2011} pour les équations de Green-Naghdi, qui sont la version en 2D des équations de Serre), on va réécrire le système \eqref{eq:serrehu} dans les variables $(h,hu)$, afin d'avoir une formulation analogue à celle utilisé dans ce papier.
+\indent Afin de mettre en œuvre une méthode de \emph{splitting} pour la résolution numérique des équations de Serre (comme cela est fait dans \cite{Bonneton2011} pour les équations de Green-Naghdi, qui sont la version en 2D des équations de Serre), on va réécrire le système \eqref{eq:serrehu} dans les variables $(h,hu)$, afin d'avoir une formulation analogue à celle utilisée dans ce papier.
 
 \indent On va utiliser les identités
 
@@ -80,7 +80,7 @@ u_t + uu_x + gh_x - \frac{1}{3h}\left(h^3 \left( u_{xt} + uu_{xx} - (u_x)^2  \ri
 \end{split}
 \end{equation*}
 
-\noindent où le terme $\left(\opIhT \right)(ghh_x)$ a été ajouté et soustrait pour avoir une formulation équivalente à de \cite{Bonneton2011}. Les opérateurs $\opT$ et $\opQ$, aussi définis par \cite{Bonneton2011}, sont donnés par
+\noindent où le terme $\left(\opIhT \right)(ghh_x)$ a été ajouté et soustrait pour avoir une formulation équivalente à cekke de \cite{Bonneton2011}. Les opérateurs $\opT$ et $\opQ$, aussi définis par \cite{Bonneton2011}, sont donnés par
 
 \begin{gather*}
 	\opT(w) = -\frac{1}{3h}(h^3w_x)_x = -\frac{h^2}{3}w_{xx} - hh_xw_x \\
@@ -142,7 +142,7 @@ h_t + (hu)_x = 0 \\
 
 \indent Dans la suite, le tilde et la barre supérieur seront supprimées pour clarifier la notation.
 
-\subsubsection{Première système d'équations (pas d'advection)}
+\subsubsection{Premier système d'équations (pas d'advection)}
 
 \indent La première partie des équations de Serre correspond aux \emph{Non linear Shallow Water equations} (NSWE), et peut être écrite comme une loi de conservation sous la forme
 
@@ -156,14 +156,14 @@ h_t + (hu)_x = 0 \\
 	\boldsymbol{U} = \left(  \begin{array}{c} h \\ hu \end{array} \right), \qquad \boldsymbol{F}(\boldsymbol{U}) = \left(  \begin{array}{c} hu \\ hu^2 + \frac{1}{2}gh^2 \end{array} \right)
 \end{equation*}
 
-\indent Alors, on peut résoudre le première pas du \emph{splitting} en utilisant un schéma de volumes finies. La méthode implémentée utilise le solveur de Riemann approximée \emph{vfRoe-ncv} y une interpolation MUSCL d'ordre quatre sur chaque interface, ce qui réduit l'erreur de troncature et assure la non-négativité de la hauteur de l'eau. Par ailleurs, on applique la méthode de reconstruction hydrostatique de deuxième ordre pour les termes source qui comprennent la topographie afin de préserver des états stationnaires de repos dans le cas où il y a de variabilité de la bathymétrie.
+\indent Alors, on peut résoudre le première pas du \emph{splitting} en utilisant un schéma de volumes finies. La méthode implémentée utilise le solveur de Riemann approximée \emph{vfRoe-ncv} et une interpolation MUSCL d'ordre quatre sur chaque interface, ce qui réduit l'erreur de troncature et assure la non-négativité de la hauteur de l'eau. Par ailleurs, on applique la méthode de reconstruction hydrostatique de deuxième ordre pour les termes source qui comprennent la topographie afin de préserver des états stationnaires de repos dans le cas où la bathymétrie varie en espace.
 
 \indent Dans ce rapport, on se limite à cette brève description de la méthode de volumes finis utilisée, en considérant que, dans la division de tâches au sein de l'équipe, elle a été étudiée, codée et testée par José GALAZ.
 
 
 \subsubsection{Deuxième système d'équations (pas de dispersion)}
 
-\indent Dans le deuxième système \eqref{eq:splitSerre2} des équations de Serre splittées, la profondeur d'eau $h$ est constante en temps, et par conséquent seulement la vitesse $u$ doit être mise à jour.  La résolution numérique proposée consiste en résoudre, à chaque pas de temps, le système linéaire
+\indent Dans le deuxième système \eqref{eq:splitSerre2} des équations de Serre splittées, la profondeur d'eau $h$ est constante en temps, et par conséquent seule la vitesse $u$ doit être mise à jour.  La résolution numérique proposée consiste à résoudre, à chaque pas de temps, le système linéaire
 
 \begin{equation}
 	\label{eq:systemhu}
@@ -198,7 +198,7 @@ h_t + (hu)_x = 0 \\
 	\end{split}
 \end{equation*}
 
-\indent Finalement, pour chaque $i=1,...N-1$, las solution est mise à jour en temps selon l'expression 
+\indent Finalement, pour chaque $i=1,...N-1$, la solution est mise à jour en temps selon l'expression 
 
 \begin{equation*}
 (hu)_i^{n+1} = (hu)_i^n + \Delta t \left(gh_i^n(h_x)_i^n - z_i^n \right)
@@ -208,7 +208,7 @@ h_t + (hu)_x = 0 \\
 
 \subsubsection{Description de la solution initiale}
 
-\indent Afin de valider l'implémentation des équations de Serre, on les a résolues en utilisant son solution analytique comme solution initiale. D'après \cite{CarterCienfuegos2011}, les équations de Serre admettent la famille de solutions périodiques suivante : 
+\indent Afin de valider l'implémentation des équations de Serre, on a résolu le problème en utilisant leur solution analytique comme solution initiale. D'après \cite{CarterCienfuegos2011}, les équations de Serre admettent la famille de solutions périodiques suivante : 
 
 \begin{equation*}
     h(x,t) = a_0 + a_1 dn^2(\kappa(x-ct),k), \qquad
@@ -296,7 +296,7 @@ h_t + (hu)_x = 0 \\
 	\caption{Évolution de $u$ pour la solution solitaire des équations de Serre. Comparaison entre la solution analytique (en rouge) et les solutions données par les modèles de Serre (en bleu) et les NSWE (en vert).  \label{fig:solitaryu}}
 \end{figure}
 
-\indent On peut observer très clairement les effets du pas de dispersion sur la solution donnée par les NSWE. Le premier pas des équations de Serre splittées cause la formation de chocs. Par ailleurs, comme le schéma de volumes finis implémenté n'utilise pas des limiteurs, les discontinuités ne sont pas bien traitées, ce qui provoque les grandes déformations de la solution dans des instants plus avancées, comme montrent les dernières images dans les figures \ref{fig:cnoidalh} et \ref{fig:cnoidalu}. En revanche, dans la résolution des équations de Serre, le pas de dispersion fait une "correction" de la formation du choc, et la forme de la solution analytique est préservée.
+\indent On peut observer très clairement les effets du pas de dispersion sur la solution donnée par les NSWE. Le premier pas des équations de Serre splittées cause la formation de chocs. Par ailleurs, comme le schéma de volumes finis implémenté n'utilise pas des limiteurs, les discontinuités ne sont pas bien traitées, ce qui provoque de grandes déformations de la solution dans des instants plus avancées, comme montrent les dernières images dans les figures \ref{fig:cnoidalh} et \ref{fig:cnoidalu}. En revanche, dans la résolution des équations de Serre, le pas de dispersion fait une "correction" de la formation du choc, et la forme de la solution analytique est préservée.
 
 \indent Ainsi, ces exemples numériques valident notre implémentation des équations de Serre. On remarque également que, aussi comme la forme, l'amplitude de la solution est bien préservée, avec une petite réduction. En fait, cet résultat a été obtenu seulement avec le schéma de volumes finies d'ordre 4. Au début, on a implémenté des schémas d'ordre 1 et 2, avec lesquels la réduction de l'amplitude était beaucoup plus importante (malgré la préservation de la forme), comme montre, à titre d'exemple, la figure \ref{fig:cnoidalhOrdre2}:
 

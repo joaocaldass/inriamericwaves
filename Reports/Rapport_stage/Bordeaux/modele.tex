@@ -26,7 +26,7 @@
 \noindent où \(\nabref\) est le gradient par rapport aux coordonnées de référence et \(\omega\) est une fonction de \(\vecx\) qui contient l'information qui déterminera le mouvement des noeuds. Dans le travail développé au cours du stage, on a implémenté deux modèles différents pour le calcul de cette fonction : 
 
 \begin{enumerate}
-	\item Dans un première moment, on a implémenté le modèle utilisé dans \cite{arpaia} : en supposant qu'on fait l'adaptation par rapport à une fonction \(u\), \(\omega\) est donné par l'expression
+	\item Dans un premier moment, on a implémenté le modèle utilisé dans \cite{arpaia} : en supposant qu'on fait l'adaptation par rapport à une fonction \(u\), \(\omega\) est donné par l'expression
 
 	\begin{equation*}
   		\omega(\vecx) = \sqrt{1 + \alpha ||\nabref u(\vecx)|| + \beta ||H(u)(\vecx)||}
@@ -111,7 +111,7 @@
   k_{ij} = \iDomh{ \omega \nabref \phii \cdot \nabref \phij }
 \end{equation}
 
-\indent On propose une méthode itérative pour la résolution de ces systèmes linéaires, comme est décrit dans la sous-section \ref{subsec:jacobi}. 
+\indent On propose une méthode itérative pour la résolution de ces systèmes linéaires, comme décrit dans la sous-section \ref{subsec:jacobi}. 
 
 \subsection{Quelques éléments pour le calcul de \(K\)}
 \label{subsec:calculK}
@@ -144,11 +144,11 @@
 \end{gathered}
 \end{equation}
 
-\indent \textbf{Remarque 1} : comme montre le développement du modèle fait ci-dessus, le calcul de l'intégrale qui donne les éléments de la matrice \(K\) est fait \textbf{toujours sur le maillage de référence}, ce qui implique que, dans \eqref{eq:calculK_2d}, on utilise toujours les vecteurs normaux et les aires du maillage initial. Néanmoins, \textbf{la fonction \(\omega\) est actualisée à chaque itération dans le maillage physique}, afin de bien exprimer l'évolution du maillage au cours des itérations, indiquant si, dans ses nouvelles positions, les nœuds sont dans des régions de raffinement ou pas.
+\indent \textbf{Remarque 1} : comme montre le développement du modèle fait ci-dessus, le calcul de l'intégrale qui donne les éléments de la matrice \(K\) est \textbf{toujours fait sur le maillage de référence}, ce qui implique que, dans \eqref{eq:calculK_2d}, on utilise toujours les vecteurs normaux et les aires du maillage initial. Néanmoins, \textbf{la fonction \(\omega\) est actualisée à chaque itération dans le maillage physique}, afin de bien exprimer l'évolution du maillage au cours des itérations, indiquant si, dans leurs nouvelles positions, les nœuds sont dans des régions de raffinement ou pas.
 
 \indent
 
-\indent \textbf{Remarque 2} : Pour le calcul des éléments de \(K\), on a profité du fait que, dans la méthode d'éléments finis P1, on a \(k_{ij} = 0\) si les noeuds \(i\) et \(j\) n'appartient pas au même élément. Ainsi, la matrice est creuse, ce que nous a motivé à le stocker avec une structure adaptée (au lieu d'allouer une matrice de taille \(N \times N\)), afin de réduire la consommation d'espace mémoire, comme décrit ci-dessous : 
+\indent \textbf{Remarque 2} : Pour le calcul des éléments de \(K\), on a profité du fait que, dans la méthode d'éléments finis P1, on a \(k_{ij} = 0\) si les noeuds \(i\) et \(j\) n'appartient pas au même élément. Ainsi, la matrice est creuse, ce qui nous a motivé à le stocker avec une structure adaptée (au lieu d'allouer une matrice de taille \(N \times N\)), afin de réduire la consommation d'espace mémoire, comme décrit ci-dessous : 
 
 \input{Bordeaux/matriceCreuse}
 
@@ -156,7 +156,7 @@
 \subsection{Résolution du système linéaire}
 \label{subsec:jacobi}
 
-\indent Le système linéaire \eqref{eq:syst_final} est résolu de façon itérative, avec la méthode de Jacobi. Dans les tests, on utilise en général un nombre petit d'itérations (dix ou vingt), ce qui donne des bons résultats pour un temps de calcul raisonnable. La solution est calculée en terme des déplacements \(\vecdelta = \vecx - \vecxi\). Ainsi, on réécrit le système linéaire \eqref{eq:syst_final} sous la forme 
+\indent Le système linéaire \eqref{eq:syst_final} est résolu de façon itérative, avec la méthode de Jacobi. Dans les tests, on utilise en général un nombre petit d'itérations (dix ou vingt), ce qui donne de bons résultats pour un temps de calcul raisonnable. La solution est calculée en terme des déplacements \(\vecdelta = \vecx - \vecxi\). Ainsi, on réécrit le système linéaire \eqref{eq:syst_final} sous la forme 
 
 \begin{equation*}
 	Kx = K(x-\delta+\delta) = 0 \longrightarrow K\delta = -K\xi
@@ -184,4 +184,4 @@
 	\vecx^{[n+1]} = \vecx^{[n]} + \theta \left( \vecxi + \vecdelta^{[n+1]} - \vecx^{[n]} \right)
 \end{equation*} 
 
-\noindent avec \(\theta \in [0,1]\). La relaxation est ainsi appliquée sur la différence entre deux positions successives, non pas sur le déplacement par rapport à la position initiale, car dans ce cas-ci on peut avoir de "retours en arrière" des points du maillage.
+\noindent avec \(\theta \in [0,1]\). La relaxation est ainsi appliquée sur la différence entre deux positions successives, non pas sur le déplacement par rapport à la position initiale, car dans ce cas-ci on peut avoir des ``retours en arrière" des points du maillage.

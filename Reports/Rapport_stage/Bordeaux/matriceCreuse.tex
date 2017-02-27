@@ -22,9 +22,9 @@
 	\end{itemize}
 \end{itemize}
 
-\indent Le stockage ici proposé n'est pas optimal, car, dans des maillages non structurés, les noeuds n'ont pas tous le même nombre de voisins. Par ailleurs, les \(\Nn+1\) premier éléments de \(A\) et les \(\Nn\) premiers éléments de \(\Ks\) ne sont pas utilisés, pour être en concordance avec les conventions d'index utilisés dans la bibliothèque \emph{MMG} (la bibliothèque contenant le structure de maillage utilisée dans \emph{FMG}). Néanmoins, par rapport au stockage de la matrice complète, on vérifie des très grandes avantages : 
+\indent Le stockage ici proposé n'est pas optimal, car, dans des maillages non structurés, les noeuds n'ont pas tous le même nombre de voisins. Par ailleurs, les \(\Nn+1\) premier éléments de \(A\) et les \(\Nn\) premiers éléments de \(\Ks\) ne sont pas utilisés, pour être en concordance avec les conventions d'index utilisés dans la bibliothèque \emph{MMG} (la bibliothèque contenant le structure de maillage utilisée dans \emph{FMG}). Néanmoins, par rapport au stockage de la matrice complète, on vérifie de très grands avantages : 
 
 \begin{itemize}
-	\item Par exemple, dans un test avec environ \(28000\) noeuds et 165 mille élements non nulles dans la matrice \(K\), on passe d'un stockage de 783 million de doubles (soit 0.02\% d'utilisation) à un stockage de 308 mille doubles (soit 54\% d'utilisation) et 336 mille entiers, avec un considérable gain en temps d'exécution.
-	\item On observe aussi des gains en temps d'exécution du programme. Dans la formulation originale, sans garder les index des voisins de chaque noeud, il faut appeler une fonction qui retourne la liste de voisins. Cet appel est fait une fois par itération pour chaque noeud, lors de la résolution du système linéaire.
+	\item Par exemple, dans un test avec environ \(28000\) noeuds et 165 mille éléments non nuls dans la matrice \(K\), on passe d'un stockage de 783 millions de doubles (soit 0.02\% d'utilisation) à un stockage de 308 mille doubles (soit 54\% d'utilisation) et 336 mille entiers, avec un gain considérable en temps d'exécution.
+	\item On observe aussi des gains en temps d'exécution du programme. Dans la formulation originale, sans garder les index des voisins de chaque noeud, il faut appeler une fonction qui renvoie la liste de voisins. Cet appel est fait une fois par itération pour chaque noeud, lors de la résolution du système linéaire.
 \end{itemize}
