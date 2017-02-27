@@ -18,11 +18,11 @@
 
 \indent The ASM is a modification, proposed by \cite{Lions1988}, of the original (Alternating or Multiplicative) Schwarz Method, in which the IBCs are constructed using always the most updated solution of the neighbor domains. This modification originates an inherently parallel algorithm, which one naturally implements with parallel computing. The advantages obtained with the parallelism become more evident when the number of subdomains increases \cite{Lions1988}.
 
-\indent In \eqref{eq:genericIBC}, $\mathcal{B}_i$ denotes the operator of the IBC. This operator allows the construction of of more general Schwarz methods : in the original one, the IBC's are Dirichlet conditions (\emph{i.e.}, $\mathcal{B}_i(u) = u$  ) \cite{Japhet2003,Lions1990}.
+\indent In \eqref{eq:genericIBC}, $\mathcal{B}_i$ denotes the operator of the IBC. This operator allows the construction of of more general Schwarz methods: in the original one, the IBC's are Dirichlet conditions (\emph{i.e.}, $\mathcal{B}_i(u) = u$  ) \cite{Japhet2003,Lions1990}.
 
 \indent Without loss of generality, in the following we will consider a domain $\Omega$ decomposed in two non-overlapping subdomains, $\Omega_1$ and $\Omega_2$, with $\Gamma = \Omega_1 \bigcap \Omega_2$.
 
-\indent When implementing a Schwarz methods, one must define appropriate operators $\mathcal{B}_i$ such that :
+\indent When implementing a Schwarz methods, one must define appropriate operators $\mathcal{B}_i$ such that:
 
 \begin{itemize}
 \begingroup \item There is a unique solution $u_i$ in each subdomain $\Omega_i$; \endgroup
@@ -58,7 +58,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 \end{cases}
 \end{equation*}
 
-\indent The ASM using such exact TBCs is optimal in the sense that it converges in two iterations, and no other ASM can converge faster \cite{Japhet2003}. Nevertheless, these TBC, in general, are not simple to compute both analtically and numerically. More specifically, they are nonlocal in time, so they must be approximated for an efficient numerical implementation \cite{Xavieretal2008}. \deleted{It is in this context that we propose the implementation of our approximate TBCs as interface boundary conditions for the ASM.} \added{These facts motivate us to implement the operators \eqref{eq:appDiscTBCP0} as interface boundary conditions for the ASM : they were derived based on the exact TBCs for the equation \eqref{eq:DKdV}, but, on the other hand, they are very simple to compute.}
+\indent The ASM using such exact TBCs is optimal in the sense that it converges in two iterations, and no other ASM can converge faster \cite{Japhet2003}. Nevertheless, these TBC, in general, are not simple to compute both analtically and numerically. More specifically, they are nonlocal in time, so they must be approximated for an efficient numerical implementation \cite{Xavieretal2008}. \deleted{It is in this context that we propose the implementation of our approximate TBCs as interface boundary conditions for the ASM.}\added{These facts motivate us to implement the operators \eqref{eq:appDiscTBCP0} as interface boundary conditions for the ASM: they were derived based on the exact TBCs for the equation \eqref{eq:DKdV}, but, on the other hand, they are very simple to compute.}
 
 \subsection{ASM with the \deleted{approximate TBCs for the dispersion equation}\added{proposed IBCs}}
 
@@ -122,7 +122,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 %\indent From here to the end of this paper, we will focus exclusively on the error produced by the DDM, compared to the referential solution, independently of the other possible components of the error compared to the analytical solution (external boundary conditions, error accumulation over the time steps, for example, as discussed in the introduction. 
 
-\indent As the following study will be made considering the execution of the method over only one time step, we can suppress the index denoting the instant $t_n$ and use a clearer notation for the solution : $u_j^i$, where $i$ indicates the subdomain $\Omega_i$ (or, in the case of the reference solution, $i = ref$, and in the convergence of the method, $i = *$) and $j$ indicates the spatial discrete position. In the cases where the iterative process is taken into account, we will add the superscript $k$ to indicate the iteration.
+\indent As the following study will be made considering the execution of the method over only one time step, we can suppress the index denoting the instant $t_n$ and use a clearer notation for the solution: $u_j^i$, where $i$ indicates the subdomain $\Omega_i$ (or, in the case of the reference solution, $i = ref$, and in the convergence of the method, $i = *$) and $j$ indicates the spatial discrete position. In the cases where the iterative process is taken into account, we will add the superscript $k$ to indicate the iteration.
 
 \indent Concerning the spatial discretization, the monodomain $\Omega$ will be divided in $2N + 1$ homogeneously distributed points, numbered from $0$ to $2N$. In all the analytical description, we will consider that the two subdomains $\Omega_1$ and $\Omega_2$ have the same number of points, respectively $x_0,...,x_N$ and $x_N,...,x_{2N}$. The interface point $x_N$ is common to the two domains, having different computed solutions $u_N^1$ and $u_N^2$ in each one of them. Evidently, we expect, at the convergence of the ASM, that $u_N^1 = u_N^2 = u_N^*$
 
@@ -137,7 +137,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \noindent which is valid for $j=2,...,N-2$ in the case $i=1$; for $j=N+2,...,2N-2$ in the case $i=2$; and for $j=2,...,2N-2$ in the case $i=ref$. In the above expression, $\alpha_j^i$ is a given data (for example, the converged solution in the previous time step).
 
-\indent For the points near the boundaries, we use second order uncentered discretizations or \deleted{an approximate TBC} \added{the appropriate boundary condition}. Considering that one \deleted{TBC} \added{boundary condition} is written for the left boundary and two for the right one, we have to impose an uncentered discretization only for the second leftmost point of the domain. For example, for the point $x_1$ : 
+\indent For the points near the boundaries, we use second order uncentered discretizations or\deleted{an approximate TBC} \added{the appropriate boundary condition}. Considering that one \deleted{TBC}\added{boundary condition} is written for the left boundary and two for the right one, we have to impose an uncentered discretization only for the second leftmost point of the domain. For example, for the point $x_1$ : 
 
 \begin{equation*}
     %\label{eq:uncenteredFDdiscretization0}
@@ -150,7 +150,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \paragraph{Remark : modification of the reference solution}
 
-\indent  Even if the DDM with the proposed interface boundary conditions is compatible with the monodomain problem (which we will see that is not the case), the solution of the DDM does not converge exactly to $u^{ref}$, for a reason that does not depend on the expression of the IBCs, but on the fact that for each domain we write two boundary conditions in the left boundary and only one on the right. We are using a second order centered discretization for the third spatial derivative (which uses a stencil of two points in each side of the central point), implying that we must write an uncentered discretization for the point $x_{N+1}$ when solving the problem in $\Omega_2$. Therefore, this point does not satisfy the same discrete equation as in the reference problem. In order to avoid this incompatibility and allow us to study the behavior of the DDM, we will modify the discretization for the point $u_{N+1}$ in the monodomain problem, using the same second-order uncentered expression :
+\indent  Even if the DDM with the proposed interface boundary conditions is compatible with the monodomain problem (which we will see that is not the case), the solution of the DDM does not converge exactly to $u^{ref}$, for a reason that does not depend on the expression of the IBCs, but on the fact that for each domain we write two boundary conditions in the right boundary and only one on the left boundary. We are using a second order centered discretization for the third spatial derivative (which uses a stencil of two points in each side of the central point), implying that we must write an uncentered discretization for the point $x_{N+1}$ when solving the problem in $\Omega_2$. Therefore, this point does not satisfy the same discrete equation as in the reference problem. In order to avoid this incompatibility and allow us to study the behavior of the DDM, we will modify the discretization for the point $u_{N+1}$ in the monodomain problem, using the same second-order uncentered expression :
 
 \begin{equation*}
     %\label{eq:uncenteredFDdiscretizationN}
@@ -255,7 +255,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \subsection{Corrections for the approximate IBCs}
 
-\indent When using approximate \deleted{TBCs} \added{IBCs} in the ASM, one should guarantee that the converged solutions $u^*$ satisfy the same equation as the solution $u_{ref}$ of the monodomain problem. Nevertheless, one can easily see that, in the convergence, the solution $u^*$ does not satisfy the discrete equation \eqref{eq:FDdiscretization} on the points where the IBCs are imposed (the poins $x_{N-1},x_N \in \Omega_1$ and $x_N \in \Omega_2$). 
+\indent When using approximate\deleted{TBCs} \added{IBCs} in the ASM, one should guarantee that the converged solutions $u^*$ satisfy the same equation as the solution $u_{ref}$ of the monodomain problem. Nevertheless, one can easily see that, in the convergence, the solution $u^*$ does not satisfy the discrete equation \eqref{eq:FDdiscretization} on the points where the IBCs are imposed (the poins $x_{N-1},x_N \in \Omega_1$ and $x_N \in \Omega_2$). 
 
 \indent As pointed out by \cite{Gander2001}, a finite difference discretization of the IBCs requires a special treatment to be consistent with the monodomain discretization. Therefore, we will formulate modified \deleted{TBCs} \added{IBCs} for the ASM in order to avoid this problem:
 
@@ -421,7 +421,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 	c_{opt}(\Delta t, \Delta x) = \kappa + \alpha (\Delta t)^{\frac{2}{3}} + \beta \frac{1}{\Delta x} + \gamma   \frac{(\Delta t)^{\frac{2}{3}}}{\Delta x}
 \end{equation*}
 
-\indent A regression using the corners of the rectangle $[0.001,0.1]\times[\frac{12}{100},\frac{12}{1000}]$ and fifteen inner points gives the surfaces
+\indent A regression using the corners of the rectangle $[0.001,0.1]\times[12/100,12/1000]$ and fifteen inner points gives the surfaces
 
 \begin{gather}
 	c_{opt}^+(\Delta t, \Delta x) = 0.0775 -0.3353 (\Delta t)^{\frac{2}{3}} - 0.0012 \frac{1}{\Delta x} + 2.7407   \frac{(\Delta t)^{\frac{2}{3}}}{\Delta x} 	\label{eq:regression2DPos} \\
@@ -442,7 +442,7 @@ v = \alpha \ \ \text{on} \ \ \Gamma
 
 \subsection{Partial conclusion}
  
-\indent The results presented in this section show that the domain decomposition method proposed here, consisting in the additive Schwarz method with our \deleted{approximate TBCs} \added{proposed interface conditions}, is able to provide a fast convergence toward the solution of the monodomain problem. Furthermore, using the corrected \deleted{TBCs} \added{IBCs} \eqref{eq:correctedTBC}, this convergence is exact. Therefore, we reached our goals of solving the dispersion equation in a finite domain divided in two subdomains.
+\indent The results presented in this section show that the domain decomposition method proposed here, consisting in the additive Schwarz method with our \deleted{approximate TBCs} \added{proposed interface conditions}, is able to provide a fast convergence toward the solution of the monodomain problem. Furthermore, using the corrected\deleted{TBCs} \added{IBCs} \eqref{eq:correctedTBC}, this convergence is exact. Therefore, we reached our goals of solving the dispersion equation in a finite domain divided in two subdomains.
 
 \indent Moreover, the results of the optimization tests are very satisfying regarding a more general application of our method. Firstly, for fixed spatial and temporal discretizations, we obtained optimal coefficients for the method independently of the initial solution and the size of the subdomains (\emph{i.e.}, independently of the initial instant and the position of the interface). Secondly, we obtained good regression expressions for the optimal coefficient as function of $\Delta t$ and $\Delta x$, which could allow the application of the model, with fast convergence, in other computational frameworks.
 

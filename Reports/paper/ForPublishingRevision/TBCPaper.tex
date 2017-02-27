@@ -3,7 +3,7 @@
 
 \subsection{The exact TBCs for the continuous equation}
 
-\indent In \cite{besse2015}, transparent boundary conditions (TBCs) are derived for the one-dimensional continuous linearized KdV equation (or Airy equation) :
+\indent In \cite{besse2015}, transparent boundary conditions (TBCs) are derived for the one-dimensional continuous linearized KdV equation (or Airy equation):
 
 \begin{equation}
  	\label{eq:LKdV}
@@ -46,7 +46,7 @@
 
 \indent The computation of the TBCs \eqref{eq:continuousTBC} is not simple due to the inverse Laplace transform, which makes these conditions nonlocal in time. Therefore, we will propose approximations of the root \eqref{eq:lambda} that avoid integrations in time, making the \deleted{TBCs} \added{operators} considerably simpler.
 
-\indent Obviously, as we can see through the results shown in this section, \deleted{the approximate boundary conditions are not as accurate as the ones} \added{when playing the role of transparent boudnary conditions, these operators are not as accurate as the approximate TBCs} proposed by \cite{besse2015} (who derives TBCs derived for the discrete linearized KdV equation). Nevertheless, the objectives of our work and the work of \cite{besse2015} are very different: while they seek to minimize the error of the computed solution (compared to the analytical one) due to the boundary conditions, we want here to apply our \deleted{approximate TBCs} \added{operators} as interface boundary conditions (IBCs) in a domain decomposition method (DDM). Therefore, our objective lays on the convergence of the DDM to the solution of the same problem in the monodomain, independently of the errors on the external boundaries. 
+\indent Obviously, as we can see through the results shown in this section, \deleted{the approximate boundary conditions are not as accurate as the ones}\added{when playing the role of transparent boundary conditions, these operators are not as accurate as the approximate TBCs} proposed by \cite{besse2015} (who derives TBCs for the discrete linearized KdV equation). Nevertheless, the objectives of our work and the work of \cite{besse2015} are very different: while they seek to minimize the error of the computed solution (compared to the analytical one) due to the boundary conditions, we want here to apply our \deleted{approximate TBCs} \added{operators} as interface boundary conditions (IBCs) in a domain decomposition method (DDM). Therefore, our objective lays on the convergence of the DDM to the solution of the same problem in the monodomain, independently of the errors on the external boundaries. 
 
 \indent We will use the constant polynomial $P_0(s) = c$ for approximating $\lambda^2/s$. Moreover, as a consequence of \eqref{eq:lambda}, we can approximate the other operands of the inverse Laplace transforms in \eqref{eq:continuousTBC} only in function of $c$ :
 
@@ -82,7 +82,7 @@
 
 \added{\indent We also remark that \eqref{eq:appTBCP0} are mixed-type boundary conditions (up to the second derivative of the solution), which we will apply as interface boundary conditions in a domain decomposition method and we will seek to optimize in order to accelerate the convergence of this method. The idea of using optimized boundary conditions in DDMs was already explored in \cite{Halpern2008}, in the context of the Schrödinger equation.}
 
-\indent Considering a discrete domain with mesh size $\Delta x$ and points $x_0, ..., x_N$ and using some finite difference approximations, the \deleted{approximate TBCs} \added{operators} (\ref{eq:appTBCP0}) are discretized as
+\indent Considering a discrete domain with mesh size $\Delta x$ and points $x_0, ..., x_N$ and using some finite difference approximations, the\deleted{approximate TBCs} \added{operators} (\ref{eq:appTBCP0}) are discretized as
 
 \begin{equation}
 \label{eq:appDiscTBCP0}
@@ -93,7 +93,7 @@
     \end{gathered}
 \end{equation}
 
-\indent In order to illustrate the results provided by these approximations, we briefly present some numerical tests with the same problem solved by \cite{zheng2008} and \cite{besse2015}, given by \eqref{eq:testCaseBesse1}-\eqref{eq:testCaseBesse3} and for which the exact solution is given by \eqref{eq:exactSolution} :
+\indent In order to illustrate the results provided by these approximations, we briefly present some numerical tests with the same problem solved by \cite{zheng2008} and \cite{besse2015}, given by \eqref{eq:testCaseBesse1}-\eqref{eq:testCaseBesse3} and for which the exact solution is given by \eqref{eq:exactSolution}:
 
 \begin{subnumcases}{}
  u_t + u_{xxx} = 0, \ \ x \in \mathbb{R} \label{eq:testCaseBesse1} \\
@@ -156,8 +156,6 @@
 \end{tabular}
 \captionof{table}{Best results (smallest $e_{L2}$) for the constant polynomial approximation \label{tab:firstTestsP0}}
 \end{center}
-
-\subsection{Partial conclusion}
 
 \deleted{
 \indent It must be clear that our approach does not provide better transparent boundary conditions than the one proposed by \cite{besse2015}, what, as discussed in the introduction of this paper, is not the objective of the work developed here. Indeed, \cite{besse2015} derives TBCs for two discrete schemes, and the worst result among them, using the same $\Delta x $ and $\Delta t$ that we used here, presents an error $e_{L2} \approx 0.005$ for $t = 4$, while our best result has $e_{L2} \approx 0.1$ for the same instant. Nevertheless, considering that our main goal is the application of \deleted{the TBCs} \added{operators} to a domain decomposition method, we focus in minimizing the error due to the interface boundary conditions imposed in this kind of method, and not in the errors due to the external boundary conditions. For this same reason, we did not attempt to optimize the \added{operators in the role of} approximated TBCs (by finding the coefficients that provide the smallest error), and we performed tests only over a small set of possible coefficients, allowing us to observe the general behaviour of our approach. An optimization of the IBCs will be made in the next section, in the context of the domain decomposition methods.  } %deleted

@@ -1,48 +1,49 @@
 This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: mainPaper.aux
-The style file: spmpsci.bst
+The style file: model1b-num-names.bst
 Database file #1: biblioPaper.bib
-Warning--can't use both author and editor fields in Halpern2008
+Warning--empty journal in Lions1988
+Warning--empty journal in Lions1990
 You've used 12 entries,
-            2946 wiz_defined-function locations,
-            700 strings with 7979 characters,
-and the built_in function-call counts, 9615 in all, are:
-= -- 1121
-> -- 202
-< -- 5
-+ -- 123
-- -- 68
-* -- 439
-:= -- 952
-add.period$ -- 22
+            2611 wiz_defined-function locations,
+            669 strings with 7508 characters,
+and the built_in function-call counts, 7590 in all, are:
+= -- 543
+> -- 305
+< -- 11
++ -- 114
+- -- 102
+* -- 937
+:= -- 1101
+add.period$ -- 14
 call.type$ -- 12
-change.case$ -- 72
-chr.to.int$ -- 0
-cite$ -- 13
-duplicate$ -- 1069
-empty$ -- 603
-format.name$ -- 80
-if$ -- 2012
-int.to.chr$ -- 0
-int.to.str$ -- 12
-missing$ -- 125
-newline$ -- 65
-num.names$ -- 30
-pop$ -- 404
+change.case$ -- 98
+chr.to.int$ -- 12
+cite$ -- 14
+duplicate$ -- 532
+empty$ -- 506
+format.name$ -- 142
+if$ -- 1389
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 115
+newline$ -- 42
+num.names$ -- 56
+pop$ -- 110
 preamble$ -- 1
-purify$ -- 53
+purify$ -- 89
 quote$ -- 0
-skip$ -- 532
+skip$ -- 178
 stack$ -- 0
-substring$ -- 443
-swap$ -- 899
+substring$ -- 356
+swap$ -- 495
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 46
-warning$ -- 1
-while$ -- 49
-width$ -- 14
-write$ -- 143
-(There was 1 warning)
+type$ -- 108
+warning$ -- 2
+while$ -- 54
+width$ -- 0
+write$ -- 145
+(There were 2 warnings)

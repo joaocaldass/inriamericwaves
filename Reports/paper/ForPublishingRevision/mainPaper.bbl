@@ -1,89 +1,100 @@
-\begin{thebibliography}{10}
-\providecommand{\url}[1]{{#1}}
-\providecommand{\urlprefix}{URL }
-\expandafter\ifx\csname urlstyle\endcsname\relax
-  \providecommand{\doi}[1]{DOI~\discretionary{}{}{}#1}\else
-  \providecommand{\doi}{DOI~\discretionary{}{}{}\begingroup
-  \urlstyle{rm}\Url}\fi
-
-\bibitem{Xavieretal2008}
-Antoine, X., Arnold, A., Besse, C., Ehrhardt, M., Schädle, C.: {A review of
-  Transparent Boundary Conditions or linear and nonlinear Schrödinger
-  equations}.
-\newblock {Communications in Compuational Physics} \textbf{4}(4), {729--796}
-  (2008)
-
-\bibitem{BBM1971}
-Benjamin, T.B., Bona, J.L., Mahony, J.J.: Model equations for long waves in
-  nonlinear dispersive systems.
-\newblock Philosophical Transactions of the Royal Society of London. Series A,
-  Mathematical and Physical Sciences \textbf{272}(1220), 47--78 (1972).
-\newblock \urlprefix\url{http://www.jstor.org/stable/74079}
-
-\bibitem{besse2015}
-Besse, C., Ehrhardt, M., Lacroix-Violet, I.: {Discrete Artificial Boundary
-  Conditions for the Korteweg-de Vries Equation} (2015).
-\newblock \urlprefix\url{https://hal.archives-ouvertes.fr/hal-01105043}.
-\newblock Working paper or preprint
-
-\bibitem{Blayo2007}
-Blayo, E., Halpern, L., Japhet, C.: {Optimized Schwarz waveform relaxation
-  algorithms with nonconforming time discretization for coupling
-  convection-diffusion problems with discontinuous coefficients}.
-\newblock In: O.B. Widlund, W.~Zulehner (eds.) {Domain Decomposition Methods in
-  Science and Engineering XVI}, \emph{Lecture Notes in Computational Science
-  and Engineering}, vol.~55, pp. 267--274. {Springer Verlag} (2007).
-\newblock \doi{10.1007/978-3-540-34469-8\_31}.
-\newblock \urlprefix\url{https://hal.inria.fr/inria-00187555}
-
-\bibitem{Gander2008}
-Gander, M.J.: {Schwarz methods over the course of time.}
-\newblock ETNA. Electronic Transactions on Numerical Analysis [electronic only]
-  \textbf{31}, 228--255 (2008).
-\newblock \urlprefix\url{http://eudml.org/doc/130616}
-
-\bibitem{Gander2001}
-Gander, M.J., Halpern, L., Nataf, F.: {Internal report no 469 - Optimal Schwarz
-  waveform relaxation for the one dimensional wave equation}.
-\newblock Tech. rep., {École Polytéchnique - Centre de Mathématiques
-  Appliquées} (2001)
-
-\bibitem{Halpern2008}
-Halpern, L., Szeftel, J.: Optimized and Quasi-optimal Schwarz Waveform
-  Relaxation for the One Dimensional Schr{\"o}dinger Equation, pp. 221--228.
-\newblock Springer Berlin Heidelberg, Berlin, Heidelberg (2008).
-\newblock \doi{10.1007/978-3-540-75199-1_24}.
-\newblock \urlprefix\url{http://dx.doi.org/10.1007/978-3-540-75199-1_24}
-
-\bibitem{Japhet2003}
-Japhet, C., Nataf, F.: {The best interface conditions for Domain Decompostion
-  methods : Absorbing Boundary Conditions}.
-\newblock {http://www.ann.jussieu.fr/~nataf/chapitre.pdf}
-
-\bibitem{kdv1895}
-Korteweg, D.J., de~Vries, G.: On the change of form of long waves advancing in
-  a rectangular canal and on a new type of long stationary waves.
-\newblock {Philosophical Magazine} \textbf{5}(39), 422–443 (1895)
-
-\bibitem{Lions1988}
-Lions, P.L.: {On the Schwarz alternating method.I}.
-\newblock In: R.Glowinski, G.Golub, G.Meurant, J.Périaux (eds.) {Proceedings
-  of the First International Symposium on Domain Decomposition Methods for
-  Partial Differential Equations}, pp. 1--42 (1988)
-
-\bibitem{Lions1990}
-Lions, P.L.: {On the Schwarz alternating method III: a variant for
-  nonoverlapping sub-domains}.
-\newblock In: T.~Chan, R.~Glowinski, J.~Périaux, O.~Widlund (eds.)
-  {Proceedings of the Third International Conference on Domain Decomposition
-  Methods}, p. 202–223 (1990)
-
-\bibitem{zheng2008}
-Zheng, C., Wen, X., Han, H.: Numerical solution to a linearized kdv equation on
-  unbounded domain.
-\newblock Numerical Methods for Partial Differential Equations \textbf{24}(2),
-  383--399 (2008).
-\newblock \doi{10.1002/num.20267}.
-\newblock \urlprefix\url{http://dx.doi.org/10.1002/num.20267}
+\begin{thebibliography}{12}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Article
+\bibitem[{Antoine et~al.(2008)Antoine, Arnold, Besse, Ehrhardt and
+  Schädle}]{Xavieretal2008}
+\bibinfo{author}{X.~Antoine}, \bibinfo{author}{A.~Arnold},
+  \bibinfo{author}{C.~Besse}, \bibinfo{author}{M.~Ehrhardt},
+  \bibinfo{author}{C.~Schädle}, \bibinfo{title}{{A review of Transparent
+  Boundary Conditions or linear and nonlinear Schrödinger equations}},
+  \bibinfo{journal}{{Communications in Compuational Physics}}
+  \bibinfo{volume}{4} (\bibinfo{year}{2008}) \bibinfo{pages}{{729--796}}.
+%Type = Article
+\bibitem[{Benjamin et~al.(1972)Benjamin, Bona and Mahony}]{BBM1971}
+\bibinfo{author}{T.B. Benjamin}, \bibinfo{author}{J.L. Bona},
+  \bibinfo{author}{J.J. Mahony}, \bibinfo{title}{Model equations for long waves
+  in nonlinear dispersive systems}, \bibinfo{journal}{Philosophical
+  Transactions of the Royal Society of London. Series A, Mathematical and
+  Physical Sciences} \bibinfo{volume}{272} (\bibinfo{year}{1972})
+  \bibinfo{pages}{47--78}.
+%Type = Unpublished
+\bibitem[{Besse et~al.(2015)Besse, Ehrhardt and Lacroix-Violet}]{besse2015}
+\bibinfo{author}{C.~Besse}, \bibinfo{author}{M.~Ehrhardt},
+  \bibinfo{author}{I.~Lacroix-Violet}, \bibinfo{title}{{Discrete Artificial
+  Boundary Conditions for the Korteweg-de Vries Equation}},
+  \bibinfo{year}{2015}. \bibinfo{note}{Working paper or preprint}.
+%Type = Incollection
+\bibitem[{Blayo et~al.(2007)Blayo, Halpern and Japhet}]{Blayo2007}
+\bibinfo{author}{E.~Blayo}, \bibinfo{author}{L.~Halpern},
+  \bibinfo{author}{C.~Japhet}, \bibinfo{title}{{Optimized Schwarz waveform
+  relaxation algorithms with nonconforming time discretization for coupling
+  convection-diffusion problems with discontinuous coefficients}}, in:
+  \bibinfo{editor}{O.B. Widlund}, \bibinfo{editor}{W.~Zulehner} (Eds.),
+  \bibinfo{booktitle}{{Domain Decomposition Methods in Science and Engineering
+  XVI}}, volume~\bibinfo{volume}{55} of \textit{\bibinfo{series}{Lecture Notes
+  in Computational Science and Engineering}}, \bibinfo{publisher}{{Springer
+  Verlag}}, \bibinfo{year}{2007}, pp. \bibinfo{pages}{267--274}.
+%Type = Article
+\bibitem[{Gander(2008)}]{Gander2008}
+\bibinfo{author}{M.J. Gander}, \bibinfo{title}{{Schwarz methods over the course
+  of time.}}, \bibinfo{journal}{ETNA. Electronic Transactions on Numerical
+  Analysis [electronic only]} \bibinfo{volume}{31} (\bibinfo{year}{2008})
+  \bibinfo{pages}{228--255}.
+%Type = Techreport
+\bibitem[{Gander et~al.(2001)Gander, Halpern and Nataf}]{Gander2001}
+\bibinfo{author}{M.J. Gander}, \bibinfo{author}{L.~Halpern},
+  \bibinfo{author}{F.~Nataf}, \bibinfo{title}{{Internal report no 469 - Optimal
+  Schwarz waveform relaxation for the one dimensional wave equation}},
+  \bibinfo{type}{Technical Report}, {École Polytéchnique - Centre de
+  Mathématiques Appliquées}, \bibinfo{year}{2001}.
+%Type = Incollection
+\bibitem[{Halpern and Szeftel(2008)}]{Halpern2008}
+\bibinfo{author}{L.~Halpern}, \bibinfo{author}{J.~Szeftel},
+  \bibinfo{title}{Optimized and quasi-optimal schwarz waveform relaxation for
+  the one dimensional schr{\"o}dinger equation}, in:
+  \bibinfo{editor}{U.~Langer}, \bibinfo{editor}{M.~Discacciati},
+  \bibinfo{editor}{D.E. Keyes}, \bibinfo{editor}{O.B. Widlund},
+  \bibinfo{editor}{W.~Zulehner} (Eds.), \bibinfo{booktitle}{Domain
+  Decomposition Methods in Science and Engineering XVII},
+  \bibinfo{publisher}{Springer Berlin Heidelberg}, \bibinfo{address}{Berlin,
+  Heidelberg}, \bibinfo{year}{2008}, pp. \bibinfo{pages}{221--228}.
+%Type = Unpublished
+\bibitem[{Japhet and Nataf(2003)}]{Japhet2003}
+\bibinfo{author}{C.~Japhet}, \bibinfo{author}{F.~Nataf}, \bibinfo{title}{{The
+  best interface conditions for Domain Decompostion methods : Absorbing
+  Boundary Conditions}}, \bibinfo{year}{2003}.
+  \bibinfo{note}{{https://www.ljll.math.upmc.fr/~nataf/chapitre.pdf}}.
+%Type = Article
+\bibitem[{Korteweg and de~Vries(1895)}]{kdv1895}
+\bibinfo{author}{D.J. Korteweg}, \bibinfo{author}{G.~de~Vries},
+  \bibinfo{title}{On the change of form of long waves advancing in a
+  rectangular canal and on a new type of long stationary waves},
+  \bibinfo{journal}{{Philosophical Magazine}} \bibinfo{volume}{5}
+  (\bibinfo{year}{1895}) \bibinfo{pages}{422–443}.
+%Type = Inproceedings
+\bibitem[{Lions(1988)}]{Lions1988}
+\bibinfo{author}{P.L. Lions}, \bibinfo{title}{{On the Schwarz alternating
+  method.I}}, in: \bibinfo{editor}{R.Glowinski}, \bibinfo{editor}{G.Golub},
+  \bibinfo{editor}{G.Meurant}, \bibinfo{editor}{J.Périaux} (Eds.),
+  \bibinfo{booktitle}{{Proceedings of the First International Symposium on
+  Domain Decomposition Methods for Partial Differential Equations}},
+  \bibinfo{publisher}{SIAM}, \bibinfo{year}{1988}, pp. \bibinfo{pages}{1--42}.
+%Type = Inproceedings
+\bibitem[{Lions(1990)}]{Lions1990}
+\bibinfo{author}{P.L. Lions}, \bibinfo{title}{{On the Schwarz alternating
+  method III: a variant for nonoverlapping sub-domains}}, in:
+  \bibinfo{editor}{T.~Chan}, \bibinfo{editor}{R.~Glowinski},
+  \bibinfo{editor}{J.~Périaux}, \bibinfo{editor}{O.~Widlund} (Eds.),
+  \bibinfo{booktitle}{{Proceedings of the Third International Conference on
+  Domain Decomposition Methods}}, p. \bibinfo{pages}{202–223}.
+%Type = Article
+\bibitem[{Zheng et~al.(2008)Zheng, Wen and Han}]{zheng2008}
+\bibinfo{author}{C.~Zheng}, \bibinfo{author}{X.~Wen}, \bibinfo{author}{H.~Han},
+  \bibinfo{title}{Numerical solution to a linearized kdv equation on unbounded
+  domain}, \bibinfo{journal}{Numerical Methods for Partial Differential
+  Equations} \bibinfo{volume}{24} (\bibinfo{year}{2008})
+  \bibinfo{pages}{383--399}.
 
 \end{thebibliography}

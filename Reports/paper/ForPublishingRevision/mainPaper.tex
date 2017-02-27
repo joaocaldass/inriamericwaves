@@ -1,11 +1,10 @@
-\documentclass[draft,smallcondensed]{svjour3}
-%\documentclass[12pt,a4paper]{article}
+\documentclass[preprint]{elsarticle}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage{changes}
+\usepackage[final]{changes}
 \usepackage[font=footnotesize]{caption}
 \usepackage{subcaption}  % for subfigure
 \usepackage{numprint} % round numbers
@@ -14,7 +13,6 @@
 \usepackage{indentfirst} % indent first line after section title
 \usepackage{breqn} %break inline equation
 \usepackage{tikz}
-%\usepackage{refcheck}
 \usepackage{cases} %numcases and subnumcases
 \usepackage[symbol]{footmisc}
 \usepackage[normalem]{ulem} %sout
@@ -22,29 +20,8 @@
 \providecolor{added}{rgb}{0,0,1}
 \providecolor{deleted}{rgb}{1,0,0}
 %% Change tracking with ulem
-\renewcommand{\added}[1]{{\color{added}{}#1}}
-\renewcommand{\deleted}[1]{{\color{deleted}\sout{#1}}}
-
-\title{Optimized Schwarz method for the linearized KdV equation}
-\date{Received: date / Accepted: date}
-%\author{Joao Guilherme Caldas Steinstraesser \protect\footnotemark[1]
-%	 \and Rodrigo Cienfuegos \protect\footnotemark[3]
-%	 \and José Daniel Galaz Mora \protect\footnotemark[3]
-%	 \and Antoine Rousseau \protect\footnotemark[2]     
-%}
-\author{Joao Guilherme Caldas Steinstraesser
-	 \and Rodrigo Cienfuegos
-	 \and José Daniel Galaz Mora
-	 \and Antoine Rousseau   
-}
-
-\institute{J. G. Caldas Steinstraesser 
-						\at MERIC, Marine Energy Research \& Innovation Center, Avda. Apoquindo 2827, Santiago, Chile
-						\\\email{joao.caldas@meric.cl}
-			\and 
-				R. Cienfuegos  \and  J. D. Galaz Mora \at Departamento de Ingeniería Hidráulica y Ambiental, Pontificia Universidad Católica de Chile, Av. Vicuña Mackenna 4680 - Macul, Santiago, Chile \\\email{racienfu@ing.puc.cl; jdgalaz@uc.cl}
-			\and A. Rousseau \at Inria and Inria Chile, Avda. Apoquindo 2827, Santiago, Chile		\\\email{antoine.rousseau@inria.fr}	
-			}
+%\renewcommand{\added}[1]{{\color{added}{}#1}}
+%\renewcommand{\deleted}[1]{{\color{deleted}\sout{#1}}}
 
 \captionsetup{compatibility=false}
 \captionsetup[subfigure]{labelformat=parens,labelsep=space,font = scriptsize}
@@ -56,14 +33,72 @@
 
 \renewcommand{\epsilon}{\varepsilon}
 
-\bibliographystyle{spmpsci}
+\bibliographystyle{model1b-num-names}
+
+
 
 \begin{document}
 
+\begin{frontmatter}
 
-\maketitle
+\title{Optimized Schwarz method for the linearized KdV equation}
+\date{Received: date / Accepted: date}
+%\author{Joao Guilherme Caldas Steinstraesser \protect\footnotemark[1]
+%	 \and Rodrigo Cienfuegos \protect\footnotemark[3]
+%	 \and José Daniel Galaz Mora \protect\footnotemark[3]
+%	 \and Antoine Rousseau \protect\footnotemark[2]     
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Applied Numerical Mathematics
+
+
+
+\author[meric]{Joao Guilherme Caldas Steinstraesser\corref{cor1}}
+\ead{joao.caldas@meric.cl}
+
+\author[puc]{Rodrigo Cienfuegos}
+\ead{racienfu@ing.puc.cl}
+
+\author[puc]{José Daniel Galaz Mora}
+\ead{jdgalaz@uc.cl}
+
+\author[inria]{Antoine Rousseau}
+\ead{antoine.rousseau@inria.fr}
+
+
+\cortext[cor1]{Corresponding author}
+
+\address[meric]{ MERIC, Marine Energy Research \& Innovation Center, Avda. Apoquindo 2827, Santiago, Chile}
+\address[puc]{Departamento de Ingeniería Hidráulica y Ambiental, Pontificia Universidad Católica de Chile, Av. Vicuña Mackenna 4680 - Macul, Santiago, Chile}
+\address[inria]{Inria and Inria Chile, Avda. Apoquindo 2827, Santiago, Chile}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\author{Joao Guilherme Caldas Steinstraesser
+%	 \and Rodrigo Cienfuegos
+%	 \and José Daniel Galaz Mora
+%	 \and Antoine Rousseau   
+%}
+%
+%\institute{J. G. Caldas Steinstraesser 
+%						\at MERIC, Marine Energy Research \& Innovation Center, Avda. Apoquindo 2827, Santiago, Chile
+%						\\\email{joao.caldas@meric.cl}
+%			\and 
+%				R. Cienfuegos  \and  J. D. Galaz Mora \at Departamento de Ingeniería Hidráulica y Ambiental, Pontificia Universidad Católica de Chile, Av. Vicuña Mackenna 4680 - Macul, Santiago, Chile \\\email{racienfu@ing.puc.cl; jdgalaz@uc.cl}
+%			\and A. Rousseau \at Inria and Inria Chile, Avda. Apoquindo 2827, Santiago, Chile		\\\email{antoine.rousseau@inria.fr}	
+%			}
+
+
 
 \input{abstractPaper}
+
+\end{frontmatter}
+
 
 \input{introPaperRevision}
 
@@ -72,6 +107,7 @@
 \input{conclusionPaper}
 \input{acknPaper}
 
+\section*{References}
 \bibliography{biblioPaper}
 \newpage
 \end{document}
