@@ -1,0 +1,98 @@
+﻿Review of APNUM-D-17-00138
+"Optimized Schwarz Waveform Relaxation method for the linearized KdV equation"
+submitted by Joao Guilherme Caldas Steinstraesser et al.
+
+MERIC, Marine Energy Research & Innovation Center, Avda. Apoquindo 2827,
+Santiago, Chile
+
+This manuscript proposes an  optimized SWR method for solving the
+linearized KdV equation with only the dispersive term, using simple interface
+operators.
+
+While this topic is original and also fits into the scope of APNUM,
+some major steps have to be undertaken before it make be accepted.
+
+Here are my concerns.
+
+1) It should not be an obstacle to include the advective term.
+   This would be the linear KdV equation and the title would be justified.
+   The whole text until (3) is already written for this linear KdV case.
+
+2) The literature is incomplete, articles on SWR after 2008, especially
+   using ABCs are missing,
+   
+e.g. C. Besse, F. Xing, Schwarz waveform relaxation method for one dimensional 
+     Schrödinger equation with general potential, Numerical Algorithms, 74(2), 393-426, 2017 
+
+  or the paper of    Antoine , Lorin, Bandrauk 2015
+
+3) Discretization of BCs (7) is not consistent. Please use one-sided
+ difference quotients to approximate the derivate appropriately.
+
+4) Figure 1: Plot errors and not the solution.
+   The Problem is how to select a -priorily c_R and c_L.
+   it makes no sense to optimize in advance on all possible settings to find some suitable constants.
+
+5) MAIN ISSUE which covers half the manuscript.
+   the authors consider the complex cubic root of the exact TBC and "approximate" it by a constant polynomial.
+   Then the constant is chosen according to minimizing the error for many choices of 
+discretization parameters. This simple brute force enumeration approach is not acceptable.
+E.g. changing the initial data also can lead to a different optimal constant "c".
+and if starting a new calculation you cannot first "optimize" the constants.
+E.g. in Ref. [1]  there are plenty of approximations to the  root operator presented.
+Already a simple (1,1) Pade approximant  would yield much better accuracy and also
+would not need an a-priori optimization of parameter "c" over all discretization parameters and "all" initial data, etc.
+Alternatively a fast convolution approach in the spirit proposed by Ivan Sofronov may be feasible
+to end up with an efficient implementation without any ambigious parameter.
+
+Also, in exising SWR literature, e.g. Besse & Xing , absorbing BCs are used. Thus it should be
+state if the art to use ABCs here.
+
+Replacing the cubic root by a constant (even without any approximation strategy)
+ has noting to do with TBCs or ABCs.
+
+
+ 6) Abstract : .. "based on the exact transparent boundary conditions for this equation"
+    this crude approximation has not much in common with a TBC 
+   
+    also mentioned on page 7 at the bottom
+ 
+
+minor issues/typos:
+===================
+
+1) citation style? please include authors name in the text, when citing their work.
+
+2) use abbreviations DDM / IBC once they are defined
+
+3) add domains of definition to PDEs
+
+4) References: abbreviate Journals
+
+   Ref [3] is already published
+
+   typos 
+   [1] "Computational"
+   [8] ".fr/nataf/chapitre.pdf", "Decomposition"
+   [7] "Schwarz" "Schr\"oedinger"
+   [12] "KdV"
+
+5) typos: page 6 "of of" at the bottom
+    page 7 "analytically" , line 6 from below
+   page 8 : middle "time-dependent"
+                    "is (11)-(12) is"
+
+    page 8, bottom : are referring to the Numerical Example
+
+page 9 and 10: in the difference quotient: the factor "7 1/2" should be 7
+      on page 10 one "u_N+1" should be "u_N+5"
+
+page 9 : which "2nd order uncentered difference quotient" do you mean?
+
+page 12  title 3.5.1. "initial data " should read ""initial time step"
+
+
+  
+
+
+

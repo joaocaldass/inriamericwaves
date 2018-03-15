@@ -1,0 +1,26 @@
+\section{Introduction}
+
+\indent The Korteweg - de Vries (KdV) equation, derived by \cite{kdv1895} in 1895, models the propagation of waves with small amplitude and large wavelength, taking in account nonlinear and dispersive effects. In terms of dimensionless but unscaled variables, it can be written as \cite{BBM1971}
+
+\begin{equation*}
+	u_t + u_x + uu_x + u_{xxx} = 0
+\end{equation*}
+
+\indent As done in \cite{zheng2008} (and in \cite{besse2015} as a special case of their work), we will focus in this paper on the linearized KdV equation without the advective term : 
+
+\begin{equation}
+ \label{eq:DKdV}
+	u_t  + u_{xxx} = 0
+\end{equation}
+
+\noindent to which we will refer as \emph{dispersion equation}.
+
+\indent The work developed here is inspired from \cite{zheng2008} and \cite{besse2015}. Nevertheless, our objectives are different from theirs. In this paper we propose an \replaced[id=1010]{additive Schwarz method (ASM)}{ optimized Schwarz Waveform Relaxation method (SWR)} for solving the dispersion equation \eqref{eq:DKdV} in a bounded domain, \emph{i.e.}, we decompose the computational domain in subdomains and solve the time-dependent problem in each one of them. Our work focuses on the formulation of appropriate and optimized conditions on the interface between the subdomains, in order to minimize the error due to the domain decomposition method (DDM) and to accelerate the convergence of the method.
+
+\indent The interface boundary conditions (IBCs) proposed here are based on the exact transparent boundary conditions (TBCs) for the equation \eqref{eq:DKdV}, derived by \cite{zheng2008} and \cite{besse2015}. The TBCs make the approximate solution in the computational domain coincide with the solution of the whole domain, but its exact computation is not doable in general \cite{Xavieretal2008}. \cite{zheng2008} and \cite{besse2015} proposed numerical approximations for these conditions, seeking to reduce the error created by the introduction of artificial boundaries.
+
+\indent In the work presented here, we do not propose approximate TBCs for reducing the error related to the finitude of the computational domain. In fact, we intend to reduce the error created by the decomposition of the domain and the introduction of an artificial interface boundary condition, in the context of a DDM. In other words, we study the effectiveness of the boundary conditions as IBCs, not as TBCs. As a consequence, our work shall not use the same reference solution as the one used by \cite{zheng2008} and \cite{besse2015}: for validating their approaches, they compare their approximate solution with the exact solution in the whole domain. On the other hand, our reference solution is the approximate solution computed on the computational monodomain. \added[id=2017]{Moreover, in order to isolate the error due to the DDM from that originated by time discretization, we study our method locally in time, \emph{i.e.}, along one time step}.
+
+\indent \deleted[id=2017]{This paper is organized in the following way: in Section \ref{sec:TBC}, we recall the exact TBCs derived by \cite{zheng2008} for \eqref{eq:DKdV} and propose approximations for them IBCs based on them, leading to very simple mixed-type conditions (avoiding, for example, integrations in time) depending on two coefficients. With some numerical experiments, we show that these conditions give reasonable results when used as TBCs (although not as well as the approaches of \cite{zheng2008} and \cite{besse2015}), motivating us to use them in the sequel of our work. In Section \ref{sec:DDM}, we describe the domain decomposition method used here and we construct it using our operators as interface boundary conditions (IBCs). Small modifications are proposed for these IBCs such that the solution of the DDM problem converges exactly to the reference solution (the solution of the monodomain problem). Finally, we perform a large set of numerical tests in order to optimize the IBCs, in the sense that we search the coefficients that provide the fastest convergence for the DDM iterative process.}
+
+\indent \added[id=2017]{This paper is organized as follows : In Section \ref{sec:DDM}, we describe the DDM used here and we recall the exact TBCs derived by \cite{zheng2008} for equation \eqref{eq:DKdV}. Then, we propose approximations for them, leading to very simple mixed-type conditions (avoiding, for example, integrations in time) to be used as IBCs in the DDM. Small modifications are proposed for these IBCs such that the solution of the DDM problem converges exactly to the reference solution (the solution of the monodomain problem). In Section \ref{sec:optim}, we perform a large set of numerical tests in order to optimize the IBCs, in the sense that we search the coefficients that provide the fastest convergence for the DDM iterative process.}

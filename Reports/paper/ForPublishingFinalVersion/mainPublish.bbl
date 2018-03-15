@@ -1,0 +1,83 @@
+\begin{thebibliography}{10}
+
+\bibitem{Xavieretal2008}
+X.~Antoine, A.~Arnold, C.~Besse, M.~Ehrhardt, and C.~Schädle.
+\newblock {A review of Transparent Boundary Conditions or linear and nonlinear
+  Schrödinger equations}.
+\newblock {\em {Communications in Compuational Physics}}, 4(4):{729--796},
+  October 2008.
+
+\bibitem{balagurusamy2008}
+E.~Balagurusamy.
+\newblock {\em Numerical methods}.
+\newblock Tata McGraw-Hill, New Delhi, 2008.
+
+\bibitem{BBM1971}
+T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony.
+\newblock Model equations for long waves in nonlinear dispersive systems.
+\newblock {\em Philosophical Transactions of the Royal Society of London.
+  Series A, Mathematical and Physical Sciences}, 272(1220):47--78, 1972.
+
+\bibitem{besse2015}
+C.~Besse, M.~Ehrhardt, and I.~Lacroix-Violet.
+\newblock {Discrete Artificial Boundary Conditions for the Korteweg-de Vries
+  Equation}.
+\newblock working paper or preprint, Jan. 2015.
+
+\bibitem{Gander2008}
+M.~J. Gander.
+\newblock {Schwarz methods over the course of time.}
+\newblock {\em ETNA. Electronic Transactions on Numerical Analysis [electronic
+  only]}, 31:228--255, 2008.
+
+\bibitem{Gander2001}
+M.~J. Gander, L.~Halpern, and F.~Nataf.
+\newblock {Internal report no 469 - Optimal Schwarz waveform relaxation for the
+  one dimensional wave equation}.
+\newblock Technical report, {École Polytéchnique - Centre de Mathématiques
+  Appliquées}, December 2001.
+
+\bibitem{Japhet2003}
+C.~Japhet and F.~Nataf.
+\newblock {The best interface conditions for Domain Decompostion methods :
+  Absorbing Boundary Conditions}.
+\newblock http://www.ann.jussieu.fr/~nataf/chapitre.pdf.
+
+\bibitem{karniadakis1995}
+G.~Karniadakis.
+\newblock {Toward a numerical error bar in CFD}.
+\newblock {\em ASM Journal of Fluids Engineer}, 117(1):7--9, 1995.
+
+\bibitem{kdv1895}
+D.~J. Korteweg and G.~de~Vries.
+\newblock On the change of form of long waves advancing in a rectangular canal
+  and on a new type of long stationary waves.
+\newblock {\em {Philosophical Magazine}}, 5(39):422–443, 1895.
+
+\bibitem{Lions1988}
+P.-L. Lions.
+\newblock {On the Schwarz alternating method.I}.
+\newblock In R.Glowinski, G.Golub, G.Meurant, and J.Périaux, editors, {\em
+  {Proceedings of the First International Symposium on Domain Decomposition
+  Methods for Partial Differential Equations}}, pages 1--42, 1988.
+
+\bibitem{Lions1990}
+P.-L. Lions.
+\newblock {On the Schwarz alternating method III: a variant for nonoverlapping
+  sub-domains}.
+\newblock In T.~Chan, R.~Glowinski, J.~Périaux, and O.~Widlund, editors, {\em
+  {Proceedings of the Third International Conference on Domain Decomposition
+  Methods}}, page 202–223, 1990.
+
+\bibitem{roache1997}
+P.~J. Roache.
+\newblock {Quantification of uncertainty in Computational Fluid Dynamics}.
+\newblock {\em Annual Review of Fluid Mechanics}, 29:123--160, 1997.
+
+\bibitem{zheng2008}
+C.~Zheng, X.~Wen, and H.~Han.
+\newblock Numerical solution to a linearized kdv equation on unbounded domain.
+\newblock {\em Numerical Methods for Partial Differential Equations},
+  24(2):383--399, 2008.
+
+\end{thebibliography}
