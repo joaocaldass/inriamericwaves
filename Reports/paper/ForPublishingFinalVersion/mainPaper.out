@@ -7,3 +7,5 @@
 \BOOKMARK [2][-]{subsection.2.5}{Corrections for the approximate IBCs}{section.2}% 7
 \BOOKMARK [1][-]{section.3}{Numerical tests for optimizing the IBCs \(speed of convergence\)}{}% 8
 \BOOKMARK [2][-]{subsection.3.1}{Test varying the initial time step and the interface position}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.2}{Tests varying t and x}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{Conclusion and outlook}{}% 11

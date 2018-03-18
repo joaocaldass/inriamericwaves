@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.30)  15 MAR 2018 06:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.30)  18 MAR 2018 13:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1691,27 +1691,27 @@ Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
  (./mainPaper.aux)
 \openout1 = `mainPaper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 47.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 83.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 83.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    ... okay on input line 83.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1730,7 +1730,7 @@ LaTeX Font Info:    ... okay on input line 47.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box77
-Package hyperref Info: Link coloring ON on input line 47.
+Package hyperref Info: Link coloring ON on input line 83.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -1739,9 +1739,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count317
 )
-LaTeX Info: Redefining \ref on input line 47.
-LaTeX Info: Redefining \pageref on input line 47.
-LaTeX Info: Redefining \nameref on input line 47.
+LaTeX Info: Redefining \ref on input line 83.
+LaTeX Info: Redefining \pageref on input line 83.
+LaTeX Info: Redefining \nameref on input line 83.
 
 (./mainPaper.out) (./mainPaper.out)
 \@outlinefile=\write4
@@ -1794,86 +1794,20 @@ File: siunitx-abbreviations.cfg 2016/03/01 v2.6q siunitx: Abbreviated units
 )
 ABD: EveryShipout initializing macros
 \c__siunitx_mathsf_int=\count318
-LaTeX Font Info:    Try loading font information for U+msa on input line 47.
+LaTeX Font Info:    Try loading font information for U+msa on input line 83.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 47.
+LaTeX Font Info:    Try loading font information for U+msb on input line 83.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 \c__siunitx_mathtt_int=\count319
  (./abstractPaper.tex) (./introPaperRevision.tex
-! Undefined control sequence.
-\@thehead ...\footnotesize {Volume \currentvolume 
-                                                  , Number \currentissue , \...
-l.23 
-     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-\@thehead ...currentvolume , Number \currentissue 
-                                                  , \currentmonth \ \current...
-l.23 
-     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\@thehead ...Number \currentissue , \currentmonth 
-                                                  \ \currentyear , \thepage ...
-l.23 
-     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\@thehead ...issue , \currentmonth \ \currentyear 
-                                                  , \thepage --\lastpage \hf...
-l.23 
-     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-LaTeX Warning: Reference `enpage' on page 1 undefined on input line 23.
-
-! Undefined control sequence.
-<argument> http://dx.doi.org/\doi 
-                                  
-l.23 
-     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> DOI:\doi 
-                    
-l.23 
-     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Reference `enpage' on page 1 undefined on input line 19.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -1882,637 +1816,221 @@ and I'll forget about whatever was undefined.
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\added' on input line 1.
 
-! Undefined control sequence.
-\@thehead ...{\thepage \hfill \hfill \shortauthor 
-                                                  }} \vspace {1mm} \hrule \v...
-l.28 
-     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[2]
-! Undefined control sequence.
-\@thehead ...tnotesize \footnotesize {\shorttitle 
-                                                  \hfill \thepage }} \vspace...
-l.79 
-     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[3]
+[2] [3]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\added' on input line 80.
 
-! Undefined control sequence.
-\@thehead ...{\thepage \hfill \hfill \shortauthor 
-                                                  }} \vspace {1mm} \hrule \v...
-l.125 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 [4]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\deleted' on input line 164.
+(hyperref)                removing `\deleted' on input line 167.
 
-! Undefined control sequence.
-\@thehead ...tnotesize \footnotesize {\shorttitle 
-                                                  \hfill \thepage }} \vspace...
-l.179 \end{equation}
-                    
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[5]
+[5] [6]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\added' on input line 232.
+(hyperref)                removing `\added' on input line 229.
 
-! Undefined control sequence.
-\@thehead ...{\thepage \hfill \hfill \shortauthor 
-                                                  }} \vspace {1mm} \hrule \v...
-l.235 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[6]
-! Undefined control sequence.
-\@thehead ...tnotesize \footnotesize {\shorttitle 
-                                                  \hfill \thepage }} \vspace...
-l.263 \end{equation*}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[7]
-! Undefined control sequence.
-\@thehead ...{\thepage \hfill \hfill \shortauthor 
-                                                  }} \vspace {1mm} \hrule \v...
-l.395 \end{equation*}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[8pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
-has been already used, duplicate ignored
+[7] [8pdfTeX warning (ext4): destination with the same identifier (name{figure.
+1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.395 \end{equation*}
-                     ]
-! Undefined control sequence.
-\@thehead ...tnotesize \footnotesize {\shorttitle 
-                                                  \hfill \thepage }} \vspace...
-l.428 \end{enumerate}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[9]
-
-LaTeX Warning: Reference `fig:optimVarT0Interface' on page 10 undefined on inpu
-t line 432.
-
-
-LaTeX Warning: Reference `fig:optimVarT0PDetail' on page 10 undefined on input 
-line 432.
-
-
-LaTeX Warning: Reference `fig:optimVarT0PDetail2' on page 10 undefined on input
- line 432.
-
-
-LaTeX Warning: Reference `fig:optimVarInterfacePDetail' on page 10 undefined on
- input line 432.
-
-
-LaTeX Warning: Reference `fig:optimVarInterfacePDetail2' on page 10 undefined o
-n input line 432.
-
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.480 \begin{subfigure}[t]{.5\linewidth}
-                                        
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.480 \begin{subfigure}[t]{.5\linewidth}
-                                        
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-Overfull \hbox (2.45836pt too wide) in paragraph at lines 480--480
-[]|\OT1/cmr/m/n/7 (a)
- []
-
-<Fig3a.png, id=210, 434.62375pt x 269.005pt>
+l.379 \end{align*}
+                  ] [9] <Fig3a.png, id=228, 434.62375pt x 269.005pt>
 File: Fig3a.png Graphic file (type png)
- <use Fig3a.png>
-Package pdftex.def Info: Fig3a.png used on input line 482.
+
+<use Fig3a.png>
+Package pdftex.def Info: Fig3a.png used on input line 467.
 (pdftex.def)             Requested size: 162.9835pt x 100.87662pt.
-
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.485 \begin{subfigure}[t]{.5\linewidth}
-                                        
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.485 \begin{subfigure}[t]{.5\linewidth}
-                                        
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-Overfull \hbox (2.45836pt too wide) in paragraph at lines 485--485
-[]|\OT1/cmr/m/n/7 (a)
- []
-
-<Fig3b.png, id=212, 432.61626pt x 269.005pt>
+ <Fig3b.png, id=230, 432.61626pt x 269.005pt>
 File: Fig3b.png Graphic file (type png)
  <use Fig3b.png>
-Package pdftex.def Info: Fig3b.png used on input line 487.
+Package pdftex.def Info: Fig3b.png used on input line 470.
 (pdftex.def)             Requested size: 162.2307pt x 100.87662pt.
 
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.491 \begin{subfigure}[t]{.5\linewidth}
-                                        
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.491 \begin{subfigure}[t]{.5\linewidth}
-                                        
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-Overfull \hbox (2.45836pt too wide) in paragraph at lines 491--491
-[]|\OT1/cmr/m/n/7 (a)
- []
-
-<Fig3c.png, id=213, 427.5975pt x 269.005pt>
+<Fig3c.png, id=231, 427.5975pt x 269.005pt>
 File: Fig3c.png Graphic file (type png)
  <use Fig3c.png>
-Package pdftex.def Info: Fig3c.png used on input line 493.
+Package pdftex.def Info: Fig3c.png used on input line 473.
 (pdftex.def)             Requested size: 160.34866pt x 100.87662pt.
 
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.497 \begin{subfigure}[t]{.5\linewidth}
-                                        
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.497 \begin{subfigure}[t]{.5\linewidth}
-                                        
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-Overfull \hbox (2.45836pt too wide) in paragraph at lines 497--497
-[]|\OT1/cmr/m/n/7 (a)
- []
-
-<Fig3d.png, id=214, 427.5975pt x 269.005pt>
+<Fig3d.png, id=232, 427.5975pt x 269.005pt>
 File: Fig3d.png Graphic file (type png)
  <use Fig3d.png>
-Package pdftex.def Info: Fig3d.png used on input line 499.
+Package pdftex.def Info: Fig3d.png used on input line 476.
 (pdftex.def)             Requested size: 160.34866pt x 100.87662pt.
 
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.503 \begin{subfigure}[t]{.5\linewidth}
-                                        
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.503 \begin{subfigure}[t]{.5\linewidth}
-                                        
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-Overfull \hbox (2.45836pt too wide) in paragraph at lines 503--503
-[]|\OT1/cmr/m/n/7 (a)
- []
-
-<Fig3e.png, id=215, 427.5975pt x 269.005pt>
+<Fig3e.png, id=233, 427.5975pt x 269.005pt>
 File: Fig3e.png Graphic file (type png)
  <use Fig3e.png>
-Package pdftex.def Info: Fig3e.png used on input line 505.
+Package pdftex.def Info: Fig3e.png used on input line 479.
 (pdftex.def)             Requested size: 160.34866pt x 100.87662pt.
 
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.509 \begin{subfigure}[t]{.5\linewidth}
-                                        
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.509 \begin{subfigure}[t]{.5\linewidth}
-                                        
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-Overfull \hbox (2.45836pt too wide) in paragraph at lines 509--509
-[]|\OT1/cmr/m/n/7 (a)
- []
-
-<Fig3f.png, id=216, 427.5975pt x 269.005pt>
+<Fig3f.png, id=234, 427.5975pt x 269.005pt>
 File: Fig3f.png Graphic file (type png)
  <use Fig3f.png>
-Package pdftex.def Info: Fig3f.png used on input line 511.
+Package pdftex.def Info: Fig3f.png used on input line 482.
 (pdftex.def)             Requested size: 160.34866pt x 100.87662pt.
 
-! Extra }, or forgotten \endgroup.
-\@endfloatbox ...pagefalse \outer@nobreak \egroup 
-                                                  \color@endbox 
-l.517 \endfigure
-                
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-LaTeX Warning: Reference `fig:errorEvolution' on page 10 undefined on input lin
-e 531.
-
-
-! LaTeX Error: Not in outer par mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.533 \begin{figure}[!h]
-                        
-You've lost some text.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-<Fig4.png, id=217, 320.19624pt x 282.05376pt>
+<Fig4.png, id=236, 320.19624pt x 282.05376pt>
 File: Fig4.png Graphic file (type png)
  <use Fig4.png>
-Package pdftex.def Info: Fig4.png used on input line 535.
+Package pdftex.def Info: Fig4.png used on input line 490.
 (pdftex.def)             Requested size: 160.09772pt x 141.02652pt.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 540.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\Delta' on input line 540.
+(hyperref)                removing `math shift' on input line 494.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 540.
+(hyperref)                removing `\Delta' on input line 494.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 540.
+(hyperref)                removing `math shift' on input line 494.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\Delta' on input line 540.
+(hyperref)                removing `math shift' on input line 494.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 540.
+(hyperref)                removing `\Delta' on input line 494.
 
 
-LaTeX Warning: Reference `fig:niterxCoefVarDtDx' on page 10 undefined on input 
-line 544.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 494.
 
-
-LaTeX Warning: Reference `fig:optimalCoefVarDxDtCorrectN' on page 10 undefined 
-on input line 546.
-
-
-LaTeX Warning: Reference `fig:niterxCoefVarDtDx' on page 10 undefined on input 
-line 546.
-
-
-! LaTeX Error: Not in outer par mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.548 \begin{figure}[!h]
-                        
-You've lost some text.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.549 \begin{subfigure}{.5\linewidth}
-                                     
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.549 \begin{subfigure}{.5\linewidth}
-                                     
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-<Fig5a.png, id=218, 439.6425pt x 269.005pt>
+<Fig5a.png, id=240, 439.6425pt x 269.005pt>
 File: Fig5a.png Graphic file (type png)
  <use Fig5a.png>
-Package pdftex.def Info: Fig5a.png used on input line 551.
+Package pdftex.def Info: Fig5a.png used on input line 506.
 (pdftex.def)             Requested size: 164.86552pt x 100.87662pt.
 
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.555 \begin{subfigure}{.5\linewidth}
-                                     
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.555 \begin{subfigure}{.5\linewidth}
-                                     
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-<Fig5b.png, id=219, 441.65pt x 269.005pt>
+<Fig5b.png, id=241, 441.65pt x 269.005pt>
 File: Fig5b.png Graphic file (type png)
  <use Fig5b.png>
-Package pdftex.def Info: Fig5b.png used on input line 557.
+Package pdftex.def Info: Fig5b.png used on input line 509.
 (pdftex.def)             Requested size: 165.61833pt x 100.87662pt.
 
 
-! LaTeX Error: Not in outer par mode.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.565 \begin{figure}[!h]
-                        
-You've lost some text.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.566 \begin{subfigure}[t]{.5\linewidth}
-                                        
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.566 \begin{subfigure}[t]{.5\linewidth}
-                                        
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-Overfull \hbox (2.45836pt too wide) in paragraph at lines 566--566
-[]|\OT1/cmr/m/n/7 (a)
- []
-
-<Fig6a.png, id=220, 433.62pt x 289.08pt>
+<Fig6a.png, id=242, 433.62pt x 289.08pt>
 File: Fig6a.png Graphic file (type png)
  <use Fig6a.png>
-Package pdftex.def Info: Fig6a.png used on input line 567.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
+Package pdftex.def Info: Fig6a.png used on input line 518.
+(pdftex.def)             Requested size: 162.6071pt x 108.40472pt.
 
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.571 \begin{subfigure}[t]{.5\linewidth}
-                                        
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.571 \begin{subfigure}[t]{.5\linewidth}
-                                        
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-Overfull \hbox (2.45836pt too wide) in paragraph at lines 571--571
-[]|\OT1/cmr/m/n/7 (a)
- []
-
-<Fig6b.png, id=221, 433.62pt x 289.08pt>
+<Fig6b.png, id=243, 433.62pt x 289.08pt>
 File: Fig6b.png Graphic file (type png)
  <use Fig6b.png>
-Package pdftex.def Info: Fig6b.png used on input line 572.
-(pdftex.def)             Requested size: 173.44492pt x 115.62994pt.
+Package pdftex.def Info: Fig6b.png used on input line 521.
+(pdftex.def)             Requested size: 162.6071pt x 108.40472pt.
 
 
-LaTeX Warning: Reference `fig:optimalCoefVarDxDtCorrectN' on page 10 undefined 
-on input line 578.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[10] [11pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.541 
+       <./Fig3a.png> <./Fig3b.png> <./Fig3c.png> <./Fig3d.png> <./Fig3e.png> <.
+/Fig3f.png>] [12pdfTeX warning (ext4): destination with the same identifier (na
+me{figure.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.541 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.541 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.541 
+       <./Fig4.png> <./Fig5a.png> <./Fig5b.png> <./Fig6a.png> <./Fig6b.png>])
+(./conclusionPaper.tex) (./acknPaper.tex) (./mainPaper.bbl [13]
+Underfull \hbox (badness 7907) in paragraph at lines 40--43
+[]\OT1/cmr/m/n/10 C. Japhet and F. Nataf, \OT1/cmr/m/it/10 The best in-ter-face
+ con-di-tions for Do-
+ []
 
 
-LaTeX Warning: Reference `eq:regression2DPos' on page 10 undefined on input lin
-e 593.
+Underfull \hbox (badness 2326) in paragraph at lines 40--43
+\OT1/cmr/m/it/10 main De-com-pos-tion meth-ods : Ab-sorb-ing Bound-ary Con-di-t
+ions\OT1/cmr/m/n/10 , 2003.
+ []
 
-
-LaTeX Warning: Reference `eq:regression2DNeg' on page 10 undefined on input lin
-e 593.
-
-
-LaTeX Warning: Reference `fig:optimVarT0Interface' on page 10 undefined on inpu
-t line 593.
-
-
-LaTeX Warning: Reference `fig:niterxCoefVarDtDx' on page 10 undefined on input 
-line 593.
-
-
-LaTeX Warning: Reference `eq:regression2DPos' on page 10 undefined on input lin
-e 593.
-
-
-LaTeX Warning: Reference `eq:regression2DNeg' on page 10 undefined on input lin
-e 593.
-
-) (./conclusionPaper.tex) (./acknPaper.tex) (./mainPaper.bbl)
+) [14]
 \Changes@OutFile=\write5
 \openout5 = `mainPaper.soc'.
 
-
-
-! LaTeX Error: \begin{figure} on input line 479 ended by \end{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.138 \end{document}
-                    
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 138.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 138.
-(./mainPaper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 138.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 138.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 124.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 124.
+ (./mainPaper.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 124.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 124.
 Package rerunfilecheck Info: File `mainPaper.out' has not changed.
-(rerunfilecheck)             Checksum: D363BB73415AD0EDF8F22147BCCDE2C9;900.
+(rerunfilecheck)             Checksum: CDE2F799A8BBB5EEBFB63A12DB569C33;1029.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 138.
-! You can't use `\end' in internal vertical mode.
-\enddocument ...es \z@ \Call@AtVeryVeryEnd \@@end 
-                                                  
-l.138 \end{document}
-                    
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-! LaTeX Error: \begin{figure} on input line 479 ended by \end{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.138 \end{document}
-                    
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-)
-! Emergency stop.
-<*> mainPaper.tex
-                 
-*** (job aborted, no legal \end found)
-
- 
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 124.
+ ) 
 Here is how much of TeX's memory you used:
- 30267 strings out of 493029
- 581830 string characters out of 6136234
- 628237 words of memory out of 5000000
- 33259 multiletter control sequences out of 15000+600000
+ 30304 strings out of 493029
+ 582321 string characters out of 6136234
+ 621740 words of memory out of 5000000
+ 33262 multiletter control sequences out of 15000+600000
  16038 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,13n,54p,10404b,841s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 55i,12n,54p,10404b,835s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/ty
+pe1/public/cm-super/sfrm1000.pfb>
+Output written on mainPaper.pdf (14 pages, 641885 bytes).
+PDF statistics:
+ 409 PDF objects out of 1000 (max. 8388607)
+ 341 compressed objects within 4 object streams
+ 83 named destinations out of 1000 (max. 500000)
+ 156 words of extra memory for PDF output out of 10000 (max. 10000000)
+

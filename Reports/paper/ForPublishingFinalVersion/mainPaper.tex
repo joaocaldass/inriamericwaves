@@ -20,7 +20,45 @@
 %\usepackage[symbol]{footmisc}
 \usepackage[normalem]{ulem} %sout
 \usepackage{textcomp} %texttildelow
+%\usepackage{subcaption}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%JAAC
+\def\currentvolume{*}
+\def\currentissue{*}
+\def\currentyear{*}
+\def\currentmonth{*}
+\def\doi{10.11948/\currentyear.\firstpage}
+\firstpage{1}
+
+
+\def\shorttitle{A Schwarz-based DDM for the dispersion eq.}
+
+
+\def\shortauthor{J. G. Caldas Steinstraesser, R. Cienfuegos, J. D. Galaz Mora \& A. Rousseau}
+
+
+\title{\uppercase{A Schwarz-based domain decomposition method for the dispersion equation}}
+
+\author{Joao Guilherme Caldas Steinstraesser$^{1,\dag}$, Rodrigo Cienfuegos$^2$,  José Daniel Galaz Mora$^2$ and Antoine Rousseau$^3$}%%%%%%%%  Here is the full name of every author. %%%%%%%%%%%%%%%%%%
+
+\date{}
+
+
+\bibliographystyle{jaacbib}
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \providecolor{added}{rgb}{0,0,1}
 \providecolor{deleted}{rgb}{1,0,0}
@@ -38,101 +76,49 @@
 
 \renewcommand{\epsilon}{\varepsilon}
 
-%\bibliographystyle{model1b-num-names}
-\bibliographystyle{apalike}
 
 \definechangesauthor[color=orange]{2017}
 \definechangesauthor[color=red]{1010}
 
 \begin{document}
 
-%\begin{frontmatter}
-
-\title{\deleted[id=1010]{Optimized Schwarz Waveform Relaxation method for a dispersion equation}\added[id=1010]{A Schwarz-based domain decomposition method for the dispersion equation}}
-\date{Received: date / Accepted: date}
-%\author{Joao Guilherme Caldas Steinstraesser \protect\footnotemark[1]
-%	 \and Rodrigo Cienfuegos \protect\footnotemark[3]
-%	 \and José Daniel Galaz Mora \protect\footnotemark[3]
-%	 \and Antoine Rousseau \protect\footnotemark[2]     
-%}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Applied Numerical Mathematics
 
 
 
-%\author[meric]{Joao Guilherme Caldas Steinstraesser\corref{cor1}}
-%\ead{joao.caldas@meric.cl}
-%
-%\author[puc]{Rodrigo Cienfuegos}
-%\ead{racienfu@ing.puc.cl}
-%
-%\author[puc]{José Daniel Galaz Mora}
-%\ead{jdgalaz@uc.cl}
-%
-%\author[inria]{Antoine Rousseau}
-%\ead{antoine.rousseau@inria.fr}
 
+\baselineskip 12pt
 
-\author{ A** Joao Guilherme Caldas Steinstraesser$^{1,\dag}$, B** Rodrigo Cienfuegos$^2$, C** José Daniel Galaz Mora$^2$ and D** Antoine Rousseau $^3$}%%%%%%%%  Here is the full name of every author. %%%%%%%%%%%%%%%%%%
-
-
-%\cortext[cor1]{Corresponding author}
-%
-%\address[meric]{ MERIC, Marine Energy Research \& Innovation Center, Avda. Apoquindo 2827, Santiago, Chile}
-%\address[puc]{Departamento de Ingeniería Hidráulica y Ambiental, Pontificia Universidad Católica de Chile, Av. Vicuña Mackenna 4680 - Macul, Santiago, Chile}
-%\address[inria]{Inria and Inria Chile, Avda. Apoquindo 2827, Santiago, Chile}
+\maketitle
 
 
 \thispagestyle{first}\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \footnotetext{\hspace*{-5mm}
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{@{}r@{}p{10cm}@{}}
-$^\dag$& the corresponding author. Email address:***@***.**(A. Author)\\
+$^\dag$& the corresponding author. Email address:caldas-j@eleves.enpc.fr (J. G. Caldas Steinstraesser)\\
 $^1$&MERIC, Marine Energy Research \& Innovation Center, Avda. Apoquindo 2827, Santiago, Chile\\
 $^2$&Departamento de Ingeniería Hidráulica y Ambiental, Pontificia Universidad Católica de Chile, Av. Vicuña Mackenna 4680 - Macul, Santiago, Chile\\
 $^3$&Inria and Inria Chile, Avda. Apoquindo 2827, Santiago, Chile\\
-$^*$& The authors were supported by National Natural Science
-Foundation of China (****) and National Science Foundation of
-Shanghai (*****).
+%$^*$& The authors were supported by National Natural Science
+%Foundation of China (****) and National Science Foundation of
+%Shanghai (*****).
 \end{tabular}}
 
+\vspace{-2mm}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%\author{Joao Guilherme Caldas Steinstraesser
-%	 \and Rodrigo Cienfuegos
-%	 \and José Daniel Galaz Mora
-%	 \and Antoine Rousseau   
-%}
-%
-%\institute{J. G. Caldas Steinstraesser 
-%						\at MERIC, Marine Energy Research \& Innovation Center, Avda. Apoquindo 2827, Santiago, Chile
-%						\\\email{joao.caldas@meric.cl}
-%			\and 
-%				R. Cienfuegos  \and  J. D. Galaz Mora \at Departamento de Ingeniería Hidráulica y Ambiental, Pontificia Universidad Católica de Chile, Av. Vicuña Mackenna 4680 - Macul, Santiago, Chile \\\email{racienfu@ing.puc.cl; jdgalaz@uc.cl}
-%			\and A. Rousseau \at Inria and Inria Chile, Avda. Apoquindo 2827, Santiago, Chile		\\\email{antoine.rousseau@inria.fr}	
-%			}
 
 
 
 \input{abstractPaper}
 
-%\end{frontmatter}
-
 
 \input{introPaperRevision}
 
-%\input{TBCPaper}
 \input{DDMPaper}
 \input{conclusionPaper}
 \input{acknPaper}
 
-\section*{References}
 \bibliography{biblioPaper}
 \newpage
 \end{document}

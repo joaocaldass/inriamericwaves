@@ -104,6 +104,7 @@ Computation \hfill Website:http://jaac-online.com/}} \vspace{1mm}
 \captionsetup{labelfont={bf}}
 \captionsetup{font={scriptsize}}
 \renewcommand{\subcapsize}{\scriptsize}
+
 \renewcommand{\@seccntformat}[1]{%
 {\csname the#1\endcsname.}\hspace{0.5em}}
 \renewcommand{\captionlabeldelim}{.}
