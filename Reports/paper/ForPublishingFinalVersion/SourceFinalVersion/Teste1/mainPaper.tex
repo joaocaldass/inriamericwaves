@@ -1,0 +1,124 @@
+%\documentclass[preprint]{elsarticle}
+\documentclass{jaac}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+%\usepackage[authormarkup=none]{changes}
+\usepackage[final]{changes}
+%\usepackage[font=footnotesize]{caption}
+%\usepackage{caption}
+%\usepackage{subcaption}  % for subfigure
+\usepackage{numprint} % round numbers
+\usepackage{siunitx} % round numbers
+\usepackage{booktabs}  % nice looking tables
+\usepackage{indentfirst} % indent first line after section title
+\usepackage{breqn} %break inline equation
+\usepackage{tikz}
+\usepackage{cases} %numcases and subnumcases
+%\usepackage[symbol]{footmisc}
+\usepackage[normalem]{ulem} %sout
+\usepackage{textcomp} %texttildelow
+%\usepackage{subcaption}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%JAAC
+\def\currentvolume{*}
+\def\currentissue{*}
+\def\currentyear{*}
+\def\currentmonth{*}
+\def\doi{10.11948/\currentyear.\firstpage}
+\firstpage{1}
+
+
+\def\shorttitle{A Schwarz-based DDM for the dispersion eq.}
+
+
+\def\shortauthor{J. G. Caldas Steinstraesser, R. Cienfuegos, J. D. Galaz Mora \& A. Rousseau}
+
+
+\title{\uppercase{A Schwarz-based domain decomposition method for the dispersion equation}}
+
+\author{Joao Guilherme Caldas Steinstraesser$^{1,\dag}$, Rodrigo Cienfuegos$^2$,  José Daniel Galaz Mora$^2$ and Antoine Rousseau$^3$}%%%%%%%%  Here is the full name of every author. %%%%%%%%%%%%%%%%%%
+
+\date{}
+
+
+\bibliographystyle{jaacbib}
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\providecolor{added}{rgb}{0,0,1}
+\providecolor{deleted}{rgb}{1,0,0}
+%% Change tracking with ulem
+%\renewcommand{\added}[1]{{\color{added}{}#1}}
+%\renewcommand{\deleted}[1]{{\color{deleted}\sout{#1}}}
+
+%\captionsetup{compatibility=false}
+%\captionsetup[subfigure]{labelformat=parens,labelsep=space,font = scriptsize}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\newcommand{\laplinv}{\mathcal{L}^{-1}}
+\newcommand{\eF}{e^{-i \xi x }}
+
+\renewcommand{\epsilon}{\varepsilon}
+
+
+\definechangesauthor[color=orange]{2017}
+\definechangesauthor[color=red]{1010}
+
+\begin{document}
+
+
+
+
+
+\baselineskip 12pt
+
+\maketitle
+
+
+\thispagestyle{first}\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\footnotetext{\hspace*{-5mm}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{@{}r@{}p{10cm}@{}}
+$^\dag$& the corresponding author. Email address:caldas-j@eleves.enpc.fr (J. G. Caldas Steinstraesser)\\
+$^1$&MERIC, Marine Energy Research \& Innovation Center, Avda. Apoquindo 2827, Santiago, Chile\\
+$^2$&Departamento de Ingeniería Hidráulica y Ambiental, Pontificia Universidad Católica de Chile, Av. Vicuña Mackenna 4680 - Macul, Santiago, Chile\\
+$^3$&Inria and Inria Chile, Avda. Apoquindo 2827, Santiago, Chile\\
+%$^*$& The authors were supported by National Natural Science
+%Foundation of China (****) and National Science Foundation of
+%Shanghai (*****).
+\end{tabular}}
+
+\vspace{-2mm}
+
+
+
+
+
+\input{abstractPaper}
+
+
+\input{introPaperRevision}
+
+\input{DDMPaper}
+\input{conclusionPaper}
+\input{acknPaper}
+
+\bibliography{biblioPaper}
+\newpage
+\end{document}

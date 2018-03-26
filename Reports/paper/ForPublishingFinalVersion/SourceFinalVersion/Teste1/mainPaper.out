@@ -1,0 +1,11 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{[id=1010]Resolution of the dispersion equation using a domain decomposition method}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{The Schwarz Method}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{[id=2017]Interface boundary condition operators based on the exact TBCs for the dispersion equation}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{ASM with the proposed IBCs [id=2017]an optimized Schwarz Waveform Relaxation method}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{[id=2017]Spatial discretization of the problem}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Corrections for the approximate IBCs}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{Numerical tests for optimizing the IBCs \(speed of convergence\)}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{Test varying the initial time step and the interface position}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.2}{Tests varying t and x}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{Conclusion and outlook}{}% 11
