@@ -9,8 +9,11 @@ import serre
 import cnoidal
 import nswe_wbmuscl4 as wb4
 
+
 nan = float("nan")
-def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,eta=0.):
+import convolution as cvl
+
+def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,nit,Y=[],uall=None,eta=0.):
     
     """
     Impose three boundary conditions for the dispersive part
@@ -46,6 +49,7 @@ def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,eta=0.):
             M[pos,:] = 0.
             M[pos,pos] = 1.
             rhs[pos] = -(val*h[pos]-hu[pos] - dt*gr*h[pos]*hx[pos])/dt
+            # rhs[pos] = val*h[pos]
         elif typ == "Neumann" :
             M[pos,:] = 0.
             if pos == 0:
@@ -135,8 +139,51 @@ def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,eta=0.):
                 M[pos,pos-1] = -dt/h[pos-1]*c2
                 rhs[pos] =val - (u[pos+1]+dt*gr*(hx[pos+1]+eta))*c0 - (u[pos]+dt*gr*(hx[pos]+eta))*c1 -\
                                 (u[pos-1]+dt*gr*(hx[pos-1]+eta))*c2
+                            
+        elif typ == "DTBC_Y":
+            
+            # Ct = cvl.convolution_exact(nit, Y, uall)
+            M[pos,:] = 0.
+            
+            if pos == 0:
+                # Left TBC 1 ==> unknown = U[0]
+                M[0,0]      =  1.
+                M[0,1]      = -   Y[4,0]
+                M[0,2]      =     Y[6,0]
+                # rhs[0] = Ct[4,1] - Ct[6,2]
+                # rhs[0] *= h[0]
+                rhs[0] = 0.
+            elif pos == 1:
+                # Left TBC 2 ==> unknown = U[1]
+                M[1,0]    =  1.
+                M[1,2]    = -   Y[5,0]
+                M[1,3]    =  2.*Y[8,0]
+                M[1,4]    = -   Y[7,0]
+                # rhs[1] = Ct[5,2] - 2*Ct[8,3] + Ct[7,4]
+                # rhs[1] *= h[1]
+                rhs[1] = 0.
+            elif pos == -1:
+                ## Right TBC 1 ==> unkonwn = U[J]
+                M[-1,-1]    =  1.
+                M[-1,-2]    = -   Y[0,0]
+                M[-1,-3]    =     Y[2,0]
+                # rhs[-1] = Ct[0,-2] - Ct[2,-3]
+                # rhs[-1] *= h[-1]
+                rhs[-1] = 0.
+            elif pos == -2:
+                ## Right TBC 2 ==> unknown = U[J-1]
+                M[-2,-1]  =  1.
+                M[-2,-2]  = -2.*Y[0,0]
+                M[-2,-3]  =     Y[1,0]
+                M[-2,-5]  = -   Y[3,0]
+                # rhs[-2] = 2*Ct[0,-2] - Ct[1,-3] + Ct[3,-5]
+                # rhs[-2] *= h[-2]
+                rhs[-2] = 0.
+            # M[pos,:] *= h[pos]/dt
+                    
         else :
             sys.exit("Wrong type of TBC!! Please use Dirichlet/Neumann/TBC")
+        
     return M,rhs
 def imposeBCDispersiveLinear(M,rhs,BCs,h,u,hx,hu,dx,dt):
     
@@ -245,9 +292,11 @@ def imposeBCDispersiveLinear(M,rhs,BCs,h,u,hx,hu,dx,dt):
                 M[-2,-2] = -2.*alpha/(dx*dx) - beta/dx + gamma
                 M[-2,-3] = alpha/(dx*dx)
                 rhs[-2] = val
+        
+        else:
             sys.exit("Wrong type of TBC!! Please use Dirichlet/Neumann/TBC")
     return M,rhs
-def EFDSolverFM4(h,u,dx,dt,order,BCs,periodic=False,ng=2,side="left",href=None,uref=None,eta=0.):
+def EFDSolverFM4(h,u,dx,dt,order,BCs,nit=0,periodic=False,ng=2,side="left",href=None,uref=None,Y=[], uall=None, eta=0.):
     
     """
     Finite Difference Solver for the second step of the splitted Serre equations, using the discretization derived
@@ -301,6 +350,7 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,periodic=False,ng=2,side="left",href=None,u
     M[1,:] = 0
     M[-1,:] = 0
     M[-2,:] = 0
+    
 
     ### Correct it (but in general these lines are replaced by the BC)
     M[0,0] = h[0]*(1. - 3./4.*h2x[0]/dx - 2./3.*h[0]*h[0]/(dx*dx))
@@ -325,15 +375,15 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,periodic=False,ng=2,side="left",href=None,u
     ######
 
     np.set_printoptions(threshold=np.nan)
-    np.set_printoptions(suppress=True)
+    # np.set_printoptions(suppress=True)
 
-    M,rhs = imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,eta=eta)
-
+    M,rhs = imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,nit,Y=Y,uall=uall,eta=eta)
+    
     z = np.linalg.solve(M,rhs)
     hu2 = hu + dt*(gr*h*(hx+eta)-z)
     
     return hu2/h
-def linearEFDSolverFM(h,u,dx,dt,order,BCs,periodic=False,ng=2,side="left",href=None,uref=None,h0=None,u0=None):
+def linearEFDSolverFM(h,u,dx,dt,order,BCs,periodic=False,ng=2,side="left",href=None,uref=None,h0=None,u0=None,nit=None,Y=[]):
     
     """
     Finite Difference Solver for the second step of the splitted Serre equations, using the discretization derived
@@ -384,10 +434,10 @@ def linearEFDSolverFM(h,u,dx,dt,order,BCs,periodic=False,ng=2,side="left",href=N
 
     M[0,:] = 0
     M[1,:] = 0
-    M[2,:] = 0
+    # M[2,:] = 0
     M[-1,:] = 0
     M[-2,:] = 0
-    M[-3,:] = 0
+    # M[-3,:] = 0
 
     ### Correct it (but in general these lines are replaced by the BC)
     M[0,0] = 1. + h0*h0/(3.*dx*dx)* (2. - 5./2.*dt*u0/dx)
@@ -430,13 +480,13 @@ def linearEFDSolverFM(h,u,dx,dt,order,BCs,periodic=False,ng=2,side="left",href=N
     np.set_printoptions(threshold=np.nan)
     np.set_printoptions(suppress=True)
 
-    M,rhs = imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt)
-
+    M,rhs = imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt, nit=nit, Y=Y)
+    
     z = np.linalg.solve(M,rhs)
     hu2 = hu + dt*(gr*h*hx-z)
     
     return hu2/h
-def solveDispersiveSerre(u,href,t0,tmax,dt,dx,BCconfig,uref=None,debug=False,idxlims=None):
+def solveDispersiveSerre(u,href,t0,tmax,dt,dx,BCconfig,uref=None,debug=False,idxlims=None, Y=[]):
     
     t = t0
     it = 0 ## index of timestep
@@ -447,7 +497,7 @@ def solveDispersiveSerre(u,href,t0,tmax,dt,dx,BCconfig,uref=None,debug=False,idx
     tall = np.ones(1)*t0
     
     while t < tmax:
-        
+            
         ## h(t) = referential solution
         h = href[:,it]
         hu = h*u
@@ -459,9 +509,9 @@ def solveDispersiveSerre(u,href,t0,tmax,dt,dx,BCconfig,uref=None,debug=False,idx
             BCconfig[1,2] = uref[idxlims[1],it+1]
             BCconfig[2,2] = uref[idxlims[0]+1,it+1]
             BCconfig[3,2] = uref[idxlims[1]-1,it+1]
-            BCconfig[4,2] = uref[idxlims[0]+2,it+1]
-            BCconfig[5,2] = uref[idxlims[1]-2,it+1]
-        u = EFDSolverFM4(h,u,dx,dt,FDorder,BCconfig)
+            # BCconfig[4,2] = uref[idxlims[0]+2,it+1]
+            # BCconfig[5,2] = uref[idxlims[1]-2,it+1]
+        u = EFDSolverFM4(h,u,dx,dt,FDorder,BCconfig, it, Y=Y, uall=uall)
 
         uall = np.column_stack((uall,u))
         tall = np.hstack((tall,t*np.ones(1)))
@@ -471,7 +521,7 @@ def solveDispersiveSerre(u,href,t0,tmax,dt,dx,BCconfig,uref=None,debug=False,idx
         it = it+1
         
     return uall,tall
-def solveLinearDispersiveSerre(u,href,t0,tmax,dt,dx,BCconfig,uref=None,debug=False,idxlims=None,h0=None,u0=None):
+def solveLinearDispersiveSerre(u,href,t0,tmax,dt,dx,BCconfig,uref=None,debug=False,idxlims=None,h0=None,u0=None, Y=[]):
     
     t = t0
     it = 0 ## index of timestep
@@ -494,9 +544,9 @@ def solveLinearDispersiveSerre(u,href,t0,tmax,dt,dx,BCconfig,uref=None,debug=Fal
             BCconfig[1,2] = uref[idxlims[1],it+1]
             BCconfig[2,2] = uref[idxlims[0]+1,it+1]
             BCconfig[3,2] = uref[idxlims[1]-1,it+1]
-            BCconfig[4,2] = uref[idxlims[0]+2,it+1]
-            BCconfig[5,2] = uref[idxlims[1]-2,it+1]
-        u = linearEFDSolverFM(h,u,dx,dt,FDorder,BCconfig,h0=h0,u0=u0)
+            # BCconfig[4,2] = uref[idxlims[0]+2,it+1]
+            # BCconfig[5,2] = uref[idxlims[1]-2,it+1]
+        u = linearEFDSolverFM(h,u,dx,dt,FDorder,BCconfig,h0=h0,u0=u0, nit=it, Y=Y)
 
         uall = np.column_stack((uall,u))
         tall = np.hstack((tall,t*np.ones(1)))

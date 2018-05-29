@@ -19,89 +19,89 @@ def openDomainThreeGC(h,hu,BC,dx,t):
     *Function to be passed as "bcfunction" argument for DDM_NSWE
     *Impose classical open boundary conditions in a domain with three ghost cells in each side (necessary for O4).
     *The domain is supposed to be [-L-3*dx, L+3*dx]
-    
+
     *Inputs
         * h, hu : variables to impose the BCs (can be any variable)
         * BC, dx, t : unused in this function
-        
+
     * Outputs :
         * hb,hub : h,hu with BCs
     """
-    
+
     hb = 1.*h
     hub = 1.*hu
-    
+
     hb[0] = h[3]
     hub[0] = hu[3]
     hb[1] = h[3]
     hub[1] = hu[3]
     hb[2] = h[3]
     hub[2] = hu[3]
-    
+
     hb[-1] = h[-4]
-    hub[-1] = hu[-4]    
+    hub[-1] = hu[-4]
     hb[-2] = h[-4]
     hub[-2] = hu[-4]
     hb[-3] = h[-4]
     hub[-3] = hu[-4]
-    
+
     return hb,hub
 def DDM_BCs(h,hu,BC,dx,t):
     """
     *Function to be passed as "bcfunction" argument for DDM_NSWE
     *Impose user-defined Dirichlet boundary conditions for NSWE solver
-    
+
     *Inputs
         * h, hu : variables to impose the BCs (can be any variable)
         * BC : array with lines in the form [pos,valh, valhu] :
             * pos : position for imposing the boundary condition (0,1,2,...,-3,-2,-1)
             * valh,valhu : values imposed to each variable
         * dx, t : unused in this function
-        
+
     * Outputs :
         * hb,hub : h,hu with BCs
     """
-    
+
     ### BC = [[pos,val h, val hu],]
     hb = 1.*h
     hub = 1.*hu
 
     for i in range(BC.shape[0]):
         [pos,valh,valhu] = BC[i,:]
-        hb[pos] = valh
-        hub[pos] = valhu
-    
+        hb[int(pos)] = valh
+        hub[int(pos)] = valhu
+
     return hb,hub
 def fluxes(h,hu,n):
     """
     *Function to be passed as "fvsolver" argument for DDM_NSWE
     *Impose periodicty to ghost cells and compute the fluxes
     *The domain is supposed to be [-L-3*dx, L+3*dx]
-    
+
     *Inputs
         * h, hu
         * n : unused in this function
-        
+
     * Outputs :
         * fp : fluxes on the cells' interfaces
     """
-    
+
     h0 = np.copy(h)
     u0 = np.copy(hu)
     d0 = np.zeros(n)
     u0 = np.where(h0>1e-10,u0/h0,h0)#hu/h
-    
+
     fp, fm, sc = wb4.fluxes_sources(d0,h0,u0)
     return fp
 def DDM(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
              dt = 0.05, fvsolver=muscl2.fluxes2,fvTimesolver=serre.Euler,
              ghostcells = 3,externalBC="open",coupleSerre=False,serreDomain=1,dispersiveBC = None,
              ov = 0,href=None,uref=None,xref=None, debug = False, dirichletIBC = False,eta=0.):
-    
+
     """
     *Applies a DDM to solve the NSWE in two subdomains;
     *Possibly solve the dispersive part of the Serre equation in one of the subdomains
-    
+
     * Inputs:
         - x1,x2,xref : subdomains/monodomain
         - h1,h2,u1,u2,href,uref : solutions in the subdomains/in the monodomain.
@@ -124,17 +124,17 @@ def DDM(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
         - debug : impose referential solution in ghost cells
         - eta : slope of the bottom
     """
-    
+
     nitermax = 1 ## it's not a DDM
-    
+
     configDDM = 2  ## overlapping
     if ov < 0: ## no overlapping
         configDDM = 1
-    
+
     t = t0
     it = 0
     grav = 9.81
-    
+
     uall1 = u1
     hall1 = h1
     tall1 = np.ones(1)*t0
@@ -142,31 +142,31 @@ def DDM(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
     hall2 = h2
     tall2 = np.ones(1)*t0
     huref = href*uref
-    
+
     while t < tmax and dt > 1e-9:
         it = it+1
         t = t+dt
         #print("t = ",t)
-        
+
         h1prev = np.copy(h1)
         u1prev = np.copy(u1)
         h2prev = np.copy(h2)
         u2prev = np.copy(u2)
         hu1prev = h1prev*u1prev
         hu2prev = h2prev*u2prev
-        
+
         niter = 0
         converg = False
-        
+
         while niter < nitermax and converg == False:
-            
+
             niter = niter+1
-            
+
             h1mm = np.copy(h1)
             u1mm = np.copy(u1)
             h2mm = np.copy(h2)
             u2mm = np.copy(u2)
-            
+
             hu1 = h1*u1
             hu2 = h2*u2
 
@@ -183,7 +183,7 @@ def DDM(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
                                      [1,h1[-5],hu1[-5]], #interface
                                      [2,h1[-4],hu1[-4]], #interface
                                      [-3,h1[3],hu1[3]],  #external
-                                     [-2,h1[4],hu1[4]],  #external 
+                                     [-2,h1[4],hu1[4]],  #external
                                      [-1,h1[5],hu1[5]]]) #external
             elif externalBC == "open":
                 if configDDM == 1: ## without overlapping
@@ -241,7 +241,7 @@ def DDM(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
                 print(h2[:7])
 
             h1,hu1 = fvTimesolver(x1,h1prev,hu1prev,fvsolver,bcfunction,bcparam1,dx,dt,x1.size,t,ghostcells)
-            h2,hu2 = fvTimesolver(x2,h2prev,hu2prev,fvsolver,bcfunction,bcparam2,dx,dt,x2.size,t,ghostcells)   
+            h2,hu2 = fvTimesolver(x2,h2prev,hu2prev,fvsolver,bcfunction,bcparam2,dx,dt,x2.size,t,ghostcells)
 
             if debug :
                 print("")
@@ -276,11 +276,11 @@ def DDM(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
                 print("")
                 print("")
             #u1 = np.where(h1[:]>1e-5, hu1[:]/h1[:], 0.)
-            #u2 = np.where(h2[:]>1e-5, hu2[:]/h2[:], 0.)   
-            
+            #u2 = np.where(h2[:]>1e-5, hu2[:]/h2[:], 0.)
+
 
             ## correct ghost cells on the interface (unnecessary?)
-            if externalBC == "open":   
+            if externalBC == "open":
                 if configDDM == 1:
                     bcparam1 = np.array([[-3,h2[3],hu2[3]],
                                          [-2,h2[4],hu2[4]],
@@ -306,8 +306,8 @@ def DDM(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
             h1,hu1 = bcfunction(h1,hu1,bcparam1,dx,t)
             h2,hu2 = bcfunction(h2,hu2,bcparam2,dx,t)
             u1 = np.where(h1[:]>1e-5, hu1[:]/h1[:], 0.)
-            u2 = np.where(h2[:]>1e-5, hu2[:]/h2[:], 0.)   
-            
+            u2 = np.where(h2[:]>1e-5, hu2[:]/h2[:], 0.)
+
             ## verify convergence
             eps = 1e-9
             if np.linalg.norm(h1-h1mm) < eps and np.linalg.norm(h2-h2mm) < eps and \
@@ -318,26 +318,26 @@ def DDM(x1,h1,u1,x2,h2,u2,t0,tmax,bcfunction,dx,nx,
             nxx = uref.shape[0]
             err1 = np.linalg.norm(u1[3:-3]-uref[3:u1.size-3,it])
             err2 = np.linalg.norm(u2[3:-3]-uref[nxx-u2.size+3:-3,it])
-            
+
             if not coupleSerre :
                 print("")
                 print("t = %f"%t)
                 print("Error wr to monodomain solution (Om1,Om2): ",err1,err2)
                 print("")
-            
+
         #solve Dispersion for one of the domains
         FDorder = 4  ## order of FD scheme
-        
+
         if coupleSerre:
             if serreDomain == 1:  ## serre in the left
                     ## define boundary conditions
-                
+
                 if dirichletIBC :  ## Dirichlet condition
                     dispersiveBC = np.array([[0,"Robin",u1[0],1.,0.], ##dispersiveBC = np.array([[0,"Robin",0.,1.,0.]
                                      [-2,"Robin",u1[-5],1.,0.], ## external boundaries
-                                     [-1,"Robin",u1[-4],1.,0.]]) ## interface : Dirichlet 
+                                     [-1,"Robin",u1[-4],1.,0.]]) ## interface : Dirichlet
                 u1aux = serreTBC.EFDSolverFM4(h1[3:-3],u1[3:-3],dx,dt,FDorder,dispersiveBC)
-                u1 = np.hstack((u1[:3],u1aux,u1[-3:]))               
+                u1 = np.hstack((u1[:3],u1aux,u1[-3:]))
                 ## copy to overlapped area
                 u2[3:4+2*ov] = u1[-4-2*ov:-3]
             elif serreDomain == 2:
