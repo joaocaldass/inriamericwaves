@@ -309,6 +309,8 @@ def get1d(u,dx,periodic,order):
         a[-1] = (3*u[-1] - 4.*u[-2] + u[-3])/(2.*dx)
     elif order == 4 :
         a[2:-2] = 1./(12.*dx)*(u[0:-4] - 8.* u[1:-3] + 8.*u[3:-1] - u[4:])
+        a[0] = (-3*u[0] + 4.*u[1] - u[2])/(2.*dx)
+        a[-1] = (3*u[-1] - 4.*u[-2] + u[-3])/(2.*dx)        
         #if (periodic) :
         #    a[0] = 1./(12.*dx)*(u[-3] - 8.* u[-2] + 8.*u[1] - u[2])
             ##### Todo Boundaries
@@ -337,7 +339,7 @@ def get2d(u,dx,periodic,order=2):
 # Compute first derivative
 def get3d(u,dx,periodic,order=2):
     a = np.zeros_like(u)
-    a[2:-2] = 1./(2.*dx*dx)*(-u[0:-4] + 2.*u[1:-3] - 2.*u[3:-1] + u[4:])
+    a[2:-2] = 1./(2.*dx*dx*dx)*(-u[0:-4] + 2.*u[1:-3] - 2.*u[3:-1] + u[4:])
     a[0] = 1./(dx*dx)*(-u[0] + 3.*u[1] - 3.*u[2] + u[3])
     a[1] = 1./(dx*dx)*(-u[1] + 3.*u[2] - 3.*u[3] + u[4])
     a[-1] = 1./(dx*dx)*(u[-1] - 3.*u[-2] + 3.*u[-3] - u[-4])

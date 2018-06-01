@@ -34,7 +34,7 @@ class Parameters:
     self.g = 9.81
 
 
-def compute_K(ps):
+def compute_K(dx, h0):
   """
   Computes only the kernels when there is no time dependency to solve in z for
   the Serre splitting equations.
@@ -42,12 +42,14 @@ def compute_K(ps):
 
   print "*** Starting computations of Ks"
 
-  alpha = 36.*(ps.dx**2)/(ps.h0**2)
+  alpha = 36.*(dx**2)/(h0**2) + 30
   P = [1, 16, -alpha, -16, 1]
   R = np.roots(P)
   R = sorted(R, key=abs)[::-1]
   root = [abs(r) for r in R]
   root = root[::-1]
+
+  print " *  roots of P :", root
 
   K = np.zeros((9,1))
 
@@ -63,6 +65,8 @@ def compute_K(ps):
   assert(abs(K[6,0]) < 1)
   K[7,0] = K[6,0]**2
   K[8,0] = (root[2] + root[3]) / ((root[2] * root[3])**2)
+
+  print " *  kernels :\n", K
 
   print "*** done"
 
