@@ -12,7 +12,7 @@
 # dependencies
 import numpy as np
 
-def convolution_exact(nit, Y, U):
+def convolution_exact(nit, Y, U, nu=1):
   """
   Computes convolution of Y (convolution coefficients) and U between nu and nit.
   If interface is set to a string, then other indexes are filled so that the
@@ -20,17 +20,18 @@ def convolution_exact(nit, Y, U):
   """
 
 
-  Ct = np.zeros((9,15))
-  for k in range(nit):
-    Ct[0,-2] += Y[0,k]*U[-2, nit-k]
-    Ct[1,-3] += Y[1,k]*U[-3, nit-k]
-    Ct[2,-3] += Y[2,k]*U[-3, nit-k]
-    Ct[3,-5] += Y[3,k]*U[-5, nit-k]
-    Ct[4,1]   += Y[4,k]*U[1, nit-k]
-    Ct[5,2]   += Y[5,k]*U[2, nit-k]
-    Ct[6,2]   += Y[6,k]*U[2, nit-k]
-    Ct[7,4]   += Y[7,k]*U[4, nit-k]
-    Ct[8,3]   += Y[8,k]*U[3, nit-k]
+  Ct = np.zeros((9,20))
+  if nit >= nu:
+    for k in range(nu,nit):
+      Ct[0,-2] += Y[0,k]*U[-2,nit-k]
+      Ct[1,-3] += Y[1,k]*U[-3,nit-k]
+      Ct[2,-3] += Y[2,k]*U[-3,nit-k]
+      Ct[3,-5] += Y[3,k]*U[-5,nit-k]
+      Ct[4,1]  += Y[4,k]*U[1,nit-k]
+      Ct[5,2]  += Y[5,k]*U[2,nit-k]
+      Ct[6,2]  += Y[6,k]*U[2,nit-k]
+      Ct[7,4]  += Y[7,k]*U[4,nit-k]
+      Ct[8,3]  += Y[8,k]*U[3,nit-k]
 
   return Ct
 

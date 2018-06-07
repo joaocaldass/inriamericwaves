@@ -158,7 +158,7 @@ def compute_Y(ps, N):
   # keeping the real part
   return Y.real
 
-def plot_Y(Y, N, log_scale = False, export = False):
+def plot_Y(Y, N, log_scale = False, export = False, save = False):
   """
   Plots the Ys, either in normal scale or log scale. If export is set to True,
   the Ys are exported to a csv file, which path is set with path.
@@ -168,11 +168,19 @@ def plot_Y(Y, N, log_scale = False, export = False):
     for i in range(4):
       plt.plot(Y[i,:N], label="i = {}".format(i))
     plt.legend()
-    plt.show()
+    if save:
+      plt.savefig("Y_right.pdf")
+      plt.clf()
+    else:
+      plt.show()
     for i in range(4,9):
       plt.plot(Y[i,:N], label="i = {}".format(i))
     plt.legend()
-    plt.show()
+    if save:
+      plt.savefig("Y_left.pdf")
+      plt.clf()
+    else:
+      plt.show()
 
   elif log_scale:
     for i in range(4):
@@ -182,7 +190,11 @@ def plot_Y(Y, N, log_scale = False, export = False):
     plt.xscale('log')
     plt.axis((0, 5*N, 10**(-20), 1000))
     plt.legend()
-    plt.show()
+    if save:
+      plt.savefig("Y_log_right.pdf")
+      plt.clf()
+    else:
+      plt.show()
     for i in range(4, 8):
       plt.plot(Y[i,:], label="i = {}".format(i))
     plt.plot(10000*np.linspace(1, N, N)**(-3./2.))
@@ -190,7 +202,11 @@ def plot_Y(Y, N, log_scale = False, export = False):
     plt.xscale('log')
     plt.axis((0, 5*N, 10**(-20), 1000))
     plt.legend()
-    plt.show()
+    if save:
+      plt.savefig("Y_log_left.pdf")
+      plt.clf()
+    else:
+      plt.show()
 
 def exp_coeff(Y, L, nu, n_stop):
   """
