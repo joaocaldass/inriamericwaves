@@ -11,7 +11,9 @@ import nswe_wbmuscl4 as wb4
 
 
 nan = float("nan")
-def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=[],eta=0.,hp1=[]):
+import convolution as cvl
+
+def imposeBCDispersive(M,rhs,BCs,h,hp1,u,hx,hu,dx,dt,nit,Y=[],uall=None,eta=0.):
     
     """
     Impose three boundary conditions for the dispersive part
@@ -26,8 +28,8 @@ def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=[],eta=0.,hp1=[]):
                 ::: Value (float) : value of the BC
                 ::: Opt [int,float,array] : optional coefficients for the TBC; depends on the Type 
         * h,hx,hu : informations from the last computation
+        * hp1 : information about h at this iteration (is already computed at the advection part)
         * dt
-        * hp1 : h from the next iteration
         
     - Outputs :
         * M
@@ -35,9 +37,16 @@ def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=[],eta=0.,hp1=[]):
     """
     gr = 9.81
     
-    ### verif number of TBCs
-    #if BCs.shape[0] != 3 :
-    #    sys.exit("Wrong number of BCs")
+    ## first loop to compute TBC related parameters only once
+    convol = False
+    for i in range(BCs.shape[0]):
+        [pos,typ,val] = BCs[i,:3]
+        if typ == 'DTBC_Y':
+            print " *  Computing convolutions"
+            convol = True
+            Ct = cvl.convolution_exact(nit+1, Y, uall)
+            uu = (1./hp1)*(hu + dt*gr*h*hx) 
+            break
         
     ## impose BCs
     for i in range(BCs.shape[0]) :
@@ -48,6 +57,7 @@ def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=[],eta=0.,hp1=[]):
             M[pos,:] = 0.
             M[pos,pos] = 1.
             rhs[pos] = -(val*hp1[pos]-hu[pos] - dt*gr*h[pos]*hx[pos])/dt
+            # rhs[pos] = val*h[pos]
         elif typ == "Neumann" :
             M[pos,:] = 0.
             if pos == 0:
@@ -144,37 +154,248 @@ def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=[],eta=0.,hp1=[]):
             
             if pos == 0:
                 # Left TBC 1 ==> unknown = U[0]
-                M[0,0]   =  1.
-                M[0,1]   = -   Y[4,0]*hp1[0]/hp1[1]
-                M[0,2]   =     Y[6,0]*hp1[0]/hp1[2]
-                rhs[pos] = val           
+                M[pos,0]   =  1.
+                M[pos,1]   = -   Y[4,0]*hp1[0]/hp1[1]
+                M[pos,2]   =     Y[6,0]*hp1[0]/hp1[2]
+                val        = Ct[4,1] - Ct[6,2]
+                rhs[pos]   = -(hp1[0]/dt)*( val - uu[0] + Y[4,0]*uu[1] - Y[6,0]*uu[2] )                
             elif pos == 1:
                 # Left TBC 2 ==> unknown = U[1]
-                M[1,0]   =  1.
-                M[1,2]   = -   Y[5,0]*hp1[0]/hp1[2]
-                M[1,3]   =  2.*Y[8,0]*hp1[0]/hp1[3]
-                M[1,4]   = -   Y[7,0]*hp1[0]/hp1[4]
-                rhs[pos] = val
+                M[pos,0]   =  1.
+                M[pos,2]   = -   Y[5,0]*hp1[0]/hp1[2]
+                M[pos,3]   =  2.*Y[8,0]*hp1[0]/hp1[3]
+                M[pos,4]   = -   Y[7,0]*hp1[0]/hp1[4]
+                val        = Ct[5,2] - 2*Ct[8,3] + Ct[7,4]
+                rhs[pos]   = -(hp1[0]/dt)*( val - uu[0] + Y[5,0]*uu[2] - 2*Y[8,0]*uu[3] + Y[7,0]*uu[4] ) 
             elif pos == -1:
-                ## Right TBC 1 ==> unkonwn = U[J]
-                M[-1,-1] =  1.
-                M[-1,-2] = -   Y[0,0]*hp1[-1]/hp1[-2]
-                M[-1,-3] =     Y[2,0]*hp1[-1]/hp1[-3]
-                rhs[pos] = val
+                ## Right TBC 1 ==> unknown = U[J]
+                M[pos,-1]  =  1.
+                M[pos,-2]  = -   Y[0,0]*hp1[-1]/hp1[-2]
+                M[pos,-3]  =     Y[2,0]*hp1[-1]/hp1[-3]
+                val        =  Ct[0,-2] - Ct[2,-3]
+                rhs[pos]   = -(hp1[-1]/dt)*( val - uu[-1] + Y[0,0]*uu[-2] - Y[2,0]*uu[-3] )
             elif pos == -2:
                 ## Right TBC 2 ==> unknown = U[J-1]
-                M[-2,-1] =  1.
-                M[-2,-2] = -2.*Y[0,0]*hp1[-1]/hp1[-2]
-                M[-2,-3] =     Y[1,0]*hp1[-1]/hp1[-3]
-                M[-2,-5] = -   Y[3,0]*hp1[-1]/hp1[-5]
-                rhs[pos] = val
-                    
+                M[pos,-1] =  1.
+                M[pos,-2] = -2.*Y[0,0]*hp1[-1]/hp1[-2]
+                M[pos,-3] =     Y[1,0]*hp1[-1]/hp1[-3]
+                M[pos,-5] = -   Y[3,0]*hp1[-1]/hp1[-5]
+                val       = 2*Ct[0,-2] - Ct[1,-3] + Ct[3,-5]
+                rhs[pos]  = -(hp1[-1]/dt)*( val - uu[-1] + 2*Y[0,0]*uu[-2] - Y[1,0]*uu[-3] + Y[3,0]*uu[-5] )    
+                
         else :
-            sys.exit("Wrong type of TBC!! Please use Dirichlet/Neumann/TBC")
+            sys.exit("Wrong type of TBC!! Please use Dirichlet/Neumann/TBC/DTBC_Y")
         
+    if convol:
+        return M,rhs,Ct
+    else:
+        return M,rhs,[]
+def imposeBCDispersiveLinear(M,rhs,BCs,h,u,hx,hu,dx,dt):
+    
+    """
+    Impose three boundary conditions for the dispersive part
+    
+    - Inputs :
+        * M : matrix of the FD scheme
+        * rhs : right-hand side of the FD scheme
+        * BCs : array of dimensions 3x3 containing one TBC in each line, in the form
+            [Position,Type,Value,Opt], where
+                ::: Position (int) : indicates the point to be modified (0,1,...,-2,-1)
+                ::: Type (str) : indicates the type of BC : "Dirichlet"/"Neumann"/"TBC"
+                ::: Value (float) : value of the BC
+                ::: Opt [int,float,array] : optional coefficients for the TBC; depends on the Type 
+        * h,hx,hu : informations from the last computation
+        * dt
+        
+    - Outputs :
+        * M
+        * rhs
+    """
+    gr = 9.81
+    
+    ### verif number of TBCs
+    #if BCs.shape[0] != 3 :
+    #    sys.exit("Wrong number of BCs")
+        
+    ## impose BCs
+    for i in range(BCs.shape[0]) :
+        [pos,typ,val] = BCs[i,:3]
+        pos = int(pos)
+        val = float(val)
+        if typ == "Dirichlet" :
+            M[pos,:] = 0.
+            M[pos,pos] = 1.
+            rhs[pos] = -(val*h[pos]-hu[pos] - dt*gr*h[pos]*hx[pos])/dt
+        elif typ == "Neumann" :
+            M[pos,:] = 0.
+            if pos == 0:
+                M[0,0] = -h[1]
+                M[0,1] = h[0]
+                rhs[0] = h[0]*h[1]/dt*(u[1]-u[0] + dt*gr*(hx[1]-hx[0]) - val*dx)
+            else:
+                M[pos,pos] = h[pos-1]
+                M[pos,pos-1] = -h[pos]
+                rhs[pos] = h[pos]*h[pos-1]/dt*(u[pos]-u[pos-1] + dt*gr*(hx[pos]-hx[pos-1]) - val*dx)
+        elif typ == "Robin" :
+            alpha = float(BCs[i,3])
+            beta = float(BCs[i,4])
+            M[pos,:] = 0.
+            if pos == 0 or pos == -2 :
+                M[pos,pos] = alpha - beta/dx
+                M[pos,pos+1] = beta/dx
+                rhs[pos] = val
+            elif pos == 1 or pos == -1 :
+                M[pos,pos] = alpha + beta/dx
+                M[pos,pos-1] = -beta/dx
+                rhs[pos] = val
+        elif typ == "TBC" or typ == "TBC2" or typ == "TBC3":  ##alpha*uxx + beta*ux + gamma*u = val 
+
+            if typ == "TBC" :
+                alpha = float(BCs[i,3])
+                beta = float(BCs[i,4])
+                gamma = float(BCs[i,5])
+            elif typ == "TBC2" : ##with time derivative
+                if pos == 0 :
+                    alpha = u[0]*dt
+                    beta = 1. - dt*(u[1]-u[0])/dx
+                    gamma = 0.
+                    val = (u[1]-u[0])/dx
+                elif pos == -1 :
+                    alpha = u[-1]*dt
+                    beta = 1. - dt*(u[-1]-u[-2])/dx
+                    gamma = 0.
+                    val = (u[-1]-u[-2])/dx
+            elif typ == "TBC3" : ##with time derivative : ut + u + ux + uxx= 0
+                if pos == 0 :
+                    alpha = dt
+                    beta = dt
+                    gamma = 1. + dt
+                    val = u[0]
+                elif pos == -1 :
+                    alpha = dt
+                    beta = dt
+                    gamma = 1. + dt
+                    val = u[-1]
+            M[pos,:] = 0.
+            if pos == 0:
+                M[0,0] = alpha/(dx*dx) - beta/dx + gamma
+                M[0,1] = -2.*alpha/(dx*dx) + beta/dx
+                M[0,2] = alpha/(dx*dx)
+                rhs[0] = val
+            elif pos == 1 :
+                M[1,0] = alpha/(dx*dx) - beta/dx
+                M[1,1] = -2.*alpha/(dx*dx) + beta/dx + gamma
+                M[1,2] = alpha/(dx*dx)
+                rhs[1] = val
+            elif pos == -1 :
+                M[-1,-1] = alpha/(dx*dx) + beta/dx + gamma
+                M[-1,-2] = -2.*alpha/(dx*dx) - beta/dx
+                M[-1,-3] = alpha/(dx*dx)
+                rhs[-1] = val
+            elif pos == -2 :
+                M[-2,-1] = alpha/(dx*dx) + beta/dx 
+                M[-2,-2] = -2.*alpha/(dx*dx) - beta/dx + gamma
+                M[-2,-3] = alpha/(dx*dx)
+                rhs[-2] = val
+        
+        else:
+            sys.exit("Wrong type of TBC!! Please use Dirichlet/Neumann/TBC")
     return M,rhs
-def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=None,uref=None,Y=[],eta=0.,
-                 hp1=[],domain=0,ind=0,zref=None):
+def jacobi(M):
+    """
+    Return a Jacobi preconditioner for the matrix M.
+    """
+    
+    prec = np.copy(np.diagonal(M))
+    N = len(prec)
+    prec[0]  = 1.
+    prec[1]  = 1.
+    prec[-2] = 1.
+    prec[-1] = 1.
+    for i in range(2,N-2):
+        prec[i] = 1./prec[i]
+        
+    return np.diagflat(prec)
+
+def EFDSolverFM4(h,u,dx,dt,order,BCs,nit=0,periodic=False,ng=2,side="left",href=None,uref=None,Y=[],uall=None,eta=0.,hp1=[]):
+    """
+    Finite Difference Solver for the second step of the splitted Serre equations, using the discretization derived
+    in the paper of Fabien Marche
+    MODIFICATION : imposition of BCs
+    
+    - Parameters
+        * h,u (1D array) : solution
+        * dx,dt,t (integers) : space step, time step, time
+        * BCfunction (function) : function that modifies the linear system to impose the BCs
+        * BCparam (1D array) : argument for BCfunction; contains the BCs in the form
+             BC=[u(left),ux(left),uxx(left),alpha1*u(left) + beta1*ux(right) + gamma1*uxx(right),
+                u(right),ux(right),uxx(right),alpha2*u(right) + beta2*ux(right) + gamma2*uxx(right),
+                alpha1,beta1,gamma1,alpha2,beta2,gamma2,Fleft,Fright] 
+        * periodic (boolean) : indicates if the function is periodic
+        
+    - Returns
+        * u2 (1D array) : solution (velocity)
+    """
+    
+    gr = 9.81
+    
+    if hp1 == []:
+        hp1 = np.copy(h)
+
+    hu = h*u
+
+    order=2
+    ux = serre.get1d(u,dx,periodic,order=order)
+    uxx = serre.get2d(u,dx,periodic,order=order)
+    uux = u*ux
+    uuxdx = serre.get1d(uux,dx,periodic,order=order)
+    hx = serre.get1d(h,dx,periodic,order=order)
+    hxx = serre.get2d(h,dx,periodic,order=order)
+    h2x = serre.get1d(h*h,dx,periodic,order=order)
+    hhx = h*hx
+        
+    Q = 2.*h*hx*ux*ux + 4./3.*h*h*ux*uxx + eta*eta*h*u*ux + eta*eta*(hx+eta)*u*u
+    rhs = gr*h*hx + h*Q + gr*h*eta      
+     
+    d0 = 1. + hx*hx/3. + h*hxx/3. + 5.*h*h/(6.*dx*dx) + eta*(hx+eta)
+    dp1 = -2./3.*h*hx/(3.*dx) - 4./3.*h*h/(3.*dx*dx)
+    dp1 = dp1[0:-1]
+    dm1 = +2./3.*h*hx/(3.*dx) - 4./3.*h*h/(3.*dx*dx)
+    dm1 = dm1[1:]
+    dp2 = 1./3.*h*hx/(12.*dx) + 1./3.*h*h/(12.*dx*dx)
+    dp2 = dp2[0:-2]
+    dm2 = -1./3.*h*hx/(12.*dx) + 1./3.*h*h/(12.*dx*dx)
+    dm2 = dm2[2:]
+    
+    M = np.diag(d0) + np.diag(dp1,1) + np.diag(dm1,-1) + np.diag(dp2,2) + np.diag(dm2,-2)
+
+    np.set_printoptions(threshold=np.nan)
+    
+    M,rhs,Ct = imposeBCDispersive(M,rhs,BCs,h,hp1,u,hx,hu,dx,dt,nit,Y=Y,uall=uall,eta=eta)
+    
+    # prec = jacobi(M)
+    # M    = np.dot(prec, M)
+    # rhs  = np.dot(prec,rhs)
+        
+    z = np.linalg.solve(M,rhs)
+    hu2 = hu + dt*(gr*h*(hx+eta)-z)
+        
+    if Y != []:
+        u2 = hu2/hp1
+        
+        print " *  Left"
+        print u2[0] # u2[0] - Y[4,0]*u2[1] - Ct[4,1] +   Y[6,0]*u2[2] +   Ct[6,2]
+        print u2[1] # u2[0] - Y[5,0]*u2[2] - Ct[5,2] + 2*Y[8,0]*u2[3] + 2*Ct[8,3] - Y[7,0]*u2[4] - Ct[7,4] 
+        
+        print " *  Right"
+        print u2[-1] # u2[-1] -   Y[0,0]*u2[-2] -   Ct[0,-2] + Y[2,0]*u2[-3] + Ct[2,-3] 
+        print u2[-2] # u2[-1] - 2*Y[0,0]*u2[-2] - 2*Ct[0,-2] + Y[1,0]*u2[-3] + Ct[1,-3] - Y[3,0]*u2[-5] - Ct[3,-5]
+    
+    print " *  Residual"
+    print np.linalg.norm(np.dot(M,z) - rhs)
+    
+    return hu2/hp1
+def linearEFDSolverFM(h,u,dx,dt,order,BCs,periodic=False,ng=2,side="left",href=None,uref=None,h0=None,u0=None,nit=None,Y=[]):
     
     """
     Finite Difference Solver for the second step of the splitted Serre equations, using the discretization derived
@@ -190,7 +411,6 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=Non
                 u(right),ux(right),uxx(right),alpha2*u(right) + beta2*ux(right) + gamma2*uxx(right),
                 alpha1,beta1,gamma1,alpha2,beta2,gamma2,Fleft,Fright] 
         * periodic (boolean) : indicates if the function is periodic
-        * hp1 : h from the next iteration
         
     - Returns
         * u2 (1D array) : solution (velocity)
@@ -199,69 +419,85 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=Non
     gr = 9.81
 
     hu = h*u
-    
-    if hp1 == []:
-        hp1 = np.copy(h)
-        
-    ordre = 2
-    
-    ux = serre.get1d(u,dx,periodic,order=order)
+
+    order=2
+    uxxx = serre.get3d(u,dx,periodic,order=order)
     uxx = serre.get2d(u,dx,periodic,order=order)
-    uux = u*ux
-    uuxdx = serre.get1d(uux,dx,periodic,order=order)
     hx = serre.get1d(h,dx,periodic,order=order)
-    hxx = serre.get2d(h,dx,periodic,order=order)
-    h2x = serre.get1d(h*h,dx,periodic,order=order)
-    hhx = h*hx
     
-    if domain == 1:
-        u = u[:ind]
-        ux = ux[:ind]
-        uxx = uxx[:ind]
-        uux = uux[:ind]
-        uuxdx = uuxdx[:ind]
-        h = h[:ind]        
-        hx = hx[:ind]
-        hxx = hxx[:ind]
-        h2x = h2x[:ind]
-        hhx = hhx[:ind]
-        hu = h*u
-    elif domain == 2:
-        u = u[ind:]
-        ux = ux[ind:]
-        uxx = uxx[ind:]
-        uux = uux[ind:]
-        uuxdx = uuxdx[ind:]
-        h = h[ind:]        
-        hx = hx[ind:]
-        hxx = hxx[ind:]
-        h2x = h2x[ind:]
-        hhx = hhx[ind:]
-        hu = h*u
+    rhs = u-h0*h0/3.*uxx
     
-    Q = 2.*h*hx*ux*ux + 4./3.*h*h*ux*uxx + eta*eta*h*u*ux + eta*eta*(hx+eta)*u*u
-    rhs = gr*h*hx + h*Q + gr*h*eta      
-     
-    d0 = 1. + hx*hx/3. + h*hxx/3. + 5.*h*h/(6.*dx*dx) + eta*(hx+eta)
-    dp1 = -2./3.*h*hx/(3.*dx) - 4./3.*h*h/(3.*dx*dx)
+    d0 = (1. + 5.*h0*h0/(6.*dx*dx))*np.ones_like(u)
+    dp1 = h0*h0/(3*dx*dx)*(- 4./3. + 13./8.*dt*u0/dx)*np.ones_like(u)
     dp1 = dp1[0:-1]
-    dm1 = +2./3.*h*hx/(3.*dx) - 4./3.*h*h/(3.*dx*dx)
+    dm1 = h0*h0/(3*dx*dx)*(+ 4./3. - 13./8.*dt*u0/dx)*np.ones_like(u)
     dm1 = dm1[1:]
-    dp2 = 1./3.*h*hx/(12.*dx) + 1./3.*h*h/(12.*dx*dx)
+    dp2 = h0*h0/(3*dx*dx)*(- 1./12. -1.*dt*u0/dx)*np.ones_like(u)
     dp2 = dp2[0:-2]
-    dm2 = -1./3.*h*hx/(12.*dx) + 1./3.*h*h/(12.*dx*dx)
+    dm2 =  h0*h0/(3*dx*dx)*(- 1./12. + 1.*dt*u0/dx)*np.ones_like(u)
     dm2 = dm2[2:]
-                
-    M = np.diag(d0) + np.diag(dp1,1) + np.diag(dm1,-1) + np.diag(dp2,2) + np.diag(dm2,-2)
+    dp3 = h0*h0/(3*dx*dx)*(+1./8.*dt*u0/dx)*np.ones_like(u)
+    dp3 = dp3[0:-3]
+    dm3 = h0*h0/(3*dx*dx)*(-1./8.*dt*u0/dx)*np.ones_like(u)
+    dm3 = dm3[3:]
+    
+    M = np.diag(d0) + np.diag(dp1,1) + np.diag(dm1,-1) + np.diag(dp2,2) + np.diag(dm2,-2) + \
+        np.diag(dp3,3) + np.diag(dm3,-3)
+
+    M[0,:] = 0
+    M[1,:] = 0
+    # M[2,:] = 0
+    M[-1,:] = 0
+    M[-2,:] = 0
+    # M[-3,:] = 0
+
+    ### Correct it (but in general these lines are replaced by the BC)
+    M[0,0] = 1. + h0*h0/(3.*dx*dx)* (2. - 5./2.*dt*u0/dx)
+    M[0,1] = h0*h0/(3.*dx*dx)* (-5. + 9.*dt*u0/dx)
+    M[0,2] = h0*h0/(3.*dx*dx)* (4. - 12.*dt*u0/dx)
+    M[0,3] = h0*h0/(3.*dx*dx)* (-1. + 7.*dt*u0/dx)
+    M[0,4] = h0*h0/(3.*dx*dx)* (-3./2.*dt*u0/dx)
+    
+    M[1,1] = 1. + h0*h0/(3.*dx*dx)* (2. - 5./2.*dt*u0/dx)
+    M[1,2] = h0*h0/(3.*dx*dx)* (-5. + 9.*dt*u0/dx)
+    M[1,3] = h0*h0/(3.*dx*dx)* (4. - 12.*dt*u0/dx)
+    M[1,4] = h0*h0/(3.*dx*dx)* (-1. + 7.*dt*u0/dx)
+    M[1,5] = h0*h0/(3.*dx*dx)* (-3./2.*dt*u0/dx)
+    
+    M[2,2] = 1. + h0*h0/(3.*dx*dx)* (2. - 5./2.*dt*u0/dx)
+    M[2,3] = h0*h0/(3.*dx*dx)* (-5. + 9.*dt*u0/dx)
+    M[2,4] = h0*h0/(3.*dx*dx)* (4. - 12.*dt*u0/dx)
+    M[2,5] = h0*h0/(3.*dx*dx)* (-1. + 7.*dt*u0/dx)
+    M[2,6] = h0*h0/(3.*dx*dx)* (-3./2.*dt*u0/dx)
+    
+    M[-1,-1] = 1. + h0*h0/(3.*dx*dx)* (2. + 5./2.*dt*u0/dx)
+    M[-1,-2] = h0*h0/(3.*dx*dx)* (-5. - 9.*dt*u0/dx)
+    M[-1,-3] = h0*h0/(3.*dx*dx)* (4. + 12.*dt*u0/dx)
+    M[-1,-4] = h0*h0/(3.*dx*dx)* (-1. - 7.*dt*u0/dx)
+    M[-1,-5] = h0*h0/(3.*dx*dx)* (+3./2.*dt*u0/dx)
+      
+    M[-2,-2] = 1. + h0*h0/(3.*dx*dx)* (2. + 5./2.*dt*u0/dx)
+    M[-2,-3] = h0*h0/(3.*dx*dx)* (-5. - 9.*dt*u0/dx)
+    M[-2,-4] = h0*h0/(3.*dx*dx)* (4. + 12.*dt*u0/dx)
+    M[-2,-5] = h0*h0/(3.*dx*dx)* (-1. - 7.*dt*u0/dx)
+    M[-2,-6] = h0*h0/(3.*dx*dx)* (+3./2.*dt*u0/dx)
+    
+    M[-3,-3] = 1. + h0*h0/(3.*dx*dx)* (2. + 5./2.*dt*u0/dx)
+    M[-3,-4] = h0*h0/(3.*dx*dx)* (-5. - 9.*dt*u0/dx)
+    M[-3,-5] = h0*h0/(3.*dx*dx)* (4. + 12.*dt*u0/dx)
+    M[-3,-6] = h0*h0/(3.*dx*dx)* (-1. - 7.*dt*u0/dx)
+    M[-3,-7] = h0*h0/(3.*dx*dx)* (+3./2.*dt*u0/dx)
+    ######
 
     np.set_printoptions(threshold=np.nan)
+    np.set_printoptions(suppress=True)
+
+    M,rhs = imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt, nit=nit, Y=Y)
     
-    M,rhs = imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=Y,eta=eta,hp1=hp1)    
     z = np.linalg.solve(M,rhs)
+    hu2 = hu + dt*(gr*h*hx-z)
     
-    hu2 = hu + dt*(gr*h*(hx+eta)-z)
-    
-    return hu2/hp1, z
+    return hu2/h
 def solveDispersiveSerre(u,href,t0,tmax,dt,dx,BCconfig,uref=None,debug=False,idxlims=None, Y=[]):
     
     t = t0
@@ -273,7 +509,43 @@ def solveDispersiveSerre(u,href,t0,tmax,dt,dx,BCconfig,uref=None,debug=False,idx
     tall = np.ones(1)*t0
     
     while abs(t-tmax) > 10**(-12):
+        
+        print "------------------"
+        print " *  t =", t+dt
             
+        ## h(t) = referential solution
+        h = href[:,it]
+        hu = h*u
+
+        FDorder = 4 
+        
+        if debug :
+            # BCconfig[0,2] = uref[idxlims[0],it+1]
+            BCconfig[1,2] = uref[idxlims[1],it+1]
+            # BCconfig[2,2] = uref[idxlims[0]+1,it+1]
+            BCconfig[3,2] = uref[idxlims[1]-1,it+1]
+        
+        u = EFDSolverFM4(h,u,dx,dt,FDorder,BCconfig, it, Y=Y, uall=uall, hp1=href[:,it+1])
+
+        uall = np.column_stack((uall,u))
+        tall = np.hstack((tall,t*np.ones(1)))
+        
+        t = t+dt
+        it = it+1
+        
+    return uall,tall
+def solveLinearDispersiveSerre(u,href,t0,tmax,dt,dx,BCconfig,uref=None,debug=False,idxlims=None,h0=None,u0=None, Y=[]):
+    
+    t = t0
+    it = 0 ## index of timestep
+    grav = 9.8
+    
+    ## store solutions of all timesteps
+    uall = u
+    tall = np.ones(1)*t0
+    
+    while t < tmax:
+        
         ## h(t) = referential solution
         h = href[:,it]
         hu = h*u
@@ -287,263 +559,16 @@ def solveDispersiveSerre(u,href,t0,tmax,dt,dx,BCconfig,uref=None,debug=False,idx
             BCconfig[3,2] = uref[idxlims[1]-1,it+1]
             # BCconfig[4,2] = uref[idxlims[0]+2,it+1]
             # BCconfig[5,2] = uref[idxlims[1]-2,it+1]
-        u,z = EFDSolverFM4(h,u,dx,dt,FDorder,BCconfig,it,Y=Y, hp1=href[:,it+1])
-        
-        if it == 0:
-            zall = z
-        else:
-            zall = np.column_stack((zall,z))
-        uall = np.column_stack((uall,u))
-        tall = np.hstack((tall,t*np.ones(1)))        
-        
-        t = t+dt
-        it = it+1
-        
-    return uall,zall,tall
-def norm2(u, dx):
-  """
-  Return the l^2 norm of an numpy array.
-  """
+        u = linearEFDSolverFM(h,u,dx,dt,FDorder,BCconfig,h0=h0,u0=u0, nit=it, Y=Y)
 
-  return np.sqrt(dx*np.sum(u**2))
-
-
-def solveDispersiveSerreDDM(u,href,t0,tmax,dt,dx,cond_int_1,cond_int_2,cond_bound,uref=None,zref=None,debug_1=False,debug_2=False,Y=[],uall=None):
-    """
-    If the DDM is overlapping : N1+N2 >= N+2, otherwise N1+N2 = N+1.
-
-                   0 1 2                                                    N-2 N-1=J
-    Monodomain   = [ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ]
-                   0 1 2             |         N1-2 N1-1=J_1
-    Left Domain  = [ - - - - - - - - - - - - - - - ]
-                                     | 1 2         |                       N2-2 N2-1=J_2
-    Right Domain =                   [ - - - - - - - - - - - - - - - - - - - - ]
-                                     |             |
-    Index on the monodomain   :     N-N2          N1-1
-    Index on the left domain  :     N-N2          N1-1
-    Index on the right domain :      0          N1+N2-N-1
-
-                                    O12            J21
-    """
-    
-    ## time steps
-    t = t0
-    it = 0     
-    
-    ## parameters for the DDM
-    n = len(u)
-    j = n-1
-    n1 = int((1./2.)*n)
-    j1 = n1-1
-    # minimal overlapping for our TBC : n = n1+n2-5
-    n2 = n-n1+5
-    # n2 = int((3./4.)*n)
-    j2 = n2-1
-    ## communication between domains
-    # last node of the left domain in the right domain
-    j21 = n1+n2-n-1
-    # first node of the right domain in the left domain
-    o12 = n-n2
-    
-    ## initialization
-    u1 = u[:n1]
-    u2 = u[n-n2:]
-    
-    ## store solutions of all timesteps
-    uall = np.copy(u)
-    u1all = np.copy(u1)
-    u2all = np.copy(u2)
-    tall = np.ones(1)*t0
-    
-    ## precision
-    nitermax = 100
-    eps = 10**(-15)
-
-    print "*** starting DDM resolution with {} - {} at the interface".format(cond_int_1, cond_int_2)
-    print " * "
-    print " *  precision = {:.3e}".format(eps)
-    print " * "
-    
-    while abs(t-tmax) > 10**(-12):
-               
-        ## h(t) = referential solution
-        # we don't update it as we are working only on the dispersive part
-        u1 = uref[:n1,it]
-        h1 = href[:n1,it]
-        h1u1 = h1*u1
-        u2 = uref[n-n2:,it]
-        h2 = href[n-n2:,it]
-        h2u2 = h2*u2
-        ## order of the dispersive solver
-        FDorder = 4 
-        
-        ## starting the Schwarz algorithm
-        cvg = False
-        niter = 0
-        z1 = np.zeros_like(u1)
-        z2 = np.zeros_like(u2)
-        
-        ## monitoring error
-        if abs(t - 1.) < 10**(-12):
-            err_tab = []
-        
-        while niter < nitermax and cvg == False:
-            
-            ## \Omega_1 : left --> BC, right --> IBC
-            if debug_1:
-                cond_int_1 = "Dirichlet"
-                val11 = uref[j1,it+1]
-                val12 = uref[j1-1,it+1]
-                bc11 = uref[0,it+1]
-                bc12 = uref[1,it+1]
-            elif cond_int_1 == "Dirichlet":
-                val11 = u2[j21]
-                val12 = u2[j21-1]
-                bc11 = 0.
-                bc12 = 0.
-            elif cond_int_1 == "DTBC_Y":
-                val11 = z2[j21] -   Y[0,0]*(href[j1,it+1]/href[j1-1,it+1])*z2[j21-1] \
-                                +   Y[2,0]*(href[j1,it+1]/href[j1-2,it+1])*z2[j21-2]
-                val12 = z2[j21] - 2*Y[0,0]*(href[j1,it+1]/href[j1-1,it+1])*z2[j21-1] \
-                                +   Y[1,0]*(href[j1,it+1]/href[j1-2,it+1])*z2[j21-2] \
-                                -   Y[3,0]*(href[j1,it+1]/href[j1-4,it+1])*z2[j21-4]
-                bc11 = 0.
-                bc12 = 0.
-            else:
-                val11 = 0.
-                val12 = 0.
-                bc11 = 0.
-                bc12 = 0.
-            BCconfig1 = np.array([[0,cond_bound,bc11,1.,0.,1.],
-                                 [-1,cond_int_1,val11,1.,0.,1.],
-                                 [1,cond_bound,bc12,1.,0.,1.],
-                                 [-2,cond_int_1,val12,1.,0.,1.]], dtype=object)
-            
-            ## solving in the left domain
-            u1_save = np.copy(u1)
-            z1_save = np.copy(z1)
-            u1,z1 = EFDSolverFM4(href[:,it],uref[:,it],dx,dt,FDorder,BCconfig1,it, uref = uref,
-                                 Y=Y,hp1=href[:n1,it+1],domain=1,ind=n1,zref=zref[:n1,:])
-            assert(len(u1) == n1)
-            
-            ## \Omega_2 : left --> IBC, right --> BC
-            if debug_2:
-                cond_int_2 = "Dirichlet"
-                val21 = uref[o12,it+1]
-                val22 = uref[o12+1,it+1]
-                bc21 = uref[-1,it+1]
-                bc22 = uref[-2,it+1]
-            elif cond_int_2 == "Dirichlet":
-                val21 = u1_save[o12]
-                val22 = u1_save[o12+1]
-                bc21 = 0.
-                bc22 = 0.
-            elif cond_int_2 == "DTBC_Y":
-                val21 = z1_save[o12] -   Y[4,0]*(href[o12,it+1]/href[o12+1,it+1])*z1_save[o12+1] \
-                                     +   Y[6,0]*(href[o12,it+1]/href[o12+2,it+1])*z1_save[o12+2]
-                val22 = z1_save[o12] -   Y[5,0]*(href[o12,it+1]/href[o12+2,it+1])*z1_save[o12+2] \
-                                     + 2*Y[8,0]*(href[o12,it+1]/href[o12+3,it+1])*z1_save[o12+3] \
-                                     -   Y[7,0]*(href[o12,it+1]/href[o12+4,it+1])*z1_save[o12+4]
-                bc21 = 0.
-                bc22 = 0.
-            else:
-                val21 = 0.
-                val22 = 0.
-                bc11 = 0.
-                bc12 = 0.
-            BCconfig2 = np.array([[0,cond_int_2,val21,1.,0.,1.],
-                                 [-1,cond_bound,bc21,1.,0.,1.],
-                                 [1,cond_int_2,val22,1.,0.,1.],
-                                 [-2,cond_bound,bc22,1.,0.,1.]], dtype=object)      
-            
-            ## solving in the right domain
-            u2_save = np.copy(u2)
-            z2_save = np.copy(z2)
-            u2,z2 = EFDSolverFM4(href[:,it],uref[:,it],dx,dt,FDorder,BCconfig2,it, uref = uref,
-                                 Y=Y,hp1=href[o12:,it+1],domain=2,ind=o12,zref=zref[o12:,:])
-            assert(len(u2) == n2)
-            
-            ## test convergence with reference to uref
-            ## convergence in u
-            err_norm_ref = np.sqrt(norm2(u1-uref[:n1,it+1], dx)**2 + norm2(u2-uref[o12:,it+1], dx)**2)
-            ## convergence in z
-            # err_norm_ref = np.sqrt(norm2(z1-zref[:n1,it], dx)**2 + norm2(z2-zref[o12:,it], dx)**2)
-            
-            
-            err_norm_cvg = np.sqrt(norm2(u1-u1_save, dx)**2 + norm2(u2-u2_save, dx)**2)
-            err_norm = err_norm_ref
-            ## monitoring error
-            if abs(t - 1.) < 10**(-12):
-                err_tab.append(err_norm)
-                
-            if err_norm < eps:
-                print " *  t = {:.2f} --> DDM cvg reached in {:4d} iterations, error = {:.3e}".format(t+dt,
-                                                                                                      niter+1,
-                                                                                                      err_norm)
-                print " *  left domain interface  : {:.3e}".format(np.sqrt((u1[j1]-uref[j1,it+1])**2 +
-                                                                           (u1[j1-1]-uref[j1-1,it+1])**2))
-                print " *  right domain interface : {:.3e}".format(np.sqrt((u2[0]-uref[o12,it+1])**2 +
-                                                                           (u2[1]-uref[o12+1,it+1])**2))
-                print " *  z1-zref : {:.3e}".format(norm2(z1-zref[:n1,it],dx))
-                print " *  left domain interface  : {:.3e}".format(np.sqrt((z1[j1]-zref[j1,it])**2 +
-                                                                           (z1[j1-1]-zref[j1-1,it])**2))
-                print " *  z2-zref : {:.3e}".format(norm2(z2-zref[o12:,it],dx))
-                print " *  right domain interface : {:.3e}".format(np.sqrt((z2[0]-zref[o12,it])**2 +
-                                                                           (z2[1]-zref[o12+1,it])**2))
-                print " * "
-                cvg = True
-                u[:o12] = u1[:o12]
-                u[o12:n1] = .5*(u1[o12:] + u2[:j21+1])
-                u[n1:] = u2[j21+1:]
-            
-            niter += 1
-            if niter == nitermax:
-                # print abs(u1 - uref[:n1,it+1])
-                # print abs(u2 - uref[o12:,it+1])
-                print " *  t = {:.2f} --> DDM cvg not reached after {:4d} iterations, error = {:.3e}".format(t+dt,
-                                                                                                             niter,
-                                                                                                             err_norm)
-                print " *  left domain interface  : {:.3e}".format(np.sqrt((u1[j1]-uref[j1,it+1])**2 + 
-                                                                          (u1[j1-1]-uref[j1-1,it+1])**2))
-                print " *  right domain interface : {:.3e}".format(np.sqrt((u2[0]-uref[o12,it+1])**2 + 
-                                                                          (u2[1]-uref[o12+1,it+1])**2))
-                print " *  z1-zref : {:.3e}".format(norm2(z1-zref[:n1,it],dx))
-                print " *  left domain interface  : {:.3e}".format(np.sqrt((z1[j1]-zref[j1,it])**2 +
-                                                                           (z1[j1-1]-zref[j1-1,it])**2))
-                print " *  z2-zref : {:.3e}".format(norm2(z2-zref[o12:,it],dx))
-                print " *  right domain interface : {:.3e}".format(np.sqrt((z2[0]-zref[o12,it])**2 +
-                                                                           (z2[1]-zref[o12+1,it])**2))
-                print " * "
-                u[:o12] = u1[:o12]
-                u[o12:n1] = .5*(u1[o12:] + u2[:j21+1])
-                u[n1:] = u2[j21+1:]
-                
-        ## monitoring error
-        if abs(t - 1.) < 10**(-12):
-            plt.plot(err_tab)
-            plt.yscale('log')
-            plt.savefig('error_{}-{}.pdf'.format(cond_int_1, cond_int_2))
-            plt.clf()
-            
-        ## stacking after convergence
-        if it == 0:
-            z1all = z1
-            z2all = z2
-        else:
-            z1all = np.column_stack((z1all,z1))
-            z2all = np.column_stack((z2all,z2))
-        u1all = np.column_stack((u1all,u1))
-        u2all = np.column_stack((u2all,u2))
         uall = np.column_stack((uall,u))
         tall = np.hstack((tall,t*np.ones(1)))
         
         
-        t  += dt
-        it += 1
+        t = t+dt
+        it = it+1
         
-    print "*** DDM over"
-        
-    return uall,u1all,u2all,z1all,z2all,tall
+    return uall,tall
 def computeErrorTBC(u,uref,idxlims,dx,dt):
     lim1 = idxlims[0]
     lim2 = idxlims[1]
