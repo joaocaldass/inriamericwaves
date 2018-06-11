@@ -20,7 +20,7 @@ class Parameters:
   A small parameter class to adapt the code to Zt_tools.py
   """
 
-  def __init__(self, h0, dx, nx, xmin, xmax, dt):
+  def __init__(self, h0, dx, nx, xmin, xmax, dt, Nf):
     ## pb parameters
     self.h0 = h0
     self.dx = dx
@@ -28,10 +28,100 @@ class Parameters:
     self.xmin = xmin
     self.xmax = xmax
     self.dt = dt
+    self.Nf = Nf
 
     ## personnal parameters
     self.ht = - (h0**2)/3
     self.g = 9.81
+
+def compute_Y2(ps, ub):
+  """
+  Computes the exact convolution variables before apprxomating them.
+  This is the version for the linearized Serre equation with ub != 0.
+  """
+
+  print "*** Starting computations of Ys"
+
+  ## creating the polynomial basis
+  # dimensional and adimensional constants for the reformulated polynomial
+  s = lambda z: (2./ps.dt) * (z-1.)/(z+1.)
+  P = [0 + 0j for i in range(5)]
+  N = ps.Nf
+
+  alpha = (ps.h0**2*ub)/(2*ps.dx**3)
+  beta = ps.h0**2/ps.dx**2
+
+  ## initialization
+  Y = np.zeros((9, N), dtype=complex)
+  K = np.zeros((9, N), dtype=complex)
+  omegaN = np.exp(2*np.pi*1j/N) # unity root
+  rrc = 1.001  # radius of the circle for computing Z^{-1}
+
+  for n in range(N):
+
+    z = rrc*(omegaN**n)
+
+    sc = s(z)
+    P[0] = - (1./3.) * alpha * (1./s(z))
+    P[1] =   (2./3.) * alpha * (1./s(z)) - (1./3.) * beta
+    P[2] =   (2./3.) * beta + 1
+    P[3] = - (2./3.) * alpha * (1./s(z)) - (1./3.) * beta
+    P[4] =   (1./3.) * alpha * (1./s(z))
+    R = np.roots(P)
+
+    # sorting the roots from the largest to the smallest (in terms of modulus)
+    mR = [abs(r) for r in R]
+    root = []
+    while len(mR) > 0:
+      for r in R:
+        if (r not in root) and (abs(r) == max(mR)):
+          root.append(r)
+          mR.remove(abs(r))
+          break
+
+    #  ar = abs(np.array(root))
+    #  assert((ar[0] > ar[1]) and (ar[1] > 1) and (1 > ar[2]) and (ar[2] > ar[3]))
+
+    # re-ordering
+    root = root[::-1]
+
+    # computing the kernels
+    ## roots smaller than 1
+    K[0,n] = root[0] + root[1]
+    K[1,n] = K[0,n]**2
+    K[2,n] = root[0] * root[1]
+    assert(abs(K[2,n]) < 1)
+    K[3,n] = K[2,n]**2
+    ## roots greater than 1
+    K[4,n] = (root[2] + root[3]) / (root[2] * root[3])
+    K[5,n] = K[4,n]**2
+    K[6,n] = 1. / (root[2] * root[3])
+    assert(abs(K[6,n]) < 1)
+    K[7,n] = K[6,n]**2
+    K[8,n] = (root[2] + root[3]) / ((root[2] * root[3])**2)
+
+    #  for i in range(9):
+    #    if i < 4:
+    #      K[i,n] = ((1+1/z)**ps.xi_pow)*K[i,n]
+    #    else:
+    #      K[i,n] = ((1+1/z)**ps.xi_pow)*K[i,n]
+
+  print "*** Computation of Ys (in Fourier space) --> done\n"
+
+  print "*** Applying iFFT on Ys"
+
+  for i in range(9):
+    Kn = ifft(K[i,:])
+    for n in range(N):
+      Y[i,n] = (rrc**n)*Kn[n]
+
+  print " *  max(Y1) = {}".format(np.amax(Y.real[:4,]))
+  print " *  max(Y2) = {}".format(np.amax(Y.real[4:,]))
+
+  print "*** iFFT --> done\n"
+
+  # keeping the real part
+  return Y.real
 
 
 def compute_K(dx, h0):
@@ -72,7 +162,7 @@ def compute_K(dx, h0):
 
   return K
 
-def compute_Y(ps, N):
+def compute_Y(ps):
   """
   Computes the exact convolution variables before apprxomating them.
   """
@@ -85,6 +175,7 @@ def compute_Y(ps, N):
   b = 4*(ps.dx**2)/(ps.g*ps.h0)
   s = lambda z: (2./ps.dt) * (z-1.)/(z+1.)
   P = [0 + 0j for i in range(5)]
+  N = ps.Nf
 
   ## initialization
   Y = np.zeros((9, N), dtype=complex)

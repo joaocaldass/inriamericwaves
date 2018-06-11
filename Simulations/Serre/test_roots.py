@@ -15,10 +15,9 @@ dx = 0.01
 dt = 0.05
 h0 = 1.
 ht = - h0**2/3
+ub = 0
 
 # Dimensional and adimensional constants for the reformulated polynomial
-a = 4*ht/(g*h0)
-b = 4*(dx**2)/(g*h0)
 s = lambda z: (2./dt) * (z-1.)/(z+1.)
 
 # Testing sign of s^2
@@ -34,6 +33,9 @@ Y = np.linspace(-3, 3, 51)
 theta = np.linspace(0, 2*np.pi, 1001)
 P = [0 + 0j for i in range(5)]
 
+alpha = (h0**2*ub)/(2*dx**3)
+beta = h0**2/dx**2
+
 root = [[] for i in range(4)]
 
 plt.plot(np.cos(theta), np.sin(theta))
@@ -46,11 +48,11 @@ for x in X:
     if abs(sc) < 1:
       continue
 
-    P[0] = 1. + 0j
-    P[1] = -a*(sc**2)
-    P[2] = (sc**2)*(2*a - b) - 2.
-    P[3] = -a*(sc**2)
-    P[4] = 1. + 0j
+    P[0] = - (1./3.) * alpha * (1./s(z))
+    P[1] =   (2./3.) * alpha * (1./s(z)) - (1./3.) * beta
+    P[2] =   (2./3.) * beta + 1
+    P[3] = - (2./3.) * alpha * (1./s(z)) - (1./3.) * beta
+    P[4] =   (1./3.) * alpha * (1./s(z))
     R = np.roots(P)
     R = np.sort(R)[::-1]
     mR = [abs(r) for r in R]

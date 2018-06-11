@@ -17,7 +17,7 @@ def imposePeriodicity(v,ng) :
 ## Create an array with nx points in [xmin,xmax)
 def discretizeSpace(xmin,xmax,nx):
     dx = (xmax-xmin)/nx
-    x = np.arange(xmin,xmax,dx)
+    x = np.arange(xmin,xmax+dx/2.,dx)
     
     return x,dx
 ## Impose Robin conditions to FV scheme, 1st order
