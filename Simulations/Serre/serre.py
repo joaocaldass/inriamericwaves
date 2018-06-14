@@ -1,13 +1,12 @@
-
-import sys
-sys.path.append('../')
-sys.path.append('../nswe')
-
+## Numerical resolution of the Serre equations
 import numpy as np
 import matplotlib.pyplot as plt
-import nswe
 import math
+import generalFunctions as gF
+import cnoidal
+import nswe
 import muscl2
+
 ## Impose periodicity to ng ghost cells
 def imposePeriodicity(v,ng) :
     for i in range(ng) :
@@ -17,7 +16,7 @@ def imposePeriodicity(v,ng) :
 ## Create an array with nx points in [xmin,xmax)
 def discretizeSpace(xmin,xmax,nx):
     dx = (xmax-xmin)/nx
-    x = np.arange(xmin,xmax+dx/2.,dx)
+    x = np.arange(xmin,xmax,dx)
     
     return x,dx
 ## Impose Robin conditions to FV scheme, 1st order
@@ -79,6 +78,20 @@ def openDomain(h,hu,BC,dx,t):
     hb[-1] = h[-2]
     hub[-1] = hu[-2]    
     return hb,hub
+## BC for an open domain with 2 ghost cells
+## The function robinBC1 can do the same with BC = [0.,0.,0.,0.,0.,1.,0.,1.,0.,1.,0.,1.]
+def openDomain2GC(h,hu,BC,dx,t):
+    hb = 1.*h
+    hub = 1.*hu
+    hb[0] = h[2]
+    hb[1] = h[2]
+    hub[0] = hu[2]
+    hub[1] = hu[2]
+    hb[-1] = h[-3]
+    hb[-2] = h[-3]
+    hub[-1] = hu[-3]    
+    hub[-2] = h[-3]
+    return hb,hub
 ## Impose periodic BC for 1 ghost cell in the FV scheme
 ## The function robinBC1 CANNOT do the same
 def periodicDomain(h,hu,BC,dx,t):
@@ -106,6 +119,59 @@ def periodicDomainTwoGC(h,hu,BC,dx,t):
     hub[-2] = hu[2]
     
     return hb,hub
+# compute any of the RK4 coefficients (k_i)
+def getRK4coef(x,uA,uB,f,dx,dt,nx,periodic):
+    F = f(uA,uB,nx,periodic)
+    return -dt/dx*(F[0,1:] - F[0,:-1]), -dt/dx*(F[1,1:] - F[1,:-1])
+
+# complete the vector of RK4 coefficients with zeros in the ghost cells (to perform the sum u  + k_i)
+def extend2GhostCells(v,ng):
+    return np.concatenate((np.zeros(ng),v,np.zeros(ng)))
+
+# RK4 for one time step
+def RK4(x,uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng):
+        
+    uuA = np.copy(uA)
+    uuB = np.copy(uB)
+    uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+    k1A,k1B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic)
+    k1A = extend2GhostCells(k1A,ng)
+    k1B = extend2GhostCells(k1B,ng)
+
+    uuA = uA+k1A/2.
+    uuB = uB+k1B/2.
+    uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+    k2A,k2B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic)
+    k2A = extend2GhostCells(k2A,ng)
+    k2B = extend2GhostCells(k2B,ng)
+
+    uuA = uA+k2A/2.
+    uuB = uB+k2B/2.
+    uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+    k3A,k3B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic)
+    k3A = extend2GhostCells(k3A,ng)
+    k3B = extend2GhostCells(k3B,ng)
+
+    uuA = uA+k3A
+    uuB = uB+k3B
+    uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+    k4A,k4B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic)
+    k4A = extend2GhostCells(k4A,ng)
+    k4B = extend2GhostCells(k4B,ng)
+
+    return uA + 1./6.*(k1A+2.*k2A+2.*k3A+k4A), uB + 1./6.*(k1B+2.*k2B+2.*k3B+k4B)
+
+# Euler for one time step
+def Euler(x,uA,uB,f,bcf,bcp,dx,dt,nx,t,ng):
+
+        uuA = np.copy(uA)
+        uuB = np.copy(uB)
+        uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+        k1A,k1B = getRK4coef(x,uuA,uuB,f,dx,dt,nx)
+        k1A = extend2GhostCells(k1A,ng)
+        k1B = extend2GhostCells(k1B,ng)
+
+        return uA + k1A, uB + k1B
 keepFirstSolL = 0
 keepFirstSolR = 0
 
@@ -243,59 +309,123 @@ def periodicDomain2TwoGC(M,rhs,t,dx,BC):
     rhs[-2] = 0.
     
     return M,rhs
-# compute any of the RK4 coefficients (k_i)
-def getRK4coef(x,uA,uB,f,dx,dt,nx):
-    F = f(uA,uB,nx)
-    return -dt/dx*(F[0,1:] - F[0,0:-1]), -dt/dx*(F[1,1:] - F[1,0:-1])
+import convolution as cvl
 
-# complete the vector of RK4 coefficients with zeros in the ghost cells (to perform the sum u  + k_i)
-def extend2GhostCells(v,ng):
-    return np.concatenate((np.zeros(ng),v,np.zeros(ng)))
-
-# RK4 for one time step
-def RK4(x,uA,uB,f,bcf,bcp,dx,dt,nx,t,ng):
-
-        uuA = np.copy(uA)
-        uuB = np.copy(uB)
-        uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-        k1A,k1B = getRK4coef(x,uuA,uuB,f,dx,dt,nx)
-        k1A = extend2GhostCells(k1A,ng)
-        k1B = extend2GhostCells(k1B,ng)
-        
-        uuA = uA+k1A/2.
-        uuB = uB+k1B/2.
-        uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-        k2A,k2B = getRK4coef(x,uuA,uuB,f,dx,dt,nx)
-        k2A = extend2GhostCells(k2A,ng)
-        k2B = extend2GhostCells(k2B,ng)
-        
-        uuA = uA+k2A/2.
-        uuB = uB+k2B/2.
-        uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-        k3A,k3B = getRK4coef(x,uuA,uuB,f,dx,dt,nx)
-        k3A = extend2GhostCells(k3A,ng)
-        k3B = extend2GhostCells(k3B,ng)
-        
-        uuA = uA+k3A
-        uuB = uB+k3B
-        uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-        k4A,k4B = getRK4coef(x,uuA,uuB,f,dx,dt,nx)
-        k4A = extend2GhostCells(k4A,ng)
-        k4B = extend2GhostCells(k4B,ng)
-
-        return uA + 1./6.*(k1A+2.*k2A+2.*k3A+k4A), uB + 1./6.*(k1B+2.*k2B+2.*k3B+k4B)
+# impose transparent boundary conditions
+def DTBC(M,rhs,BCs,hm1,h,u,hm1x,hx,hu,dx,dt,nit,Y=[],uall=None):
     
-# Euler for one time step
-def Euler(x,uA,uB,f,bcf,bcp,dx,dt,nx,t,ng):
-
-        uuA = np.copy(uA)
-        uuB = np.copy(uB)
-        uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-        k1A,k1B = getRK4coef(x,uuA,uuB,f,dx,dt,nx)
-        k1A = extend2GhostCells(k1A,ng)
-        k1B = extend2GhostCells(k1B,ng)
-
-        return uA + k1A, uB + k1B
+    """
+    Impose three boundary conditions for the dispersive part
+    
+    - Inputs :
+        * M : matrix of the FD scheme
+        * rhs : right-hand side of the FD scheme
+        * BCs : array of dimensions 3x3 containing one TBC in each line, in the form
+            [Position,Type,Value,Opt], where
+                ::: Position (int) : indicates the point to be modified (0,1,...,-2,-1)
+                ::: Type (str) : indicates the type of BC : "Dirichlet"/"Neumann"/"TBC"
+                ::: Value (float) : value of the BC
+                ::: Opt [int,float,array] : optional coefficients for the TBC; depends on the Type 
+        * h,hx,hu : informations from the last computation
+        * hm1 : h before the advection step (not supposed to change during the dispersion step)
+        * hp1 : information about h at this iteration (is already computed at the advection part)
+        * dt
+        
+    - Outputs :
+        * M
+        * rhs
+    """
+    gr = 9.81
+    
+    ## first loop to compute TBC related parameters only once
+    convol = False
+    for i in range(BCs.shape[0]):
+        [pos,typ,val] = BCs[i,:3]
+        if typ == 'DTBC_Y':
+            convol = True
+            Ct = cvl.convolution_exact(nit, Y, uall)
+            uu = (1./h)*(hm1*u + dt*gr*hm1*hm1x) 
+            break
+        
+    ## impose BCs
+    for i in range(BCs.shape[0]) :
+        [pos,typ,val] = BCs[i,:3]
+        pos = int(pos)
+        val = float(val)
+        if typ == "Dirichlet" :
+            M[pos,:] = 0.
+            M[pos,pos] = 1.
+            rhs[pos] = -(val*h[pos]-hu[pos] - dt*gr*h[pos]*hx[pos])/dt
+            # rhs[pos] = val*h[pos]
+        elif typ == "Neumann" :
+            M[pos,:] = 0.
+            if pos == 0:
+                M[0,0] = -h[1]
+                M[0,1] = h[0]
+                rhs[0] = h[0]*h[1]/dt*(u[1]-u[0] + dt*gr*(hx[1]-hx[0]) - val*dx)
+            else:
+                M[pos,pos] = h[pos-1]
+                M[pos,pos-1] = -h[pos]
+                rhs[pos] = h[pos]*h[pos-1]/dt*(u[pos]-u[pos-1] + dt*gr*(hx[pos]-hx[pos-1]) - val*dx)
+        elif typ == "Robin" :
+            alpha = float(BCs[i,3])
+            beta = float(BCs[i,4])
+            M[pos,:] = 0.
+            if pos == 0 or pos == -2 :
+                M[pos,pos] = dt*h[pos+1]*(alpha*dx - beta)
+                M[pos,pos+1] = beta*dt*h[pos]
+                rhs[pos] = h[pos]*h[pos+1]*(\
+                                    alpha*dx*(u[pos]+dt*gr*hx[pos]) + \
+                                    beta*(u[pos+1] - u[pos] + dt*gr*(hx[pos+1]-hx[pos])) - dx*val)
+            elif pos == 1 or pos == -1 :
+                M[pos,pos] = dt*h[pos-1]*(alpha*dx + beta)
+                M[pos,pos-1] = -beta*dt*h[pos]
+                rhs[pos] = h[pos]*h[pos-1]*(\
+                                            alpha*dx*(u[pos]+dt*gr*hx[pos]) + \
+                                            beta*(u[pos] - u[pos-1] + dt*gr*(hx[pos]-hx[pos-1])) - dx*val)
+                            
+        elif typ == "DTBC_Y":
+            
+            M[pos,:] = 0.
+            
+            if pos == 0:
+                # Left TBC 1 ==> unknown = U[0]
+                M[pos,0]   =  1.
+                M[pos,1]   = -   Y[4,0]*h[0]/h[1]
+                M[pos,2]   =     Y[6,0]*h[0]/h[2]
+                val        = Ct[4,1] - Ct[6,2]
+                rhs[pos]   = -(h[0]/dt)*( val - uu[0] + Y[4,0]*uu[1] - Y[6,0]*uu[2] )                
+            elif pos == 1:
+                # Left TBC 2 ==> unknown = U[1]
+                M[pos,0]   =  1.
+                M[pos,2]   = -   Y[5,0]*h[0]/h[2]
+                M[pos,3]   =  2.*Y[8,0]*h[0]/h[3]
+                M[pos,4]   = -   Y[7,0]*h[0]/h[4]
+                val        = Ct[5,2] - 2*Ct[8,3] + Ct[7,4]
+                rhs[pos]   = -(h[0]/dt)*( val - uu[0] + Y[5,0]*uu[2] - 2*Y[8,0]*uu[3] + Y[7,0]*uu[4] ) 
+            elif pos == -1:
+                ## Right TBC 1 ==> unknown = U[J]
+                M[pos,-1]  =  1.
+                M[pos,-2]  = -   Y[0,0]*h[-1]/h[-2]
+                M[pos,-3]  =     Y[2,0]*h[-1]/h[-3]
+                val        =  Ct[0,-2] - Ct[2,-3]
+                rhs[pos]   = -(h[-1]/dt)*( val - uu[-1] + Y[0,0]*uu[-2] - Y[2,0]*uu[-3] )
+            elif pos == -2:
+                ## Right TBC 2 ==> unknown = U[J-1]
+                M[pos,-1] =  1.
+                M[pos,-2] = -2.*Y[0,0]*h[-1]/h[-2]
+                M[pos,-3] =     Y[1,0]*h[-1]/h[-3]
+                M[pos,-5] = -   Y[3,0]*h[-1]/h[-5]
+                val       = 2*Ct[0,-2] - Ct[1,-3] + Ct[3,-5]
+                rhs[pos]  = -(h[-1]/dt)*( val - uu[-1] + 2*Y[0,0]*uu[-2] - Y[1,0]*uu[-3] + Y[3,0]*uu[-5] )    
+                
+        else :
+            sys.exit("Wrong type of TBC!! Please use Dirichlet/Neumann/TBC/DTBC_Y")
+        
+    if convol:
+        return M,rhs,Ct
+    else:
+        return M,rhs,[]
 # Compute first derivative
 def get1d(u,dx,periodic,order):
     a = np.zeros_like(u)
@@ -309,8 +439,6 @@ def get1d(u,dx,periodic,order):
         a[-1] = (3*u[-1] - 4.*u[-2] + u[-3])/(2.*dx)
     elif order == 4 :
         a[2:-2] = 1./(12.*dx)*(u[0:-4] - 8.* u[1:-3] + 8.*u[3:-1] - u[4:])
-        a[0] = (-3*u[0] + 4.*u[1] - u[2])/(2.*dx)
-        a[-1] = (3*u[-1] - 4.*u[-2] + u[-3])/(2.*dx)        
         #if (periodic) :
         #    a[0] = 1./(12.*dx)*(u[-3] - 8.* u[-2] + 8.*u[1] - u[2])
             ##### Todo Boundaries
@@ -339,7 +467,7 @@ def get2d(u,dx,periodic,order=2):
 # Compute first derivative
 def get3d(u,dx,periodic,order=2):
     a = np.zeros_like(u)
-    a[2:-2] = 1./(2.*dx*dx*dx)*(-u[0:-4] + 2.*u[1:-3] - 2.*u[3:-1] + u[4:])
+    a[2:-2] = 1./(2.*dx*dx)*(-u[0:-4] + 2.*u[1:-3] - 2.*u[3:-1] + u[4:])
     a[0] = 1./(dx*dx)*(-u[0] + 3.*u[1] - 3.*u[2] + u[3])
     a[1] = 1./(dx*dx)*(-u[1] + 3.*u[2] - 3.*u[3] + u[4])
     a[-1] = 1./(dx*dx)*(u[-1] - 3.*u[-2] + 3.*u[-3] - u[-4])
@@ -432,7 +560,7 @@ def EFDSolver(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2):
     u2 = np.linalg.solve(M,rhs)
         
     return u2
-def EFDSolverFM4(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2,eta=0.):
+def EFDSolverFM4(hm1,h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2,Y=[],nit=0,uall=None):
     
     """
     Finite Difference Solver for the second step of the splitted Serre equations, using the discretization derived
@@ -460,11 +588,13 @@ def EFDSolverFM4(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2,e
     
     hu = h*u
     
+    order = 2
     ux = get1d(u,dx,periodic,order=4)
     uxx = get2d(u,dx,periodic,order=4)
     uux = u*ux
     uuxdx = get1d(uux,dx,periodic,order=4)
     hx = get1d(h,dx,periodic,order=4)
+    hm1x = get1d(hm1,dx,periodic,order=2)
     hxx = get2d(h,dx,periodic,order=4)
     h2x = get1d(h*h,dx,periodic,order=4)
     hhx = h*hx
@@ -517,14 +647,11 @@ def EFDSolverFM4(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2,e
 
     np.set_printoptions(threshold=np.nan)
     np.set_printoptions(suppress=True)
-
-    if BCparam != None:
-        if BCparam[14] == keepFirstSolL :
-            BCparam[0] = u[0]
-        if BCparam[15] == keepFirstSolL :
-            BCparam[4] = u[-1]    
     
-    M,rhs = BCfunction(M,rhs,t,dx,BCparam)
+    if BCfunction != DTBC:
+        M,rhs = BCfunction(M,rhs,t,dx,BCparam)
+    else:
+        M,rhs,Ct = BCfunction(M,rhs,BCparam,hm1,h,u,hm1x,hx,hu,dx,dt,nit,Y,uall)
 
     z = np.linalg.solve(M,rhs)
     hu2 = hu + dt*(gr*h*hx-z)
@@ -700,7 +827,7 @@ def EFDSolverFM(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2):
     np.set_printoptions(threshold=np.nan)
     np.set_printoptions(suppress=True)
 
-    if BCparam != None:
+    if BCparam.all() != None:
         if BCparam[14] == keepFirstSolL :
             BCparam[0] = u[0]
         if BCparam[15] == keepFirstSolL :
@@ -715,9 +842,11 @@ def EFDSolverFM(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2):
 # solve the Serre equation
 def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,vardt = True, dt = 0.05,
                splitSteps = 3, periodic=False,order=2,fvsolver=muscl2.fluxes2,fvTimesolver=RK4,fdsolver=EFDSolver,
-              ghostcells = 2,eta=0.):
+               ghostcells = 2,eta=0.,Y=[]):
     t = t0
+    it = 0
     grav = 9.8
+    ng = ghostcells
     
     uall = u
     hall = h
@@ -731,26 +860,36 @@ def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,var
                 dt = dx/(np.amax(np.absolute(u)) + np.sqrt(grav*np.amax(h)))
             print(r'dt = %f; t = %f' %(dt,t))
         t = t+dt
+        it += 1
         
         hu = h*u
 
         h,hu = bcfunction1(h,hu,bcparam1,dx,t)
+        hm1 = np.copy(h)
         #F = nswe.fluxes(h,hu,nx)
         #h[1:-1] = h[1:-1] - dt/dx*(F[0,1:] - F[0,0:-1])
         #hu[1:-1] = hu[1:-1] - dt/dx*(F[1,1:] - F[1,0:-1])
         
         if splitSteps == 3: ## Adv Disp Adv
-            h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,ng=ghostcells)
+            h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,periodic,ng=ghostcells)
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
-            u = fdsolver(h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells)
+            if not periodic:
+                u = fdsolver(h[ng:-ng],u[ng:-ng],dx,dt,t,order,bcfunction2,bcparam2,periodic=False,ng=0,Y=Y,nit=it,uall=uall[ng:-ng])
+                u = extend2GhostCells(u,ng)
+            else:
+                u = fdsolver(h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells)
             hu = h*u
             h,hu = bcfunction1(h,hu,bcparam1,dx,t)  
-            h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,ng=ghostcells)
+            h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,periodic,ng=ghostcells)
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
         elif splitSteps == 2 : ## Adv Disp
-            h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt,nx,t,ng=ghostcells)
+            h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt,nx,t,periodic,ng=ghostcells)
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
-            u = fdsolver(h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic,ng=ghostcells,eta=eta)
+            if not periodic:
+                u = fdsolver(hm1[ng:-ng],h[ng:-ng],u[ng:-ng],dx,dt,t,order,bcfunction2,bcparam2,periodic=False,ng=0,Y=Y,nit=it,uall=uall[ng:-ng])
+                u = extend2GhostCells(u,ng)
+            else:
+                u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells)
         elif splitSteps == -2 : ## Disp Adv
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
             u = fdsolver(h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic,ng=ghostcells)            
@@ -766,48 +905,6 @@ def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,var
             h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,ng=ghostcells)
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
             u = fdsolver(h,u,dx,dt/2.,t,order,bcfunction2,bcparam2,periodic,ng=ghostcells)
-
-        hall = np.column_stack((hall,h))
-        uall = np.column_stack((uall,u))
-        tall = np.hstack((tall,t*np.ones(1)))
-        
-    return hall,uall,tall
-## solve only the NSWE part (for comparison)
-def NSWE(x,h,u,t0,tmax,bcfunction,bcparam,dx,nx,vardt = True, dt = 0.05, fvsolver=muscl2.fluxes2,fvTimesolver=RK4,
-         ghostcells = 2):
-    t = t0
-    grav = 9.8
-    
-    uall = u
-    hall = h
-    tall = np.ones(1)*t0
-
-    print(r'CFL = %f' %(dt/(dx*dx*dx)))
-    
-    while t < tmax and dt > 1e-9:
-        if vardt:
-            if (np.amax(np.absolute(u)) + np.sqrt(grav*np.amax(h))) > 1.e-6:
-                dt = dx*dx*dx/(np.amax(np.absolute(u)) + np.sqrt(grav*np.amax(h)))
-            print(r'dt = %f; t = %f' %(dt,t))
-        t = t+dt
-      
-        hu = h*u
-
-        h,hu = bcfunction(h,hu,bcparam,dx,t)
-        #F = nswe.fluxes(h,hu,nx)
-        #h[1:-1] = h[1:-1] - dt/dx*(F[0,1:] - F[0,0:-1])
-        #hu[1:-1] = hu[1:-1] - dt/dx*(F[1,1:] - F[1,0:-1])
-        #F = muscl2.fluxes2(h,hu,nx)
-        #h[1:-1] = h[1:-1] - dt/dx*(F[0,1:] - F[0,0:-1])
-        #hu[1:-1] = hu[1:-1] - dt/dx*(F[1,1:] - F[1,0:-1])
-        #h[2:-2] = h[2:-2] -dt/dx*(F[0,1:] - F[0,:-1])
-        #hu[2:-2] = hu[2:-2] -dt/dx*(F[1,1:] - F[1,:-1])
-        
-        h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction,bcparam,dx,dt,nx,t,ghostcells)
-            
-        u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
-        
-        #u = EFDSolver(h,u,dx,dt)
 
         hall = np.column_stack((hall,h))
         uall = np.column_stack((uall,u))

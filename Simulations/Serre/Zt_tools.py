@@ -29,11 +29,106 @@ class Parameters:
     self.xmax = xmax
     self.dt = dt
     self.Nf = Nf
+    
+    ## boussinesq
+    alpha = -0.53753*self.h0
+    self.hb = alpha*(alpha/2. + self.h0)
+    self.ht = self.h0*(alpha*alpha/2. + alpha*self.h0 + self.h0**2/3.)
+    self.xi_pow = 0
 
     ## personnal parameters
     self.ht = - (h0**2)/3
     self.g = 9.81
 
+def compute_Y3(ps):
+  """
+  Computes the exact convolution variables before apprxomating them.
+  """
+
+  print "*** Starting computations of Ys"
+    
+  N = ps.Nf
+
+  ## creating the polynomial basis
+  # dimensional and adimensional constants for the reformulated polynomial
+  a = ps.h0*(ps.dx**2) / ps.ht + 0j
+  b = (ps.hb*(ps.dx**2)) / (ps.g*ps.ht) + 0j
+  c = (ps.dx**4) / (ps.g*ps.ht) + 0j
+  s = lambda z: (2./ps.dt) * (z-1.)/(z+1.)
+  P = [0 + 0j for i in range(5)]
+
+  ## initialization
+  Y = np.zeros((9, N), dtype=complex)
+  K = np.zeros((9, N), dtype=complex)
+  omegaN = np.exp(2*np.pi*1j/N) # unity root
+  rrc = 1.001  # radius of the circle for computing Z^{-1}
+
+  for n in range(N):
+
+    z = rrc*(omegaN**n)
+
+    sc = s(z)
+    P[0] = 1. + 0j
+    P[1] = a - b*(sc**2) - 4.
+    P[2] = (sc**2)*(2*b-c) - 2.*a + 6.
+    P[3] = a - b*(sc**2) - 4.
+    P[4] = 1. + 0j
+    R = np.roots(P)
+
+    # sorting the roots from the largest to the smallest (in terms of modulus)
+    mR = [abs(r) for r in R]
+    root = []
+    while len(mR) > 0:
+      for r in R:
+        if (r not in root) and (abs(r) == max(mR)):
+          root.append(r)
+          mR.remove(abs(r))
+          break
+
+    #  ar = abs(np.array(root))
+    #  assert((ar[0] > ar[1]) and (ar[1] > 1) and (1 > ar[2]) and (ar[2] > ar[3]))
+
+    # re-ordering
+    root = root[::-1]
+
+    # computing the kernels
+    ## roots smaller than 1
+    K[0,n] = root[0] + root[1]
+    K[1,n] = K[0,n]**2
+    K[2,n] = root[0] * root[1]
+    assert(abs(K[2,n]) < 1)
+    K[3,n] = K[2,n]**2
+    ## roots greater than 1
+    K[4,n] = (root[2] + root[3]) / (root[2] * root[3])
+    K[5,n] = K[4,n]**2
+    K[6,n] = 1. / (root[2] * root[3])
+    assert(abs(K[6,n]) < 1)
+    K[7,n] = K[6,n]**2
+    K[8,n] = (root[2] + root[3]) / ((root[2] * root[3])**2)
+
+    for i in range(9):
+      if i < 4:
+        K[i,n] = ((1+1/z)**ps.xi_pow)*K[i,n]
+      else:
+        K[i,n] = ((1+1/z)**ps.xi_pow)*K[i,n]
+
+  print "*** Computation of Ys (in Fourier space) --> done\n"
+
+  print "*** Applying iFFT on Ys"
+
+  for i in range(9):
+    Kn = ifft(K[i,:])
+    for n in range(N):
+      Y[i,n] = (rrc**n)*Kn[n]
+
+  print " *  max(Y1) = {}".format(np.amax(Y.real[:4,]))
+  print " *  max(Y2) = {}".format(np.amax(Y.real[4:,]))
+
+  print "*** iFFT --> done\n"
+
+  # keeping the real part
+  return Y.real    
+    
 def compute_Y2(ps, ub):
   """
   Computes the exact convolution variables before apprxomating them.

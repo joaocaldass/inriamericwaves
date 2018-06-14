@@ -42,3 +42,8 @@ def analyticalSolutionSolitary(x,t,a0,a1):
     u = c*(1-a0/h)
     
     return h,u
+
+def gaussianAnalyticalSolution(x, h0, center):
+    h = h0 + np.exp(-400.*(x-center)*(x-center))
+    u = np.zeros_like(h)
+    return h,u
