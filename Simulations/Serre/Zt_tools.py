@@ -29,7 +29,7 @@ class Parameters:
     self.xmax = xmax
     self.dt = dt
     self.Nf = Nf
-    
+
     ## boussinesq
     alpha = -0.53753*self.h0
     self.hb = alpha*(alpha/2. + self.h0)
@@ -46,7 +46,7 @@ def compute_Y3(ps):
   """
 
   print "*** Starting computations of Ys"
-    
+
   N = ps.Nf
 
   ## creating the polynomial basis
@@ -127,8 +127,8 @@ def compute_Y3(ps):
   print "*** iFFT --> done\n"
 
   # keeping the real part
-  return Y.real    
-    
+  return Y.real
+
 def compute_Y2(ps, ub):
   """
   Computes the exact convolution variables before apprxomating them.

@@ -92,6 +92,10 @@ def openDomain2GC(h,hu,BC,dx,t):
     hub[-1] = hu[-3]    
     hub[-2] = h[-3]
     return hb,hub
+## BC for an open domain with 2 ghost cells
+## The function robinBC1 can do the same with BC = [0.,0.,0.,0.,0.,1.,0.,1.,0.,1.,0.,1.]
+def openDomain0GC(h,hu,BC,dx,t):
+    return h,hu
 ## Impose periodic BC for 1 ghost cell in the FV scheme
 ## The function robinBC1 CANNOT do the same
 def periodicDomain(h,hu,BC,dx,t):
@@ -120,8 +124,8 @@ def periodicDomainTwoGC(h,hu,BC,dx,t):
     
     return hb,hub
 # compute any of the RK4 coefficients (k_i)
-def getRK4coef(x,uA,uB,f,dx,dt,nx,periodic):
-    F = f(uA,uB,nx,periodic)
+def getRK4coef(x,uA,uB,f,dx,dt,nx,periodic,ng):
+    F = f(uA,uB,nx,periodic,ng)
     return -dt/dx*(F[0,1:] - F[0,:-1]), -dt/dx*(F[1,1:] - F[1,:-1])
 
 # complete the vector of RK4 coefficients with zeros in the ghost cells (to perform the sum u  + k_i)
@@ -134,28 +138,28 @@ def RK4(x,uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng):
     uuA = np.copy(uA)
     uuB = np.copy(uB)
     uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-    k1A,k1B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic)
+    k1A,k1B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic,ng)
     k1A = extend2GhostCells(k1A,ng)
     k1B = extend2GhostCells(k1B,ng)
 
     uuA = uA+k1A/2.
     uuB = uB+k1B/2.
     uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-    k2A,k2B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic)
+    k2A,k2B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic,ng)
     k2A = extend2GhostCells(k2A,ng)
     k2B = extend2GhostCells(k2B,ng)
 
     uuA = uA+k2A/2.
     uuB = uB+k2B/2.
     uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-    k3A,k3B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic)
+    k3A,k3B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic,ng)
     k3A = extend2GhostCells(k3A,ng)
     k3B = extend2GhostCells(k3B,ng)
 
     uuA = uA+k3A
     uuB = uB+k3B
     uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-    k4A,k4B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic)
+    k4A,k4B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic,ng)
     k4A = extend2GhostCells(k4A,ng)
     k4B = extend2GhostCells(k4B,ng)
 
@@ -874,8 +878,7 @@ def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,var
             h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,periodic,ng=ghostcells)
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
             if not periodic:
-                u = fdsolver(h[ng:-ng],u[ng:-ng],dx,dt,t,order,bcfunction2,bcparam2,periodic=False,ng=0,Y=Y,nit=it,uall=uall[ng:-ng])
-                u = extend2GhostCells(u,ng)
+                u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=False,ng=0,Y=Y,nit=it,uall=uall)
             else:
                 u = fdsolver(h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells)
             hu = h*u
@@ -886,8 +889,7 @@ def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,var
             h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt,nx,t,periodic,ng=ghostcells)
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
             if not periodic:
-                u = fdsolver(hm1[ng:-ng],h[ng:-ng],u[ng:-ng],dx,dt,t,order,bcfunction2,bcparam2,periodic=False,ng=0,Y=Y,nit=it,uall=uall[ng:-ng])
-                u = extend2GhostCells(u,ng)
+                u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=False,ng=0,Y=Y,nit=it,uall=uall)
             else:
                 u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells)
         elif splitSteps == -2 : ## Disp Adv
