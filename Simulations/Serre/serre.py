@@ -1,4 +1,9 @@
 ## Numerical resolution of the Serre equations
+
+import sys
+sys.path.append('../')
+sys.path.append('../nswe')
+
 import numpy as np
 import matplotlib.pyplot as plt
 import math
@@ -17,6 +22,12 @@ def imposePeriodicity(v,ng) :
 def discretizeSpace(xmin,xmax,nx):
     dx = (xmax-xmin)/nx
     x = np.arange(xmin,xmax,dx)
+    
+    return x,dx
+## Create an array with nx points in [xmin,xmax]
+def discretizeSpaceFull(xmin,xmax,nx):
+    x = np.linspace(xmin,xmax,nx)
+    dx = np.diff(x)[0]
     
     return x,dx
 ## Impose Robin conditions to FV scheme, 1st order
@@ -90,15 +101,14 @@ def openDomain2GC(h,hu,BC,dx,t):
     hb[-1] = h[-3]
     hb[-2] = h[-3]
     hub[-1] = hu[-3]    
-    hub[-2] = h[-3]
+    hub[-2] = hu[-3]
     return hb,hub
-## BC for an open domain with 2 ghost cells
-## The function robinBC1 can do the same with BC = [0.,0.,0.,0.,0.,1.,0.,1.,0.,1.,0.,1.]
-def openDomain0GC(h,hu,BC,dx,t):
+## BC for an open domain with 0 ghost cells
+def openDomain0GC(h,hu,BC,dx,t,ref=[],idx=[]):
     return h,hu
 ## Impose periodic BC for 1 ghost cell in the FV scheme
 ## The function robinBC1 CANNOT do the same
-def periodicDomain(h,hu,BC,dx,t):
+def periodicDomain(h,hu,BC,dx,t,ref=[]):
     hb = 1.*h
     hub = 1.*hu
     hb[0] = h[-2]
@@ -123,9 +133,47 @@ def periodicDomainTwoGC(h,hu,BC,dx,t):
     hub[-2] = hu[2]
     
     return hb,hub
+import nswe_wbmuscl4 as wb4
+
+def fluxes_periodic(h,hu,n,periodic,ng,ref=[],idx=[]):
+        
+    ## first, we remove the ghost cells
+    nx = h.shape[0]-2*ng
+    ## then we add 3 cells on each side for the muscl scheme
+    h0 = np.zeros(nx+6)
+    u0 = np.zeros(nx+6)
+    d0 = np.zeros(nx+6)
+    h0[3:-3] = h[ng:len(h)-ng]
+    u0[3:-3] = hu[ng:len(hu)-ng]
+    u0 = np.where(h0>1e-10,u0/h0,0) #hu/h
+    
+    if periodic:
+        h0[:3] = h0[-6:-3]
+        h0[-3:] = h0[3:6]
+        u0[:3] = u0[-6:-3]
+        u0[-3:] = u0[3:6]
+        
+    elif ref != [] and idx != []:
+        uref = ref[0]
+        href = ref[1]
+        idx1 = idx[0]
+        idx2 = idx[1]
+        h0[:3]  = href[idx1-3:idx1]
+        h0[-3:] = href[idx2:idx2+3]
+        u0[:3]  = uref[idx1-3:idx1]
+        u0[-3:] = uref[idx2:idx2+3]
+        
+    else:
+        h0[:3]  = h0[3:6]
+        h0[-3:] = h0[-6:-3]
+        u0[:3]  = u0[3:6]
+        u0[-3:] = u0[-6:-3]
+    
+    fp, fm, sc = wb4.fluxes_sources(d0,h0,u0)
+    return fp
 # compute any of the RK4 coefficients (k_i)
-def getRK4coef(x,uA,uB,f,dx,dt,nx,periodic,ng):
-    F = f(uA,uB,nx,periodic,ng)
+def getRK4coef(uA,uB,f,dx,dt,nx,periodic,ng,ref=[],idx=[]):
+    F = f(uA,uB,nx,periodic,ng,ref,idx)
     return -dt/dx*(F[0,1:] - F[0,:-1]), -dt/dx*(F[1,1:] - F[1,:-1])
 
 # complete the vector of RK4 coefficients with zeros in the ghost cells (to perform the sum u  + k_i)
@@ -133,33 +181,33 @@ def extend2GhostCells(v,ng):
     return np.concatenate((np.zeros(ng),v,np.zeros(ng)))
 
 # RK4 for one time step
-def RK4(x,uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng):
+def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,ref=[],idx=[]):
         
     uuA = np.copy(uA)
     uuB = np.copy(uB)
     uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-    k1A,k1B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic,ng)
+    k1A,k1B = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,ref,idx)
     k1A = extend2GhostCells(k1A,ng)
     k1B = extend2GhostCells(k1B,ng)
 
     uuA = uA+k1A/2.
     uuB = uB+k1B/2.
     uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-    k2A,k2B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic,ng)
+    k2A,k2B = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,ref,idx)
     k2A = extend2GhostCells(k2A,ng)
     k2B = extend2GhostCells(k2B,ng)
 
     uuA = uA+k2A/2.
     uuB = uB+k2B/2.
     uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-    k3A,k3B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic,ng)
+    k3A,k3B = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,ref,idx)
     k3A = extend2GhostCells(k3A,ng)
     k3B = extend2GhostCells(k3B,ng)
 
     uuA = uA+k3A
     uuB = uB+k3B
     uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-    k4A,k4B = getRK4coef(x,uuA,uuB,f,dx,dt,nx,periodic,ng)
+    k4A,k4B = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,ref,idx)
     k4A = extend2GhostCells(k4A,ng)
     k4B = extend2GhostCells(k4B,ng)
 
@@ -590,6 +638,7 @@ def EFDSolverFM4(hm1,h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng
         for v in [u,h] :
             v = imposePeriodicity(v,ng)
     
+    hm1u = hm1*u
     hu = h*u
     
     order = 2
@@ -658,7 +707,18 @@ def EFDSolverFM4(hm1,h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng
         M,rhs,Ct = BCfunction(M,rhs,BCparam,hm1,h,u,hm1x,hx,hu,dx,dt,nit,Y,uall)
 
     z = np.linalg.solve(M,rhs)
-    hu2 = hu + dt*(gr*h*hx-z)
+    hu2 = hm1u + dt*(gr*hm1*hm1x-z)
+    
+    if Y != []:
+        u2 = hu2/h
+        
+        print " *  Left"
+        print u2[0] - Y[4,0]*u2[1] - Ct[4,1] +   Y[6,0]*u2[2] +   Ct[6,2]
+        print u2[0] - Y[5,0]*u2[2] - Ct[5,2] + 2*Y[8,0]*u2[3] + 2*Ct[8,3] - Y[7,0]*u2[4] - Ct[7,4] 
+        
+        print " *  Right"
+        print u2[-1] -   Y[0,0]*u2[-2] -   Ct[0,-2] + Y[2,0]*u2[-3] + Ct[2,-3] 
+        print u2[-1] - 2*Y[0,0]*u2[-2] - 2*Ct[0,-2] + Y[1,0]*u2[-3] + Ct[1,-3] - Y[3,0]*u2[-5] - Ct[3,-5]
 
     return hu2/h
 def EFDSolverFM4Bottom(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2,eta=0.):
@@ -846,7 +906,7 @@ def EFDSolverFM(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2):
 # solve the Serre equation
 def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,vardt = True, dt = 0.05,
                splitSteps = 3, periodic=False,order=2,fvsolver=muscl2.fluxes2,fvTimesolver=RK4,fdsolver=EFDSolver,
-               ghostcells = 2,eta=0.,Y=[]):
+               ghostcells = 2,eta=0.,Y=[],ref=[], idx=[]):
     t = t0
     it = 0
     grav = 9.8
@@ -858,53 +918,56 @@ def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,var
 
     print(r'CFL = %f' %(dt/(dx*dx*dx)))
     
+    if ref != []:
+        uall1 = ref[0]
+        hall1 = ref[1]
+    
     while t < tmax and dt > 1e-9:
         if vardt :
             if (np.amax(np.absolute(u)) + np.sqrt(grav*np.amax(h))) > 1.e-6:
                 dt = dx/(np.amax(np.absolute(u)) + np.sqrt(grav*np.amax(h)))
             print(r'dt = %f; t = %f' %(dt,t))
+            
+        if ref != []:
+            ref_it = [ref[0,:,it],ref[1,:,it]]
+        else:
+            ref_it = ref
+        
         t = t+dt
         it += 1
         
         hu = h*u
 
         h,hu = bcfunction1(h,hu,bcparam1,dx,t)
+        
+        ## saving h from previous time step
         hm1 = np.copy(h)
-        #F = nswe.fluxes(h,hu,nx)
-        #h[1:-1] = h[1:-1] - dt/dx*(F[0,1:] - F[0,0:-1])
-        #hu[1:-1] = hu[1:-1] - dt/dx*(F[1,1:] - F[1,0:-1])
         
         if splitSteps == 3: ## Adv Disp Adv
-            h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,periodic,ng=ghostcells)
+            h,hu = fvTimesolver(h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,periodic,ng=ghostcells)
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
-            if not periodic:
-                u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=False,ng=0,Y=Y,nit=it,uall=uall)
-            else:
-                u = fdsolver(h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells)
+            u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells,Y=Y,nit=it,uall=uall)
             hu = h*u
             h,hu = bcfunction1(h,hu,bcparam1,dx,t)  
-            h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,periodic,ng=ghostcells)
+            h,hu = fvTimesolver(h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,periodic,ng=ghostcells)
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
         elif splitSteps == 2 : ## Adv Disp
-            h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt,nx,t,periodic,ng=ghostcells)
-            u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
-            if not periodic:
-                u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=False,ng=0,Y=Y,nit=it,uall=uall)
-            else:
-                u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells)
+            h,hu = fvTimesolver(h,hu,fvsolver,bcfunction1,bcparam1,dx,dt,nx,t,periodic,ng=ghostcells,ref=ref_it,idx=idx)
+            u = np.where(h[:]>1e-10, hu[:]/h[:], 0.)        
+            u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells,Y=Y,nit=it,uall=uall)
         elif splitSteps == -2 : ## Disp Adv
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
             u = fdsolver(h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic,ng=ghostcells)            
             hu = h*u
             h,hu = bcfunction1(h,hu,bcparam1,dx,t)  
-            h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,ng=ghostcells)
+            h,hu = fvTimesolver(h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,ng=ghostcells)
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
         elif splitSteps == -3 : ## Adv Disp
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
             u = fdsolver(h,u,dx,dt/2.,t,order,bcfunction2,bcparam2,periodic,ng=ghostcells)            
             hu = h*u
             h,hu = bcfunction1(h,hu,bcparam1,dx,t)  
-            h,hu = fvTimesolver(x,h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,ng=ghostcells)
+            h,hu = fvTimesolver(h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,ng=ghostcells)
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
             u = fdsolver(h,u,dx,dt/2.,t,order,bcfunction2,bcparam2,periodic,ng=ghostcells)
 
