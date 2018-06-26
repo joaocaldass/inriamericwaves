@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib import animation
 from JSAnimation import IPython_display
 
-def plotAnimation(x,u,t,xmin,xmax,ymin,ymax,ylabel) :
+def plotAnimation(x,u,t,xmin,xmax,ymin,ymax,ylabel,save = False, path = "") :
     
     print("*** Plotting animation ...")
     
@@ -25,13 +25,16 @@ def plotAnimation(x,u,t,xmin,xmax,ymin,ymax,ylabel) :
     anim = animation.FuncAnimation(fig, animate, init_func=init,
                         frames=u.shape[-1], interval=300)
     
+    if save:
+        anim.save(path, writer='ffmpeg', fps=30)
+    
     return anim
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import animation
 from JSAnimation import IPython_display
 
-def plotAnimationNSolutions(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel,location=0,savePath=None) :
+def plotAnimationNSolutions(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel,location=0,savePath=None,ddm=[]) :
     """
     Animate N solutions, all of them defined in the same spatial domain x and the spatial domain t
     
@@ -47,27 +50,35 @@ def plotAnimationNSolutions(N,x,u,t,xmin,xmax,ymin,ymax,lb,ylabel,location=0,sav
         - ylabel = labelf for y axis
         - location (optional) : position of the legend (location = 0 as default gives an optimal position)
         - savePath (optional) : if not None, save the animation in a video specified by savePath
+        - ddm : array with the interfaces for the plot
     """
     
     print("*** Plotting animation ...")
     
+    ## nb of interfaces
+    nb_int = len(ddm)
+    for i in range(nb_int):
+        lb.append('interface {}'.format(i))
+    
     fig = plt.figure()
     ax = plt.axes(xlim=(xmin, xmax), ylim=(ymin, ymax))
     line = np.array([])
-    for i in range(N):
+    for i in range(N+nb_int):
         line = np.append(line,ax.plot([], [], lw=2, label=lb[i])) 
     ax.set_ylabel(ylabel)
     title = ax.set_title(r'$t=0.0 s$')
     plt.legend(loc=location)
 
     def init():
-        for i in range(N):
+        for i in range(N+nb_int):
             line[i].set_data([], [])
         return line
 
     def animate(i):
         for j in range(N):
             line[j].set_data(x, u[j,:,i])
+        for j in range(N, N+nb_int):
+            line[j].set_data([ddm[j-N], ddm[j-N]], [ymin, ymax])
         title.set_text('t=%.3f'%(t[i]))
         return line
 
