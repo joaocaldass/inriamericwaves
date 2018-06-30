@@ -135,8 +135,15 @@ def periodicDomainTwoGC(h,hu,BC,dx,t):
     return hb,hub
 import nswe_wbmuscl4 as wb4
 
-def fluxes_periodic(h,hu,n,periodic,ng,ref=[],idx=[]):
-        
+def fluxes_periodic(h,hu,n,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
+    
+    if u_refRK == [] and h_refRK == []:
+        u_refRK_save = np.zeros(6)
+        h_refRK_save = np.zeros(6)
+    else:
+        u_refRK_save = []
+        h_refRK_save = []
+            
     ## first, we remove the ghost cells
     nx = h.shape[0]-2*ng
     ## then we add 3 cells on each side for the muscl scheme
@@ -146,22 +153,24 @@ def fluxes_periodic(h,hu,n,periodic,ng,ref=[],idx=[]):
     h0[3:-3] = h[ng:len(h)-ng]
     u0[3:-3] = hu[ng:len(hu)-ng]
     u0 = np.where(h0>1e-10,u0/h0,0) #hu/h
+    u = np.where(h>1e-10,hu/h,0)
     
-    if periodic:
+    if periodic and idx != []:
         h0[:3] = h0[-6:-3]
         h0[-3:] = h0[3:6]
         u0[:3] = u0[-6:-3]
         u0[-3:] = u0[3:6]
-        
-    elif ref != [] and idx != []:
-        uref = ref[0]
-        href = ref[1]
+        ## saving the reference
         idx1 = idx[0]
         idx2 = idx[1]
-        h0[:3]  = href[idx1-3:idx1]
-        h0[-3:] = href[idx2:idx2+3]
-        u0[:3]  = uref[idx1-3:idx1]
-        u0[-3:] = uref[idx2:idx2+3]
+        u_refRK_save = np.append(u[idx1-3:idx1], u[idx2:idx2+3])
+        h_refRK_save = np.append(h[idx1-3:idx1], h[idx2:idx2+3])
+        
+    elif u_refRK != [] and h_refRK != []:
+        h0[:3]  = h_refRK[:3]
+        h0[-3:] = h_refRK[-3:]
+        u0[:3]  = u_refRK[:3]
+        u0[-3:] = u_refRK[-3:]
         
     else:
         h0[:3]  = h0[3:6]
@@ -170,48 +179,66 @@ def fluxes_periodic(h,hu,n,periodic,ng,ref=[],idx=[]):
         u0[-3:] = u0[-6:-3]
     
     fp, fm, sc = wb4.fluxes_sources(d0,h0,u0)
-    return fp
+    return fp, u_refRK_save, h_refRK_save
 # compute any of the RK4 coefficients (k_i)
-def getRK4coef(uA,uB,f,dx,dt,nx,periodic,ng,ref=[],idx=[]):
-    F = f(uA,uB,nx,periodic,ng,ref,idx)
-    return -dt/dx*(F[0,1:] - F[0,:-1]), -dt/dx*(F[1,1:] - F[1,:-1])
+def getRK4coef(uA,uB,f,dx,dt,nx,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
+    F, u_refRK_save, h_refRK_save = f(uA,uB,nx,periodic,ng,u_refRK,h_refRK,idx)
+    return -dt/dx*(F[0,1:] - F[0,:-1]), -dt/dx*(F[1,1:] - F[1,:-1]), u_refRK_save, h_refRK_save
 
 # complete the vector of RK4 coefficients with zeros in the ghost cells (to perform the sum u  + k_i)
 def extend2GhostCells(v,ng):
     return np.concatenate((np.zeros(ng),v,np.zeros(ng)))
 
 # RK4 for one time step
-def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,ref=[],idx=[]):
+def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
+    
+    #### for the small domain, we need to impose the value of the bigdomain functions 
+    #### on the 6 cells used for the MUSCL scheme
+    #### we are storing them in refRK_save
+    u_refRK_save = np.zeros((4,6))
+    h_refRK_save = np.zeros((4,6))
         
     uuA = np.copy(uA)
     uuB = np.copy(uB)
     uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-    k1A,k1B = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,ref,idx)
+    if u_refRK == [] and h_refRK == []:
+        k1A,k1B,u_refRK_save[0],h_refRK_save[0] = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,idx=idx)
+    else:
+        k1A,k1B,trash1,trash2 = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,u_refRK[0],h_refRK[0])
     k1A = extend2GhostCells(k1A,ng)
     k1B = extend2GhostCells(k1B,ng)
 
     uuA = uA+k1A/2.
     uuB = uB+k1B/2.
     uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-    k2A,k2B = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,ref,idx)
+    if u_refRK == [] and h_refRK == []:
+        k2A,k2B,u_refRK_save[1],h_refRK_save[1] = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,idx=idx)
+    else:
+        k2A,k2B,trash1,trash2 = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,u_refRK[1],h_refRK[1])
     k2A = extend2GhostCells(k2A,ng)
     k2B = extend2GhostCells(k2B,ng)
 
     uuA = uA+k2A/2.
     uuB = uB+k2B/2.
     uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-    k3A,k3B = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,ref,idx)
+    if u_refRK == [] and h_refRK == []:
+        k3A,k3B,u_refRK_save[2],h_refRK_save[2] = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,idx=idx)
+    else:
+        k3A,k3B,trash1,trash2 = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,u_refRK[2],h_refRK[2])
     k3A = extend2GhostCells(k3A,ng)
     k3B = extend2GhostCells(k3B,ng)
 
     uuA = uA+k3A
     uuB = uB+k3B
     uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
-    k4A,k4B = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,ref,idx)
+    if u_refRK == [] and h_refRK == []:
+        k4A,k4B,u_refRK_save[3],h_refRK_save[3] = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,idx=idx)
+    else:
+        k4A,k4B,trash1,trash2 = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,u_refRK[3],h_refRK[3])
     k4A = extend2GhostCells(k4A,ng)
     k4B = extend2GhostCells(k4B,ng)
 
-    return uA + 1./6.*(k1A+2.*k2A+2.*k3A+k4A), uB + 1./6.*(k1B+2.*k2B+2.*k3B+k4B)
+    return uA + 1./6.*(k1A+2.*k2A+2.*k3A+k4A), uB + 1./6.*(k1B+2.*k2B+2.*k3B+k4B), u_refRK_save, h_refRK_save
 
 # Euler for one time step
 def Euler(x,uA,uB,f,bcf,bcp,dx,dt,nx,t,ng):
@@ -906,7 +933,8 @@ def EFDSolverFM(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2):
 # solve the Serre equation
 def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,vardt = True, dt = 0.05,
                splitSteps = 3, periodic=False,order=2,fvsolver=muscl2.fluxes2,fvTimesolver=RK4,fdsolver=EFDSolver,
-               ghostcells = 2,eta=0.,Y=[],ref=[], idx=[]):
+               ghostcells = 2,eta=0.,Y=[],
+               u_refRK=[],h_refRK=[], idx=[]):
     t = t0
     it = 0
     grav = 9.8
@@ -918,9 +946,8 @@ def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,var
 
     print(r'CFL = %f' %(dt/(dx*dx*dx)))
     
-    if ref != []:
-        uall1 = ref[0]
-        hall1 = ref[1]
+    u_refRK_save = []
+    h_refRK_save = []
     
     while t < tmax and dt > 1e-9:
         if vardt :
@@ -928,13 +955,12 @@ def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,var
                 dt = dx/(np.amax(np.absolute(u)) + np.sqrt(grav*np.amax(h)))
             print(r'dt = %f; t = %f' %(dt,t))
             
-        if ref != []:
-            ref_it = [ref[0,:,it],ref[1,:,it]]
+        if u_refRK == [] and h_refRK == []:
+            u_refRK_it = []
+            h_refRK_it = []
         else:
-            ref_it = ref
-        
-        t = t+dt
-        it += 1
+            u_refRK_it = u_refRK[it]
+            h_refRK_it = h_refRK[it]
         
         hu = h*u
 
@@ -952,27 +978,21 @@ def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,var
             h,hu = fvTimesolver(h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,periodic,ng=ghostcells)
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
         elif splitSteps == 2 : ## Adv Disp
-            h,hu = fvTimesolver(h,hu,fvsolver,bcfunction1,bcparam1,dx,dt,nx,t,periodic,ng=ghostcells,ref=ref_it,idx=idx)
+            h,hu,u_refRK_temp,h_refRK_temp = fvTimesolver(h,hu,fvsolver,bcfunction1,bcparam1,dx,dt,nx,t,periodic,
+                                                          ng=ghostcells,u_refRK=u_refRK_it,h_refRK=h_refRK_it,idx=idx)
             u = np.where(h[:]>1e-10, hu[:]/h[:], 0.)        
-            u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells,Y=Y,nit=it,uall=uall)
-        elif splitSteps == -2 : ## Disp Adv
-            u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
-            u = fdsolver(h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic,ng=ghostcells)            
-            hu = h*u
-            h,hu = bcfunction1(h,hu,bcparam1,dx,t)  
-            h,hu = fvTimesolver(h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,ng=ghostcells)
-            u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
-        elif splitSteps == -3 : ## Adv Disp
-            u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
-            u = fdsolver(h,u,dx,dt/2.,t,order,bcfunction2,bcparam2,periodic,ng=ghostcells)            
-            hu = h*u
-            h,hu = bcfunction1(h,hu,bcparam1,dx,t)  
-            h,hu = fvTimesolver(h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,ng=ghostcells)
-            u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
-            u = fdsolver(h,u,dx,dt/2.,t,order,bcfunction2,bcparam2,periodic,ng=ghostcells)
+            # u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells,Y=Y,nit=it+1,uall=uall)
+            
+            ## saving references in the big domain case
+            if u_refRK == [] and h_refRK == []:
+                u_refRK_save.append(u_refRK_temp)
+                h_refRK_save.append(h_refRK_temp)
+        
+        t = t+dt
+        it += 1
 
         hall = np.column_stack((hall,h))
         uall = np.column_stack((uall,u))
         tall = np.hstack((tall,t*np.ones(1)))
         
-    return hall,uall,tall
+    return hall,uall,tall,u_refRK_save,h_refRK_save
