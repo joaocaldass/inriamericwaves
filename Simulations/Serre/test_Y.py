@@ -15,6 +15,9 @@ Nf = 10000
 
 ps = Z.Parameters(h0, dx, nx, xmin, xmax, dt, Nf)
 
-Y = Z.compute_Y2(ps, ub)
+Y = Z.compute_Y3(ps)
+Z.plot_Y(Y, Nf)
+
+Y = Z.compute_Y(ps)
 Z.plot_Y(Y, Nf)
 

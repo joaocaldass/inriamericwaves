@@ -40,6 +40,25 @@ def periodicSubDomain_2_TwoGC(h,hu,BC,dx,t):
     hub[-2] = BC[1,0]
     
     return hb,hub
+
+def impose_periodicity_2subdom(a1,b1,a2,b2):
+    """
+    Impose periodicity once the solution from the advection step have been computed in each domain 
+    by the MUSCL scheme.
+    """
+    a1b = np.copy(a1)
+    b1b = np.copy(b1)
+    a2b = np.copy(a2)
+    b2b = np.copy(b2)
+    
+    a1b[:2] = a2[-4:-2]
+    b1b[:2] = b2[-4:-2]
+    
+    a2b[-2:] = a1[2:4]
+    b2b[-2:] = b1[2:4]                  
+                  
+    return a1b,b1b,a2b,b2b
+    
 def extend2GhostCells(v,ng):
     """
     complete the vector of RK4 coefficients with zeros in the ghost cells 
@@ -111,18 +130,18 @@ def fluxes_periodic(h,hu,n,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
         j1 = idx[0]
         o12 = idx[1]
         ## for domain 1 (left)
-        u_refRK_save1 = np.append(u[-3-ng:-ng], u[j1+1:j1+4])
-        h_refRK_save1 = np.append(h[-3-ng:-ng], h[j1+1:j1+4])
+        u_refRK_save1 = np.append(u0[-6:-3], u[j1+1:j1+4])
+        h_refRK_save1 = np.append(h0[-6:-3], h[j1+1:j1+4])
         ## for domain 2 (right)
-        u_refRK_save2 = np.append(u[o12-3:o12], u[ng:ng+3])
-        h_refRK_save2 = np.append(h[o12-3:o12], h[ng:ng+3])
+        u_refRK_save2 = np.append(u[o12-3:o12], u0[3:6])
+        h_refRK_save2 = np.append(h[o12-3:o12], h0[3:6])
         
     elif u_refRK != [] and h_refRK != []:
         h0[:3]  = h_refRK[:3]
         h0[-3:] = h_refRK[-3:]
         u0[:3]  = u_refRK[:3]
         u0[-3:] = u_refRK[-3:]
-        
+
     else:
         h0[:3]  = h0[3:6]
         h0[-3:] = h0[-6:-3]
@@ -157,7 +176,7 @@ def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
         
     uuA = np.copy(uA)
     uuB = np.copy(uB)
-    uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+    # uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
     if u_refRK == [] and h_refRK == []:
         k1A,k1B,u_refRK_save[:,0],h_refRK_save[:,0] = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,idx=idx)
     else:
@@ -167,7 +186,7 @@ def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
 
     uuA = uA+k1A/2.
     uuB = uB+k1B/2.
-    uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+    # uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
     if u_refRK == [] and h_refRK == []:
         k2A,k2B,u_refRK_save[:,1],h_refRK_save[:,1] = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,idx=idx)
     else:
@@ -177,7 +196,7 @@ def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
 
     uuA = uA+k2A/2.
     uuB = uB+k2B/2.
-    uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+    # uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
     if u_refRK == [] and h_refRK == []:
         k3A,k3B,u_refRK_save[:,2],h_refRK_save[:,2] = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,idx=idx)
     else:
@@ -187,7 +206,7 @@ def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
 
     uuA = uA+k3A
     uuB = uB+k3B
-    uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+    # uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
     if u_refRK == [] and h_refRK == []:
         k4A,k4B,u_refRK_save[:,3],h_refRK_save[:,3] = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,idx=idx)
     else:
@@ -195,7 +214,10 @@ def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
     k4A = extend2GhostCells(k4A,ng)
     k4B = extend2GhostCells(k4B,ng)
 
-    return uA + 1./6.*(k1A+2.*k2A+2.*k3A+k4A), uB + 1./6.*(k1B+2.*k2B+2.*k3B+k4B), u_refRK_save, h_refRK_save
+    uuA = uA + 1./6.*(k1A+2.*k2A+2.*k3A+k4A)
+    uuB = uB + 1./6.*(k1B+2.*k2B+2.*k3B+k4B)
+        
+    return uuA, uuB, u_refRK_save, h_refRK_save
 def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=[],eta=0.,hp1=[],inter=None):
     
     """
@@ -388,9 +410,9 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=Non
     
     gr = 9.81
     
-    if periodic :
-        for v in [u,h] :
-            v = serre.imposePeriodicity(v,ng)    
+    # if periodic :
+    #     for v in [u,h] :
+    #         v = serre.imposePeriodicity(v,ng)    
 
     hu = h*u
     
@@ -408,9 +430,9 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=Non
     h2x = serre.get1d(h*h,dx,periodic,order=order)
     hhx = h*hx
     
-    if periodic :
-        for v in [ux,uux,uxx,uuxdx,h2x,hx,hhx,hxx] :
-            v = serre.imposePeriodicity(v,ng)  
+    # if periodic :
+    #     for v in [ux,uux,uxx,uuxdx,h2x,hx,hhx,hxx] :
+    #         v = serre.imposePeriodicity(v,ng)  
     
     if domain == 1:
         u = u[:ind]
@@ -554,9 +576,7 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
         u2 = uref[o12:,it]
         h2 = href[o12:,it]
         h2u2 = h2*u2
-
-        print np.sqrt(norm2(u1-uref[:n1,it], dx)**2 + norm2(u2-uref[o12:,it], dx)**2)
-        
+                
         ## order of the dispersive solver
         FDorder = 4 
         
@@ -582,12 +602,9 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
         ## we need 3 ghost cells for the MUSCL scheme of order 4 to work
                 
         ## left domain
-        # boundary conditions
-        BC1 = np.array([[h2[-4],    h2[-3]],
-                        [h2u2[-4],  h2u2[-3]]])
         if debug_1:
-            u_refRK_it1 = u_refRK[it][0]
-            h_refRK_it1 = h_refRK[it][0]
+            u_refRK_it1 = u_refRK[it,0]
+            h_refRK_it1 = h_refRK[it,0]
         else:
             pass
         # copies and preparation of the vectors for the FV solver
@@ -598,34 +615,35 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
         h1 = extend2GhostCells_right(h1,ng)
         h1u1 = extend2GhostCells_right(h1u1,ng)
         # solve with the FV solver
-        h1,h1u1,trash1,trash2 = fvTimesolver(h1,h1u1,fluxes_periodic,periodicSubDomain_1_TwoGC,BC1,
-                               dx,dt,nx,t,periodic,ng=ng,u_refRK=u_refRK_it1,h_refRK=h_refRK_it1)
+        h1,h1u1,trash1,trash2 = fvTimesolver(h1,h1u1,fluxes_periodic,None,None,
+                                             dx,dt,nx,t,periodic,ng=ng,u_refRK=u_refRK_it1,h_refRK=h_refRK_it1)
         # restriction to remove the ghost cells we don't need
         h1 = restrict2GhostCells_right(h1,ng)
-        h1u1 = restrict2GhostCells_right(h1u1,ng)
-        u1 = np.where(h1[:]>1e-10, h1u1[:]/h1[:], 0.) 
-        
+        h1u1 = restrict2GhostCells_right(h1u1,ng)        
         
         ## right domain
-        # boundary conditions
-        BC2 = np.array([[h1_save[2],     h1_save[3]],
-                        [h1u1_save[2],   h1u1_save[3]]])
         if debug_2:
-            u_refRK_it2 = u_refRK[it][1]
-            h_refRK_it2 = h_refRK[it][1]
+            u_refRK_it2 = u_refRK[it,1]
+            h_refRK_it2 = h_refRK[it,1]
         else:
             pass
         # useless ghost cells to match the dimensions
         h2 = extend2GhostCells_left(h2,ng)
         h2u2 = extend2GhostCells_left(h2u2,ng)
         # solve with the FV solver
-        h2,h2u2,trash1,trash2 = fvTimesolver(h2,h2u2,fluxes_periodic,periodicSubDomain_2_TwoGC,BC2,
-                               dx,dt,nx,t,periodic,ng=ng,u_refRK=u_refRK_it2,h_refRK=h_refRK_it2)
+        h2,h2u2,trash1,trash2 = fvTimesolver(h2,h2u2,fluxes_periodic,None,None,
+                                             dx,dt,nx,t,periodic,ng=ng,u_refRK=u_refRK_it2,h_refRK=h_refRK_it2)
         # restriction to remove the ghost cells we don't need
         h2 = restrict2GhostCells_left(h2,ng)
         h2u2 = restrict2GhostCells_left(h2u2,ng)
+        
+        ## periodicity
+        h1,h1u1,h2,h2u2 = impose_periodicity_2subdom(h1,h1u1,h2,h2u2)
+        
+        ## retrieving u
+        u1 = np.where(h1[:]>1e-10, h1u1[:]/h1[:], 0.) 
         u2 = np.where(h2[:]>1e-10, h2u2[:]/h2[:], 0.) 
-            
+    
         # extending the ddm solutions only to pass it to the FD solver and avoid problems 
         # to compute the derivatives at the interfaces of the subdomains
         # u1_aux = np.append(u1,u2[j21+1:j21+4])
@@ -634,13 +652,13 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
         u[o12:n1] = .5*(u1[o12:] + u2[:j21+1])
         u[n1:] = u2[j21+1:]
         
-        print np.sqrt(norm2(u1-uref[:n1,it+1], dx)**2 + norm2(u2-uref[o12:,it+1], dx)**2)
-        print "- - - - - - -"
+        print " *  --------------------------"
+        print " *  t = {:.2f}".format(t+dt)
+        print " *  Advection error for h :", np.sqrt(norm2(h1-href[:n1,it+1], dx)**2 + 
+                                                     norm2(h2-href[o12:,it+1], dx)**2)
             
         ## DDM for the dispersive part
         while niter < nitermax and cvg == False:
-            
-            break
             
             ## \Omega_1 : left --> BC, right --> IBC
             if debug_1:
@@ -661,8 +679,8 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
                 val12 = 0.
 
             if debug_1:
-                bc11 = uref[-4,it+1]
-                bc12 = uref[-3,it+1]  
+                bc11 = uref[0,it+1]
+                bc12 = uref[1,it+1]  
             elif periodic:
                 bc11 = u2[-4]
                 bc12 = u2[-3]
@@ -701,8 +719,8 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
                 val22 = 0.
                 
             if debug_2:
-                bc21 = uref[3,it+1]
-                bc22 = uref[2,it+1]    
+                bc21 = uref[-1,it+1]
+                bc22 = uref[-2,it+1]    
             elif periodic:
                 bc21 = u1_save[3]
                 bc22 = u1_save[2]
@@ -722,6 +740,9 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
                                  Y=Y,hp1=h2,domain=2,ind=o12,periodic=periodic)
             assert(len(u2) == n2)
             
+            ## periodicity
+            h1,h1u1,h2,h2u2 = impose_periodicity_2subdom(h1,h1u1,h2,h2u2)
+            
             ## test convergence with reference to uref
             ## convergence in u
             err_norm_ref = np.sqrt(norm2(u1-uref[:n1,it+1], dx)**2 + norm2(u2-uref[o12:,it+1], dx)**2)
@@ -737,11 +758,11 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
             if abs(t - 1.) < 10**(-12):
                 err_tab.append(err_norm)
             
+            niter += 1
+            
             ## if convergence
             if err_norm < eps:
-                print " *  t = {:.2f} --> DDM cvg reached in {:4d} iterations, error = {:.3e}".format(t+dt,
-                                                                                                      niter+1,
-                                                                                                      err_norm)
+                print " *  DDM cvg reached in {:4d} iterations, error = {:.3e}".format(niter, err_norm)
                 print " *  left domain interface  : {:.3e}".format(np.sqrt((u1[j1]-uref[j1,it+1])**2 +
                                                                            (u1[j1-1]-uref[j1-1,it+1])**2))
                 print " *  right domain interface : {:.3e}".format(np.sqrt((u2[0]-uref[o12,it+1])**2 +
@@ -751,22 +772,21 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
                 u[:o12] = u1[:o12]
                 u[o12:n1] = .5*(u1[o12:] + u2[:j21+1])
                 u[n1:] = u2[j21+1:]
-            
-            niter += 1
-            
+                        
             ## if not convergence after nitermax iterations
             if niter == nitermax:
                 # print abs(u1 - uref[:n1,it+1])
                 # print abs(u2 - uref[o12:,it+1])
-                print " *  t = {:.2f} --> DDM cvg not reached after {:4d} iterations, error = {:.3e}".format(t+dt,
-                                                                                                             niter,
-                                                                                                             err_norm)
+                print " *  DDM cvg not reached after {:4d} iterations, error = {:.3e}".format(niter,err_norm)
                 print " *  left domain interface  : {:.3e}".format(np.sqrt((u1[j1]-uref[j1,it+1])**2 + 
                                                                           (u1[j1-1]-uref[j1-1,it+1])**2))
                 print " *  right domain interface : {:.3e}".format(np.sqrt((u2[0]-uref[o12,it+1])**2 + 
                                                                           (u2[1]-uref[o12+1,it+1])**2))
 
                 print " * "
+                plt.plot(x[:n1],  u1-uref[:n1,it+1])
+                plt.plot(x[o12:], u2-uref[o12:,it+1])
+                plt.show()
                 u[:o12] = u1[:o12]
                 u[o12:n1] = .5*(u1[o12:] + u2[:j21+1])
                 u[n1:] = u2[j21+1:]

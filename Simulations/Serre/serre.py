@@ -131,7 +131,7 @@ def periodicDomainTwoGC(h,hu,BC,dx,t):
     hub[1] = hu[-3]
     hb[-2] = h[2]
     hub[-2] = hu[2]
-    
+        
     return hb,hub
 import nswe_wbmuscl4 as wb4
 
@@ -155,7 +155,7 @@ def fluxes_periodic(h,hu,n,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
     u0 = np.where(h0>1e-10,u0/h0,0) #hu/h
     u = np.where(h>1e-10,hu/h,0)
     
-    if periodic and idx != []:
+    if idx != []:
         h0[:3] = h0[-6:-3]
         h0[-3:] = h0[3:6]
         u0[:3] = u0[-6:-3]
@@ -200,7 +200,7 @@ def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
         
     uuA = np.copy(uA)
     uuB = np.copy(uB)
-    uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+    # uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
     if u_refRK == [] and h_refRK == []:
         k1A,k1B,u_refRK_save[0],h_refRK_save[0] = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,idx=idx)
     else:
@@ -210,7 +210,7 @@ def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
 
     uuA = uA+k1A/2.
     uuB = uB+k1B/2.
-    uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+    # uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
     if u_refRK == [] and h_refRK == []:
         k2A,k2B,u_refRK_save[1],h_refRK_save[1] = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,idx=idx)
     else:
@@ -220,7 +220,7 @@ def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
 
     uuA = uA+k2A/2.
     uuB = uB+k2B/2.
-    uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+    # uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
     if u_refRK == [] and h_refRK == []:
         k3A,k3B,u_refRK_save[2],h_refRK_save[2] = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,idx=idx)
     else:
@@ -230,7 +230,7 @@ def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
 
     uuA = uA+k3A
     uuB = uB+k3B
-    uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
+    # uuA,uuB = bcf(uuA,uuB,bcp,dx,t)
     if u_refRK == [] and h_refRK == []:
         k4A,k4B,u_refRK_save[3],h_refRK_save[3] = getRK4coef(uuA,uuB,f,dx,dt,nx,periodic,ng,idx=idx)
     else:
@@ -980,8 +980,11 @@ def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,var
         elif splitSteps == 2 : ## Adv Disp
             h,hu,u_refRK_temp,h_refRK_temp = fvTimesolver(h,hu,fvsolver,bcfunction1,bcparam1,dx,dt,nx,t,periodic,
                                                           ng=ghostcells,u_refRK=u_refRK_it,h_refRK=h_refRK_it,idx=idx)
-            u = np.where(h[:]>1e-10, hu[:]/h[:], 0.)        
-            # u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells,Y=Y,nit=it+1,uall=uall)
+            h,hu = bcfunction1(h,hu,bcparam1,dx,t)
+            u = np.where(h[:]>1e-10, hu[:]/h[:], 0.)    
+            u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,
+                         periodic=periodic,ng=ghostcells,Y=Y,nit=it+1,uall=uall)
+
             
             ## saving references in the big domain case
             if u_refRK == [] and h_refRK == []:
@@ -994,5 +997,5 @@ def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,var
         hall = np.column_stack((hall,h))
         uall = np.column_stack((uall,u))
         tall = np.hstack((tall,t*np.ones(1)))
-        
+                    
     return hall,uall,tall,u_refRK_save,h_refRK_save
