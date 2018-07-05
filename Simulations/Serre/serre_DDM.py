@@ -254,11 +254,11 @@ def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=[],eta=0.,hp1=[],inter=None):
         if typ == "periodic":
             M[pos,:] = 0.
             M[pos,pos] = 1.
-            rhs[pos] = -(val*hp1[pos]-hu[pos] - dt*gr*h[pos]*hx[pos])/dt
+            rhs[pos] = -(val*h[pos]-hu[pos] - dt*gr*h[pos]*hx[pos])/dt
         elif typ == "Dirichlet" :
             M[pos,:] = 0.
             M[pos,pos] = 1.
-            rhs[pos] = -(val*hp1[pos]-hu[pos] - dt*gr*h[pos]*hx[pos])/dt
+            rhs[pos] = -(val*h[pos]-hu[pos] - dt*gr*h[pos]*hx[pos])/dt
         elif typ == "Neumann" :
             M[pos,:] = 0.
             if pos == 0:
@@ -356,36 +356,36 @@ def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=[],eta=0.,hp1=[],inter=None):
             if pos == 0:
                 # Left TBC 1 ==> unknown = U[0]
                 M[0,0]   =  1.
-                M[0,1]   = -   Y[4,0]*hp1[0]/hp1[1]
-                M[0,2]   =     Y[6,0]*hp1[0]/hp1[2]
+                M[0,1]   = -   Y[4,0]*h[0]/h[1]
+                M[0,2]   =     Y[6,0]*h[0]/h[2]
                 rhs[pos] = val           
             elif pos == 1:
                 # Left TBC 2 ==> unknown = U[1]
                 M[1,0]   =  1.
-                M[1,2]   = -   Y[5,0]*hp1[0]/hp1[2]
-                M[1,3]   =  2.*Y[8,0]*hp1[0]/hp1[3]
-                M[1,4]   = -   Y[7,0]*hp1[0]/hp1[4]
+                M[1,2]   = -   Y[5,0]*h[0]/h[2]
+                M[1,3]   =  2.*Y[8,0]*h[0]/h[3]
+                M[1,4]   = -   Y[7,0]*h[0]/h[4]
                 rhs[pos] = val
             elif pos == -1:
                 ## Right TBC 1 ==> unkonwn = U[J]
                 M[-1,-1] =  1.
-                M[-1,-2] = -   Y[0,0]*hp1[-1]/hp1[-2]
-                M[-1,-3] =     Y[2,0]*hp1[-1]/hp1[-3]
+                M[-1,-2] = -   Y[0,0]*h[-1]/h[-2]
+                M[-1,-3] =     Y[2,0]*h[-1]/h[-3]
                 rhs[pos] = val
             elif pos == -2:
                 ## Right TBC 2 ==> unknown = U[J-1]
                 M[-2,-1] =  1.
-                M[-2,-2] = -2.*Y[0,0]*hp1[-1]/hp1[-2]
-                M[-2,-3] =     Y[1,0]*hp1[-1]/hp1[-3]
-                M[-2,-5] = -   Y[3,0]*hp1[-1]/hp1[-5]
+                M[-2,-2] = -2.*Y[0,0]*h[-1]/h[-2]
+                M[-2,-3] =     Y[1,0]*h[-1]/h[-3]
+                M[-2,-5] = -   Y[3,0]*h[-1]/h[-5]
                 rhs[pos] = val
                     
         else :
             sys.exit("Wrong type of TBC!! Please use Dirichlet/Neumann/TBC")
         
     return M,rhs
-def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=None,uref=None,Y=[],eta=0.,
-                 hp1=[],domain=0,ind=0,zref=None):
+def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=None,uref=None,Y=[],
+                 domain=0,ind=0,zref=None):
     
     """
     Finite Difference Solver for the second step of the splitted Serre equations, using the discretization derived
@@ -401,7 +401,6 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=Non
                 u(right),ux(right),uxx(right),alpha2*u(right) + beta2*ux(right) + gamma2*uxx(right),
                 alpha1,beta1,gamma1,alpha2,beta2,gamma2,Fleft,Fright] 
         * periodic (boolean) : indicates if the function is periodic
-        * hp1 : h from the next iteration
         * ind : index to restrain to the given subdomain
         
     - Returns
@@ -410,14 +409,11 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=Non
     
     gr = 9.81
     
-    # if periodic :
-    #     for v in [u,h] :
-    #         v = serre.imposePeriodicity(v,ng)    
+    if periodic :
+        for v in [u,h] :
+            v = serre.imposePeriodicity(v,ng)    
 
     hu = h*u
-    
-    if hp1 == []:
-        hp1 = np.copy(h)
         
     order = 2
     
@@ -430,9 +426,12 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=Non
     h2x = serre.get1d(h*h,dx,periodic,order=order)
     hhx = h*hx
     
-    # if periodic :
-    #     for v in [ux,uux,uxx,uuxdx,h2x,hx,hhx,hxx] :
-    #         v = serre.imposePeriodicity(v,ng)  
+    Q = 2.*h*hx*ux*ux + 4./3.*h*h*ux*uxx
+    rhs = gr*h*hx + h*Q   
+    
+    if periodic :
+        for v in [ux,uux,uxx,uuxdx,h2x,hx,hhx,hxx] :
+            v = serre.imposePeriodicity(v,ng)  
     
     if domain == 1:
         u = u[:ind]
@@ -446,6 +445,8 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=Non
         h2x = h2x[:ind]
         hhx = hhx[:ind]
         hu = h*u
+        Q = Q[:ind]
+        rhs = rhs[:ind]
     elif domain == 2:
         u = u[ind:]
         ux = ux[ind:]
@@ -457,12 +458,11 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=Non
         hxx = hxx[ind:]
         h2x = h2x[ind:]
         hhx = hhx[ind:]
-        hu = h*u
-    
-    Q = 2.*h*hx*ux*ux + 4./3.*h*h*ux*uxx + eta*eta*h*u*ux + eta*eta*(hx+eta)*u*u
-    rhs = gr*h*hx + h*Q + gr*h*eta      
+        hu = h*u  
+        Q = Q[ind:]
+        rhs = rhs[ind:]
      
-    d0 = 1. + hx*hx/3. + h*hxx/3. + 5.*h*h/(6.*dx*dx) + eta*(hx+eta)
+    d0 = 1. + hx*hx/3. + h*hxx/3. + 5.*h*h/(6.*dx*dx)
     dp1 = -2./3.*h*hx/(3.*dx) - 4./3.*h*h/(3.*dx*dx)
     dp1 = dp1[0:-1]
     dm1 = +2./3.*h*hx/(3.*dx) - 4./3.*h*h/(3.*dx*dx)
@@ -476,13 +476,12 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=Non
 
     np.set_printoptions(threshold=np.nan)
     
-    M,rhs = imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=Y,eta=eta,hp1=hp1)    
+    M,rhs = imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=Y)    
     z = np.linalg.solve(M,rhs)
-    print " *  residual :", np.linalg.norm(np.dot(M,z)-rhs)
     
-    hu2 = hu + dt*(gr*h*(hx+eta)-z)
+    hu2 = hu + dt*(gr*h*hx-z)
     
-    return hu2/hp1, z
+    return hu2/h, z
 def norm2(u, dx):
   """
   Return the l^2 norm of an numpy array.
@@ -567,6 +566,23 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
     print " * "
     
     while abs(t-tmax) > 10**(-12):
+        
+        if it < 0:
+            it += 1
+            t  += dt
+            u1 = uref[:n1,it]
+            h1 = href[:n1,it]
+            u2 = uref[o12:,it]
+            h2 = href[o12:,it]
+            u[:o12] = u1[:o12]
+            u[o12:n1] = .5*(u1[o12:] + u2[:j21+1])
+            u[n1:] = u2[j21+1:]
+            u1all = np.column_stack((u1all,u1))
+            u2all = np.column_stack((u2all,u2))
+            uall = np.column_stack((uall,u))
+            tall = np.hstack((tall,t*np.ones(1)))
+            continue
+            
                        
         ## starting from the referential solution to have only the DDM error
         ## and not the error from the numerical scheme
@@ -652,12 +668,15 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
         u[:o12] = u1[:o12]
         u[o12:n1] = .5*(u1[o12:] + u2[:j21+1])
         u[n1:] = u2[j21+1:]
+        h[:o12] = h1[:o12]
+        h[o12:n1] = .5*(h1[o12:] + h2[:j21+1])
+        h[n1:] = h2[j21+1:]
         
         print " *  --------------------------"
         print " *  t = {:.2f}".format(t+dt)
         print " *  Advection error for h :", np.sqrt(norm2(h1-href[:n1,it+1], dx)**2 + 
                                                      norm2(h2-href[o12:,it+1], dx)**2)
-            
+                    
         ## DDM for the dispersive part
         while niter < nitermax and cvg == False:
             
@@ -697,8 +716,8 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
             ## solving in the left domain
             u1_save = np.copy(u1)
             z1_save = np.copy(z1)
-            u1,z1 = EFDSolverFM4(href[:,it],u,dx,dt,FDorder,BCconfig1,it,
-                                 Y=Y,hp1=h1,domain=1,ind=n1,periodic=periodic)
+            u1,z1 = EFDSolverFM4(h,u,dx,dt,FDorder,BCconfig1,it,
+                                 Y=Y,domain=1,ind=n1,periodic=periodic)
             assert(len(u1) == n1)
             
             ## \Omega_2 : left --> IBC, right --> BC
@@ -737,8 +756,8 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
             ## solving in the right domain
             u2_save = np.copy(u2)
             z2_save = np.copy(z2)
-            u2,z2 = EFDSolverFM4(href[:,it],u,dx,dt,FDorder,BCconfig2,it,
-                                 Y=Y,hp1=h2,domain=2,ind=o12,periodic=periodic)
+            u2,z2 = EFDSolverFM4(h,u,dx,dt,FDorder,BCconfig2,it,
+                                 Y=Y,domain=2,ind=o12,periodic=periodic)
             assert(len(u2) == n2)
             
             ## periodicity
@@ -770,6 +789,10 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
                                                                            (u2[1]-uref[o12+1,it+1])**2))
                 print " * "
                 cvg = True
+                err1 = u1-uref[:n1,it+1]
+                err2 = u2-uref[o12:,it+1]
+                err1 = np.append(err1,np.zeros(n-n1))
+                err2 = np.append(np.zeros(n-n2),err2)
                 u[:o12] = u1[:o12]
                 u[o12:n1] = .5*(u1[o12:] + u2[:j21+1])
                 u[n1:] = u2[j21+1:]
@@ -785,9 +808,10 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
                                                                           (u2[1]-uref[o12+1,it+1])**2))
 
                 print " * "
-                # plt.plot(x[:n1],  u1-uref[:n1,it+1])
-                # plt.plot(x[o12:], u2-uref[o12:,it+1])
-                # plt.show()
+                err1 = u1-uref[:n1,it+1]
+                err2 = u2-uref[o12:,it+1]
+                err1 = np.append(err1,np.zeros(n-n1))
+                err2 = np.append(np.zeros(n-n2),err2)
                 u[:o12] = u1[:o12]
                 u[o12:n1] = .5*(u1[o12:] + u2[:j21+1])
                 u[n1:] = u2[j21+1:]
@@ -800,16 +824,22 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
             plt.clf()
             
         ## stacking after convergence
-        if it == 0:
-            z1all = z1
-            z2all = z2
-        else:
+        try:
             z1all = np.column_stack((z1all,z1))
             z2all = np.column_stack((z2all,z2))
+        except:
+            z1all = z1
+            z2all = z2
         u1all = np.column_stack((u1all,u1))
         u2all = np.column_stack((u2all,u2))
         uall = np.column_stack((uall,u))
         tall = np.hstack((tall,t*np.ones(1)))
+        try:
+            err1all = np.column_stack((err1all,err1))
+            err2all = np.column_stack((err2all,err2))
+        except:
+            err1all = np.copy(err1)
+            err2all = np.copy(err2)
         
         
         t  += dt
@@ -820,7 +850,7 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
     # saving interfaces for plotting
     ddm = [x[o12],x[j1]]
         
-    return uall,u1all,u2all,z1all,z2all,tall,ddm
+    return uall,u1all,u2all,z1all,z2all,tall,ddm,err1all,err2all
 def computeErrorTBC(u,uref,idxlims,dx,dt):
     lim1 = idxlims[0]
     lim2 = idxlims[1]

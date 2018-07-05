@@ -391,7 +391,7 @@ def periodicDomain2TwoGC(M,rhs,t,dx,BC):
 import convolution as cvl
 
 # impose transparent boundary conditions
-def DTBC(M,rhs,BCs,hm1,h,u,hm1x,hx,hu,dx,dt,nit,Y=[],uall=None):
+def DTBC(M,rhs,BCs,h,u,hx,hu,dx,dt,nit,Y=[],uall=None):
     
     """
     Impose three boundary conditions for the dispersive part
@@ -406,7 +406,6 @@ def DTBC(M,rhs,BCs,hm1,h,u,hm1x,hx,hu,dx,dt,nit,Y=[],uall=None):
                 ::: Value (float) : value of the BC
                 ::: Opt [int,float,array] : optional coefficients for the TBC; depends on the Type 
         * h,hx,hu : informations from the last computation
-        * hm1 : h before the advection step (not supposed to change during the dispersion step)
         * hp1 : information about h at this iteration (is already computed at the advection part)
         * dt
         
@@ -423,7 +422,8 @@ def DTBC(M,rhs,BCs,hm1,h,u,hm1x,hx,hu,dx,dt,nit,Y=[],uall=None):
         if typ == 'DTBC_Y':
             convol = True
             Ct = cvl.convolution_exact(nit, Y, uall)
-            uu = (1./h)*(hm1*u + dt*gr*hm1*hm1x) 
+            # uu = (1./hp1)*(h*u + dt*gr*h*hx) 
+            uu = u + dt*gr*hx
             break
         
     ## impose BCs
@@ -435,7 +435,6 @@ def DTBC(M,rhs,BCs,hm1,h,u,hm1x,hx,hu,dx,dt,nit,Y=[],uall=None):
             M[pos,:] = 0.
             M[pos,pos] = 1.
             rhs[pos] = -(val*h[pos]-hu[pos] - dt*gr*h[pos]*hx[pos])/dt
-            # rhs[pos] = val*h[pos]
         elif typ == "Neumann" :
             M[pos,:] = 0.
             if pos == 0:
@@ -639,7 +638,7 @@ def EFDSolver(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2):
     u2 = np.linalg.solve(M,rhs)
         
     return u2
-def EFDSolverFM4(hm1,h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2,Y=[],nit=0,uall=None):
+def EFDSolverFM4(h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng=2,Y=[],nit=0,uall=None):
     
     """
     Finite Difference Solver for the second step of the splitted Serre equations, using the discretization derived
@@ -665,18 +664,17 @@ def EFDSolverFM4(hm1,h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng
         for v in [u,h] :
             v = imposePeriodicity(v,ng)
     
-    hm1u = hm1*u
     hu = h*u
     
     order = 2
-    ux = get1d(u,dx,periodic,order=4)
-    uxx = get2d(u,dx,periodic,order=4)
+    
+    ux = get1d(u,dx,periodic,order=order)
+    uxx = get2d(u,dx,periodic,order=order)
     uux = u*ux
-    uuxdx = get1d(uux,dx,periodic,order=4)
-    hx = get1d(h,dx,periodic,order=4)
-    hm1x = get1d(hm1,dx,periodic,order=2)
-    hxx = get2d(h,dx,periodic,order=4)
-    h2x = get1d(h*h,dx,periodic,order=4)
+    uuxdx = get1d(uux,dx,periodic,order=order)
+    hx = get1d(h,dx,periodic,order=order)
+    hxx = get2d(h,dx,periodic,order=order)
+    h2x = get1d(h*h,dx,periodic,order=order)
     hhx = h*hx
     
     Q = 2.*h*hx*ux*ux + 4./3.*h*h*ux*uxx
@@ -698,43 +696,15 @@ def EFDSolverFM4(hm1,h,u,dx,dt,t,order,BCfunction,BCparam=None,periodic=False,ng
     
     M = np.diag(d0) + np.diag(dp1,1) + np.diag(dm1,-1) + np.diag(dp2,2) + np.diag(dm2,-2)
 
-    M[0,:] = 0
-    M[1,:] = 0
-    M[-1,:] = 0
-    M[-2,:] = 0
-
-    ### Correct it (but in general these lines are replaced by the BC)
-    M[0,0] = h[0]*(1. - 3./4.*h2x[0]/dx - 2./3.*h[0]*h[0]/(dx*dx))
-    M[0,1] = h[0]*(h2x[0]/dx + 5./3.*h[0]*h[0]/(dx*dx))
-    M[0,2] = h[0]*(-1./4.*h2x[0]/dx - 4./3.*h[0]*h[0]/(dx*dx))
-    M[0,3] = h[0]*(1./3.*h[0]*h[0]/(dx*dx))
-
-    M[1,1] = h[1]*(1. - 3./4.*h2x[1]/dx - 2./3.*h[1]*h[1]/(dx*dx))
-    M[1,2] = h[1]*(h2x[1]/dx + 5./3.*h[1]*h[1]/(dx*dx))
-    M[1,3] = h[1]*(-1./4.*h2x[1]/dx - 4./3.*h[1]*h[1]/(dx*dx))
-    M[1,4] = h[1]*(1./3.*h[1]*h[1]/(dx*dx))    
-    
-    M[-1,-1] = h[-1]*(1. + 3./4.*h2x[-1]/dx - 2./3.*h[-1]*h[-1]/(dx*dx))
-    M[-1,-2] = h[-1]*(-h2x[-1]/dx + 5./3.*h[-1]*h[-1]/(dx*dx))
-    M[-1,-3] = h[-1]*(1./4.*h2x[-1]/dx - 4./3.*h[-1]*h[-1]/(dx*dx))
-    M[-1,-4] = h[-1]*(1./3.*h[-1]*h[-1]/(dx*dx))
-      
-    M[-2,-2] = h[-2]*(1. + 3./4.*h2x[-2]/dx - 2./3.*h[-2]*h[-2]/(dx*dx))
-    M[-2,-3] = h[-2]*(-h2x[-2]/dx + 5./3.*h[-2]*h[-2]/(dx*dx))
-    M[-2,-4] = h[-2]*(1./4.*h2x[-2]/dx - 4./3.*h[-2]*h[-2]/(dx*dx))
-    M[-2,-5] = h[-2]*(1./3.*h[-2]*h[-2]/(dx*dx))
-    ######
-
     np.set_printoptions(threshold=np.nan)
-    np.set_printoptions(suppress=True)
-    
+        
     if BCfunction != DTBC:
         M,rhs = BCfunction(M,rhs,t,dx,BCparam)
     else:
-        M,rhs,Ct = BCfunction(M,rhs,BCparam,hm1,h,u,hm1x,hx,hu,dx,dt,nit,Y,uall)
-
+        M,rhs,Ct = BCfunction(M,rhs,BCparam,h,u,hx,hu,dx,dt,nit,Y,uall)
+            
     z = np.linalg.solve(M,rhs)
-    hu2 = hm1u + dt*(gr*hm1*hm1x-z)
+    hu2 = hu + dt*(gr*h*hx-z)
     
     if Y != []:
         u2 = hu2/h
@@ -972,7 +942,7 @@ def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,var
         if splitSteps == 3: ## Adv Disp Adv
             h,hu = fvTimesolver(h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,periodic,ng=ghostcells)
             u = np.where(h[:]>1e-5, hu[:]/h[:], 0.)
-            u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells,Y=Y,nit=it,uall=uall)
+            u = fdsolver(h,u,dx,dt,t,order,bcfunction2,bcparam2,periodic=periodic,ng=ghostcells,Y=Y,nit=it,uall=uall)
             hu = h*u
             h,hu = bcfunction1(h,hu,bcparam1,dx,t)  
             h,hu = fvTimesolver(h,hu,fvsolver,bcfunction1,bcparam1,dx,dt/2.,nx,t,periodic,ng=ghostcells)
@@ -982,10 +952,9 @@ def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,nx,var
                                                           ng=ghostcells,u_refRK=u_refRK_it,h_refRK=h_refRK_it,idx=idx)
             h,hu = bcfunction1(h,hu,bcparam1,dx,t)
             u = np.where(h[:]>1e-10, hu[:]/h[:], 0.)    
-            u = fdsolver(hm1,h,u,dx,dt,t,order,bcfunction2,bcparam2,
+            u = fdsolver(h,u,dx,dt,t,order,bcfunction2,bcparam2,
                          periodic=periodic,ng=ghostcells,Y=Y,nit=it+1,uall=uall)
 
-            
             ## saving references in the big domain case
             if u_refRK == [] and h_refRK == []:
                 u_refRK_save.append(u_refRK_temp)
