@@ -478,6 +478,7 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=Non
     
     M,rhs = imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=Y,eta=eta,hp1=hp1)    
     z = np.linalg.solve(M,rhs)
+    print " *  residual :", np.linalg.norm(np.dot(M,z)-rhs)
     
     hu2 = hu + dt*(gr*h*(hx+eta)-z)
     
@@ -784,9 +785,9 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
                                                                           (u2[1]-uref[o12+1,it+1])**2))
 
                 print " * "
-                plt.plot(x[:n1],  u1-uref[:n1,it+1])
-                plt.plot(x[o12:], u2-uref[o12:,it+1])
-                plt.show()
+                # plt.plot(x[:n1],  u1-uref[:n1,it+1])
+                # plt.plot(x[o12:], u2-uref[o12:,it+1])
+                # plt.show()
                 u[:o12] = u1[:o12]
                 u[o12:n1] = .5*(u1[o12:] + u2[:j21+1])
                 u[n1:] = u2[j21+1:]
