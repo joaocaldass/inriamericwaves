@@ -5,42 +5,24 @@ sys.path.append('../nswe')
 
 import numpy as np
 import matplotlib.pyplot as plt
-import serre
+## we use the modified version of serre.py for the DTBC
+import serre_DTBC as serre
 import cnoidal
 import nswe_wbmuscl4 as wb4
 
 
 nan = float("nan")
-def periodicSubDomain_1_TwoGC(h,hu,BC,dx,t):
-    """
-    Boundary conditions for the left subdomain, with two ghostcells on the left for periodicity.
-    """
-    
-    hb = 1.*h
-    hub = 1.*hu
-    
-    hb[0] = BC[0,-2]
-    hub[0] = BC[1,-2]   
-    hb[1] = BC[0,-1]
-    hub[1] = BC[1,-1]
-    
-    return hb,hub
+import csv
 
-def periodicSubDomain_2_TwoGC(h,hu,BC,dx,t):
-    """
-    Boundary conditions for the right subdomain, with two ghostcells on the right for periodicity.
-    """
-    
-    hb = 1.*h
-    hub = 1.*hu
-    
-    hb[-1] = BC[0,1]
-    hub[-1] = BC[1,1]   
-    hb[-2] = BC[0,0]
-    hub[-2] = BC[1,0]
-    
-    return hb,hub
+def csv_write(csvfile_path, data):
+  """
+  Write data into the path registered to csvfile_path.
+  """
 
+  with open(csvfile_path, 'w') as csv_file:
+    writer = csv.writer(csv_file, delimiter=',')
+    for line in zip(*data):
+      writer.writerow(line)
 def impose_periodicity_2subdom(a1,b1,a2,b2):
     """
     Impose periodicity once the solution from the advection step have been computed in each domain 
@@ -125,13 +107,19 @@ def fluxes_periodic(h,hu,n,periodic,ng):
     fp, fm, sc = wb4.fluxes_sources(d0,h0,u0)
     
     return fp
-# compute any of the RK4 coefficients (k_i)
 def getRK4coef(uA,uB,f,dx,dt,nx,periodic,ng):
+    """
+    compute any of the RK4 coefficients (k_i)
+    """
+    
     F = f(uA,uB,nx,periodic,ng)
     return -dt/dx*(F[0,1:] - F[0,:-1]), -dt/dx*(F[1,1:] - F[1,:-1])
 
 # RK4 for one time step
 def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
+    """
+    RK4 for one time step
+    """
         
     uuA = np.copy(uA)
     uuB = np.copy(uB)
@@ -162,39 +150,34 @@ def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
         
     ## [] are for serre.splitSerre, but we don't need them here
     return uuA, uuB, [], []
-def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=[],eta=0.,hp1=[],inter=None):
-    
+def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=[]):
     """
     Impose three boundary conditions for the dispersive part
     
     - Inputs :
         * M : matrix of the FD scheme
         * rhs : right-hand side of the FD scheme
-        * BCs : array of dimensions 3x3 containing one TBC in each line, in the form
-            [Position,Type,Value,Opt], where
+        * BCs : array containing one BC in each line, in the form
+            [Position,Type,Value], where
                 ::: Position (int) : indicates the point to be modified (0,1,...,-2,-1)
-                ::: Type (str) : indicates the type of BC : "Dirichlet"/"Neumann"/"TBC"
-                ::: Value (float) : value of the BC
-                ::: Opt [int,float,array] : optional coefficients for the TBC; depends on the Type 
+                ::: Type (str) : indicates the type of IBC : "Dirichlet"/"TBC"/"periodic"
+                ::: Value (float) : value of the IBC
         * h,hx,hu : informations from the last computation
-        * dt
-        * hp1 : h from the next iteration
+        * dx,dt : time and space steps
         
     - Outputs :
-        * M
-        * rhs
+        * M, modified for the IBC
+        * rhs, modified for the IBC
     """
-    gr = 9.81
     
-    ### verif number of TBCs
-    #if BCs.shape[0] != 3 :
-    #    sys.exit("Wrong number of BCs")
+    gr = 9.81
         
     ## impose BCs
     for i in range(BCs.shape[0]) :
         [pos,typ,val] = BCs[i,:3]
         pos = int(pos)
         val = float(val)
+        
         if typ == "Dirichlet" or typ == "periodic" :
             M[pos,:] = 0.
             M[pos,pos] = 1.
@@ -232,27 +215,26 @@ def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=[],eta=0.,hp1=[],inter=None):
                 rhs[pos] = val
                     
         else :
-            sys.exit("Wrong type of TBC!! Please use Dirichlet/Neumann/TBC")
+            sys.exit("Wrong type of TBC!! Please use Dirichlet/periodic/TBC")
         
     return M,rhs
-def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,side="left",href=None,uref=None,Y=[],
-                 domain=0,ind=0,zref=None):
+def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,href=None,uref=None,Y=[],
+                 domain=0,ind=0):
     
     """
     Finite Difference Solver for the second step of the splitted Serre equations, using the discretization derived
     in the paper of Fabien Marche
-    MODIFICATION : imposition of BCs
     
     - Parameters
-        * h,u (1D array) : solution
-        * dx,dt,t (integers) : space step, time step, time
-        * BCfunction (function) : function that modifies the linear system to impose the BCs
-        * BCparam (1D array) : argument for BCfunction; contains the BCs in the form
-             BC=[u(left),ux(left),uxx(left),alpha1*u(left) + beta1*ux(right) + gamma1*uxx(right),
-                u(right),ux(right),uxx(right),alpha2*u(right) + beta2*ux(right) + gamma2*uxx(right),
-                alpha1,beta1,gamma1,alpha2,beta2,gamma2,Fleft,Fright] 
+        * h,u : solution
+        * dx,dt,t : space step, time step, time
+        * BCs : boundary conditions
+        * it : current iteration
         * periodic (boolean) : indicates if the function is periodic
         * ind : index to restrain to the given subdomain
+        * domain : specify domain (1 : left, 2 : right)
+        * href, uref : reference values for the given quantity
+        * Y : convolution coefficients
         
     - Returns
         * u2 (1D array) : solution (velocity)
@@ -342,8 +324,8 @@ def norm2(u, dx):
 
 def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,periodic=True,
                   bcfunction_adv=serre.periodicDomainTwoGC,
-                  uref=None,href=None,zref=None,debug_1=False,debug_2=False,Y=[],
-                  ng=3,fvTimesolver=RK4):
+                  uref=None,href=None,debug_1=False,debug_2=False,Y=[],
+                  ng=3,fvTimesolver=RK4,write_error=False):
     """
     If the DDM is overlapping : N1+N2 >= N+2, otherwise N1+N2 = N+1.
 
@@ -369,7 +351,7 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
     - nx : unknowns in the monodomain
     - cond_int_1, cond_int_2 : conditions at the interface between the two domains
     - cond_bound : conditions at the boundaries of the mono-domain
-    - uref, href, zref : references values (mono-domain)
+    - uref, hrefd : references values (mono-domain)
     - Y : convolution coefficients for the discrete TBC
     - debug_1, debug_2 : if True, we impose the monodomain solution on the boundaries of the subdomain i
     - ng : number of ghostcells (3 for the advection part)
@@ -419,7 +401,7 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
     
     while abs(t-tmax) > 10**(-12):
         
-        ## starting from the reference
+        ## starting from the reference to study the consistency error only
         h = href[:,it]
         u = uref[:,it]
         hu = h*u
@@ -446,12 +428,11 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
         z2 = np.zeros_like(u2)
         
         ## monitoring error
-        if it == 50:
+        if it+1 == 50:
             monitor = True
+            err_tab = []
         else:
             monitor = False
-        if monitor:
-            err_tab = []
         
         print " *  --------------------------"
         print " *  t = {:.2f}".format(t+dt)
@@ -489,10 +470,10 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
                 bc11 = 0.
                 bc12 = 0.
                 
-            BCconfig1 = np.array([[0,cond_bound,bc11,1.,0.,1.],
-                                 [-1,cond_int_1,val11,1.,0.,1.],
-                                 [1,cond_bound,bc12,1.,0.,1.],
-                                 [-2,cond_int_1,val12,1.,0.,1.]], dtype=object)
+            BCconfig1 = np.array([[0,cond_bound,bc11],
+                                 [-1,cond_int_1,val11],
+                                 [1,cond_bound,bc12],
+                                 [-2,cond_int_1,val12]], dtype=object)
             
             ## solving in the left domain
             u1_save = np.copy(u1)
@@ -526,10 +507,10 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
                 bc21 = 0.
                 bc22 = 0.
                 
-            BCconfig2 = np.array([[0,cond_int_2,val21,1.,0.,1.],
-                                 [-1,cond_bound,bc21,1.,0.,1.],
-                                 [1,cond_int_2,val22,1.,0.,1.],
-                                 [-2,cond_bound,bc22,1.,0.,1.]], dtype=object)      
+            BCconfig2 = np.array([[0,cond_int_2,val21],
+                                 [-1,cond_bound,bc21],
+                                 [1,cond_int_2,val22],
+                                 [-2,cond_bound,bc22]], dtype=object)      
             
             ## solving in the right domain
             u2_save = np.copy(u2)
@@ -544,16 +525,13 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
             if periodic:
                 h1,h1u1,h2,h2u2 = impose_periodicity_2subdom(h1,h1u1,h2,h2u2)
             
-            ## test convergence with reference to uref
+            ## test convergence 
             ## convergence in u
-            err_norm_ref = np.sqrt(norm2(u1-uref[:n1,it+1], dx)**2 + norm2(u2-uref[o12:,it+1], dx)**2)
-            ## convergence in z
-            # err_norm_ref = np.sqrt(norm2(z1-zref[:n1,it], dx)**2 + norm2(z2-zref[o12:,it], dx)**2)
-            ## convergence error instead of reference (for when we don't know the reference solution)
-            err_norm_cvg = np.sqrt(norm2(u1-u1_save, dx)**2 + norm2(u2-u2_save, dx)**2)
+            err_norm_ref_u = np.sqrt(norm2(u1-uref[:n1,it+1], dx)**2 + norm2(u2-uref[o12:,it+1], dx)**2)
+            ## possibly other erros can be considered (to be implemented)
             
             ## choose which error to consider
-            err_norm = err_norm_ref
+            err_norm = err_norm_ref_u
             
             ## monitoring error
             if monitor:
@@ -568,7 +546,6 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
                                                                            (u1[j1-1]-uref[j1-1,it+1])**2))
                 print " *  right domain interface : {:.3e}".format(np.sqrt((u2[0]-uref[o12,it+1])**2 +
                                                                            (u2[1]-uref[o12+1,it+1])**2))
-                print " * "
                 cvg = True
                         
             ## if not convergence after nitermax iterations
@@ -579,7 +556,6 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
                 print " *  right domain interface : {:.3e}".format(np.sqrt((u2[0]-uref[o12,it+1])**2 + 
                                                                           (u2[1]-uref[o12+1,it+1])**2))
 
-                print " * "
         
         ## building ddm solution for plotting
         u[:o12] = u1[:o12]
@@ -591,11 +567,9 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
         err2 = u2-uref[o12:,it+1]
         err1 = np.append(err1,np.zeros(n-n1))
         err2 = np.append(np.zeros(n-n2),err2)
-        if monitor:
-            plt.plot(err_tab)
-            plt.yscale('log')
-            plt.savefig('error_{}-{}.pdf'.format(cond_int_1, cond_int_2))
-            plt.clf()
+        if monitor and write_error:
+            print " *  error written in csv file"
+            csv_write("data/error_DDM_{}.csv".format(t), [range(1,len(err_tab)+1), err_tab])
             
         ## stacking after convergence
         try:
@@ -618,20 +592,11 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
         ## next time step
         t  += dt
         it += 1
+        print " * "
         
     print "*** DDM over"
     
     # saving interfaces for plotting
     ddm = [x[o12],x[j1]]
         
-    return uall,u1all,u2all,z1all,z2all,tall,ddm,err1all,err2all
-def computeErrorTBC(u,uref,idxlims,dx,dt):
-    lim1 = idxlims[0]
-    lim2 = idxlims[1]
-    uwind = uref[lim1:lim2+1,:]
-    errDom = np.linalg.norm(u-uwind)*np.sqrt(dx*dt)
-    errInt1 = np.linalg.norm(u[0,:]-uwind[0,:])*np.sqrt(dt)
-    errInt2 = np.linalg.norm(u[-1,:]-uwind[-1,:])*np.sqrt(dt)
-    
-    return errDom,errInt1,errInt2
-    
+    return uall,u1all,u2all,tall,ddm,err1all,err2all
