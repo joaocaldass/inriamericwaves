@@ -37,12 +37,12 @@ class Parameters:
     self.xi_pow = 0
 
     ## personnal parameters
-    self.ht = - (h0**2)/3
+    self.htt = - (h0**2)/3
     self.g = 9.81
 
 def compute_Y3(ps):
   """
-  Computes the exact convolution variables before apprxomating them.
+  Convolution coefficients from the linearized Boussinesq equation.
   """
 
   print "*** Starting computations of Ys"
@@ -259,16 +259,16 @@ def compute_K(dx, h0):
 
 def compute_Y(ps):
   """
-  Computes the exact convolution variables before apprxomating them.
+  Computes the convolution coefficients from the linearized Serre equations.
   """
 
   print "*** Starting computations of Ys"
 
   ## creating the polynomial basis
   # dimensional and adimensional constants for the reformulated polynomial
-  a = 4*ps.ht/(ps.g*ps.h0)
+  a = 4*ps.htt/(ps.g*ps.h0)
   b = 4*(ps.dx**2)/(ps.g*ps.h0)
-  s = lambda z: (2./ps.dt) * (z-1.)/(z+1.)
+  s = lambda z: (2/ps.dt) * (z-1.)/(z+1.)
   P = [0 + 0j for i in range(5)]
   N = ps.Nf
 

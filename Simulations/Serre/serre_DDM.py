@@ -148,7 +148,7 @@ def RK4(uA,uB,f,bcf,bcp,dx,dt,nx,t,periodic,ng,u_refRK=[],h_refRK=[],idx=[]):
     uuA = uA + 1./6.*(k1A+2.*k2A+2.*k3A+k4A)
     uuB = uB + 1./6.*(k1B+2.*k2B+2.*k3B+k4B)
         
-    ## [] are for serre.splitSerre, but we don't need them here
+    ## [] are for serre_DTBC.splitSerre, but we don't need them here
     return uuA, uuB, [], []
 def imposeBCDispersive(M,rhs,BCs,h,u,hx,hu,dx,dt,Y=[]):
     """
@@ -250,6 +250,7 @@ def EFDSolverFM4(h,u,dx,dt,order,BCs,it,periodic=False,ng=2,href=None,uref=None,
         
     order = 2
     
+    ## derivation on the whole domain so that there is no boundary effect on the subdomains
     ux = serre.get1d(u,dx,periodic,order=order)
     uxx = serre.get2d(u,dx,periodic,order=order)
     uux = u*ux
@@ -430,7 +431,8 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
         ## monitoring error
         if it+1 == 50:
             monitor = True
-            err_tab = []
+            err_norm_ref_u = np.sqrt(norm2(u1-uref[:n1,it+1], dx)**2 + norm2(u2-uref[o12:,it+1], dx)**2)
+            err_tab = [err_norm_ref_u]
         else:
             monitor = False
         
@@ -569,7 +571,7 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
         err2 = np.append(np.zeros(n-n2),err2)
         if monitor and write_error:
             print " *  error written in csv file"
-            csv_write("data/error_DDM_{}.csv".format(t), [range(1,len(err_tab)+1), err_tab])
+            csv_write("data/error_DDM_{}.csv".format(t+dt), [range(len(err_tab)), err_tab])
             
         ## stacking after convergence
         try:
