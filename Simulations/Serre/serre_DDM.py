@@ -602,3 +602,25 @@ def splitSerreDDM(x,u,h,t0,tmax,dt,dx,nx,cond_int_1,cond_int_2,cond_bound,period
     ddm = [x[o12],x[j1]]
         
     return uall,u1all,u2all,tall,ddm,err1all,err2all
+import csv
+
+def csv_write(csvfile_path, data):
+  """
+  Write data into the path registered to csvfile_path.
+  """
+
+  with open(csvfile_path, 'w') as csv_file:
+    writer = csv.writer(csv_file, delimiter=',')
+    for line in zip(*data):
+      writer.writerow(line)
+import csv
+
+def csv_write(csvfile_path, data):
+  """
+  Write data into the path registered to csvfile_path.
+  """
+
+  with open(csvfile_path, 'w') as csv_file:
+    writer = csv.writer(csv_file, delimiter=',')
+    for line in zip(*data):
+      writer.writerow(line)

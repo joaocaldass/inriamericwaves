@@ -12,6 +12,17 @@ import cnoidal
 import nswe
 import muscl2
 
+import csv
+
+def csv_write(csvfile_path, data):
+  """
+  Write data into the path registered to csvfile_path.
+  """
+
+  with open(csvfile_path, 'w') as csv_file:
+    writer = csv.writer(csv_file, delimiter=',')
+    for line in zip(*data):
+      writer.writerow(line)
 def imposePeriodicity(v,ng) :
     """
     Impose periodicity to ng ghost cells
@@ -567,5 +578,18 @@ def splitSerre(x,h,u,t0,tmax,bcfunction1,bcfunction2,bcparam1,bcparam2,dx,dt,nx,
         hall = np.column_stack((hall,h))
         uall = np.column_stack((uall,u))
         tall = np.hstack((tall,t*np.ones(1)))
+        
+        ## plotting solutions
+        if abs(t - 0.2) < 10**(-5):
+            print " *  solution written in csv file"
+            ## reference solution
+            if idx != []:
+                idx1 = idx[0]
+                idx2 = idx[1]
+                csv_write("data/u_ref_t{}.csv".format(t), [x[idx1:idx2], u[idx1:idx2]])
+            ## computed solution
+            else:
+                csv_write("data/u_t{}.csv".format(t), [x, u])
+            
                     
     return hall,uall,tall,u_refRK_save,h_refRK_save
